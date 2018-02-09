@@ -18,6 +18,8 @@ public class MouseTarget : MonoBehaviour
         temp_obj.transform.localPosition += Camera.main.transform.forward;
         attachPoint = temp_obj.AddComponent<Rigidbody>();
         attachPoint.isKinematic = true;
+
+        EventManager.instance.Pointing += OnPointing;
     }
 	
 	void Update ()
@@ -55,7 +57,16 @@ public class MouseTarget : MonoBehaviour
         {
             hold = false;
         }
-
+        if (Input.GetMouseButtonDown(1))
+        {
+            RaycastHit hit;
+            bool bHit = Physics.Linecast(transform.position, transform.forward * 100, out hit);
+            if (bHit && hit.transform.gameObject.tag == "bed")
+            {
+                Debug.Log("Pointed the bed");
+                EventManager.instance.OnPointing();
+            }
+        }
     }
 
     void FixedUpdate()
@@ -104,10 +115,20 @@ public class MouseTarget : MonoBehaviour
         Ray raycast = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit;
         bool bHit = Physics.Raycast(raycast, out hit, 1);
-        if (bHit && hit.transform.gameObject.tag == "interactable")
+        if (bHit && hit.transform.gameObject.GetComponent<InteractableObject>())
         {
             go = hit.transform.gameObject;
         }
+    }
+
+    public void OnPointing()
+    {
+        Debug.Log("player pointing");
+    }
+
+    public void OnFetching()
+    {
+        Debug.Log("player fetching");
     }
 
 }

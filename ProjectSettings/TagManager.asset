@@ -6,6 +6,7 @@ TagManager:
   tags:
   - interactable
   - monster
+  - bed
   layers:
   - Default
   - TransparentFX
