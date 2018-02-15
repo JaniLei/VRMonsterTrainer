@@ -6,6 +6,7 @@ using System.Collections;
 public class PlayerInteraction : MonoBehaviour
 {
     public Rigidbody attachPoint;
+    [HideInInspector] public static GameObject objPointed;
 
     SteamVR_TrackedObject trackedObj;
     FixedJoint joint;
@@ -37,6 +38,9 @@ public class PlayerInteraction : MonoBehaviour
                 Rigidbody rb = go.GetComponent<Rigidbody>();
                 if (rb)
                     rb.useGravity = false;
+                var collider = go.GetComponent<Collider>();
+                if (collider)
+                    collider.enabled = false;
                 rb.MovePosition(attachPoint.transform.position - go.transform.position);
 
                 joint = go.AddComponent<FixedJoint>();
@@ -55,6 +59,9 @@ public class PlayerInteraction : MonoBehaviour
                 var rigidbody = go.GetComponent<Rigidbody>();
                 if (rigidbody)
                     rigidbody.useGravity = true;
+                var collider = go.GetComponent<Collider>();
+                if (collider)
+                    collider.enabled = true;
                 Object.DestroyImmediate(joint);
                 joint = null;
 
@@ -74,9 +81,8 @@ public class PlayerInteraction : MonoBehaviour
 
                 if (holdingFetchable)
                 {
-                    // start fetching
-                    Debug.Log("fetching");
-                    //EventManager.instance.OnFetching();
+                    Invoke("StartFetching", 2);
+                    objPointed = go;
                     holdingFetchable = false;
                 }
             }
@@ -84,13 +90,12 @@ public class PlayerInteraction : MonoBehaviour
         }
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
         {
-            // pointing to bed etc..
             //Ray raycast = new Ray(transform.position, transform.forward);
             RaycastHit hit;
             bool bHit = Physics.Linecast(transform.position, transform.forward * 100, out hit);
             if (bHit && hit.transform.gameObject.tag == "bed")
             {
-                Debug.Log("Pointed the bed");
+                objPointed = hit.transform.gameObject;
                 EventManager.instance.OnPointing();
             }
         }
@@ -99,14 +104,10 @@ public class PlayerInteraction : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //if (other.tag == "interactable")
-        //    overlappedObject = other.gameObject;
-
         if (other.GetComponent<InteractableObject>())
-        {
             overlappedObject = other.gameObject;
-        }
-        else if (other.tag == "monster")
+
+        if (other.tag == "monster")
         {
             var device = SteamVR_Controller.Input((int)trackedObj.index);
             var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
@@ -121,7 +122,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "interactable")
+        if (other.GetComponent<InteractableObject>())
             overlappedObject = null;
     }
 
@@ -138,5 +139,10 @@ public class PlayerInteraction : MonoBehaviour
                 Debug.Log("petting monster");
             }
         }
+    }
+
+    void StartFetching()
+    {
+        EventManager.instance.OnFetching();
     }
 }

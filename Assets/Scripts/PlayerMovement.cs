@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 0.02f;
     public bool inVR;
+
     public enum TeleportType
     {
         TeleportTypeUseTerrain,
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Start ()
     {
         //rb = GetComponent<Rigidbody>();
+        inVR = SteamVR.active;
 
         if (inVR)
         {

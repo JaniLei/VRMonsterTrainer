@@ -13,13 +13,13 @@ public class EventManager : MonoBehaviour
     {
         if (instance == null)
         {
-            //if not,set instance to this
+            // if not, set instance to this
             instance = this;
         }
-        //if instance already exists and it`s not this
+        // if instance already exists and it's not this
         else if (instance != this)
         {
-            //destroy this, there can only be one instance
+            // destroy this, there can only be one instance
             Destroy(gameObject);
         }
     }
@@ -27,7 +27,6 @@ public class EventManager : MonoBehaviour
 	public void OnPointing()
     {
         Pointing();
-        Debug.Log("eventmanager point");
     }
 
     public void OnFetching()
