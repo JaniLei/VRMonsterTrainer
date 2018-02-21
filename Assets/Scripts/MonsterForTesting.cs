@@ -24,7 +24,7 @@ public class MonsterForTesting : MonoBehaviour
             Vector3 dir = Vector3.Normalize(targetPos - transform.position);
             rb.MovePosition(transform.position + (dir * 0.1f));
 
-            if (Vector3.Magnitude(objFollowing.transform.position - transform.position) <= 0.6f)
+            if (Vector3.Magnitude(objFollowing.transform.position - transform.position) <= 0.3f)
                 objFollowing = null;
         }
 	}

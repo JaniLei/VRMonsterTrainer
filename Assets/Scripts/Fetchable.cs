@@ -21,7 +21,7 @@ namespace Valve.VR.InteractionSystem
         public Hand.AttachmentFlags attachmentFlags = Hand.AttachmentFlags.ParentToHand | Hand.AttachmentFlags.DetachFromOtherHand;
 
         [Tooltip("Name of the attachment transform under in the hand's hierarchy which the object should should snap to.")]
-        public string attachmentPoint;
+        public string attachmentPoint = "Attach_ControllerTip";
 
         [Tooltip("How fast must this object be moving to attach due to a trigger hold instead of a trigger press?")]
         public float catchSpeedThreshold = 0.0f;

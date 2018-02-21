@@ -595,7 +595,7 @@ namespace Valve.VR.InteractionSystem
 						// Didn't hit, just leave it where it was
 						transform.position = oldPosition;
 					}
-				}
+                }
 			}
 		}
 
@@ -686,7 +686,18 @@ namespace Valve.VR.InteractionSystem
 			{
 				hoveringInteractable.SendMessage( "HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver );
 			}
-		}
+
+            if (controller != null && controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.E))
+            {
+                RaycastHit hit;
+                bool bHit = Physics.Linecast(transform.position, transform.forward * 100, out hit);
+                if (bHit && hit.transform.gameObject.tag == "bed")
+                {
+                    PlayerInteraction.objPointed = hit.transform.gameObject;
+                    EventManager.instance.OnPointing();
+                }
+            }
+        }
 
 
 		//-------------------------------------------------
