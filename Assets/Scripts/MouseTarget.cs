@@ -8,7 +8,7 @@ public class MouseTarget : MonoBehaviour
     GameObject targetObj;
     FixedJoint joint;
     GameObject go;
-    bool hold, holdingFetchable;
+    bool holdingFetchable;
 
 
     void Start ()
@@ -25,11 +25,19 @@ public class MouseTarget : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RayCastInteractable();
-            hold = true;
+            if (go)
+                go.SendMessage("AttachToHand", attachPoint, SendMessageOptions.DontRequireReceiver);
         }
         if (Input.GetMouseButtonUp(0))
         {
-            hold = false;
+            if (go)
+            {
+                go.SendMessage("DetachFromHand", SendMessageOptions.DontRequireReceiver);
+                PlayerInteraction.objPointed = go;
+                //Invoke("StartFetching", 2);
+                StartFetching();
+                go = null;
+            }
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -45,37 +53,34 @@ public class MouseTarget : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (joint == null && hold)
-        {
-            if (go)
-            {
-                Vector3 pos = attachPoint.transform.position;
-                go.transform.position = pos;
-
-                joint = go.AddComponent<FixedJoint>();
-                joint.connectedBody = attachPoint;
-                
-            }
-        }
-        if (joint != null && !hold)
-        {
-            go = joint.gameObject;
-            var rigidbody = go.GetComponent<Rigidbody>();
-            Object.DestroyImmediate(joint);
-
-            PlayerInteraction.objPointed = go;
-            //Invoke("StartFetching", 2);
-            StartFetching();
-
-            joint = null;
-            go = null;
-
-            rigidbody.velocity = attachPoint.velocity;
-            rigidbody.angularVelocity = attachPoint.angularVelocity;
-
-            rigidbody.maxAngularVelocity = rigidbody.angularVelocity.magnitude;
-            
-        }
+        //if (joint == null && hold)
+        //{
+        //    if (go)
+        //    {
+        //        Vector3 pos = attachPoint.transform.position;
+        //        go.transform.position = pos;
+        //
+        //        joint = go.AddComponent<FixedJoint>();
+        //        joint.connectedBody = attachPoint;
+        //        
+        //    }
+        //}
+        //if (joint != null && !hold)
+        //{
+        //    go = joint.gameObject;
+        //    var rigidbody = go.GetComponent<Rigidbody>();
+        //    Object.DestroyImmediate(joint);
+        //
+        //
+        //    joint = null;
+        //    go = null;
+        //
+        //    rigidbody.velocity = attachPoint.velocity;
+        //    rigidbody.angularVelocity = attachPoint.angularVelocity;
+        //
+        //    rigidbody.maxAngularVelocity = rigidbody.angularVelocity.magnitude;
+        //    
+        //}
 
         attachPoint.MovePosition(Camera.main.transform.position + Camera.main.transform.forward);
     }
@@ -93,5 +98,4 @@ public class MouseTarget : MonoBehaviour
     {
         EventManager.instance.OnFetching();
     }
-
 }

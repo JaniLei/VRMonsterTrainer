@@ -40,5 +40,4 @@ public class MonsterForTesting : MonoBehaviour
         if (PlayerInteraction.objPointed != this)
             objFollowing = PlayerInteraction.objPointed;
     }
-
 }

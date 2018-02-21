@@ -2,14 +2,16 @@
 using UnityEngine;
 using System.Collections;
 
+
+
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class PlayerInteraction : MonoBehaviour
 {
-    public Rigidbody attachPoint;
     [HideInInspector] public static GameObject objPointed;
+    public Rigidbody attachPoint;
+    public double interactionVelocityMin = 2;
 
     SteamVR_TrackedObject trackedObj;
-    FixedJoint joint;
     GameObject overlappedObject;
     BoxCollider controllerCollider;
     bool handClosed, holdingFetchable;
@@ -29,42 +31,27 @@ public class PlayerInteraction : MonoBehaviour
     void FixedUpdate()
     {
         var device = SteamVR_Controller.Input((int)trackedObj.index);
-        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Grip))
         {
-            if (joint == null && overlappedObject)
+            if (overlappedObject)
             {
-                var go = overlappedObject;
-                //go.transform.position = attachPoint.transform.position;
-                Rigidbody rb = go.GetComponent<Rigidbody>();
-                if (rb)
-                    rb.useGravity = false;
-                var collider = go.GetComponent<Collider>();
-                if (collider)
-                    collider.enabled = false;
-                rb.MovePosition(attachPoint.transform.position - go.transform.position);
+                overlappedObject.SendMessage("AttachToHand", attachPoint, SendMessageOptions.DontRequireReceiver);
 
-                joint = go.AddComponent<FixedJoint>();
-                joint.connectedBody = attachPoint;
+                
 
-                if (go.tag == "fetchable")
+                if (overlappedObject.tag == "fetchable")
                     holdingFetchable = true;
             }
             handClosed = true;
         }
-        else if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
+        else if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Grip))
         {
-            if (joint != null)
+            if (overlappedObject)
             {
-                var go = joint.gameObject;
-                var rigidbody = go.GetComponent<Rigidbody>();
-                if (rigidbody)
-                    rigidbody.useGravity = true;
-                var collider = go.GetComponent<Collider>();
-                if (collider)
-                    collider.enabled = true;
-                Object.DestroyImmediate(joint);
-                joint = null;
+                var rigidbody = overlappedObject.GetComponent<Rigidbody>();
 
+                overlappedObject.SendMessage("DetachFromHand", SendMessageOptions.DontRequireReceiver);
+                
                 var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
                 if (origin != null)
                 {
@@ -82,13 +69,13 @@ public class PlayerInteraction : MonoBehaviour
                 if (holdingFetchable)
                 {
                     Invoke("StartFetching", 2);
-                    objPointed = go;
+                    objPointed = overlappedObject;
                     holdingFetchable = false;
                 }
             }
             handClosed = false;
         }
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
         {
             //Ray raycast = new Ray(transform.position, transform.forward);
             RaycastHit hit;
@@ -113,8 +100,13 @@ public class PlayerInteraction : MonoBehaviour
             var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
 
             Debug.Log("controller velocity: " + origin.TransformVector(device.velocity).magnitude);
-            if (handClosed && origin.TransformVector(device.velocity).magnitude > 2)
+            if (handClosed && origin.TransformVector(device.velocity).magnitude > interactionVelocityMin)
             {
+                //if (boxing)
+                //{
+                //
+                //}
+                //else
                 Debug.Log("hit monster");
             }
         }
@@ -134,7 +126,7 @@ public class PlayerInteraction : MonoBehaviour
             var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
 
             Debug.Log("controller velocity: " + origin.TransformVector(device.velocity).magnitude);
-            if (!handClosed && origin.TransformVector(device.velocity).magnitude > 2)
+            if (!handClosed && origin.TransformVector(device.velocity).magnitude > interactionVelocityMin)
             {
                 Debug.Log("petting monster");
             }
