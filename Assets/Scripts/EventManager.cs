@@ -6,7 +6,8 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager instance = null;
     public delegate void StateEventHandler();
-    public event StateEventHandler Pointing, Fetching;
+    public event StateEventHandler Pointing, Fetching, BoxingStart, BoxingEnd;
+    public GameObject targetObj;
 
 
     void Awake ()
@@ -32,5 +33,15 @@ public class EventManager : MonoBehaviour
     public void OnFetching()
     {
         Fetching();
+    }
+
+    public void OnBoxingStart()
+    {
+        BoxingStart();
+    }
+
+    public void OnBoxingEnd()
+    {
+        BoxingEnd();
     }
 }

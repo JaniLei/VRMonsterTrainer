@@ -12,11 +12,13 @@ namespace Valve.VR.InteractionSystem
         [EnumFlags]
         [Tooltip("The flags used to attach this object to the hand.")]
         public Hand.AttachmentFlags attachmentFlags = Hand.AttachmentFlags.ParentToHand | Hand.AttachmentFlags.DetachFromOtherHand | Hand.AttachmentFlags.SnapOnAttach;
-
+        
         [Tooltip("Name of the attachment transform under in the hand's hierarchy which the object should should snap to.")]
         public string attachmentPoint;
+        public int hitForceMultiplier = 100;
 
         Rigidbody rb;
+        Hand gloveHand;
 
 
         void Start()
@@ -36,7 +38,6 @@ namespace Valve.VR.InteractionSystem
                 if (hand.currentAttachedObject != gameObject)
                 {
                     hand.HoverLock(GetComponent<Interactable>());
-                    
                     hand.AttachObject(gameObject, attachmentFlags);
                 }
             }
@@ -44,7 +45,6 @@ namespace Valve.VR.InteractionSystem
                      hand.currentAttachedObject == gameObject && ((hand.controller != null) && hand.controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_Grip)))
             {
                 hand.DetachObject(gameObject);
-                
                 hand.HoverUnlock(GetComponent<Interactable>());
             }
         }
@@ -52,11 +52,30 @@ namespace Valve.VR.InteractionSystem
         private void OnAttachedToHand(Hand hand)
         {
             rb.isKinematic = true;
+            EventManager.instance.OnBoxingStart();
+            gloveHand = hand;
         }
 
         private void OnDetachedFromHand(Hand hand)
         {
             rb.isKinematic = false;
+            EventManager.instance.OnBoxingEnd();
+            gloveHand = null;
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            if (gloveHand /*&& collision.relativeVelocity.magnitude > 0.5f*/)
+            {
+                if (collision.gameObject.GetComponent<VRMonsterInteraction>())
+                {
+                    Vector3 force = gloveHand.GetTrackedObjectVelocity();
+                    Debug.Log("hit force : " + force.magnitude);
+                    force *= hitForceMultiplier;
+                    force.y++;
+                    collision.gameObject.GetComponent<Rigidbody>().AddForceAtPosition(force, collision.contacts[0].point, ForceMode.Impulse);
+                }
+            }
         }
     }
 }
