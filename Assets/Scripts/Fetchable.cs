@@ -190,8 +190,8 @@ namespace Valve.VR.InteractionSystem
             Vector3 axis = angularVelocity.normalized;
             transform.rotation *= Quaternion.AngleAxis(angle * timeUntilFixedUpdate, axis);
 
-            
-            PlayerInteraction.objPointed = gameObject;
+
+            EventManager.instance.targetObj = gameObject;
             //Invoke("StartFetching", 2);
             EventManager.instance.OnFetching();
         }

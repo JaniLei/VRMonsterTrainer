@@ -607,7 +607,7 @@ MonoBehaviour:
   attachForce: 800
   attachForceDamper: 25
   attachMode: 1
-  attachmentFlags: 1
+  attachmentFlags: 16
 --- !u!1 &184843778
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 184843779}
   m_Layer: 0
   m_Name: Bed
-  m_TagString: bed
+  m_TagString: Bed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1403,7 +1403,7 @@ GameObject:
   - component: {fileID: 1036591393}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: monster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1946,6 +1946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachmentFlags: 13
   attachmentPoint: 
+  hitForceMultiplier: 100
 --- !u!114 &1540266807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2056,7 +2057,7 @@ GameObject:
   - component: {fileID: 1631700052}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: fetchable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2459,7 +2460,7 @@ GameObject:
   - component: {fileID: 1791585645}
   m_Layer: 0
   m_Name: Body
-  m_TagString: monster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

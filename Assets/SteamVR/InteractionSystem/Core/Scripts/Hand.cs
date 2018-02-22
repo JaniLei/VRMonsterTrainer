@@ -33,12 +33,15 @@ namespace Valve.VR.InteractionSystem
 			DetachOthers = 1 << 1, // Other objects attached to this hand will be detached.
 			DetachFromOtherHand = 1 << 2, // This object will be detached from the other hand.
 			ParentToHand = 1 << 3, // The object will be parented to the hand.
-		};
+            SnapRotation = 1 << 4, // The object will be parented to the hand.
+        };
 
 		public const AttachmentFlags defaultAttachmentFlags = AttachmentFlags.ParentToHand |
 															  AttachmentFlags.DetachOthers |
 															  AttachmentFlags.DetachFromOtherHand |
-															  AttachmentFlags.SnapOnAttach;
+															  AttachmentFlags.SnapOnAttach |
+                                                              AttachmentFlags.SnapRotation;
+
 
 		public Hand otherHand;
 		public HandType startingHandType;
@@ -265,7 +268,12 @@ namespace Valve.VR.InteractionSystem
 				objectToAttach.transform.localRotation = Quaternion.identity;
 			}
 
-			HandDebugLog( "AttachObject " + objectToAttach );
+            if ((flags & AttachmentFlags.SnapRotation) == AttachmentFlags.SnapRotation)
+            {
+                objectToAttach.transform.localRotation = Quaternion.identity;
+            }
+
+            HandDebugLog( "AttachObject " + objectToAttach );
 			objectToAttach.SendMessage( "OnAttachedToHand", this, SendMessageOptions.DontRequireReceiver );
 
 			UpdateHovering();
@@ -687,13 +695,13 @@ namespace Valve.VR.InteractionSystem
 				hoveringInteractable.SendMessage( "HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver );
 			}
 
-            if (controller != null && controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.E))
+            if ((controller != null) && controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.E))
             {
                 RaycastHit hit;
                 bool bHit = Physics.Linecast(transform.position, transform.forward * 100, out hit);
-                if (bHit && hit.transform.gameObject.tag == "bed")
+                if (bHit && hit.transform.gameObject.tag == "Bed")
                 {
-                    PlayerInteraction.objPointed = hit.transform.gameObject;
+                    EventManager.instance.targetObj = hit.transform.gameObject;
                     EventManager.instance.OnPointing();
                 }
             }

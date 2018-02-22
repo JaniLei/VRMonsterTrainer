@@ -4,12 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - monster
-  - bed
-  - fetchable
   - obstacle
-  - interactable
   - Edible
+  - Bed
   layers:
   - Default
   - TransparentFX

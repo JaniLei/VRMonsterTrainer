@@ -32,9 +32,12 @@ namespace Valve.VR.InteractionSystem
 
         private void HandHoverUpdate(Hand hand)
         {
-            if (!hand.GetStandardInteractionButton() && hand.GetTrackedObjectVelocity().magnitude >= petVelocity ||
-                ((hand.controller != null) && !hand.controller.GetPress(Valve.VR.EVRButtonId.k_EButton_Grip) && hand.GetTrackedObjectVelocity().magnitude >= petVelocity))
-                Debug.Log("petting monster");
+            if (hand.currentAttachedObject != gameObject)
+            {
+                if (!hand.GetStandardInteractionButton() && hand.GetTrackedObjectVelocity().magnitude >= petVelocity ||
+                    ((hand.controller != null) && !hand.controller.GetPress(Valve.VR.EVRButtonId.k_EButton_Grip) && hand.GetTrackedObjectVelocity().magnitude >= petVelocity))
+                    Debug.Log("petting monster");
+            }
         }
 
         public void OnBoxingStart()
