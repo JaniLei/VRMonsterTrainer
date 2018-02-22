@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Obsolete script
+
 public class MonsterStats : MonoBehaviour {
 
     int hunger, fatigue;

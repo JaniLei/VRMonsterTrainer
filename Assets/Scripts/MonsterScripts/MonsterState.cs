@@ -41,6 +41,10 @@ public class MonsterState : MonoBehaviour {
         {
             currentState = States.Search;
         }
+        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            monster.DodgeAttack();
+        }
       
 
 

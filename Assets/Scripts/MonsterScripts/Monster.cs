@@ -11,6 +11,8 @@ public class Monster : MonoBehaviour {
 
     public bool hasPath = false;
 
+    public float moveSpeed;
+
     Vector3 playerGroundPosition;
     Quaternion playerRotation, targetRotation, playerGroundRotation; //Rotation towards player
 
@@ -62,6 +64,7 @@ public class Monster : MonoBehaviour {
         else
         {
             transform.position = bedObj.transform.position;
+            //Do sleep things...
         }
     }
 
@@ -71,19 +74,51 @@ public class Monster : MonoBehaviour {
         //Idea: set a joint to the object
     }
 
-    public void EatObject(GameObject g)
+    public bool EatObject(GameObject g) //returns true once the object has been eaten
     {
-        mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, g.transform.position, 0.5f);
-        g.SetActive(false);
-        mHead.transform.position = headOrigin.transform.position;
+        Vector3 foodGroundPos = g.transform.position;
+        foodGroundPos.y = 0.5f;
+        if (Vector3.Distance(transform.position, g.transform.position) < 0.6f)
+        {
+            //Do eating stuff...
+            //Check hunger...
+            g.SetActive(false);
+            return true;
+        }
+        else
+        {
+            Quaternion foodRotation = Quaternion.LookRotation(transform.position - g.transform.position);
+            Quaternion foodGroundRotation = Quaternion.LookRotation(transform.position - foodGroundPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, foodGroundRotation, 3 * Time.deltaTime);
+            mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, foodRotation, 5 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, foodGroundPos, moveSpeed * Time.deltaTime);
+
+
+        }
+        
+        return false;
+
+
+    }
+
+    public void DodgeAttack()
+    {
+        if (!Physics.Linecast(transform.position,transform.position + transform.right, ObstacleMask))
+        {
+            //Dodge left + animation...
+            transform.Translate(-Vector3.right * 0.5f);
+        }
+        else if (!Physics.Linecast(transform.position, transform.position - transform.right, ObstacleMask))
+        {
+            //Dodge right + animation...
+            transform.Translate(Vector3.right * 0.5f);
+        }
     }
 
     public void MoveTo(Vector3 target)
     {
         target.y = 0.5f;
         Quaternion targetRotation = Quaternion.LookRotation(transform.position - target);
-        //RaycastHit hit;
-        //Physics.SphereCast(mHead.transform.position, 0.1f,target - mHead.transform.position, out hit, Vector3.Distance(mHead.transform.position, target), ObstacleMask) && !hasPath
         if (Physics.Linecast(transform.position, target, ObstacleMask) && !hasPath)
         {
            PathPos = pathFinding.FindPath(transform.position, target); //PATHFINDING
@@ -96,13 +131,13 @@ public class Monster : MonoBehaviour {
             if (pathCounter < PathPos.Count) 
             {
                 targetRotation = Quaternion.LookRotation(transform.position - PathPos[pathCounter]);
-                transform.position = Vector3.MoveTowards(transform.position, PathPos[pathCounter], 5 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, PathPos[pathCounter], moveSpeed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, PathPos[pathCounter]) < 0.5f)
                 {
                     if (Vector3.Distance(transform.position, PathPos[pathCounter]) < 0.1f)
                     {
                         pathCounter++;
-                        if (Vector3.Distance(target, PathPos[PathPos.Count-1]) > 3)
+                        if (Vector3.Distance(target, PathPos[PathPos.Count-1]) > 5)
                         {
                             hasPath = false;
                         }
@@ -125,7 +160,7 @@ public class Monster : MonoBehaviour {
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3 * Time.deltaTime);
             mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, targetRotation, 5 * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, target, 5 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
         }
     }
 

@@ -13,9 +13,11 @@ public class SearchFood : MonoBehaviour {
     GameObject foodObj;
     public void Search()
     {
-        Collider[] collisions = Physics.OverlapSphere(transform.position, 3, foodMask);
+        
 
 
+        /*
+        Collider[] collisions = Physics.OverlapSphere(transform.position, 3);
         if (collisions.Length > 0)
         {
             float tempDist = 100;
@@ -30,11 +32,11 @@ public class SearchFood : MonoBehaviour {
                     movePoint = foodObj.transform.position;
                 }
             }
-        }
+        }*/
 
         if (foodOnSight)
         {
-            monster.MoveTo(foodObj.transform.position);
+            foodOnSight = !monster.EatObject(foodObj);
         }
         else if (Vector3.Distance(transform.position, movePoint) < 0.2f)
         {
@@ -63,6 +65,20 @@ public class SearchFood : MonoBehaviour {
         else
         {
             monster.MoveTo(movePoint);
+
+            Collider[] collisions = Physics.OverlapSphere(transform.position, 3, foodMask);
+            float tempDist = 100;
+            foreach (Collider col in collisions)
+            {
+                if (col.gameObject.tag == "Edible" && !Physics.Linecast(transform.position, col.gameObject.transform.position, monster.ObstacleMask))
+                {
+                    Debug.Log("ruokaa");
+                    tempDist = Vector3.Distance(col.transform.position, transform.position);
+                    foodObj = col.gameObject;
+                    foodOnSight = true;
+                    movePoint = foodObj.transform.position;
+                }
+            }
         }
 
     }
