@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Valve.VR.InteractionSystem
 {
-    //-------------------------------------------------------------------------
     [RequireComponent(typeof(Throwable))]
     public class Edible : MonoBehaviour
     {

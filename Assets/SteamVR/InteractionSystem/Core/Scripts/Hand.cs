@@ -270,7 +270,7 @@ namespace Valve.VR.InteractionSystem
 
             if ((flags & AttachmentFlags.SnapRotation) == AttachmentFlags.SnapRotation)
             {
-                objectToAttach.transform.localRotation = Quaternion.identity;
+                //objectToAttach.transform.localRotation = Quaternion.identity;
             }
 
             HandDebugLog( "AttachObject " + objectToAttach );

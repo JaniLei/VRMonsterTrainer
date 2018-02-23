@@ -4,18 +4,15 @@ using UnityEngine;
 
 namespace Valve.VR.InteractionSystem
 {
-    //-------------------------------------------------------------------------
     [RequireComponent(typeof(Interactable))]
     public class VRMonsterInteraction : MonoBehaviour
     {
         public double hitVelocity = 2, petVelocity = 1;
-
-        bool boxing;
+        public float hitForceMultiplier = 10;
+        
 
         void Start()
         {
-            EventManager.instance.BoxingStart += OnBoxingStart;
-            EventManager.instance.BoxingEnd += OnBoxingEnd;
         }
 
         private void OnHandHoverBegin(Hand hand)
@@ -23,9 +20,18 @@ namespace Valve.VR.InteractionSystem
             if (hand.controller != null)
             {
                 if (hand.controller.GetPress(Valve.VR.EVRButtonId.k_EButton_Grip) &&
-                    hand.controller.velocity.magnitude >= hitVelocity)
+                    hand.GetTrackedObjectVelocity().magnitude >= hitVelocity)
                 {
-                        Debug.Log("monster got hit");
+                    Debug.Log("monster got hit");
+                    Rigidbody rb = GetComponent<Rigidbody>();
+                    if (rb)
+                    {
+                        Vector3 force = hand.GetTrackedObjectVelocity();
+                        Debug.Log("hit force : " + force.magnitude);
+                        force *= hitForceMultiplier;
+                        force.y++;
+                        rb.AddForceAtPosition(force, hand.transform.position, ForceMode.Impulse);
+                    }
                 }
             }
         }
@@ -40,14 +46,9 @@ namespace Valve.VR.InteractionSystem
             }
         }
 
-        public void OnBoxingStart()
+        void Dodge()
         {
-            boxing = true;
-        }
-
-        public void OnBoxingEnd()
-        {
-            boxing = false;
+            Debug.Log("Monster dodge");
         }
     }
 }

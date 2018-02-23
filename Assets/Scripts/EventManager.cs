@@ -4,21 +4,33 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    public static EventManager instance = null;
+    private static EventManager _instance;
+    public static EventManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.LogWarning("Failed to get event manager instance. Add an event manager to the scene.");
+            }
+            return _instance;
+        }
+    }
+
     public delegate void StateEventHandler();
-    public event StateEventHandler Pointing, Fetching, BoxingStart, BoxingEnd;
+    public event StateEventHandler Pointing, Fetching;
     public GameObject targetObj;
 
 
     void Awake ()
     {
-        if (instance == null)
+        if (_instance == null)
         {
             // if not, set instance to this
-            instance = this;
+            _instance = this;
         }
         // if instance already exists and it's not this
-        else if (instance != this)
+        else if (_instance != this)
         {
             // destroy this, there can only be one instance
             Destroy(gameObject);
@@ -33,15 +45,5 @@ public class EventManager : MonoBehaviour
     public void OnFetching()
     {
         Fetching();
-    }
-
-    public void OnBoxingStart()
-    {
-        BoxingStart();
-    }
-
-    public void OnBoxingEnd()
-    {
-        BoxingEnd();
     }
 }
