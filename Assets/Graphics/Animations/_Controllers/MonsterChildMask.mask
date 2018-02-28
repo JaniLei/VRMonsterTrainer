@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: MonsterChildMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Root
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/BackUpperLeg_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/BackUpperLeg_L/BackLeg_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/BackUpperLeg_L/BackLeg_L/BackAnkle_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/BackUpperLeg_L/BackLeg_L/BackAnkle_L/BackFoot_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/BackUpperLeg_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/BackUpperLeg_R/BackLeg_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/BackUpperLeg_R/BackLeg_R/BackAnkle_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/BackUpperLeg_R/BackLeg_R/BackAnkle_R/BackFoot_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L/FrontFoot_L
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L/FrontFoot_L/FrontFoot_L_Index
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L/FrontFoot_L/FrontFoot_L_Middle
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L/FrontFoot_L/FrontFoot_L_Ring
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R/FrontFoot_R
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R/FrontFoot_R/FrontFoot_R_Index
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R/FrontFoot_R/FrontFoot_R_Middle
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R/FrontFoot_R/FrontFoot_R_Ring
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001/Ear_L_002
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001/Ear_L_002/Ear_L_003
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001/Ear_L_002/Ear_L_003/Ear_L_004
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001/Ear_R_002
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001/Ear_R_002/Ear_R_003
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001/Ear_R_002/Ear_R_003/Ear_R_004
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Eye_L
+    m_Weight: 0
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Eye_R
+    m_Weight: 0
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Jaw
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Jaw/Tongue_001
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Jaw/Tongue_001/Tongue_002
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Tail_001
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Tail_001/Tail_002
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003/Tail_004
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003/Tail_004/Tail_005
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003/Tail_004/Tail_005/Tail_006
+    m_Weight: 1
+  - m_Path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003/Tail_004/Tail_005/Tail_006/Tail_007
+    m_Weight: 1
+  - m_Path: MonsterChild_LOD0
+    m_Weight: 1
+  - m_Path: MonsterChild_LOD1
+    m_Weight: 1
+  - m_Path: MonsterChild_LOD2
+    m_Weight: 1
