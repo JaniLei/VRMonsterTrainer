@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectObject : MonoBehaviour
+namespace Valve.VR.InteractionSystem
 {
-
-    public Monster monster;
-
-    void OnTriggerEnter(Collider col)
+    public class DetectObject : MonoBehaviour
     {
-        if (col.tag == "Edible")
-        {
-            monster.EatObject(col.gameObject);
-        }
-        else if (col.gameObject.tag == "Stick")
+
+        public Monster monster;
+
+        void OnTriggerStay(Collider col)
         {
 
+            Edible edible = col.GetComponent<Edible>();
+            if (edible && edible.holdingHand == null)
+            {
+                monster.EatObject(col.gameObject);
+            }
+            
         }
     }
 }

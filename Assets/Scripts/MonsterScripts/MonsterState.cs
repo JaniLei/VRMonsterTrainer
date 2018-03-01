@@ -24,6 +24,7 @@ public class MonsterState : MonoBehaviour {
         //Update other objects
 
         EventManager.instance.Fetching += OnFetching;
+        EventManager.instance.Pointing += OnPointing;
     }
 
 
@@ -41,7 +42,7 @@ public class MonsterState : MonoBehaviour {
         {
             currentState = States.Search;
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        else if(Input.GetKey(KeyCode.Alpha4))
         {
             monster.DodgeAttack();
         }
@@ -81,9 +82,12 @@ public class MonsterState : MonoBehaviour {
 
     public void OnFetching()
     {
-        StartFetch(fetchObj);
+        StartFetch(EventManager.instance.targetObj);
     }
-
+    public void OnPointing()
+    {
+        monster.GoSleep();
+    }
     public void StartFetch(GameObject fObj)
     {
         currentState = States.Fetch;

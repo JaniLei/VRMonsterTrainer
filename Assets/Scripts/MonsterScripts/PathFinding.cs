@@ -15,6 +15,7 @@ public class PathFinding : MonoBehaviour {
     
     List<Node> closedNodes = new List<Node>();
     List<Node> pathNodes = new List<Node>();
+    List<Node> openNodes = new List<Node>();
     List<Vector3> pathVectors = new List<Vector3>();
     Node defNode, currentNode, bestNode;
 
@@ -26,7 +27,7 @@ public class PathFinding : MonoBehaviour {
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             allNodes.Add(new Node(gameObject.transform.GetChild(i).position, this));
-            gameObject.transform.GetChild(i).gameObject.SetActive(false); //change to destroy
+            Destroy(gameObject.transform.GetChild(i).gameObject);
         }
         foreach (Node n in allNodes)
         {
@@ -51,6 +52,7 @@ public class PathFinding : MonoBehaviour {
     {
         closedNodes.Clear();
         pathNodes.Clear();
+        //openNodes.Clear(); //available nodes to explore
         pathVectors.Clear();
 
         defNode.position = startPoint; //Gets returned if no path can be found
@@ -74,9 +76,11 @@ public class PathFinding : MonoBehaviour {
         while (closedNodes.Count < allNodes.Count)
         {
             closedNodes.Add(currentNode);
+            //openNodes.Remove(currentNode);
             temphCost = 100;
             foreach (Node n in currentNode.neighbors)
             {
+                //openNodes.Add(n);
                 if (n.hCost < temphCost && !closedNodes.Contains(n))
                 {
                     temphCost = n.hCost;
@@ -93,6 +97,25 @@ public class PathFinding : MonoBehaviour {
                     }
                 }
             }
+
+            /*foreach (Node n in openNodes) //check if there is a better path
+            {
+                if (n.neighbors.Contains(currentNode) && n.hCost < temphCost && !closedNodes.Contains(n))
+                {
+                    temphCost = n.hCost;
+                    bestNode = n;
+
+                    if (!Physics.Linecast(n.position, goal, obstacleLayer))
+                    {
+                        pathNodes.Add(bestNode);
+                        foreach (Node nn in pathNodes)
+                        {
+                            pathVectors.Add(nn.position);
+                        }
+                        return pathVectors;
+                    }
+                }
+            }*/
 
             pathNodes.Add(bestNode);
             currentNode = bestNode;
