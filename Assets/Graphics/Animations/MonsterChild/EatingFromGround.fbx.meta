@@ -151,7 +151,145 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: eating_animation_002
+      takeName: eating_animation_002
+      firstFrame: -1
+      lastFrame: 154
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Root
+        weight: 1
+      - path: Armature/Root/Hips
+        weight: 1
+      - path: Armature/Root/Hips/BackUpperLeg_L
+        weight: 1
+      - path: Armature/Root/Hips/BackUpperLeg_L/BackLeg_L
+        weight: 1
+      - path: Armature/Root/Hips/BackUpperLeg_L/BackLeg_L/BackAnkle_L
+        weight: 1
+      - path: Armature/Root/Hips/BackUpperLeg_L/BackLeg_L/BackAnkle_L/BackFoot_L
+        weight: 1
+      - path: Armature/Root/Hips/BackUpperLeg_R
+        weight: 1
+      - path: Armature/Root/Hips/BackUpperLeg_R/BackLeg_R
+        weight: 1
+      - path: Armature/Root/Hips/BackUpperLeg_R/BackLeg_R/BackAnkle_R
+        weight: 1
+      - path: Armature/Root/Hips/BackUpperLeg_R/BackLeg_R/BackAnkle_R/BackFoot_R
+        weight: 1
+      - path: Armature/Root/Hips/Spine
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L/FrontFoot_L
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L/FrontFoot_L/FrontFoot_L_Index
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L/FrontFoot_L/FrontFoot_L_Middle
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L/FrontFoot_L/FrontFoot_L_Ring
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R/FrontFoot_R
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R/FrontFoot_R/FrontFoot_R_Index
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R/FrontFoot_R/FrontFoot_R_Middle
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R/FrontFoot_R/FrontFoot_R_Ring
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001/Ear_L_002
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001/Ear_L_002/Ear_L_003
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001/Ear_L_002/Ear_L_003/Ear_L_004
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001/Ear_R_002
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001/Ear_R_002/Ear_R_003
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001/Ear_R_002/Ear_R_003/Ear_R_004
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Eye_L
+        weight: 0
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Eye_R
+        weight: 0
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Jaw
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Jaw/Tongue_001
+        weight: 1
+      - path: Armature/Root/Hips/Spine/Chest/Neck/Head/Jaw/Tongue_001/Tongue_002
+        weight: 1
+      - path: Armature/Root/Hips/Tail_001
+        weight: 1
+      - path: Armature/Root/Hips/Tail_001/Tail_002
+        weight: 1
+      - path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003
+        weight: 1
+      - path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003/Tail_004
+        weight: 1
+      - path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003/Tail_004/Tail_005
+        weight: 1
+      - path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003/Tail_004/Tail_005/Tail_006
+        weight: 1
+      - path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003/Tail_004/Tail_005/Tail_006/Tail_007
+        weight: 1
+      - path: MonsterChild_LOD0
+        weight: 1
+      - path: MonsterChild_LOD1
+        weight: 1
+      - path: MonsterChild_LOD2
+        weight: 1
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 0580c1cdd4f32e24a8d437ab57be0003, type: 2}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

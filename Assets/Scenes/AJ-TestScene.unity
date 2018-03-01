@@ -112,16 +112,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &335512558 stripped
+--- !u!1 &367028806 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 100072, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
+  m_PrefabParentObject: {fileID: 100084, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
   m_PrefabInternal: {fileID: 1095083628}
---- !u!114 &335512560
+--- !u!114 &367028810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 335512558}
+  m_GameObject: {fileID: 367028806}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 436263360d10d5349a2009c274c0f5fa, type: 3}
@@ -253,6 +253,22 @@ Prefab:
     - target: {fileID: 400084, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 400036, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.88102174
+      objectReference: {fileID: 0}
+    - target: {fileID: 400036, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000022191895
+      objectReference: {fileID: 0}
+    - target: {fileID: 400036, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.4730758
+      objectReference: {fileID: 0}
+    - target: {fileID: 400036, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000054965135
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
