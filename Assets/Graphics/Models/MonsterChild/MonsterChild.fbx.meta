@@ -1,0 +1,226 @@
+fileFormatVersion: 2
+guid: 5bedda1f72a51e54589c3ffd962666be
+timeCreated: 1519811798
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: BackAnkle_L
+    100004: BackAnkle_R
+    100006: BackFoot_L
+    100008: BackFoot_R
+    100010: BackLeg_L
+    100012: BackLeg_R
+    100014: BackUpperLeg_L
+    100016: BackUpperLeg_R
+    100018: Chest
+    100020: Ear_L_001
+    100022: Ear_L_002
+    100024: Ear_L_003
+    100026: Ear_L_004
+    100028: Ear_R_001
+    100030: Ear_R_002
+    100032: Ear_R_003
+    100034: Ear_R_004
+    100036: Eye_L
+    100038: Eye_R
+    100040: FrontAnkle_L
+    100042: FrontAnkle_R
+    100044: FrontFoot_L
+    100046: FrontFoot_L_Index
+    100048: FrontFoot_L_Middle
+    100050: FrontFoot_L_Ring
+    100052: FrontFoot_R
+    100054: FrontFoot_R_Index
+    100056: FrontFoot_R_Middle
+    100058: FrontFoot_R_Ring
+    100060: FrontLeg_L_001
+    100062: FrontLeg_L_002
+    100064: FrontLeg_R_001
+    100066: FrontLeg_R_002
+    100068: FrontUpperLeg_L
+    100070: FrontUpperLeg_R
+    100072: Head
+    100074: Hips
+    100076: Jaw
+    100078: MonsterChild_LOD0
+    100080: MonsterChild_LOD1
+    100082: MonsterChild_LOD2
+    100084: //RootNode
+    100086: Neck
+    100088: Root
+    100090: Spine
+    100092: Tail_001
+    100094: Tail_002
+    100096: Tail_003
+    100098: Tail_004
+    100100: Tail_005
+    100102: Tail_006
+    100104: Tail_007
+    100106: Tongue_001
+    100108: Tongue_002
+    400000: Armature
+    400002: BackAnkle_L
+    400004: BackAnkle_R
+    400006: BackFoot_L
+    400008: BackFoot_R
+    400010: BackLeg_L
+    400012: BackLeg_R
+    400014: BackUpperLeg_L
+    400016: BackUpperLeg_R
+    400018: Chest
+    400020: Ear_L_001
+    400022: Ear_L_002
+    400024: Ear_L_003
+    400026: Ear_L_004
+    400028: Ear_R_001
+    400030: Ear_R_002
+    400032: Ear_R_003
+    400034: Ear_R_004
+    400036: Eye_L
+    400038: Eye_R
+    400040: FrontAnkle_L
+    400042: FrontAnkle_R
+    400044: FrontFoot_L
+    400046: FrontFoot_L_Index
+    400048: FrontFoot_L_Middle
+    400050: FrontFoot_L_Ring
+    400052: FrontFoot_R
+    400054: FrontFoot_R_Index
+    400056: FrontFoot_R_Middle
+    400058: FrontFoot_R_Ring
+    400060: FrontLeg_L_001
+    400062: FrontLeg_L_002
+    400064: FrontLeg_R_001
+    400066: FrontLeg_R_002
+    400068: FrontUpperLeg_L
+    400070: FrontUpperLeg_R
+    400072: Head
+    400074: Hips
+    400076: Jaw
+    400078: MonsterChild_LOD0
+    400080: MonsterChild_LOD1
+    400082: MonsterChild_LOD2
+    400084: //RootNode
+    400086: Neck
+    400088: Root
+    400090: Spine
+    400092: Tail_001
+    400094: Tail_002
+    400096: Tail_003
+    400098: Tail_004
+    400100: Tail_005
+    400102: Tail_006
+    400104: Tail_007
+    400106: Tongue_001
+    400108: Tongue_002
+    4300000: MonsterChild_LOD2
+    4300002: MonsterChild_LOD0
+    4300004: MonsterChild_LOD1
+    9500000: //RootNode
+    13700000: MonsterChild_LOD0
+    13700002: MonsterChild_LOD1
+    13700004: MonsterChild_LOD2
+    20500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body__MonsterChildBodyDiffuse_png
+    second: {fileID: 2100000, guid: 20df1e1b97db89b4d84dc8d92fc002b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hair__MonsterChildHair_png
+    second: {fileID: 2100000, guid: 56961e0e4a903bf4aaddf8776fdc4aad, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 0
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths:
+    - Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L
+    - Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R
+    - Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001
+    - Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001
+    - Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002
+    - Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002
+    - Armature/Root/Hips/Spine/Chest/FrontUpperLeg_L/FrontLeg_L_001/FrontLeg_L_002/FrontAnkle_L
+    - Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R
+    - Armature/Root/Hips/Spine/Chest/Neck/Head/Eye_L
+    - Armature/Root/Hips/Spine/Chest/Neck/Head/Eye_R
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - 0.5008784
+    - 0.20149998
+    - 0.01
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

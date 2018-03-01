@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Valve.VR.InteractionSystem
 {
-    //-------------------------------------------------------------------------
     [RequireComponent(typeof(Interactable))]
     [RequireComponent(typeof(Rigidbody))]
     public class BoxingGloves : MonoBehaviour
@@ -15,21 +14,14 @@ namespace Valve.VR.InteractionSystem
         
         [Tooltip("Name of the attachment transform under in the hand's hierarchy which the object should should snap to.")]
         public string attachmentPoint;
-        public int hitForceMultiplier = 100;
-
-        Rigidbody rb;
+        public int hitForceMultiplier = 10;
+        
         Hand gloveHand;
 
 
         void Start()
         {
-            rb = GetComponent<Rigidbody>();
         }
-
-        //private void OnHandHoverBegin(Hand hand)
-        //{
-        //
-        //}
 
         private void HandHoverUpdate(Hand hand)
         {
@@ -49,17 +41,27 @@ namespace Valve.VR.InteractionSystem
             }
         }
         
+        //private void HandAttachedUpdate(Hand hand)
+        //{
+        //    // send signal for monster to dodge
+        //    if (hand.GetTrackedObjectVelocity().magnitude > 2)
+        //    {
+        //        RaycastHit hit;
+        //
+        //        if (Physics.Raycast(transform.position, transform.forward, out hit, 1))
+        //            hit.transform.gameObject.SendMessage("Dodge", SendMessageOptions.DontRequireReceiver);
+        //    }
+        //}
+
         private void OnAttachedToHand(Hand hand)
         {
-            rb.isKinematic = true;
-            EventManager.instance.OnBoxingStart();
+            GetComponent<Rigidbody>().isKinematic = true;
             gloveHand = hand;
         }
 
         private void OnDetachedFromHand(Hand hand)
         {
-            rb.isKinematic = false;
-            EventManager.instance.OnBoxingEnd();
+            GetComponent<Rigidbody>().isKinematic = false;
             gloveHand = null;
         }
 

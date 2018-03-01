@@ -31,13 +31,13 @@ public class MonsterForTesting : MonoBehaviour
 
     void OnPointing()
     {
-        if (PlayerInteraction.objPointed != this)
-            objFollowing = PlayerInteraction.objPointed;
+        if (EventManager.instance.targetObj != this)
+            objFollowing = EventManager.instance.targetObj;
     }
 
     void OnFetching()
     {
-        if (PlayerInteraction.objPointed != this)
-            objFollowing = PlayerInteraction.objPointed;
+        if (EventManager.instance.targetObj  != this)
+            objFollowing = EventManager.instance.targetObj;
     }
 }

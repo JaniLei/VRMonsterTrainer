@@ -10,7 +10,6 @@ using System.Collections;
 
 namespace Valve.VR.InteractionSystem
 {
-    //-------------------------------------------------------------------------
     [RequireComponent(typeof(Interactable))]
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(VelocityEstimator))]
@@ -192,7 +191,6 @@ namespace Valve.VR.InteractionSystem
 
 
             EventManager.instance.targetObj = gameObject;
-            //Invoke("StartFetching", 2);
             EventManager.instance.OnFetching();
         }
 
