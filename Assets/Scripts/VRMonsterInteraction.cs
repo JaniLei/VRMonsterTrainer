@@ -8,18 +8,14 @@ namespace Valve.VR.InteractionSystem
     public class VRMonsterInteraction : MonoBehaviour
     {
         public double hitVelocity = 2, petVelocity = 1;
-        public float hitForceMultiplier = 10;
+        public float hitForceMultiplier = 2;
         
-
-        void Start()
-        {
-        }
-
+        
         private void OnHandHoverBegin(Hand hand)
         {
             if (hand.controller != null)
             {
-                if (hand.controller.GetPress(Valve.VR.EVRButtonId.k_EButton_Grip) &&
+                if (hand.GetStandardInteractionButton() &&
                     hand.GetTrackedObjectVelocity().magnitude >= hitVelocity)
                 {
                     Debug.Log("monster got hit");
@@ -38,12 +34,8 @@ namespace Valve.VR.InteractionSystem
 
         private void HandHoverUpdate(Hand hand)
         {
-            if (hand.currentAttachedObject != gameObject)
-            {
-                if (!hand.GetStandardInteractionButton() && hand.GetTrackedObjectVelocity().magnitude >= petVelocity ||
-                    ((hand.controller != null) && !hand.controller.GetPress(Valve.VR.EVRButtonId.k_EButton_Grip) && hand.GetTrackedObjectVelocity().magnitude >= petVelocity))
-                    Debug.Log("petting monster");
-            }
+            if (!hand.GetStandardInteractionButton() && hand.GetTrackedObjectVelocity().magnitude >= petVelocity)
+                Debug.Log("petting monster");
         }
 
         void Dodge()
