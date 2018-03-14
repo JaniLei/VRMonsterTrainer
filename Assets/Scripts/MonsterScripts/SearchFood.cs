@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class SearchFood : MonoBehaviour {
 
-    public Monster monster;
-    public List<Vector3> nodes;
-    public Vector3 movePoint;
     public LayerMask foodMask;
     int rnd;
     bool foodOnSight = false;
     GameObject foodObj;
+
+    [HideInInspector] public Monster monster;
+    [HideInInspector] public List<Vector3> nodes;
+    [HideInInspector] public Vector3 movePoint;
+
     public void Search()
     {
 
@@ -23,6 +25,7 @@ public class SearchFood : MonoBehaviour {
 
             rnd = Random.Range(0, nodes.Count);
             movePoint = (nodes[rnd]);
+            Debug.Log("uuspoint");
 
         }
         else
@@ -39,7 +42,6 @@ public class SearchFood : MonoBehaviour {
                     tempDist = Vector3.Distance(col.transform.position, transform.position);
                     foodObj = col.gameObject;
                     foodOnSight = true;
-                    movePoint = foodObj.transform.position;
                 }
             }
         }

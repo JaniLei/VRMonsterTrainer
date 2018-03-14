@@ -6,26 +6,30 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour {
 
-    GameObject headOrigin;
     public GameObject mainPlayer, mHead;
     public LayerMask ObstacleMask;
     public PathFinding pathFinding;
-    public bool hasPath = false;
     public float moveSpeed;
+    public GameObject bedObj;
+    public Animator anim;
 
+    [HideInInspector] public float totalSpeed;
+    [HideInInspector] public bool hasPath = false;
+
+    GameObject headOrigin;
     Vector3 playerGroundPosition;
     Quaternion playerRotation, targetRotation, playerGroundRotation; //Rotation towards player
     List<Vector3> PathPos = new List<Vector3>();
     int pathCounter;
-    public GameObject bedObj;
+    MonsterStats mStats;
 
-    public Animator anim;
 
     void Start()
     {
+        totalSpeed = moveSpeed;
+        mStats = gameObject.GetComponent<MonsterStats>();
         headOrigin = gameObject.transform.GetChild(0).gameObject;
-        mHead = gameObject.transform.GetChild(1).gameObject;
-
+        //mHead = gameObject.transform.GetChild(1).gameObject;
     }
 
 
@@ -36,10 +40,13 @@ public class Monster : MonoBehaviour {
 
         playerRotation = Quaternion.LookRotation(mHead.transform.position - mainPlayer.transform.position); //Monster head and player
         playerGroundRotation = Quaternion.LookRotation(transform.position - playerGroundPosition); //Monster body and player(y=0.5)
-        mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, headOrigin.transform.position, 1.5f * Time.deltaTime);
+        //mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, headOrigin.transform.position, 1.5f * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, playerGroundPosition) < distance) //How close the monster will come to the player
         {
+            anim.SetBool("isWalk", false);
+            anim.SetBool("isIdle", true);
+            anim.SetBool("isEating", false);
             hasPath = false;
             if (Vector3.Distance(transform.position, playerGroundPosition) < 1.5f) //Look forward
             {
@@ -79,32 +86,45 @@ public class Monster : MonoBehaviour {
         //Idea: set a joint to the object
     }
 
+    float timer = 0;
+
     public bool EatObject(GameObject g) //returns true once the object has been eaten
     {
+       
         Vector3 foodGroundPos = g.transform.position;
         foodGroundPos.y = 0.5f;
-        if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.35f)
+        if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.35f) //eats from hand
         {
-            //Do eating stuff...
-            //Check hunger...
+            //Eat from hand animation
             g.SetActive(false);
+            mStats.EatFood("meat"); //Change to eaten object type !!!
             return true;
         }
-        else if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.8f)
+        else if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.8f) //eats from ground
         {
+            anim.SetBool("isWalk", false);
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isEating", true);
             Quaternion foodRotation = Quaternion.LookRotation(transform.position - g.transform.position);
             Quaternion foodGroundRotation = Quaternion.LookRotation(transform.position - foodGroundPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, foodGroundRotation, 3 * Time.deltaTime);
             mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, foodRotation, 5 * Time.deltaTime);
-            //eat from ground animation
+            timer += Time.deltaTime;
+            if (timer > 2)
+            {
+                g.SetActive(false);
+                mStats.EatFood("meat"); //Change to eaten object type !!!
+                return true;
+            }
         }
         else
         {
+            timer = 0;
             Quaternion foodRotation = Quaternion.LookRotation(transform.position - g.transform.position);
             Quaternion foodGroundRotation = Quaternion.LookRotation(transform.position - foodGroundPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, foodGroundRotation, 3 * Time.deltaTime);
             mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, foodRotation, 5 * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, foodGroundPos, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, foodGroundPos, totalSpeed * Time.deltaTime);
 
 
         }
@@ -114,24 +134,11 @@ public class Monster : MonoBehaviour {
 
     }
 
-    public void DodgeAttack()
-    {
-        //Debug.DrawLine(transform.position - transform.right + transform.forward, transform.position - transform.right - transform.forward, Color.red, 6);
-        //Debug.DrawLine(transform.position + transform.right + transform.forward, transform.position + transform.right - transform.forward, Color.red, 6);
-        if (!Physics.Linecast(transform.position - transform.right + transform.forward, transform.position - transform.right - transform.forward, ObstacleMask))
-        {
-            //Dodge left + animation...
-            transform.Translate(-Vector3.right * 5f * Time.deltaTime);
-        }
-        else if (!Physics.Linecast(transform.position + transform.right + transform.forward, transform.position + transform.right - transform.forward, ObstacleMask))
-        {
-            //Dodge right + animation...
-            transform.Translate(Vector3.right * 5f * Time.deltaTime);
-        }
-    }
-
     public void MoveTo(Vector3 target)
     {
+        anim.SetBool("isWalk", true);
+        anim.SetBool("isIdle", false);
+        anim.SetBool("isEating", false);
         target.y = 0.5f;
         Quaternion targetRotation = Quaternion.LookRotation(transform.position - target);
         if (Physics.Linecast(transform.position, target, ObstacleMask) && !hasPath)
@@ -146,7 +153,7 @@ public class Monster : MonoBehaviour {
             if (pathCounter < PathPos.Count) 
             {
                 targetRotation = Quaternion.LookRotation(transform.position - PathPos[pathCounter]);
-                transform.position = Vector3.MoveTowards(transform.position, PathPos[pathCounter], moveSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, PathPos[pathCounter], totalSpeed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, PathPos[pathCounter]) < 0.5f)
                 {
                     if (Vector3.Distance(transform.position, PathPos[pathCounter]) < 0.1f)
@@ -175,7 +182,7 @@ public class Monster : MonoBehaviour {
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3 * Time.deltaTime);
             mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, targetRotation, 5 * Time.deltaTime);
-            transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target, totalSpeed * Time.deltaTime);
         }
     }
 
