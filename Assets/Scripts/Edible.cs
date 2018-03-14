@@ -8,7 +8,7 @@ namespace Valve.VR.InteractionSystem
     [RequireComponent(typeof(Throwable))]
     public class Edible : MonoBehaviour
     {
-        Hand holdingHand;
+        public Hand holdingHand;
         
 
         private void OnAttachedToHand(Hand hand)
