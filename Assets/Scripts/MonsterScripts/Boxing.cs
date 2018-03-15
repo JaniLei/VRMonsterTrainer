@@ -18,7 +18,7 @@ public class Boxing : MonoBehaviour {
         monster.FollowPlayer(1.5f);
         if (Input.GetKeyDown(KeyCode.Alpha5) && !isDodging)
         {
-            if (Random.Range(0,100) < stats.agility)
+            if (Random.Range(0,100) < stats.mStats.agility)
             {
                 dir = Mathf.Sign(Random.Range(-1, 1));
                 isDodging = true;

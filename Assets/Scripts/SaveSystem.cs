@@ -12,29 +12,30 @@ public class SaveSystem : MonoBehaviour
         get
         {
             if (_instance == null)
-            {
                 Debug.LogWarning("Failed to get save system instance. Add a save system to the scene.");
-            }
+
             return _instance;
         }
     }
 
+    float _timePlayed;
+    public float timePlayed
+    {
+        get { return _timePlayed + Time.time; }
+    }
 
     void Awake()
     {
+        // singleton instance check
         if (_instance == null)
         {
-            // if not, set instance to this
             _instance = this;
         }
-        // if instance already exists and it's not this
         else if (_instance != this)
         {
-            // destroy this, there can only be one instance
             Destroy(gameObject);
         }
-
-        //Save();
+        
         if (!Load())
             Save();
     }
@@ -42,21 +43,36 @@ public class SaveSystem : MonoBehaviour
     void OnApplicationQuit()
     {
         Save();
+        Debug.Log("Time played: " + timePlayed + "s");
     }
-    
-	public void Save()
+
+    public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/saveData.dat");
-
         SaveData data = new SaveData();
+
         var player = FindObjectOfType<Valve.VR.InteractionSystem.Player>();
-        data.playerX = player.transform.position.x;
-        data.playerY = player.transform.position.y;
-        data.playerZ = player.transform.position.z;
-        //data.monsterPos = monster.transform;
-        //data.stats = monster.stats;
+        data.playerPos = new Position(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+
+        var objs = FindObjectsOfType<Valve.VR.InteractionSystem.Interactable>();
+        data.objPositions = new Position[objs.Length];
+        data.objRotations = new Position[objs.Length];
+        for (int i = 0; i < objs.Length; i++)
+        {
+            data.objPositions[i] = new Position(objs[i].transform.position.x, objs[i].transform.position.y, objs[i].transform.position.z);
+            data.objRotations[i] = new Position(objs[i].transform.rotation.x, objs[i].transform.rotation.y, objs[i].transform.rotation.z, objs[i].transform.rotation.w);
+        }
+
+        var monster = FindObjectOfType<Monster>();
+        if (monster)
+        {
+            //data.monsterPos = monster.transform;
+            data.monsterStats = monster.GetComponent<MonsterStats>();
+        }
+
         //data.timePlayed += Time.time;
+        data.timePlayed = timePlayed;
 
         bf.Serialize(file, data);
         file.Close();
@@ -73,10 +89,25 @@ public class SaveSystem : MonoBehaviour
             file.Close();
 
             var player = FindObjectOfType<Valve.VR.InteractionSystem.Player>();
-            player.transform.position = new Vector3(data.playerX, data.playerY, data.playerZ);
-            //var monster = FindObjectOfType<Monster>();
-            //monster.transform = data.monsterPos;
-            //monster.stats = data.stats;
+            player.transform.position = new Vector3(data.playerPos.x, data.playerPos.y, data.playerPos.z);
+
+            var objs = FindObjectsOfType<Valve.VR.InteractionSystem.Interactable>();
+            for (int i = 0; i < objs.Length; i++)
+            {
+                objs[i].transform.position = new Vector3(data.objPositions[i].x, data.objPositions[i].y, data.objPositions[i].z);
+                objs[i].transform.rotation = new Quaternion(data.objRotations[i].x, data.objRotations[i].y, data.objRotations[i].z, data.objRotations[i].w);
+            }
+
+            var monster = FindObjectOfType<Monster>();
+            if (monster)
+            {
+                //monster.transform = data.monsterPos;
+                monster.GetComponent<MonsterStats>().mStats = data.monsterStats.mStats;
+                monster.GetComponent<MonsterStats>().health = data.monsterStats.health;
+            }
+
+            _timePlayed = data.timePlayed;
+
             return true;
         }
         else
@@ -87,13 +118,24 @@ public class SaveSystem : MonoBehaviour
     }
 }
 
+/* used for serializing Vector3 and Quaternion */
+[System.Serializable]
+public struct Position
+{
+    public float x, y, z, w;
+    public Position(float _x, float _y, float _z, float _w = 0)
+    {
+        x = _x; y = _y; z = _z; w = _w;
+    }
+}
+
 [System.Serializable]
 public class SaveData
 {
-    public float playerX, playerY, playerZ;
-    //public Vector3 playerPos;
+    public Position playerPos;
+    public Position[] objPositions;
+    public Position[] objRotations;
     //public Transform monsterPos;
-    //public MonsterStats stats;
-    //other object transforms?
-    //public float timePlayed;
+    public MonsterStats monsterStats;
+    public float timePlayed;
 }

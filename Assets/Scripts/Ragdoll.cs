@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class Ragdoll : MonoBehaviour
 {
-    
-	void Start ()
+    bool isKinematic = false;
+
+	void Start()
     {
-        Rigidbody[] rbs = GetComponentsInChildren<Rigidbody>();
-        for (int i = 0; i < rbs.Length; i++)
-        {
-            rbs[i].maxDepenetrationVelocity /= 100;
-        }
+        SetKinematic(true);
 	}
-	
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+            SetKinematic(!isKinematic);
+    }
+
+    void SetKinematic(bool newValue)
+    {
+        Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in bodies)
+        {
+            rb.isKinematic = newValue;
+        }
+        isKinematic = !isKinematic;
+    }
 }
