@@ -14,7 +14,7 @@ namespace Valve.VR.InteractionSystem
         
         [Tooltip("Name of the attachment transform under in the hand's hierarchy which the object should should snap to.")]
         public string attachmentPoint;
-        public int hitForceMultiplier = 10;
+        public int hitForceMultiplier = 2;
         
         Hand gloveHand;
 
