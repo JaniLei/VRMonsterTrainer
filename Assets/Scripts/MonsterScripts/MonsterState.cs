@@ -31,6 +31,8 @@ public class MonsterState : MonoBehaviour {
         fetch.state = this;
         fetch.monster = monster;
         search.monster = monster;
+        search.fetch = fetch;
+        search.state = this;
         stats.state = this;
         stats.monster = monster;
         boxing.monster = monster;

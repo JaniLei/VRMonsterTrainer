@@ -12,6 +12,8 @@ public class SearchFood : MonoBehaviour {
     [HideInInspector] public Monster monster;
     [HideInInspector] public List<Vector3> nodes;
     [HideInInspector] public Vector3 movePoint;
+    [HideInInspector] public Fetch fetch;
+    [HideInInspector] public MonsterState state;
 
     public void Search()
     {
@@ -38,10 +40,16 @@ public class SearchFood : MonoBehaviour {
             {
                 if (col.gameObject.tag == "Edible" && !Physics.Linecast(transform.position, col.gameObject.transform.position, monster.ObstacleMask))
                 {
-                    Debug.Log("ruokaa");
-                    tempDist = Vector3.Distance(col.transform.position, transform.position);
-                    foodObj = col.gameObject;
-                    foodOnSight = true;
+                    if (col.gameObject.GetComponent<Valve.VR.InteractionSystem.Edible>().notEdible)
+                    {
+                        state.StartFetch(col.gameObject);
+                    }
+                    else
+                    {
+                        tempDist = Vector3.Distance(col.transform.position, transform.position);
+                        foodObj = col.gameObject;
+                        foodOnSight = true;
+                    }
                 }
             }
         }
