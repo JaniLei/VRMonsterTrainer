@@ -10,6 +10,9 @@ namespace Valve.VR.InteractionSystem
     {
         public Hand holdingHand;
         
+        public enum foodType { meat, vegetable, item}
+        public foodType type;
+        public bool notEdible;
 
         private void OnAttachedToHand(Hand hand)
         {

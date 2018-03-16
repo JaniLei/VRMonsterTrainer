@@ -32,7 +32,6 @@ public class Monster : MonoBehaviour {
         //mHead = gameObject.transform.GetChild(1).gameObject;
     }
 
-
     public void FollowPlayer(float distance)
     {
         playerGroundPosition = mainPlayer.transform.position;
@@ -96,8 +95,8 @@ public class Monster : MonoBehaviour {
         if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.35f) //eats from hand
         {
             //Eat from hand animation
+            mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString()); //Type of object eaten
             g.SetActive(false);
-            mStats.EatFood("meat"); //Change to eaten object type !!!
             return true;
         }
         else if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.8f) //eats from ground
@@ -112,8 +111,8 @@ public class Monster : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer > 2)
             {
+                mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString()); //Type of object eaten
                 g.SetActive(false);
-                mStats.EatFood("meat"); //Change to eaten object type !!!
                 return true;
             }
         }
