@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+[System.Serializable]
 public class MonsterStats : MonoBehaviour {
 
-    [HideInInspector] public int hunger = 0, fatigue = 0;
-    [HideInInspector]public int health = 10, speed = 0, agility = 0, vegetables, meat, items;
+    public struct Stats
+    {
+        public int hunger, fatigue;
+        public int speed, agility, vegetables, meat, items;
+    }
+    public Stats mStats;
+    [HideInInspector]public int health = 10;
     public int maxHunger, maxFatique;
     [HideInInspector] public bool hasEaten;
     [HideInInspector] public MonsterState state;
@@ -21,9 +26,9 @@ public class MonsterStats : MonoBehaviour {
             //Poop
             hasEaten = false;
         }
-        else if (hunger>3) //Hungry
+        else if (mStats.hunger>3) //Hungry
         {
-            if (hunger > 5)
+            if (mStats.hunger > 5)
             {
                 Debug.Log("Died of hunger");
                 state.SetState(MonsterState.States.Dead);
@@ -31,21 +36,21 @@ public class MonsterStats : MonoBehaviour {
             else
             {
                 state.SetState(MonsterState.States.Search);
-                hunger++;
+                mStats.hunger++;
             }
         }
-        else if (fatigue > 6)
+        else if (mStats.fatigue > 6)
         {
             //Yawn
-            if (fatigue > 9)
+            if (mStats.fatigue > 9)
             {
                 Debug.Log("Died of fatigue");
                 state.SetState(MonsterState.States.Dead);
             }
             Debug.Log("Monster is sleepy");
         }
-        hunger++;
-        fatigue++;
+        mStats.hunger++;
+        mStats.fatigue++;
 
 
     }
@@ -58,14 +63,14 @@ public class MonsterStats : MonoBehaviour {
                 health += amount;
                 break;
             case "speed":
-                if (speed < 100)
+                if (mStats.speed < 100)
                 {
-                    speed += amount;
-                    monster.totalSpeed = monster.moveSpeed * (1 + 0.01f * speed);
+                    mStats.speed += amount;
+                    monster.totalSpeed = monster.moveSpeed * (1 + 0.01f * mStats.speed);
                 }
                 break;
             case "agility":
-                agility += amount;
+                mStats.agility += amount;
                 break;
                 
         }
@@ -78,18 +83,18 @@ public class MonsterStats : MonoBehaviour {
         switch (type)
         {
             case "meat":
-                meat++;
-                hunger = 0;
+                mStats.meat++;
+                mStats.hunger = 0;
                 IncreaseStat("health", 2);
                 break;
             case "vegetable":
-                vegetables++;
-                hunger = 1;
+                mStats.vegetables++;
+                mStats.hunger = 1;
                 IncreaseStat("health", 1);
                 break;
             case "item":
-                items++;
-                hunger = 2;
+                mStats.items++;
+                mStats.hunger = 2;
                 IncreaseStat("health", -1);
                 break;
         }

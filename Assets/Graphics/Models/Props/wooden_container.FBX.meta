@@ -34,17 +34,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 'Material #26'
-    second: {fileID: 2100000, guid: 5242bf2d0f0bff045a287aac588855e7, type: 2}
+    second: {fileID: 2100000, guid: c0de6a52cb1311b4abac06c98d84c3ef, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 'Material #27'
-    second: {fileID: 2100000, guid: 815a6fee8e4e02e47a33361d1f22c307, type: 2}
+    second: {fileID: 2100000, guid: 070f06462c0baad4ba06e51c8320e987, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: 'Material #28'
-    second: {fileID: 2100000, guid: 8a515b67524d77d45af187fadd80d19b, type: 2}
+    second: {fileID: 2100000, guid: ccbf05079afb59348abd9778c5e6fa5d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -83,9 +83,9 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -102,7 +102,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -121,7 +121,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

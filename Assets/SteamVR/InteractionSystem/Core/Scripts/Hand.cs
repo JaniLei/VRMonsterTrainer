@@ -516,6 +516,8 @@ namespace Valve.VR.InteractionSystem
 			{
 				if ( collider == null )
 					continue;
+                if (collider.gameObject.layer == LayerMask.NameToLayer("IgnoreHand"))
+                    continue;
 
 				Interactable contacting = collider.GetComponentInParent<Interactable>();
 
