@@ -5,7 +5,9 @@ using UnityEngine;
 public class MonsterState : MonoBehaviour {
 
     public enum States { Follow, Fetch, Sleep, Search, Boxing, Dead} //states for the monster
+    public enum animStates {Walking, EatHand, EatGround, Idle }
     States currentState = States.Follow;
+    animStates animationState = animStates.Idle;
     Monster monster;
     SearchFood search;
     MonsterStats stats;
@@ -40,6 +42,7 @@ public class MonsterState : MonoBehaviour {
         boxing.obstacleMask = monster.ObstacleMask;
         boxing.stats = stats;
 
+        stats.DisplayStats();
 
 
         EventManager.instance.Fetching += OnFetching;
@@ -61,9 +64,13 @@ public class MonsterState : MonoBehaviour {
         {
             currentState = States.Search;
         }
-        else if(Input.GetKey(KeyCode.Alpha4))
+        else if(Input.GetKeyDown(KeyCode.Alpha4))
         {
             currentState = States.Boxing;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            boxing.DodgeTeleport();
         }
 
 
@@ -98,6 +105,34 @@ public class MonsterState : MonoBehaviour {
             statTimer = 0;
         }
         
+    }
+
+    public void SetAnimationState(animStates stateToSet)
+    {
+        animationState = stateToSet;
+        switch (animationState)
+        {
+            case animStates.Idle:
+                anim.SetBool("isWalk", false);
+                anim.SetBool("isIdle", true);
+                anim.SetBool("isEating", false);
+                break;
+            case animStates.Walking:
+                anim.SetBool("isWalk", true);
+                anim.SetBool("isIdle", false);
+                anim.SetBool("isEating", false);
+                break;
+            case animStates.EatGround:
+                anim.SetBool("isWalk", false);
+                anim.SetBool("isIdle", false);
+                anim.SetBool("isEating", true);
+                break;
+            case animStates.EatHand:
+                anim.SetBool("isWalk", false);
+                anim.SetBool("isIdle", false);
+                anim.SetBool("isEating", true);
+                break;
+        }
     }
 
     public void SetState(States _state)

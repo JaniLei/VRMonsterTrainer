@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class MonsterStats : MonoBehaviour {
@@ -11,6 +12,7 @@ public class MonsterStats : MonoBehaviour {
     [HideInInspector] public bool hasEaten;
     [HideInInspector] public MonsterState state;
     [HideInInspector] public Monster monster;
+    public Text txtStats;
 
     public void UpdateStats()
     {
@@ -67,6 +69,7 @@ public class MonsterStats : MonoBehaviour {
                 break;
                 
         }
+        DisplayStats();
         
     }
 
@@ -94,6 +97,11 @@ public class MonsterStats : MonoBehaviour {
         state.SetState(MonsterState.States.Follow);
         Debug.Log("ate object type: " + type);
 
+    }
+
+    public void DisplayStats()
+    {
+        txtStats.text = "Monster stats \nHealth:" + health + "\nSpeed:" + speed + "\nAgility" + agility;
     }
 
 }

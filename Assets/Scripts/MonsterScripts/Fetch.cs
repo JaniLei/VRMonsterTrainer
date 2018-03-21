@@ -7,32 +7,43 @@ public class Fetch : MonoBehaviour{
     [HideInInspector] public Monster monster;
     [HideInInspector] public MonsterState state;
     [HideInInspector] public MonsterStats stats;
+    FixedJoint fj;
     bool hasObject;
+    GameObject fetchObj;
 
-    public void FetchObject(GameObject fetchObj)
+    public void FetchObject(GameObject fObj)
     {
+        fetchObj = fObj;
         if (!hasObject && Vector3.Distance(gameObject.transform.position, fetchObj.transform.position) > 0.5f)
         {
             monster.MoveTo(fetchObj.transform.position);
         }
         else if (!hasObject)
         {
-            fetchObj.transform.position = monster.mHead.transform.position + Vector3.up;
+            fetchObj.transform.position = monster.mHead.transform.position;
             hasObject = true;
             monster.hasPath = false;
+            fj = monster.mHead.AddComponent<FixedJoint>();
+            fj.connectedBody = fetchObj.GetComponent<Rigidbody>();
+            fetchObj.GetComponent<Rigidbody>().useGravity = false; //stops object from gaining velocity while attached to monster
+
         }
-        else if (Vector3.Distance(gameObject.transform.position, monster.mainPlayer.transform.position) > 1.2f)
+        else if (Vector3.Distance(gameObject.transform.position, monster.playerGroundPosition) > 1f)
         {
-            fetchObj.GetComponent<Rigidbody>().isKinematic = true;
-            fetchObj.transform.position = monster.mHead.transform.position;
-            monster.FollowPlayer(1);
+            monster.FollowPlayer(0.5f);
         }
         else
         {
-            fetchObj.GetComponent<Rigidbody>().isKinematic = false;
-            hasObject = false;
-            stats.IncreaseStat("speed", 5);
-            state.SetState(MonsterState.States.Follow);
+            StopFetch();
         }
+    }
+
+    public void StopFetch()
+    {
+        fetchObj.GetComponent<Rigidbody>().useGravity = true;
+        Destroy(monster.mHead.GetComponent<FixedJoint>());
+        hasObject = false;
+        stats.IncreaseStat("speed", 5);
+        state.SetState(MonsterState.States.Follow);
     }
 }
