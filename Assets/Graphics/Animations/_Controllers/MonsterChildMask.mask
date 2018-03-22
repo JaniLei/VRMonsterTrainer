@@ -69,35 +69,35 @@ AvatarMask:
   - m_Path: Armature/Root/Hips/Spine/Chest/FrontUpperLeg_R/FrontLeg_R_001/FrontLeg_R_002/FrontAnkle_R/FrontFoot_R/FrontFoot_R_Ring
     m_Weight: 1
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001/Ear_L_002
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001/Ear_L_002/Ear_L_003
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_L_001/Ear_L_002/Ear_L_003/Ear_L_004
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001/Ear_R_002
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001/Ear_R_002/Ear_R_003
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Ear_R_001/Ear_R_002/Ear_R_003/Ear_R_004
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Eye_L
     m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Eye_R
     m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Jaw
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Jaw/Tongue_001
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Spine/Chest/Neck/Head/Jaw/Tongue_001/Tongue_002
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/Root/Hips/Tail_001
     m_Weight: 1
   - m_Path: Armature/Root/Hips/Tail_001/Tail_002

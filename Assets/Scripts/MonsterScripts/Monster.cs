@@ -33,6 +33,11 @@ public class Monster : MonoBehaviour {
         //mHead = gameObject.transform.GetChild(1).gameObject;
     }
 
+    void LateUpdate()
+    {
+        //mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
+    }
+
     public void FollowPlayer(float distance)
     {
         playerGroundPosition = mainPlayer.transform.position;

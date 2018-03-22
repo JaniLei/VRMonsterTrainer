@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterState : MonoBehaviour {
 
     public enum States { Follow, Fetch, Sleep, Search, Boxing, Dead} //states for the monster
-    public enum animStates {Walking, EatHand, EatGround, Idle }
+    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, Sniff }
     States currentState = States.Follow;
     animStates animationState = animStates.Idle;
     Monster monster;
@@ -113,24 +113,34 @@ public class MonsterState : MonoBehaviour {
         switch (animationState)
         {
             case animStates.Idle:
-                anim.SetBool("isWalk", false);
-                anim.SetBool("isIdle", true);
-                anim.SetBool("isEating", false);
+                anim.SetFloat("Speed", 0);
                 break;
             case animStates.Walking:
-                anim.SetBool("isWalk", true);
-                anim.SetBool("isIdle", false);
-                anim.SetBool("isEating", false);
+                anim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
                 break;
             case animStates.EatGround:
-                anim.SetBool("isWalk", false);
-                anim.SetBool("isIdle", false);
-                anim.SetBool("isEating", true);
+                anim.SetTrigger("Eat");
                 break;
             case animStates.EatHand:
-                anim.SetBool("isWalk", false);
-                anim.SetBool("isIdle", false);
-                anim.SetBool("isEating", true);
+                
+                break;
+            case animStates.Sleep:
+                anim.SetBool("Sleep", true);
+                break;
+            case animStates.Dead:
+                anim.SetBool("Dead", true);
+                break;
+            case animStates.Lift:
+                anim.SetTrigger("LiftObject");
+                break;
+            case animStates.Poop:
+                anim.SetTrigger("DoTheDoo");
+                break;
+            case animStates.Sniff:
+                anim.SetTrigger("Sniff");
+                break;
+            case animStates.Petting:
+                anim.SetTrigger("petting");
                 break;
         }
     }
