@@ -12,6 +12,8 @@ public class Fetch : MonoBehaviour{
     bool hasObject;
     GameObject fetchObj;
     float timer = 0;
+    int distance;
+    bool AnimStarted;
 
     public void FetchObject(GameObject fObj)
     {
@@ -24,23 +26,32 @@ public class Fetch : MonoBehaviour{
         {
             if (timer < 1f)
             {
-                state.SetAnimationState(MonsterState.animStates.Lift);
+
+                if (!AnimStarted)
+                {
+                    state.SetAnimationState(MonsterState.animStates.Lift);
+                    AnimStarted = true;
+                }
                 timer+=Time.deltaTime;
             }
             else
             {
+                distance = (int)(Vector3.Distance(gameObject.transform.position, monster.playerGroundPosition));
                 fetchObj.transform.position = monsterMouth.transform.position;
                 hasObject = true;
                 monster.hasPath = false;
-                fj = monsterMouth.AddComponent<FixedJoint>();
-                fj.connectedBody = fetchObj.GetComponent<Rigidbody>();
+                //fj = monsterMouth.AddComponent<FixedJoint>();
+                //fj.connectedBody = fetchObj.GetComponent<Rigidbody>();
                 fetchObj.GetComponent<Rigidbody>().useGravity = false; //stops object from gaining velocity while attached to monster
                 timer = 0;
+                AnimStarted = false;
             }
 
         }
         else if (Vector3.Distance(gameObject.transform.position, monster.playerGroundPosition) > 1f)
         {
+            timer += Time.deltaTime;
+            fetchObj.transform.position = monsterMouth.transform.position;
             fetchObj.transform.rotation = monsterMouth.transform.rotation;
             monster.FollowPlayer(0.5f);
         }
@@ -53,9 +64,10 @@ public class Fetch : MonoBehaviour{
     public void StopFetch()
     {
         fetchObj.GetComponent<Rigidbody>().useGravity = true;
-        Destroy(monsterMouth.GetComponent<FixedJoint>());
+        //Destroy(monsterMouth.GetComponent<FixedJoint>());
         hasObject = false;
-        stats.IncreaseStat("speed", 5);
+        stats.IncreaseStat("speed", distance);
         state.SetState(MonsterState.States.Follow);
+        timer = 0;
     }
 }

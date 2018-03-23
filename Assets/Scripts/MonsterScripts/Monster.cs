@@ -23,6 +23,8 @@ public class Monster : MonoBehaviour {
     MonsterStats mStats;
     MonsterState state;
 
+    public Vector3 headNormalizer = new Vector3(-1,-0.75f,-2.5f);
+    bool headFollow;
 
     void Start()
     {
@@ -32,11 +34,16 @@ public class Monster : MonoBehaviour {
         headOrigin = gameObject.transform.GetChild(0).gameObject;
         //mHead = gameObject.transform.GetChild(1).gameObject;
     }
-
+    Quaternion headRotation;
     void LateUpdate()
     {
-        //mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
+        if (headFollow)
+        {
+            mHead.transform.rotation = headRotation;
+            headFollow = false;
+        }
     }
+
 
     public void FollowPlayer(float distance)
     {
@@ -44,20 +51,28 @@ public class Monster : MonoBehaviour {
         playerGroundPosition.y = 0.5f;
 
         playerRotation = Quaternion.LookRotation(mHead.transform.position - mainPlayer.transform.position); //Monster head and player
+        playerRotation.z = 0;
         playerGroundRotation = Quaternion.LookRotation(transform.position - playerGroundPosition); //Monster body and player(y=0.5)
         //mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, headOrigin.transform.position, 1.5f * Time.deltaTime);
 
+        headRotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
+        headRotation *= Quaternion.Euler(headNormalizer);
+        Debug.Log(headRotation.x + " " + headRotation.y + " " + headRotation.z + " ");
+
         if (Vector3.Distance(transform.position, playerGroundPosition) < distance) //How close the monster will come to the player
         {
+            headFollow = false;
             state.SetAnimationState(MonsterState.animStates.Idle);
             hasPath = false;
-            if (Vector3.Distance(transform.position, playerGroundPosition) < 1.5f) //Look forward
+            if (Vector3.Distance(transform.position, playerGroundPosition) < 1f) //Look forward
             {
-                mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, transform.rotation, 5 * Time.deltaTime);
+                headRotation = Quaternion.Slerp(mHead.transform.rotation, transform.rotation, 5 * Time.deltaTime);
+                mHead.transform.rotation = headRotation;
             }
             else if (Vector3.Distance(transform.position + -transform.forward * 4, playerGroundPosition) < 4) //Look at player
             {
-                mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
+                headFollow = true;
+                mHead.transform.rotation = headRotation;
             }
             else //Rotate Body towards player
             {
@@ -80,6 +95,42 @@ public class Monster : MonoBehaviour {
         {
             transform.position = bedObj.transform.position;
             //Do sleep things...
+        }
+    }
+
+    public void SniffObject(GameObject sniffObj)
+    {
+        Quaternion tempQuaternion = Quaternion.LookRotation(transform.position - sniffObj.transform.position);
+        headRotation = Quaternion.Slerp(mHead.transform.rotation, tempQuaternion, 5 * Time.deltaTime);
+        mHead.transform.rotation = headRotation;
+        headRotation *= Quaternion.Euler(headNormalizer);
+        headFollow = true;
+        state.SetAnimationState(MonsterState.animStates.Sniff);
+    }
+
+    bool WaitStarted;
+
+    public void WaitFor(float t)
+    {
+        if (WaitStarted)
+        {
+            Wait(t);
+        }
+        else
+        {
+            timer = 0;
+            Wait(t);
+            WaitStarted = true;
+        }
+    }
+
+    void Wait(float t)
+    {
+        timer += Time.deltaTime;
+        if (timer > t)
+        {
+            state.SetState(MonsterState.States.Follow);
+            WaitStarted = false;
         }
     }
 

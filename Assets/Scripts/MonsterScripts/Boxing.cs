@@ -65,7 +65,7 @@ public class Boxing : MonoBehaviour {
             Debug.DrawLine(transform.position, transform.position + transform.right * dir * 0.5f, Color.red, 6);
             //Dodge left + animation...
             transform.Translate(Vector3.right * dir * 0.5f);
-            CreateParticle();
+            StartCoroutine(CreateParticle());
         }
         else if (!Physics.Raycast(transform.position, transform.position - transform.right * dir, 0.5f, obstacleMask))
         {
@@ -73,13 +73,20 @@ public class Boxing : MonoBehaviour {
             Debug.DrawLine(transform.position, transform.position - transform.right * dir * 0.5f, Color.red, 6);
             //Dodge right + animation...
             transform.Translate(-Vector3.right * dir * 0.5f);
-            CreateParticle();
+            StartCoroutine(CreateParticle());
         }
     }
 
-    void CreateParticle()
+    IEnumerator CreateParticle()
     {
-        particleSys.Emit(15);
+        particleSys.Play();
+
+        particleSys.enableEmission = true;
+
+        yield return new WaitForSeconds(0.325f);
+        particleSys.enableEmission = false;
     }
+
+
 
 }

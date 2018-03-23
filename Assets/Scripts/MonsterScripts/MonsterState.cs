@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Follow, Fetch, Sleep, Search, Boxing, Dead} //states for the monster
+    public enum States { Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Dead} //states for the monster
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, Sniff }
     States currentState = States.Follow;
     animStates animationState = animStates.Idle;
@@ -49,7 +49,6 @@ public class MonsterState : MonoBehaviour {
         EventManager.instance.Pointing += OnPointing;
     }
 
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) //FOR TESTING
@@ -64,7 +63,7 @@ public class MonsterState : MonoBehaviour {
         {
             currentState = States.Search;
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             currentState = States.Boxing;
         }
@@ -72,6 +71,15 @@ public class MonsterState : MonoBehaviour {
         {
             boxing.DodgeTeleport();
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            stats.UpdateStats();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            anim.SetBool("Dead", true);
+        }
+        
 
 
 
@@ -91,6 +99,14 @@ public class MonsterState : MonoBehaviour {
                 break;
             case States.Boxing:
                 boxing.DoBoxing();
+                break;
+            case States.Pooping:
+                monster.WaitFor(5.75f);
+                anim.SetFloat("Speed", 0);
+                break;
+            case States.Whine:
+                monster.WaitFor(2);
+                anim.SetFloat("Speed", 0);
                 break;
             case States.Dead:
                 //Do dying stuff
@@ -140,7 +156,7 @@ public class MonsterState : MonoBehaviour {
                 anim.SetTrigger("Sniff");
                 break;
             case animStates.Petting:
-                anim.SetTrigger("petting");
+                anim.SetTrigger("Petting");
                 break;
         }
     }
