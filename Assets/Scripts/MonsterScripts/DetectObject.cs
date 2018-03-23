@@ -17,6 +17,10 @@ namespace Valve.VR.InteractionSystem
             {
                 monster.EatObject(col.gameObject);
             }
+            else if (edible)
+            {
+                monster.SniffObject();
+            }
             
         }
     }

@@ -23,14 +23,17 @@ public class MonsterStats : MonoBehaviour {
     {
         if (hasEaten)
         {
-            //Poop
+            state.SetState(MonsterState.States.Pooping);
+            state.SetAnimationState(MonsterState.animStates.Poop);
             hasEaten = false;
         }
         else if (mStats.hunger>3) //Hungry
         {
+            //state.SetAnimationState(MonsterState.animStates.Hungry);
             if (mStats.hunger > 5)
             {
                 Debug.Log("Died of hunger");
+                state.SetAnimationState(MonsterState.animStates.Dead);
                 state.SetState(MonsterState.States.Dead);
             }
             else
@@ -41,13 +44,14 @@ public class MonsterStats : MonoBehaviour {
         }
         else if (mStats.fatigue > 6)
         {
-            //Yawn
+            //state.SetAnimationState(MonsterState.animStates.Yawn);
+            Debug.Log("Monster is sleepy");
             if (mStats.fatigue > 9)
             {
                 Debug.Log("Died of fatigue");
+                state.SetAnimationState(MonsterState.animStates.Dead);
                 state.SetState(MonsterState.States.Dead);
             }
-            Debug.Log("Monster is sleepy");
         }
         mStats.hunger++;
         mStats.fatigue++;
