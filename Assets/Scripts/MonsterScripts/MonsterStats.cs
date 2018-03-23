@@ -17,7 +17,9 @@ public class MonsterStats : MonoBehaviour {
     [HideInInspector] public bool hasEaten;
     [HideInInspector] public MonsterState state;
     [HideInInspector] public Monster monster;
+    public GameObject poopObject;
     public Text txtStats;
+    int lastEaten; //1 = meat, 2 = vege, 3 = item
 
     public void UpdateStats()
     {
@@ -25,6 +27,8 @@ public class MonsterStats : MonoBehaviour {
         {
             state.SetState(MonsterState.States.Pooping);
             state.SetAnimationState(MonsterState.animStates.Poop);
+            Invoke("SpawnPoop", 3.75f);
+
             hasEaten = false;
         }
         else if (mStats.hunger>3) //Hungry
@@ -59,6 +63,25 @@ public class MonsterStats : MonoBehaviour {
 
     }
 
+    void SpawnPoop()
+    {
+        Vector3 spawnPos = transform.position;
+        spawnPos -= transform.forward;
+        switch (lastEaten)
+        {
+            case 1:
+                Instantiate(poopObject, spawnPos, transform.rotation).GetComponent<MeshRenderer>().material.color = Color.red;
+                break;
+            case 2:
+                Instantiate(poopObject, spawnPos, transform.rotation).GetComponent<MeshRenderer>().material.color = Color.green;
+                break;
+            case 3:
+                Instantiate(poopObject, spawnPos, transform.rotation).GetComponent<MeshRenderer>().material.color = Color.grey;
+                break;
+        }
+    }
+
+
     public void IncreaseStat(string stat, int amount) //optional
     {
         switch (stat)
@@ -87,16 +110,19 @@ public class MonsterStats : MonoBehaviour {
         switch (type)
         {
             case "meat":
+                lastEaten = 1;
                 mStats.meat++;
                 mStats.hunger = 0;
                 IncreaseStat("health", 2);
                 break;
             case "vegetable":
+                lastEaten = 2;
                 mStats.vegetables++;
                 mStats.hunger = 1;
                 IncreaseStat("health", 1);
                 break;
             case "item":
+                lastEaten = 3;
                 mStats.items++;
                 mStats.hunger = 2;
                 IncreaseStat("health", -1);

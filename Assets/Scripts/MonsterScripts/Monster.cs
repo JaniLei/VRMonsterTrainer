@@ -56,7 +56,7 @@ public class Monster : MonoBehaviour {
         //mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, headOrigin.transform.position, 1.5f * Time.deltaTime);
 
         headRotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
-        headRotation *= Quaternion.Euler(headNormalizer); 
+        headRotation *= Quaternion.Euler(headNormalizer);
         Debug.Log(headRotation.x + " " + headRotation.y + " " + headRotation.z + " ");
 
         if (Vector3.Distance(transform.position, playerGroundPosition) < distance) //How close the monster will come to the player
@@ -64,9 +64,10 @@ public class Monster : MonoBehaviour {
             headFollow = false;
             state.SetAnimationState(MonsterState.animStates.Idle);
             hasPath = false;
-            if (Vector3.Distance(transform.position, playerGroundPosition) < 1.5f) //Look forward
+            if (Vector3.Distance(transform.position, playerGroundPosition) < 1f) //Look forward
             {
-                mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, transform.rotation, 5 * Time.deltaTime);
+                headRotation = Quaternion.Slerp(mHead.transform.rotation, transform.rotation, 5 * Time.deltaTime);
+                mHead.transform.rotation = headRotation;
             }
             else if (Vector3.Distance(transform.position + -transform.forward * 4, playerGroundPosition) < 4) //Look at player
             {
@@ -97,8 +98,13 @@ public class Monster : MonoBehaviour {
         }
     }
 
-    public void SniffObject()
+    public void SniffObject(GameObject sniffObj)
     {
+        Quaternion tempQuaternion = Quaternion.LookRotation(transform.position - sniffObj.transform.position);
+        headRotation = Quaternion.Slerp(mHead.transform.rotation, tempQuaternion, 5 * Time.deltaTime);
+        mHead.transform.rotation = headRotation;
+        headRotation *= Quaternion.Euler(headNormalizer);
+        headFollow = true;
         state.SetAnimationState(MonsterState.animStates.Sniff);
     }
 
