@@ -26,6 +26,8 @@ public class Monster : MonoBehaviour {
     public Vector3 headNormalizer = new Vector3(-1,-0.75f,-2.5f);
     bool headFollow;
 
+    public float GroundLevel;
+
     void Start()
     {
         totalSpeed = moveSpeed;
@@ -48,7 +50,7 @@ public class Monster : MonoBehaviour {
     public void FollowPlayer(float distance)
     {
         playerGroundPosition = mainPlayer.transform.position;
-        playerGroundPosition.y = 0.5f;
+        playerGroundPosition.y = GroundLevel;
 
         playerRotation = Quaternion.LookRotation(mHead.transform.position - mainPlayer.transform.position); //Monster head and player
         playerRotation.z = 0;
@@ -57,7 +59,7 @@ public class Monster : MonoBehaviour {
 
         headRotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
         headRotation *= Quaternion.Euler(headNormalizer);
-        Debug.Log(headRotation.x + " " + headRotation.y + " " + headRotation.z + " ");
+        //Debug.Log(headRotation.x + " " + headRotation.y + " " + headRotation.z + " ");
 
         if (Vector3.Distance(transform.position, playerGroundPosition) < distance) //How close the monster will come to the player
         {
@@ -95,9 +97,14 @@ public class Monster : MonoBehaviour {
         {
             transform.position = bedObj.transform.position;
             SteamVR_Fade.Start(Color.black, 2);
-            SteamVR_Fade.Start(Color.clear, 2);
+            Invoke("StopSleep", 2);
             //Do sleep things...
         }
+    }
+
+    void StopSleep()
+    {
+        SteamVR_Fade.Start(Color.clear, 2);
     }
 
     public void SniffObject(GameObject sniffObj)
@@ -191,7 +198,7 @@ public class Monster : MonoBehaviour {
     public void MoveTo(Vector3 target)
     {
         state.SetAnimationState(MonsterState.animStates.Walking);
-        target.y = 0.5f;
+        target.y = GroundLevel;
         Quaternion targetRotation = Quaternion.LookRotation(transform.position - target);
         if (Physics.Linecast(transform.position, target, ObstacleMask) && !hasPath)
         {
