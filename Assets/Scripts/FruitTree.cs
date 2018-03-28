@@ -6,6 +6,7 @@ public class FruitTree : MonoBehaviour
 {
     public float growInterval;
     public float growPercent;
+    public float growTime = 60;
     public GameObject fruitPrefab;
     public Vector3 spawnPos;
 
@@ -13,13 +14,27 @@ public class FruitTree : MonoBehaviour
 
     Valve.VR.InteractionSystem.Edible fruit;
     Vector3 fullScale;
+    float currentTime;
 
 	void Start()
     {
         fullScale = fruitPrefab.transform.localScale;
         SpawnFruit();
-        StartCoroutine("GrowFruit");
+        //StartCoroutine("GrowFruit");
 	}
+
+    void Update()
+    {
+        currentTime += Time.deltaTime;
+        if (fruit.transform.localScale.x < fullScale.x &&
+            fruit.transform.localScale.y < fullScale.y &&
+            fruit.transform.localScale.z < fullScale.z)
+        {
+            float growth = currentTime / growTime;
+            Vector3 scaleGrowth = new Vector3(growth * fullScale.x, growth * fullScale.y, growth * fullScale.z);
+            fruit.transform.localScale = scaleGrowth;
+        }
+    }
 	
     IEnumerator GrowFruit()
     {
@@ -28,24 +43,24 @@ public class FruitTree : MonoBehaviour
         {
             float growth = growPercent / 100;
             fruit.transform.localScale += new Vector3(growth * fullScale.x, growth * fullScale.y, growth * fullScale.z);
-            if (fruit.transform.localScale.x >= 1 &&
-                fruit.transform.localScale.y >= 1 &&
-                fruit.transform.localScale.z >= 1)
+            if (fruit.transform.localScale.x >= fullScale.x &&
+                fruit.transform.localScale.y >= fullScale.y &&
+                fruit.transform.localScale.z >= fullScale.z)
             {
                 grown = true;
                 fruit.gameObject.layer = LayerMask.NameToLayer("Default");
             }
+            StartCoroutine("GrowFruit");
         }
-        else
-        {
-            SpawnFruit();
-        }
-        StartCoroutine("GrowFruit");
+        //else
+        //{
+        //    SpawnFruit();
+        //}
     }
 
     void SpawnFruit()
     {
-        fruit = Instantiate(fruitPrefab, transform.position + spawnPos, Quaternion.identity/*, transform*/).GetComponent<Valve.VR.InteractionSystem.Edible>();
+        fruit = Instantiate(fruitPrefab, transform.position + spawnPos, fruitPrefab.transform.rotation, transform).GetComponent<Valve.VR.InteractionSystem.Edible>();
         fruit.gameObject.layer = LayerMask.NameToLayer("IgnoreHand");
         fruit.transform.localScale = Vector3.zero;
         fruit.GetComponent<Rigidbody>().isKinematic = true;
