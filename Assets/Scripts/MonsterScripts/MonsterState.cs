@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Dead} //states for the monster
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Dead} //states for the monster
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, Sniff }
-    States currentState = States.Follow;
+    States currentState = States.Hatching;
     animStates animationState = animStates.Idle;
     Monster monster;
     SearchFood search;
@@ -17,6 +17,9 @@ public class MonsterState : MonoBehaviour {
     public float gameSpeed;
     public GameObject fetchObj;
     public float followDistance;
+    public float hatchTime = 10;
+    public GameObject hatchObject;
+    float hTimer;
 
 
     public Animator anim;
@@ -43,6 +46,10 @@ public class MonsterState : MonoBehaviour {
         boxing.stats = stats;
 
         stats.DisplayStats();
+
+        Vector3 temphPos = hatchObject.transform.position;
+        temphPos.y = 0.5f;
+        gameObject.transform.position = temphPos;
 
 
         EventManager.instance.Fetching += OnFetching;
@@ -85,6 +92,13 @@ public class MonsterState : MonoBehaviour {
 
         switch (currentState)
         {
+            case States.Hatching:
+                hTimer += Time.deltaTime;
+                if (hTimer > hatchTime)
+                {
+                    HatchMonster();
+                }
+                break;
             case States.Follow:
                 monster.FollowPlayer(followDistance);
                 break;
@@ -121,6 +135,12 @@ public class MonsterState : MonoBehaviour {
             statTimer = 0;
         }
         
+    }
+
+    void HatchMonster()
+    {
+        hatchObject.SetActive(false);
+        currentState = States.Follow;
     }
 
     public void SetAnimationState(animStates stateToSet)

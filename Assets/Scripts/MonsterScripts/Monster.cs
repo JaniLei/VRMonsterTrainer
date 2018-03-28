@@ -94,6 +94,8 @@ public class Monster : MonoBehaviour {
         else
         {
             transform.position = bedObj.transform.position;
+            SteamVR_Fade.Start(Color.black, 2);
+            SteamVR_Fade.Start(Color.clear, 2);
             //Do sleep things...
         }
     }

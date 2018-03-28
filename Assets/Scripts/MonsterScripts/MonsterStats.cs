@@ -105,6 +105,14 @@ public class MonsterStats : MonoBehaviour {
         
     }
 
+    void CheckEvolve()
+    {
+        if (mStats.speed > 50 && mStats.agility > 30)
+        {
+            //evolve
+        }
+    }
+
     public void EatFood(string type)
     {
         switch (type)
