@@ -1,21 +1,23 @@
 fileFormatVersion: 2
-guid: de7a256b1f980d54e9040a9cdd47b1d6
-timeCreated: 1521114330
+guid: 3c5d509436bcb2d41aba08136667e432
+timeCreated: 1522224648
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cylinder001
+    100000: GeoSphere001
+    100002: //RootNode
+    400000: GeoSphere001
+    400002: //RootNode
+    2300000: GeoSphere001
+    3300000: GeoSphere001
+    4300000: GeoSphere001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 01 - Default
-    second: {fileID: 2100000, guid: 96df712ef85835246a20939b0ea03787, type: 2}
+      name: GeoSphere001Mat
+    second: {fileID: 2100000, guid: ebac8e9fd9333eb4692d7b7347bf6f55, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -49,9 +51,9 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 0
-    importCameras: 0
-    importLights: 0
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -68,7 +70,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
