@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f9226d04f48fb63458949e02ea931695
-timeCreated: 1521114335
+guid: 6ccc8b76243a0664b8f73ae0f6d10dd1
+timeCreated: 1522223726
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -8,43 +8,53 @@ ModelImporter:
     100000: Box001
     100002: Box002
     100004: Cone001
-    100006: Torus001
-    100008: //RootNode
+    100006: Object
+    100008: Torus001
+    100010: //RootNode
     400000: Box001
     400002: Box002
     400004: Cone001
-    400006: Torus001
-    400008: //RootNode
+    400006: Object
+    400008: Torus001
+    400010: //RootNode
     2300000: Box001
     2300002: Box002
     2300004: Cone001
-    2300006: Torus001
+    2300006: Object
+    2300008: Torus001
     3300000: Box001
     3300002: Box002
     3300004: Cone001
-    3300006: Torus001
+    3300006: Object
+    3300008: Torus001
     4300000: Box002
     4300002: Cone001
     4300004: Torus001
     4300006: Box001
+    4300008: Object
     7400000: Take 001
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Material #26'
-    second: {fileID: 2100000, guid: c0de6a52cb1311b4abac06c98d84c3ef, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 'Material #27'
+      name: 'Material #25'
     second: {fileID: 2100000, guid: 070f06462c0baad4ba06e51c8320e987, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Material #28'
+      name: 'Material #26'
     second: {fileID: 2100000, guid: ccbf05079afb59348abd9778c5e6fa5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #27'
+    second: {fileID: 2100000, guid: 2943b4e66be76b04787a0d5e839c3c63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #32'
+    second: {fileID: 2100000, guid: 070f06462c0baad4ba06e51c8320e987, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -83,9 +93,9 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 0
-    importCameras: 0
-    importLights: 0
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -102,7 +112,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
@@ -121,7 +131,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
