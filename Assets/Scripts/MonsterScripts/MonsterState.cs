@@ -111,6 +111,7 @@ public class MonsterState : MonoBehaviour {
     }
     public void OnPointing()
     {
+        currentState = States.Sleep;
         monster.GoSleep();
     }
     public void StartFetch(GameObject fObj)

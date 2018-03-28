@@ -10,8 +10,8 @@ public class MonsterStats : MonoBehaviour {
         public int hunger, fatigue;
         public int speed, agility, vegetables, meat, items;
     }
-    public Stats mStats;
-    [HideInInspector]public int health = 10;
+    [HideInInspector] public Stats mStats;
+    [HideInInspector] public int health = 10;
     public int maxHunger, maxFatique;
     [HideInInspector] public bool hasEaten;
     [HideInInspector] public MonsterState state;
