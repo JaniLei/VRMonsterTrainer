@@ -351,6 +351,7 @@ MonoBehaviour:
   holdingHand: {fileID: 0}
   type: 2
   notEdible: 0
+  picked: 0
 --- !u!114 &130868151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,7 +607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78e3b00d81c31347a2e0d387f1807ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedTo: {fileID: 546827265}
+  startRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!54 &170102488
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1313,7 +1314,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.5, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &579696689
 GameObject:
@@ -1436,7 +1437,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &579696694
 MonoBehaviour:
@@ -1853,6 +1854,7 @@ MonoBehaviour:
   holdingHand: {fileID: 0}
   type: 1
   notEdible: 1
+  picked: 0
 --- !u!114 &725484639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4198,7 +4200,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475244, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 2}
@@ -4335,8 +4337,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4944991785361258, guid: fe6e311adf66af349a7855d0cb57d738, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 114420040120366708, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: txtStats
+      value: 
+      objectReference: {fileID: 1461305507}
+    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: fetchObj
+      value: 
+      objectReference: {fileID: 579696689}
+    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: hatchObject
+      value: 
+      objectReference: {fileID: 1377118295}
     - target: {fileID: 114964622874942114, guid: fe6e311adf66af349a7855d0cb57d738,
         type: 2}
       propertyPath: mainPlayer
@@ -4352,32 +4369,6 @@ Prefab:
       propertyPath: bedObj
       value: 
       objectReference: {fileID: 1963954697}
-    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
-        type: 2}
-      propertyPath: fetchObj
-      value: 
-      objectReference: {fileID: 579696689}
-    - target: {fileID: 114420040120366708, guid: fe6e311adf66af349a7855d0cb57d738,
-        type: 2}
-      propertyPath: txtStats
-      value: 
-      objectReference: {fileID: 1461305507}
-    - target: {fileID: 114420040120366708, guid: fe6e311adf66af349a7855d0cb57d738,
-        type: 2}
-      propertyPath: poopObject
-      value: 
-      objectReference: {fileID: 1606656871079798, guid: cbd554d2f6b051441964744c45ca25d3,
-        type: 2}
-    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
-        type: 2}
-      propertyPath: hatchObject
-      value: 
-      objectReference: {fileID: 1377118295}
-    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
-        type: 2}
-      propertyPath: hatchTime
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe6e311adf66af349a7855d0cb57d738, type: 2}
   m_IsPrefabParent: 0
@@ -4571,6 +4562,7 @@ MonoBehaviour:
   holdingHand: {fileID: 0}
   type: 0
   notEdible: 0
+  picked: 0
 --- !u!1 &1623481498
 GameObject:
   m_ObjectHideFlags: 0
@@ -5023,7 +5015,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000011983135080, guid: dc06161b6d97feb419f45f03b62e14b9, type: 2}
@@ -5770,6 +5762,7 @@ MonoBehaviour:
   holdingHand: {fileID: 0}
   type: 1
   notEdible: 1
+  picked: 0
 --- !u!114 &1934919692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5992,7 +5985,7 @@ Transform:
   m_LocalScale: {x: 0.7, y: 0.3, z: 0.7}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2098893630
 GameObject:

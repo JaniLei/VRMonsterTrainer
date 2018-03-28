@@ -11,6 +11,7 @@ public class MonsterStats : MonoBehaviour {
         public int hunger, fatigue;
         public int speed, agility, vegetables, meat, items;
     }
+    int foodCount;
     [HideInInspector] public Stats mStats;
     [HideInInspector] public int health = 10;
     public int maxHunger, maxFatique;
@@ -18,6 +19,8 @@ public class MonsterStats : MonoBehaviour {
     [HideInInspector] public MonsterState state;
     [HideInInspector] public Monster monster;
     public GameObject poopObject;
+    public GameObject childMonster;
+    public GameObject adultMonster;
     public Text txtStats;
     int lastEaten; //1 = meat, 2 = vege, 3 = item
 
@@ -66,7 +69,8 @@ public class MonsterStats : MonoBehaviour {
     void SpawnPoop()
     {
         Vector3 spawnPos = transform.position;
-        spawnPos -= transform.forward;
+        spawnPos += transform.forward * 0.3f;
+        spawnPos -= transform.up * 0.3f;
         switch (lastEaten)
         {
             case 1:
@@ -102,14 +106,38 @@ public class MonsterStats : MonoBehaviour {
                 
         }
         DisplayStats();
-        
+        CheckEvolve();
     }
 
     void CheckEvolve()
     {
+        int totalCount = 1 + mStats.meat + mStats.vegetables + mStats.items;
         if (mStats.speed > 50 && mStats.agility > 30)
         {
-            //evolve
+            if (health < 1)
+            {
+                //Bad evolution
+                Debug.Log("BAD EVOLUTION -> GAME OVER");
+            }
+            else if (mStats.meat/ totalCount > 0.75f)
+            {
+                //evolve red
+                childMonster.SetActive(false);
+                adultMonster.SetActive(true);
+            }
+            else if (mStats.vegetables / totalCount > 0.75f)
+            {
+                //evolve green
+                childMonster.SetActive(false);
+                adultMonster.SetActive(true);
+            }
+            else
+            {
+                //evolve brown
+                childMonster.SetActive(false);
+                adultMonster.SetActive(true);
+            }
+            state.SetState(MonsterState.States.Exit);
         }
     }
 
@@ -137,6 +165,7 @@ public class MonsterStats : MonoBehaviour {
                 break;
         }
         hasEaten = true;
+        foodCount++;
         state.SetState(MonsterState.States.Follow);
         Debug.Log("ate object type: " + type);
 

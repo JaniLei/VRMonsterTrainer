@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Hatching, Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Dead} //states for the monster
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Exit, Dead} //states for the monster
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, Sniff }
     States currentState = States.Hatching;
     animStates animationState = animStates.Idle;
@@ -19,6 +19,7 @@ public class MonsterState : MonoBehaviour {
     public float followDistance;
     public float hatchTime = 10;
     public GameObject hatchObject;
+    public Vector3 exitPoint;
     float hTimer;
 
 
@@ -86,7 +87,12 @@ public class MonsterState : MonoBehaviour {
         {
             anim.SetBool("Dead", true);
         }
-        
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            stats.IncreaseStat("agility", 10);
+            stats.IncreaseStat("speed", 10);
+        }
+
 
 
 
@@ -121,6 +127,9 @@ public class MonsterState : MonoBehaviour {
             case States.Whine:
                 monster.WaitFor(2);
                 anim.SetFloat("Speed", 0);
+                break;
+            case States.Exit:
+                monster.MoveTo(exitPoint);
                 break;
             case States.Dead:
                 //Do dying stuff
