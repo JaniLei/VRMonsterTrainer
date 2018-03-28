@@ -41,17 +41,17 @@ namespace Valve.VR.InteractionSystem
             }
         }
         
-        //private void HandAttachedUpdate(Hand hand)
-        //{
-        //    // send signal for monster to dodge
-        //    if (hand.GetTrackedObjectVelocity().magnitude > 2)
-        //    {
-        //        RaycastHit hit;
-        //
-        //        if (Physics.Raycast(transform.position, transform.forward, out hit, 1))
-        //            hit.transform.gameObject.SendMessage("Dodge", SendMessageOptions.DontRequireReceiver);
-        //    }
-        //}
+        private void HandAttachedUpdate(Hand hand)
+        {
+            // send signal for monster to dodge
+            if (hand.GetTrackedObjectVelocity().magnitude > 2)
+            {
+                RaycastHit hit;
+        
+                if (Physics.Raycast(transform.position, transform.forward, out hit, 1))
+                    hit.transform.gameObject.SendMessage("Dodge", SendMessageOptions.DontRequireReceiver);
+            }
+        }
 
         private void OnAttachedToHand(Hand hand)
         {

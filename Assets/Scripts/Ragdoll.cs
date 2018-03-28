@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Ragdoll : MonoBehaviour
 {
+    public bool activeOnStart;
+
     bool isKinematic = false;
 
 	void Start()
     {
         SetKinematic(true);
+        if (activeOnStart)
+            SetKinematic(!isKinematic);
 	}
 
     void Update()

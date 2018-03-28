@@ -113,8 +113,8 @@ AvatarMask:
   - m_Path: Armature/Root/Hips/Tail_001/Tail_002/Tail_003/Tail_004/Tail_005/Tail_006/Tail_007
     m_Weight: 1
   - m_Path: MonsterChild_LOD0
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: MonsterChild_LOD1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: MonsterChild_LOD2
-    m_Weight: 1
+    m_Weight: 0
