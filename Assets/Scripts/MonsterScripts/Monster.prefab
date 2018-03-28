@@ -550,6 +550,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1578478354864250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4316588604984508}
+  - component: {fileID: 33091459721633796}
+  - component: {fileID: 23336962595224034}
+  m_Layer: 0
+  m_Name: MonsterAdult
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &1623559257747312
 GameObject:
   m_ObjectHideFlags: 1
@@ -1164,6 +1181,19 @@ Transform:
   m_Father: {fileID: 4485016789667260}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4316588604984508
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578478354864250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_Children: []
+  m_Father: {fileID: 4944991785361258}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4333770442974578
 Transform:
   m_ObjectHideFlags: 1
@@ -1386,7 +1416,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4944991785361258}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4544003451650572
 Transform:
@@ -1580,7 +1610,7 @@ Transform:
   - {fileID: 4355363448456566}
   - {fileID: 4746543177004188}
   m_Father: {fileID: 4944991785361258}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4739032047055998
 Transform:
@@ -1763,6 +1793,7 @@ Transform:
   m_Children:
   - {fileID: 4260860955955920}
   - {fileID: 4769664148739268}
+  - {fileID: 4316588604984508}
   - {fileID: 4718057871916532}
   - {fileID: 4524662263157118}
   m_Father: {fileID: 0}
@@ -1872,6 +1903,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23336962595224034
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578478354864250}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 6a751490e8c07ce4e832e391c720655e, type: 2}
+  - {fileID: 2100000, guid: a6bf407ec5492404b83ad2c5293a5a0e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23640804639231170
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -1906,6 +1972,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!33 &33091459721633796
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578478354864250}
+  m_Mesh: {fileID: 4300000, guid: 8b1868c27967e444c96a40d18633ce97, type: 3}
 --- !u!33 &33093697170809412
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -2069,6 +2142,9 @@ MonoBehaviour:
   hasEaten: 0
   state: {fileID: 114968352960053098}
   monster: {fileID: 114964622874942114}
+  poopObject: {fileID: 1606656871079798, guid: cbd554d2f6b051441964744c45ca25d3, type: 2}
+  childMonster: {fileID: 1536435902369636}
+  adultMonster: {fileID: 1578478354864250}
   txtStats: {fileID: 0}
 --- !u!114 &114456972264063716
 MonoBehaviour:
@@ -2156,6 +2232,8 @@ MonoBehaviour:
   gameSpeed: 30
   fetchObj: {fileID: 0}
   followDistance: 4
+  hatchTime: 10
+  hatchObject: {fileID: 0}
   anim: {fileID: 95167641535661916}
 --- !u!137 &137130739663173302
 SkinnedMeshRenderer:

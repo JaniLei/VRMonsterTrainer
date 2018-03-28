@@ -85,7 +85,7 @@ public class PathFinding : MonoBehaviour {
                 {
                     temphCost = n.hCost;
                     bestNode = n;
-
+                    /*
                     if (!Physics.Linecast(n.position, goal, obstacleLayer))
                     {
                         pathNodes.Add(bestNode);
@@ -94,8 +94,17 @@ public class PathFinding : MonoBehaviour {
                             pathVectors.Add(nn.position);
                         }
                         return pathVectors;
-                    }
+                    }*/
                 }
+            }
+            if (!Physics.Linecast(bestNode.position, goal, obstacleLayer)) //Remove this if not working
+            {
+                pathNodes.Add(bestNode);
+                foreach (Node nn in pathNodes)
+                {
+                    pathVectors.Add(nn.position);
+                }
+                return pathVectors;
             }
 
             /*foreach (Node n in openNodes) //check if there is a better path

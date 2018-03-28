@@ -15,12 +15,14 @@ namespace Valve.VR.InteractionSystem
         [Tooltip("Name of the attachment transform under in the hand's hierarchy which the object should should snap to.")]
         public string attachmentPoint;
         public int hitForceMultiplier = 2;
+        public Collider otherColl;
         
         Hand gloveHand;
-
+        Collider coll;
 
         void Start()
         {
+            coll = GetComponentInChildren<Collider>();
         }
 
         private void HandHoverUpdate(Hand hand)
@@ -50,6 +52,27 @@ namespace Valve.VR.InteractionSystem
         
                 if (Physics.Raycast(transform.position, transform.forward, out hit, 1))
                     hit.transform.gameObject.SendMessage("Dodge", SendMessageOptions.DontRequireReceiver);
+            }
+            if (coll.bounds.Intersects(otherColl.bounds))
+            {
+                Collider[] colls = otherColl.GetComponentsInChildren<Collider>();
+                for (int i = 0; i < colls.Length; i++)
+                {
+                    if (coll.bounds.Intersects(colls[i].bounds))
+                    {
+                        var rb = colls[i].GetComponent<Rigidbody>();
+                        if (rb && rb.isKinematic)
+                        {
+                            rb.isKinematic = false;
+
+                            Vector3 force = gloveHand.GetTrackedObjectVelocity();
+                            Debug.Log("hit force : " + force.magnitude);
+                            force *= hitForceMultiplier;
+                            force.y++;
+                            colls[i].gameObject.GetComponent<Rigidbody>().AddForceAtPosition(force, colls[i].transform.position, ForceMode.Impulse);
+                        }
+                    }
+                }
             }
         }
 

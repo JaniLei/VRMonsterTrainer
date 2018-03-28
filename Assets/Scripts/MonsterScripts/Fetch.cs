@@ -66,7 +66,7 @@ public class Fetch : MonoBehaviour{
         fetchObj.GetComponent<Rigidbody>().useGravity = true;
         //Destroy(monsterMouth.GetComponent<FixedJoint>());
         hasObject = false;
-        stats.IncreaseStat("speed", distance);
+        stats.IncreaseStat("speed", distance * 2);
         state.SetState(MonsterState.States.Follow);
         timer = 0;
     }
