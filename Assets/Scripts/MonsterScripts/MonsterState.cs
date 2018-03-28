@@ -49,7 +49,7 @@ public class MonsterState : MonoBehaviour {
         stats.DisplayStats();
 
         Vector3 temphPos = hatchObject.transform.position;
-        temphPos.y = 0.5f;
+        temphPos.y = monster.GroundLevel;
         gameObject.transform.position = temphPos;
 
 
