@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class FruitTree : MonoBehaviour
 {
-    public float growInterval;
-    public float growPercent;
     public float growTime = 60;
     public GameObject fruitPrefab;
     public Vector3 spawnPos;
-
-    bool grown;
 
     Valve.VR.InteractionSystem.Edible fruit;
     Vector3 fullScale;
@@ -26,37 +22,45 @@ public class FruitTree : MonoBehaviour
     void Update()
     {
         currentTime += Time.deltaTime;
-        if (fruit.transform.localScale.x < fullScale.x &&
-            fruit.transform.localScale.y < fullScale.y &&
-            fruit.transform.localScale.z < fullScale.z)
+        if (fruit)
         {
-            float growth = currentTime / growTime;
-            Vector3 scaleGrowth = new Vector3(growth * fullScale.x, growth * fullScale.y, growth * fullScale.z);
-            fruit.transform.localScale = scaleGrowth;
+            if (fruit.transform.localScale.x < fullScale.x &&
+                fruit.transform.localScale.y < fullScale.y &&
+                fruit.transform.localScale.z < fullScale.z)
+            {
+                float growth = currentTime / growTime;
+                Vector3 scaleGrowth = new Vector3(growth * fullScale.x, growth * fullScale.y, growth * fullScale.z);
+                fruit.transform.localScale = scaleGrowth;
+            }
+            else
+            {
+                fruit.gameObject.layer = LayerMask.NameToLayer("Default");
+                fruit = null;
+            }
         }
     }
 	
-    IEnumerator GrowFruit()
-    {
-        yield return new WaitForSeconds(growInterval);
-        if (!fruit.picked && !grown)
-        {
-            float growth = growPercent / 100;
-            fruit.transform.localScale += new Vector3(growth * fullScale.x, growth * fullScale.y, growth * fullScale.z);
-            if (fruit.transform.localScale.x >= fullScale.x &&
-                fruit.transform.localScale.y >= fullScale.y &&
-                fruit.transform.localScale.z >= fullScale.z)
-            {
-                grown = true;
-                fruit.gameObject.layer = LayerMask.NameToLayer("Default");
-            }
-            StartCoroutine("GrowFruit");
-        }
-        //else
-        //{
-        //    SpawnFruit();
-        //}
-    }
+    //IEnumerator GrowFruit()
+    //{
+    //    yield return new WaitForSeconds(growInterval);
+    //    if (!fruit.picked && !grown)
+    //    {
+    //        float growth = growPercent / 100;
+    //        fruit.transform.localScale += new Vector3(growth * fullScale.x, growth * fullScale.y, growth * fullScale.z);
+    //        if (fruit.transform.localScale.x >= fullScale.x &&
+    //            fruit.transform.localScale.y >= fullScale.y &&
+    //            fruit.transform.localScale.z >= fullScale.z)
+    //        {
+    //            grown = true;
+    //            fruit.gameObject.layer = LayerMask.NameToLayer("Default");
+    //        }
+    //        StartCoroutine("GrowFruit");
+    //    }
+    //    //else
+    //    //{
+    //    //    SpawnFruit();
+    //    //}
+    //}
 
     void SpawnFruit()
     {
