@@ -18,7 +18,10 @@ public class Ragdoll : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
+        {
             SetKinematic(!isKinematic);
+            GetComponent<Animator>().enabled = isKinematic;
+        }
     }
 
     void SetKinematic(bool newValue)
