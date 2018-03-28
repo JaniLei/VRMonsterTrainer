@@ -7,32 +7,67 @@ public class Fetch : MonoBehaviour{
     [HideInInspector] public Monster monster;
     [HideInInspector] public MonsterState state;
     [HideInInspector] public MonsterStats stats;
+    public GameObject monsterMouth;
+    FixedJoint fj;
     bool hasObject;
+    GameObject fetchObj;
+    float timer = 0;
+    int distance;
+    bool AnimStarted;
 
-    public void FetchObject(GameObject fetchObj)
+    public void FetchObject(GameObject fObj)
     {
-        if (!hasObject && Vector3.Distance(gameObject.transform.position, fetchObj.transform.position) > 0.5f)
+        fetchObj = fObj;
+        if (!hasObject && Vector3.Distance(gameObject.transform.position, fetchObj.transform.position) > 0.7f)
         {
             monster.MoveTo(fetchObj.transform.position);
         }
         else if (!hasObject)
         {
-            fetchObj.transform.position = monster.mHead.transform.position + Vector3.up;
-            hasObject = true;
-            monster.hasPath = false;
+            if (timer < 1f)
+            {
+
+                if (!AnimStarted)
+                {
+                    state.SetAnimationState(MonsterState.animStates.Lift);
+                    AnimStarted = true;
+                }
+                timer+=Time.deltaTime;
+            }
+            else
+            {
+                distance = (int)(Vector3.Distance(gameObject.transform.position, monster.playerGroundPosition));
+                fetchObj.transform.position = monsterMouth.transform.position;
+                hasObject = true;
+                monster.hasPath = false;
+                //fj = monsterMouth.AddComponent<FixedJoint>();
+                //fj.connectedBody = fetchObj.GetComponent<Rigidbody>();
+                fetchObj.GetComponent<Rigidbody>().useGravity = false; //stops object from gaining velocity while attached to monster
+                timer = 0;
+                AnimStarted = false;
+            }
+
         }
-        else if (Vector3.Distance(gameObject.transform.position, monster.mainPlayer.transform.position) > 1.2f)
+        else if (Vector3.Distance(gameObject.transform.position, monster.playerGroundPosition) > 1f)
         {
-            fetchObj.GetComponent<Rigidbody>().isKinematic = true;
-            fetchObj.transform.position = monster.mHead.transform.position;
-            monster.FollowPlayer(1);
+            timer += Time.deltaTime;
+            fetchObj.transform.position = monsterMouth.transform.position;
+            fetchObj.transform.rotation = monsterMouth.transform.rotation;
+            monster.FollowPlayer(0.5f);
         }
         else
         {
-            fetchObj.GetComponent<Rigidbody>().isKinematic = false;
-            hasObject = false;
-            stats.IncreaseStat("speed", 5);
-            state.SetState(MonsterState.States.Follow);
+            StopFetch();
         }
+    }
+
+    public void StopFetch()
+    {
+        fetchObj.GetComponent<Rigidbody>().useGravity = true;
+        //Destroy(monsterMouth.GetComponent<FixedJoint>());
+        hasObject = false;
+        stats.IncreaseStat("speed", distance);
+        state.SetState(MonsterState.States.Follow);
+        timer = 0;
     }
 }

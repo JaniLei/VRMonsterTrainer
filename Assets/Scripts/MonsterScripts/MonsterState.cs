@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Follow, Fetch, Sleep, Search, Boxing, Dead} //states for the monster
+    public enum States { Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Dead} //states for the monster
+    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, Sniff }
     States currentState = States.Follow;
+    animStates animationState = animStates.Idle;
     Monster monster;
     SearchFood search;
     MonsterStats stats;
@@ -40,12 +42,12 @@ public class MonsterState : MonoBehaviour {
         boxing.obstacleMask = monster.ObstacleMask;
         boxing.stats = stats;
 
+        stats.DisplayStats();
 
 
         EventManager.instance.Fetching += OnFetching;
         EventManager.instance.Pointing += OnPointing;
     }
-
 
     void Update()
     {
@@ -61,10 +63,23 @@ public class MonsterState : MonoBehaviour {
         {
             currentState = States.Search;
         }
-        else if(Input.GetKey(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             currentState = States.Boxing;
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            boxing.DodgeTeleport();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            stats.UpdateStats();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            anim.SetBool("Dead", true);
+        }
+        
 
 
 
@@ -85,6 +100,14 @@ public class MonsterState : MonoBehaviour {
             case States.Boxing:
                 boxing.DoBoxing();
                 break;
+            case States.Pooping:
+                monster.WaitFor(5.75f);
+                anim.SetFloat("Speed", 0);
+                break;
+            case States.Whine:
+                monster.WaitFor(2);
+                anim.SetFloat("Speed", 0);
+                break;
             case States.Dead:
                 //Do dying stuff
                 break;
@@ -98,6 +121,44 @@ public class MonsterState : MonoBehaviour {
             statTimer = 0;
         }
         
+    }
+
+    public void SetAnimationState(animStates stateToSet)
+    {
+        animationState = stateToSet;
+        switch (animationState)
+        {
+            case animStates.Idle:
+                anim.SetFloat("Speed", 0);
+                break;
+            case animStates.Walking:
+                anim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
+                break;
+            case animStates.EatGround:
+                anim.SetTrigger("Eat");
+                break;
+            case animStates.EatHand:
+                
+                break;
+            case animStates.Sleep:
+                anim.SetBool("Sleep", true);
+                break;
+            case animStates.Dead:
+                anim.SetBool("Dead", true);
+                break;
+            case animStates.Lift:
+                anim.SetTrigger("LiftObject");
+                break;
+            case animStates.Poop:
+                anim.SetTrigger("DoTheDoo");
+                break;
+            case animStates.Sniff:
+                anim.SetTrigger("Sniff");
+                break;
+            case animStates.Petting:
+                anim.SetTrigger("Petting");
+                break;
+        }
     }
 
     public void SetState(States _state)

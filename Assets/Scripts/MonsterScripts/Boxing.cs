@@ -8,10 +8,11 @@ public class Boxing : MonoBehaviour {
     [HideInInspector] public Monster monster;
     [HideInInspector] public LayerMask obstacleMask;
     [HideInInspector] public MonsterStats stats;
+    public ParticleSystem particleSys;
 
     bool isDodging;
     float dodgeTimer;
-    float dir;
+    float dir = 1;
 
     public void DoBoxing()
     {
@@ -55,5 +56,37 @@ public class Boxing : MonoBehaviour {
             transform.Translate(-Vector3.right * dir * 8 * Time.deltaTime);
         }
     }
+
+    public void DodgeTeleport()
+    {
+        if (!Physics.Raycast(transform.position, transform.position + transform.right* dir, 0.5f, obstacleMask))
+        {
+            Debug.Log("dodge");
+            Debug.DrawLine(transform.position, transform.position + transform.right * dir * 0.5f, Color.red, 6);
+            //Dodge left + animation...
+            transform.Translate(Vector3.right * dir * 0.5f);
+            StartCoroutine(CreateParticle());
+        }
+        else if (!Physics.Raycast(transform.position, transform.position - transform.right * dir, 0.5f, obstacleMask))
+        {
+            Debug.Log("dodge");
+            Debug.DrawLine(transform.position, transform.position - transform.right * dir * 0.5f, Color.red, 6);
+            //Dodge right + animation...
+            transform.Translate(-Vector3.right * dir * 0.5f);
+            StartCoroutine(CreateParticle());
+        }
+    }
+
+    IEnumerator CreateParticle()
+    {
+        particleSys.Play();
+
+        particleSys.enableEmission = true;
+
+        yield return new WaitForSeconds(0.325f);
+        particleSys.enableEmission = false;
+    }
+
+
 
 }
