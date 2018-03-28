@@ -4369,6 +4369,11 @@ Prefab:
       propertyPath: bedObj
       value: 
       objectReference: {fileID: 1963954697}
+    - target: {fileID: 114964622874942114, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: GroundLevel
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe6e311adf66af349a7855d0cb57d738, type: 2}
   m_IsPrefabParent: 0
