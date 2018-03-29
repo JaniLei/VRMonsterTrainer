@@ -132,6 +132,7 @@ public class MonsterState : MonoBehaviour {
                 monster.MoveTo(exitPoint);
                 break;
             case States.Dead:
+                anim.SetFloat("Speed", 0);
                 //Do dying stuff
                 break;
         }
@@ -173,6 +174,7 @@ public class MonsterState : MonoBehaviour {
                 anim.SetBool("Sleep", true);
                 break;
             case animStates.Dead:
+                anim.SetFloat("Speed", 0);
                 anim.SetBool("Dead", true);
                 break;
             case animStates.Lift:
