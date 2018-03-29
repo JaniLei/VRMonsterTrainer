@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Hatching, Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Exit, Dead} //states for the monster
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Exit, Ragdoll, Dead} //states for the monster
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, Sniff }
     States currentState = States.Hatching;
     animStates animationState = animStates.Idle;
@@ -22,6 +22,7 @@ public class MonsterState : MonoBehaviour {
     public Vector3 exitPoint;
     float hTimer;
 
+    bool ragdolling = false;
 
     public Animator anim;
 
@@ -59,11 +60,8 @@ public class MonsterState : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) //FOR TESTING
-        {
-            OnFetching();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentState = States.Sleep;
         }
@@ -78,6 +76,7 @@ public class MonsterState : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             boxing.DodgeTeleport();
+            stats.IncreaseStat("agility", 2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
@@ -91,6 +90,18 @@ public class MonsterState : MonoBehaviour {
         {
             stats.IncreaseStat("agility", 10);
             stats.IncreaseStat("speed", 10);
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            ragdolling = !ragdolling;
+            if (ragdolling)
+            {
+                currentState = States.Ragdoll;
+            }
+            else
+            {
+                currentState = States.Follow;
+            }
         }
 
 
@@ -127,6 +138,9 @@ public class MonsterState : MonoBehaviour {
             case States.Whine:
                 monster.WaitFor(2);
                 anim.SetFloat("Speed", 0);
+                break;
+            case States.Ragdoll:
+
                 break;
             case States.Exit:
                 monster.MoveTo(exitPoint);

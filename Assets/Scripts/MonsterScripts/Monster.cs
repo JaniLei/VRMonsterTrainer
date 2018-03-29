@@ -155,7 +155,7 @@ public class Monster : MonoBehaviour {
     {
        
         Vector3 foodGroundPos = g.transform.position;
-        foodGroundPos.y = 0.5f;
+        foodGroundPos.y = GroundLevel;
         if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.35f) //eats from hand
         {
             //Eat from hand animation

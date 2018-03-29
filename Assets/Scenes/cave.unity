@@ -256,6 +256,14 @@ Prefab:
       propertyPath: m_Name
       value: hili (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 96863279293110543831537bcf44f368, type: 3}
+      propertyPath: m_TagString
+      value: Edible
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 96863279293110543831537bcf44f368, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96863279293110543831537bcf44f368, type: 3}
   m_IsPrefabParent: 0
@@ -1698,6 +1706,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 1201703335262698, guid: 8a75b98730ffddb4b99b179a2bc66929, type: 2}
+      propertyPath: m_TagString
+      value: Edible
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201703335262698, guid: 8a75b98730ffddb4b99b179a2bc66929, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8a75b98730ffddb4b99b179a2bc66929, type: 2}
   m_IsPrefabParent: 0
@@ -2072,7 +2088,8 @@ GameObject:
   - component: {fileID: 503164282}
   - component: {fileID: 503164281}
   - component: {fileID: 503164283}
-  m_Layer: 0
+  - component: {fileID: 503164284}
+  m_Layer: 9
   m_Name: Cylinder001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2153,6 +2170,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!65 &503164284
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 503164279}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.3, z: 2.1546953}
+  m_Center: {x: 0, y: 0, z: 0.94748366}
 --- !u!1001 &517891851
 Prefab:
   m_ObjectHideFlags: 0
@@ -2319,6 +2348,14 @@ Prefab:
     - target: {fileID: 400000, guid: 96863279293110543831537bcf44f368, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 77.245995
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 96863279293110543831537bcf44f368, type: 3}
+      propertyPath: m_TagString
+      value: Edible
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 96863279293110543831537bcf44f368, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96863279293110543831537bcf44f368, type: 3}
@@ -2499,7 +2536,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 615394150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -85, y: -272, z: 0}
+  m_LocalPosition: {x: -400, y: 150, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1178901374}
@@ -2507,8 +2544,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -85, y: -272}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -400, y: 150}
+  m_SizeDelta: {x: 160, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &615394152
 MonoBehaviour:
@@ -2522,7 +2559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7523,6 +7560,26 @@ Prefab:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114964622874942114, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: bedObj
+      value: 
+      objectReference: {fileID: 1849793895}
+    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: exitPoint.x
+      value: -3.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: exitPoint.z
+      value: -12.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: exitPoint.y
+      value: 4.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe6e311adf66af349a7855d0cb57d738, type: 2}
   m_IsPrefabParent: 0
@@ -7564,6 +7621,14 @@ Prefab:
     - target: {fileID: 4335337979103718, guid: 2cbcd5df17cf7a941956713b48f1bc9c, type: 2}
       propertyPath: m_RootOrder
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246291964331702, guid: 2cbcd5df17cf7a941956713b48f1bc9c, type: 2}
+      propertyPath: m_TagString
+      value: Edible
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246291964331702, guid: 2cbcd5df17cf7a941956713b48f1bc9c, type: 2}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cbcd5df17cf7a941956713b48f1bc9c, type: 2}
@@ -8710,6 +8775,10 @@ MonoBehaviour:
   velocityAverageFrames: 5
   angularVelocityAverageFrames: 11
   estimateOnAwake: 0
+--- !u!1 &1849793895 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 46fe88bac5f8a864889ddedfb1325533, type: 3}
+  m_PrefabInternal: {fileID: 1206137842}
 --- !u!1 &1857592091
 GameObject:
   m_ObjectHideFlags: 0

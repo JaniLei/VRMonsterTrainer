@@ -94,14 +94,25 @@ public class MonsterStats : MonoBehaviour {
                 health += amount;
                 break;
             case "speed":
-                if (mStats.speed < 100)
+                if (mStats.speed + amount < 100)
                 {
                     mStats.speed += amount;
                     monster.totalSpeed = monster.moveSpeed * (1 + 0.01f * mStats.speed);
                 }
+                else
+                {
+                    mStats.speed = 100;
+                }
                 break;
             case "agility":
-                mStats.agility += amount;
+                if (mStats.agility + amount < 100)
+                {
+                    mStats.agility += amount;
+                }
+                else
+                {
+                    mStats.agility = 100;
+                }
                 break;
                 
         }
