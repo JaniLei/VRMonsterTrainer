@@ -34,7 +34,8 @@ public class FoodContainer : MonoBehaviour
         {
             if (spawnedObjs.Count < objectLimit && objsInContainer < containerLimit)
             {
-                spawnedObjs.Add(Instantiate(objectToSpawn, transform.position + spawnPos, objectToSpawn.transform.rotation));
+                Vector3 randOffset = new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
+                spawnedObjs.Add(Instantiate(objectToSpawn, transform.position + spawnPos + randOffset, objectToSpawn.transform.rotation));
                 //objsInContainer++;
             }
         }
