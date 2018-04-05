@@ -1748,9 +1748,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growTime: 20
-  fruitPrefab: {fileID: 1201703335262698, guid: 8a75b98730ffddb4b99b179a2bc66929,
-    type: 2}
-  spawnPos: {x: -0.51, y: 1.31, z: 0}
+  producePrefab: {fileID: 0}
+  produceAmount: 0
+  spawnPos:
+  - {x: 5.0990774e-12, y: 0, z: 4.6e-44}
+  - {x: 0, y: 0.0000000571917, z: 0}
+  - {x: 4.6e-44, y: 0, z: 5.0990774e-12}
 --- !u!95 &413538531
 Animator:
   serializedVersion: 3
@@ -3003,6 +3006,11 @@ Transform:
   m_Father: {fileID: 1469190466}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &677129908 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1627431452912450, guid: 08fe0320bbb1a284e9d1d369e0da4279,
+    type: 2}
+  m_PrefabInternal: {fileID: 842651759}
 --- !u!1 &682316611
 GameObject:
   m_ObjectHideFlags: 0
@@ -7580,6 +7588,11 @@ Prefab:
       propertyPath: exitPoint.y
       value: 4.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114964622874942114, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: mHead
+      value: 
+      objectReference: {fileID: 677129908}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe6e311adf66af349a7855d0cb57d738, type: 2}
   m_IsPrefabParent: 0

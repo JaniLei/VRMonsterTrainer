@@ -31,6 +31,10 @@ public class MonsterStats : MonoBehaviour {
             state.SetState(MonsterState.States.Pooping);
             state.SetAnimationState(MonsterState.animStates.Poop);
             Invoke("SpawnPoop", 3.75f);
+            /*for (int i = 0; i < 25; i++)
+            {
+                Invoke("SpawnPoop", i*0.2f);
+            }*/
 
             hasEaten = false;
         }
