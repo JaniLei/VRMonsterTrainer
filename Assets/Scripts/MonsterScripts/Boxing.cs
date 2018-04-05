@@ -10,11 +10,11 @@ public class Boxing : MonoBehaviour {
     [HideInInspector] public MonsterStats stats;
     public ParticleSystem particleSys;
 
-    bool isDodging;
-    float dodgeTimer;
+    //bool isDodging;
+    //float dodgeTimer;
     float dir = 1;
 
-    public void DoBoxing()
+    /*public void DoBoxing()
     {
         monster.FollowPlayer(1.5f);
         if (Input.GetKeyDown(KeyCode.Alpha5) && !isDodging)
@@ -36,7 +36,23 @@ public class Boxing : MonoBehaviour {
                 isDodging = false;
             }
         }
+    }*/
+
+    public void Dodge()
+    {
+
+        if (Random.Range(0, 100) < stats.mStats.agility)
+        {
+            dir = Mathf.Sign(Random.Range(-1, 1));
+            DodgeTeleport();
+        }
+        else
+        {
+            //add ragdoll force
+        }
+        stats.IncreaseStat("agility", Random.Range(1, 3));
     }
+
 
 
     public void DodgeAttack()

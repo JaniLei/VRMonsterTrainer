@@ -38,7 +38,7 @@ public class SearchFood : MonoBehaviour {
             float tempDist = 100;
             foreach (Collider col in collisions)
             {
-                if (col.gameObject.tag == "Edible" && !Physics.Linecast(transform.position, col.gameObject.transform.position, monster.ObstacleMask))
+                if (col.gameObject.tag == "Edible" && !Physics.Linecast(transform.position, col.gameObject.transform.position, monster.ObstacleMask) && (transform.position.y - col.gameObject.transform.position.y) > 0)
                 {
                     if (col.gameObject.GetComponent<Valve.VR.InteractionSystem.Edible>().notEdible)
                     {

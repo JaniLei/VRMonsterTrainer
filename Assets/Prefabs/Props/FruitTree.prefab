@@ -1534,7 +1534,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402221118210002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3479574, y: -0.29999998, z: -7.7102838}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4389371936594828}
@@ -5460,8 +5460,15 @@ MonoBehaviour:
   growTime: 60
   producePrefab: {fileID: 1201703335262698, guid: 8a75b98730ffddb4b99b179a2bc66929,
     type: 2}
-  produceAmount: 3
+  produceAmount: 10
   spawnPos:
-  - {x: -0.55, y: 1.33, z: -0.1}
-  - {x: 0.75, y: 0.52, z: -0.33}
-  - {x: 0, y: 0.59, z: 0.38}
+  - {x: -0.03, y: 2.11, z: -0.07}
+  - {x: -0.59, y: 1.98, z: -0.46}
+  - {x: 0.07, y: 1.95, z: -0.06}
+  - {x: 0.18, y: 1.67, z: -1.16}
+  - {x: 0.65, y: 1.5, z: -0.22}
+  - {x: 0.15, y: 1.22, z: -1.18}
+  - {x: 0.39, y: 1.21, z: -0.59}
+  - {x: 0.1, y: 1.46, z: 0.06}
+  - {x: -0.13, y: 1, z: 0.21}
+  - {x: -0.47, y: 0.76, z: -0.08}
