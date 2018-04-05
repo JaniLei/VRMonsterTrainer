@@ -89,21 +89,28 @@ public class Monster : MonoBehaviour {
     
     public void GoSleep()
     {
-        if (Vector3.Distance(transform.position, EventManager.instance.targetObj.transform.position) > 0.5f)
+        if (Vector3.Distance(transform.position, EventManager.instance.targetObj.transform.position) > 1)
         {
             MoveTo(bedObj.transform.position);
         }
         else
         {
-            transform.position = bedObj.transform.position;
+            Vector3 tempVec = bedObj.transform.position;
+            tempVec.y = GroundLevel + 0.15f;
+            transform.position = tempVec;
             SteamVR_Fade.Start(Color.black, 2);
             Invoke("StopSleep", 2);
+            state.SetAnimationState(MonsterState.animStates.Sleep);
+            state.SetState(MonsterState.States.Sleep);
+            mStats.mStats.fatigue = 0;
             //Do sleep things...
         }
     }
 
     void StopSleep()
     {
+        state.SetState(MonsterState.States.Follow);
+        state.SetAnimationState(MonsterState.animStates.Idle);
         SteamVR_Fade.Start(Color.clear, 2);
     }
 
@@ -158,10 +165,14 @@ public class Monster : MonoBehaviour {
         foodGroundPos.y = GroundLevel;
         if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.35f) //eats from hand
         {
-            //Eat from hand animation
+            state.SetAnimationState(MonsterState.animStates.EatHand);
             mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString()); //Type of object eaten
             g.SetActive(false);
-            return true;
+            timer += Time.deltaTime;
+            if (timer > 2)
+            {
+                return true;
+            }
         }
         else if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.8f) //eats from ground
         {
@@ -186,7 +197,7 @@ public class Monster : MonoBehaviour {
             transform.rotation = Quaternion.Slerp(transform.rotation, foodGroundRotation, 3 * Time.deltaTime);
             mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, foodRotation, 5 * Time.deltaTime);
             transform.position = Vector3.MoveTowards(transform.position, foodGroundPos, totalSpeed * Time.deltaTime);
-
+            state.SetAnimationState(MonsterState.animStates.Idle);
 
         }
         
