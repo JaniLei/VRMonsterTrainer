@@ -1,30 +1,23 @@
 fileFormatVersion: 2
-guid: a9295a738f3df2142b229ea537665aca
-timeCreated: 1521114318
+guid: b71339d30d274a541b8c8d80bd9fece9
+timeCreated: 1522909455
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Cone002
-    100002: Cone003
-    100004: //RootNode
+    100002: //RootNode
     400000: Cone002
-    400002: Cone003
-    400004: //RootNode
+    400002: //RootNode
     2300000: Cone002
-    2300002: Cone003
     3300000: Cone002
-    3300002: Cone003
     4300000: Cone002
-    4300002: Cone003
-    7400000: Take 001
-    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: d2b3d835f4526f540b561c29fd270eea, type: 2}
+      name: Cone002Mat
+    second: {fileID: 2100000, guid: 71c5e8ff921649c47b14e34221f04d92, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -58,9 +51,9 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 0
-    importCameras: 0
-    importLights: 0
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -77,7 +70,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
