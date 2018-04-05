@@ -7,6 +7,8 @@ TagManager:
   - obstacle
   - Edible
   - Bed
+  - interactable
+  - monster
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Food
   - Obstacle
   - IgnoreHand
-  - 
+  - IgnoreTeleport
   - 
   - 
   - 

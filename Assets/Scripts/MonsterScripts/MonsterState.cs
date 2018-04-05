@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Dead} //states for the monster
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Exit, Ragdoll, Dead} //states for the monster
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, Sniff }
-    States currentState = States.Follow;
+    States currentState = States.Hatching;
     animStates animationState = animStates.Idle;
     Monster monster;
     SearchFood search;
@@ -17,7 +17,12 @@ public class MonsterState : MonoBehaviour {
     public float gameSpeed;
     public GameObject fetchObj;
     public float followDistance;
+    public float hatchTime = 10;
+    public GameObject hatchObject;
+    public Vector3 exitPoint;
+    float hTimer;
 
+    bool ragdolling = false;
 
     public Animator anim;
 
@@ -44,6 +49,10 @@ public class MonsterState : MonoBehaviour {
 
         stats.DisplayStats();
 
+        Vector3 temphPos = hatchObject.transform.position;
+        temphPos.y = monster.GroundLevel;
+        gameObject.transform.position = temphPos;
+
 
         EventManager.instance.Fetching += OnFetching;
         EventManager.instance.Pointing += OnPointing;
@@ -51,11 +60,8 @@ public class MonsterState : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) //FOR TESTING
-        {
-            OnFetching();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentState = States.Sleep;
         }
@@ -70,6 +76,7 @@ public class MonsterState : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             boxing.DodgeTeleport();
+            stats.IncreaseStat("agility", 2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
@@ -79,12 +86,36 @@ public class MonsterState : MonoBehaviour {
         {
             anim.SetBool("Dead", true);
         }
-        
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            stats.IncreaseStat("agility", 10);
+            stats.IncreaseStat("speed", 10);
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            ragdolling = !ragdolling;
+            if (ragdolling)
+            {
+                currentState = States.Ragdoll;
+            }
+            else
+            {
+                currentState = States.Follow;
+            }
+        }
+
 
 
 
         switch (currentState)
         {
+            case States.Hatching:
+                hTimer += Time.deltaTime;
+                if (hTimer > hatchTime)
+                {
+                    HatchMonster();
+                }
+                break;
             case States.Follow:
                 monster.FollowPlayer(followDistance);
                 break;
@@ -108,7 +139,14 @@ public class MonsterState : MonoBehaviour {
                 monster.WaitFor(2);
                 anim.SetFloat("Speed", 0);
                 break;
+            case States.Ragdoll:
+
+                break;
+            case States.Exit:
+                monster.MoveTo(exitPoint);
+                break;
             case States.Dead:
+                anim.SetFloat("Speed", 0);
                 //Do dying stuff
                 break;
         }
@@ -121,6 +159,12 @@ public class MonsterState : MonoBehaviour {
             statTimer = 0;
         }
         
+    }
+
+    void HatchMonster()
+    {
+        hatchObject.SetActive(false);
+        currentState = States.Follow;
     }
 
     public void SetAnimationState(animStates stateToSet)
@@ -144,6 +188,7 @@ public class MonsterState : MonoBehaviour {
                 anim.SetBool("Sleep", true);
                 break;
             case animStates.Dead:
+                anim.SetFloat("Speed", 0);
                 anim.SetBool("Dead", true);
                 break;
             case animStates.Lift:
@@ -172,6 +217,7 @@ public class MonsterState : MonoBehaviour {
     }
     public void OnPointing()
     {
+        currentState = States.Sleep;
         monster.GoSleep();
     }
     public void StartFetch(GameObject fObj)

@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Ragdoll : MonoBehaviour
 {
+    public bool activeOnStart;
+
     bool isKinematic = false;
 
 	void Start()
     {
         SetKinematic(true);
+        if (activeOnStart)
+            SetKinematic(!isKinematic);
 	}
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
+        {
             SetKinematic(!isKinematic);
+            GetComponent<Animator>().enabled = isKinematic;
+        }
     }
 
     void SetKinematic(bool newValue)
