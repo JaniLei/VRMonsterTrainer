@@ -98,12 +98,15 @@ public class Monster : MonoBehaviour {
             transform.position = bedObj.transform.position;
             SteamVR_Fade.Start(Color.black, 2);
             Invoke("StopSleep", 2);
+            state.SetAnimationState(MonsterState.animStates.Sleep);
             //Do sleep things...
         }
     }
 
     void StopSleep()
     {
+        state.SetState(MonsterState.States.Follow);
+        state.SetAnimationState(MonsterState.animStates.Idle);
         SteamVR_Fade.Start(Color.clear, 2);
     }
 

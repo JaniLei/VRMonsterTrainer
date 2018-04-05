@@ -84,6 +84,7 @@ public class MonsterState : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.Alpha7))
         {
+            currentState = States.Dead;
             anim.SetBool("Dead", true);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha8))
@@ -133,11 +134,9 @@ public class MonsterState : MonoBehaviour {
                 break;
             case States.Pooping:
                 monster.WaitFor(5.75f);
-                anim.SetFloat("Speed", 0);
                 break;
             case States.Whine:
                 monster.WaitFor(2);
-                anim.SetFloat("Speed", 0);
                 break;
             case States.Ragdoll:
 
@@ -146,7 +145,6 @@ public class MonsterState : MonoBehaviour {
                 monster.MoveTo(exitPoint);
                 break;
             case States.Dead:
-                anim.SetFloat("Speed", 0);
                 //Do dying stuff
                 break;
         }
@@ -169,6 +167,8 @@ public class MonsterState : MonoBehaviour {
 
     public void SetAnimationState(animStates stateToSet)
     {
+
+        anim.SetFloat("Speed", 0);
         animationState = stateToSet;
         switch (animationState)
         {
