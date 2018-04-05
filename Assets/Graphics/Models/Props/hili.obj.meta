@@ -1,23 +1,33 @@
 fileFormatVersion: 2
-guid: e0df310cad932144eafa2587dbd548eb
-timeCreated: 1522915882
+guid: 507c2f1a97a6d714a81d5ac666f60c36
+timeCreated: 1522920860
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: Cone002
     100002: //RootNode
+    100004: Object001
     400000: Cone002
     400002: //RootNode
+    400004: Object001
     2300000: Cone002
+    2300002: Object001
     3300000: Cone002
+    3300002: Object001
     4300000: Cone002
+    4300002: Object001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Cone002Mat
     second: {fileID: 2100000, guid: 71c5e8ff921649c47b14e34221f04d92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Object001Mat
+    second: {fileID: 2100000, guid: 865d6489ef37ceb46a73f2407d56e817, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
