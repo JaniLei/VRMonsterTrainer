@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Hatching, Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Exit, Ragdoll, Dead} //states for the monster
-    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, Sniff }
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Exit, Ragdoll, Dead} //states for the monster
+    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn }
     States currentState = States.Hatching;
     animStates animationState = animStates.Idle;
     Monster monster;
@@ -46,6 +46,7 @@ public class MonsterState : MonoBehaviour {
         boxing.player = monster.mainPlayer;
         boxing.obstacleMask = monster.ObstacleMask;
         boxing.stats = stats;
+        boxing.state = this;
 
         stats.DisplayStats();
 
@@ -71,10 +72,6 @@ public class MonsterState : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             currentState = States.Search;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            currentState = States.Boxing;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
@@ -136,9 +133,6 @@ public class MonsterState : MonoBehaviour {
             case States.Search:
                 search.Search();
                 break;
-            case States.Boxing: //delete this
-                //boxing.DoBoxing();
-                break;
             case States.Pooping:
                 monster.WaitFor(5.75f);
                 break;
@@ -191,11 +185,9 @@ public class MonsterState : MonoBehaviour {
                 break;
             case animStates.EatGround:
                 anim.SetTrigger("Eat");
-                anim.SetBool("EatFromHand", false);
                 break;
             case animStates.EatHand:
-                anim.SetTrigger("Eat");
-                anim.SetBool("EatFromHand", true);
+                anim.SetTrigger("EatFromHand");
                 break;
             case animStates.Sleep:
                 anim.SetBool("Sleep", true);
@@ -216,12 +208,21 @@ public class MonsterState : MonoBehaviour {
             case animStates.Petting:
                 anim.SetTrigger("Petting");
                 break;
+            case animStates.GetHit:
+                anim.SetTrigger("Hit");
+                break;
+            case animStates.Hungry:
+                anim.SetTrigger("");
+                break;
+            case animStates.Yawn:
+                anim.SetTrigger("Yawn");
+                break;
         }
     }
 
     public void SetState(States _state)
     {
-        if (currentState == States.Dead || ragdolling)
+        if (currentState == States.Dead || currentState == States.Hatching || ragdolling)
         {
             return;
         }

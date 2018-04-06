@@ -96,11 +96,11 @@ public class Monster : MonoBehaviour {
     {
         if (Vector3.Distance(transform.position, EventManager.instance.targetObj.transform.position) > 1)
         {
-            MoveTo(bedObj.transform.position);
+            MoveTo(EventManager.instance.targetObj.transform.position);
         }
         else
         {
-            Vector3 tempVec = bedObj.transform.position;
+            Vector3 tempVec = EventManager.instance.targetObj.transform.position;
             tempVec.y = GroundLevel + 0.15f;
             transform.position = tempVec;
             SteamVR_Fade.Start(Color.black, 2);
@@ -123,8 +123,8 @@ public class Monster : MonoBehaviour {
     {
         Quaternion tempQuaternion = Quaternion.LookRotation(transform.position - sniffObj.transform.position);
         headRotation = Quaternion.Slerp(mHead.transform.rotation, tempQuaternion, 5 * Time.deltaTime);
-        mHead.transform.rotation = headRotation;
         headRotation *= Quaternion.Euler(headNormalizer);
+        mHead.transform.rotation = headRotation;
         headFollow = true;
         state.SetAnimationState(MonsterState.animStates.Sniff);
     }

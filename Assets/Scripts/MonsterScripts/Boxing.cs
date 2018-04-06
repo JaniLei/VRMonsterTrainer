@@ -8,7 +8,9 @@ public class Boxing : MonoBehaviour {
     [HideInInspector] public Monster monster;
     [HideInInspector] public LayerMask obstacleMask;
     [HideInInspector] public MonsterStats stats;
+    [HideInInspector] public MonsterState state;
     public ParticleSystem particleSys;
+    int monsterHit;
 
     //bool isDodging;
     //float dodgeTimer;
@@ -48,11 +50,29 @@ public class Boxing : MonoBehaviour {
         }
         else
         {
-            //add ragdoll force
+            state.SetAnimationState(MonsterState.animStates.GetHit);
         }
         stats.IncreaseStat("agility", Random.Range(1, 3));
     }
 
+    public void GetHit(bool gloves)
+    {
+        if (gloves)
+        {
+            Dodge();
+        }
+        else
+        {
+            state.SetAnimationState(MonsterState.animStates.GetHit);
+            //Ragdoll ?
+            monsterHit++;
+            if (monsterHit > 2)
+            {
+                state.SetState(MonsterState.States.Search);
+                monsterHit = 0;
+            }
+        }
+    }
 
 
     public void DodgeAttack()

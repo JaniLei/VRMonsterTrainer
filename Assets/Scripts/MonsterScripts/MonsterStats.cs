@@ -31,16 +31,16 @@ public class MonsterStats : MonoBehaviour {
             state.SetState(MonsterState.States.Pooping);
             state.SetAnimationState(MonsterState.animStates.Poop);
             Invoke("SpawnPoop", 3.75f);
-            /*for (int i = 0; i < 25; i++)
+            /*for (int i = 0; i < 50; i++)
             {
-                Invoke("SpawnPoop", i*0.2f);
+                Invoke("SpawnPoop", i*0.1f);
             }*/
 
             hasEaten = false;
         }
         else if (mStats.hunger>3) //Hungry
         {
-            //state.SetAnimationState(MonsterState.animStates.Hungry);
+            state.SetAnimationState(MonsterState.animStates.Hungry);
             if (mStats.hunger > 5)
             {
                 Debug.Log("Died of hunger");
@@ -55,7 +55,7 @@ public class MonsterStats : MonoBehaviour {
         }
         else if (mStats.fatigue > 6)
         {
-            //state.SetAnimationState(MonsterState.animStates.Yawn);
+            state.SetAnimationState(MonsterState.animStates.Yawn);
             Debug.Log("Monster is sleepy");
             if (mStats.fatigue > 9)
             {
