@@ -6,10 +6,172 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Ankle_L
+    100004: Ankle_R
+    100006: Arm_L
+    100008: Arm_R
+    100010: Armature
+    100012: Chest
+    100014: Ear_L_001
+    100016: Ear_L_002
+    100018: Ear_L_003
+    100020: Ear_L_004
+    100022: Ear_R_001
+    100024: Ear_R_002
+    100026: Ear_R_003
+    100028: Ear_R_004
+    100030: Eye_L
+    100032: Eye_R
+    100034: Foot_Index_L
+    100036: Foot_Index_R
+    100038: Foot_L
+    100040: Foot_Middle_L
+    100042: Foot_Middle_R
+    100044: Foot_R
+    100046: Foot_Ring_L
+    100048: Foot_Ring_R
+    100050: Hand_Index_L_001
+    100052: Hand_Index_L_002
+    100054: Hand_Index_R_001
+    100056: Hand_Index_R_002
+    100058: Hand_L_001
+    100060: Hand_L_002
+    100062: Hand_Middle_L_001
+    100064: Hand_Middle_L_002
+    100066: Hand_Middle_R_001
+    100068: Hand_Middle_R_002
+    100070: Hand_R_001
+    100072: Hand_R_002
+    100074: Hand_Ring_L_001
+    100076: Hand_Ring_L_002
+    100078: Hand_Ring_R_001
+    100080: Hand_Ring_R_002
+    100082: Hand_Thumb_L_001
+    100084: Hand_Thumb_L_002
+    100086: Hand_Thumb_R_001
+    100088: Hand_Thumb_R_002
+    100090: Head
+    100092: Hips
+    100094: Jaw
+    100096: Leg_L
+    100098: Leg_R
+    100100: MonsterAdult_LOD0
+    100102: MonsterAdult_LOD1
+    100104: MonsterAdult_LOD2
+    100106: MonsterAdult_LOD3
+    100108: Neck
+    100110: Root
+    100112: Shoulder_L
+    100114: Shoulder_R
+    100116: Spine_001
+    100118: Spine_002
+    100120: Tail_001
+    100122: Tail_002
+    100124: Tail_003
+    100126: Tail_004
+    100128: Tail_005
+    100130: Tail_006
+    100132: Tail_007
+    100134: Tail_Blade_001
+    100136: Tail_Blade_002
+    100138: UpperArm_L
+    100140: UpperArm_R
+    100142: UpperLeg_L
+    100144: UpperLeg_R
     400000: //RootNode
+    400002: Ankle_L
+    400004: Ankle_R
+    400006: Arm_L
+    400008: Arm_R
+    400010: Armature
+    400012: Chest
+    400014: Ear_L_001
+    400016: Ear_L_002
+    400018: Ear_L_003
+    400020: Ear_L_004
+    400022: Ear_R_001
+    400024: Ear_R_002
+    400026: Ear_R_003
+    400028: Ear_R_004
+    400030: Eye_L
+    400032: Eye_R
+    400034: Foot_Index_L
+    400036: Foot_Index_R
+    400038: Foot_L
+    400040: Foot_Middle_L
+    400042: Foot_Middle_R
+    400044: Foot_R
+    400046: Foot_Ring_L
+    400048: Foot_Ring_R
+    400050: Hand_Index_L_001
+    400052: Hand_Index_L_002
+    400054: Hand_Index_R_001
+    400056: Hand_Index_R_002
+    400058: Hand_L_001
+    400060: Hand_L_002
+    400062: Hand_Middle_L_001
+    400064: Hand_Middle_L_002
+    400066: Hand_Middle_R_001
+    400068: Hand_Middle_R_002
+    400070: Hand_R_001
+    400072: Hand_R_002
+    400074: Hand_Ring_L_001
+    400076: Hand_Ring_L_002
+    400078: Hand_Ring_R_001
+    400080: Hand_Ring_R_002
+    400082: Hand_Thumb_L_001
+    400084: Hand_Thumb_L_002
+    400086: Hand_Thumb_R_001
+    400088: Hand_Thumb_R_002
+    400090: Head
+    400092: Hips
+    400094: Jaw
+    400096: Leg_L
+    400098: Leg_R
+    400100: MonsterAdult_LOD0
+    400102: MonsterAdult_LOD1
+    400104: MonsterAdult_LOD2
+    400106: MonsterAdult_LOD3
+    400108: Neck
+    400110: Root
+    400112: Shoulder_L
+    400114: Shoulder_R
+    400116: Spine_001
+    400118: Spine_002
+    400120: Tail_001
+    400122: Tail_002
+    400124: Tail_003
+    400126: Tail_004
+    400128: Tail_005
+    400130: Tail_006
+    400132: Tail_007
+    400134: Tail_Blade_001
+    400136: Tail_Blade_002
+    400138: UpperArm_L
+    400140: UpperArm_R
+    400142: UpperLeg_L
+    400144: UpperLeg_R
     2300000: //RootNode
+    2300002: MonsterAdult_LOD0
+    2300004: MonsterAdult_LOD1
+    2300006: MonsterAdult_LOD2
+    2300008: MonsterAdult_LOD3
     3300000: //RootNode
+    3300002: MonsterAdult_LOD0
+    3300004: MonsterAdult_LOD1
+    3300006: MonsterAdult_LOD2
+    3300008: MonsterAdult_LOD3
     4300000: MonsterAdult
+    4300002: MonsterAdult_LOD3
+    4300004: MonsterAdult_LOD2
+    4300006: MonsterAdult_LOD1
+    4300008: MonsterAdult_LOD0
+    9500000: //RootNode
+    13700000: MonsterAdult_LOD0
+    13700002: MonsterAdult_LOD1
+    13700004: MonsterAdult_LOD2
+    13700006: MonsterAdult_LOD3
+    20500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -39,7 +201,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -49,12 +211,16 @@ ModelImporter:
     clipAnimations: []
     isReadable: 1
   meshes:
-    lODScreenPercentages: []
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.0625
+    - 0.01
     globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 0
+    importBlendShapes: 1
     importCameras: 0
     importLights: 0
     swapUVChannels: 0
@@ -89,10 +255,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
