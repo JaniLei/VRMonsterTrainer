@@ -174,7 +174,10 @@ public class MonsterState : MonoBehaviour {
 
     public void SetAnimationState(animStates stateToSet)
     {
-
+        if (stateToSet == animationState)
+        {
+            return;
+        }
         anim.SetFloat("Speed", 0);
         anim.SetBool("Sleep", false);
         animationState = stateToSet;
@@ -218,6 +221,10 @@ public class MonsterState : MonoBehaviour {
 
     public void SetState(States _state)
     {
+        if (currentState == States.Dead || ragdolling)
+        {
+            return;
+        }
         currentState = _state;
     }
 
@@ -227,13 +234,13 @@ public class MonsterState : MonoBehaviour {
     }
     public void OnPointing()
     {
-        currentState = States.Sleep;
+        SetState(States.Sleep);
         monster.GoSleep();
 
     }
     public void StartFetch(GameObject fObj)
     {
-        currentState = States.Fetch;
+        SetState(States.Fetch);
         fetchObj = fObj;
     }
 
