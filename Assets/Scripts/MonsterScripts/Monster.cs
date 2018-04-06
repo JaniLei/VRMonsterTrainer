@@ -58,7 +58,6 @@ public class Monster : MonoBehaviour {
         //mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, headOrigin.transform.position, 1.5f * Time.deltaTime);
 
         headRotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
-        headRotation *= Quaternion.Euler(headNormalizer);
         //Debug.Log(headRotation.x + " " + headRotation.y + " " + headRotation.z + " ");
 
         if (Vector3.Distance(transform.position, playerGroundPosition) < distance) //How close the monster will come to the player
@@ -69,15 +68,21 @@ public class Monster : MonoBehaviour {
             if (Vector3.Distance(transform.position, playerGroundPosition) < 1f) //Look forward
             {
                 headRotation = Quaternion.Slerp(mHead.transform.rotation, transform.rotation, 5 * Time.deltaTime);
+                headRotation *= Quaternion.Euler(headNormalizer);
                 mHead.transform.rotation = headRotation;
+                headFollow = true;
             }
             else if (Vector3.Distance(transform.position + -transform.forward * 4, playerGroundPosition) < 4) //Look at player
             {
-                headFollow = true;
+                headRotation *= Quaternion.Euler(headNormalizer);
                 mHead.transform.rotation = headRotation;
+                headFollow = true;
             }
             else //Rotate Body towards player
             {
+                headRotation *= Quaternion.Euler(headNormalizer);
+                mHead.transform.rotation = headRotation;
+                headFollow = true;
                 transform.rotation = Quaternion.Slerp(transform.rotation, playerGroundRotation, 5 * Time.deltaTime);
             }
         }
@@ -99,7 +104,7 @@ public class Monster : MonoBehaviour {
             tempVec.y = GroundLevel + 0.15f;
             transform.position = tempVec;
             SteamVR_Fade.Start(Color.black, 2);
-            Invoke("StopSleep", 2);
+            Invoke("StopSleep", 4);
             state.SetAnimationState(MonsterState.animStates.Sleep);
             state.SetState(MonsterState.States.Sleep);
             mStats.mStats.fatigue = 0;

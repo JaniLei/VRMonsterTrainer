@@ -70,24 +70,32 @@ public class FruitTree : MonoBehaviour
         return randomPos;
     }
 
+    void SpawnAt(int at)
+    {
+        produce[at].edible = Instantiate(producePrefab, transform.position, producePrefab.transform.rotation, transform).GetComponent<Valve.VR.InteractionSystem.Edible>();
+
+        //produce[at].edible.gameObject.layer = LayerMask.NameToLayer("IgnoreHand");
+        produce[at].mesh = produce[at].edible.transform.Find("Mesh").gameObject;
+        Collider[] colls = produce[at].mesh.GetComponentsInChildren<Collider>();
+        for (int c = 0; c < colls.Length; c++)
+        {
+            colls[c].gameObject.layer = LayerMask.NameToLayer("IgnoreHand");
+        }
+        produce[at].startPos = FindRandomSpawnSpot();
+        produce[at].mesh.transform.position = transform.position + produce[at].startPos;
+        Vector3 euler = produce[at].mesh.transform.eulerAngles;
+        euler.y = Random.Range(0f, 360f);
+        produce[at].mesh.transform.eulerAngles = euler;
+        produce[at].fullScale = produce[at].mesh.transform.localScale;
+        produce[at].mesh.transform.localScale = Vector3.zero;
+        produce[at].edible.GetComponent<Rigidbody>().isKinematic = true;
+    }
+
     void SpawnProduce()
     {
         for (int i = 0; i < produce.Length; i++)
         {
-            produce[i].edible = Instantiate(producePrefab, transform.position, producePrefab.transform.rotation, transform).GetComponent<Valve.VR.InteractionSystem.Edible>();
-            
-            //produce[i].edible.gameObject.layer = LayerMask.NameToLayer("IgnoreHand");
-            produce[i].mesh = produce[i].edible.transform.Find("Mesh").gameObject;
-            Collider[] colls = produce[i].mesh.GetComponentsInChildren<Collider>();
-            for (int c = 0; c < colls.Length; c++)
-            {
-                colls[c].gameObject.layer = LayerMask.NameToLayer("IgnoreHand");
-            }
-            produce[i].startPos = FindRandomSpawnSpot();
-            produce[i].mesh.transform.position = transform.position + produce[i].startPos;//spawnPos[i];
-            produce[i].fullScale = produce[i].mesh.transform.localScale;
-            produce[i].mesh.transform.localScale = Vector3.zero;
-            produce[i].edible.GetComponent<Rigidbody>().isKinematic = true;
+            SpawnAt(i);
         }
     }
 
@@ -100,7 +108,6 @@ public class FruitTree : MonoBehaviour
             {
                 StartCoroutine("RespawnProduce", i);
                 freeSpots.Add(produce[i].startPos);
-                Debug.Log("Respawning produce....");
             }
         }
         StartCoroutine("RespawnCheck");
@@ -110,20 +117,9 @@ public class FruitTree : MonoBehaviour
     {
         produce[index].spawning = true;
         yield return new WaitForSeconds(5);
-        Debug.Log("Respawn produce");
-        produce[index].edible = Instantiate(producePrefab, transform.position, producePrefab.transform.rotation, transform).GetComponent<Valve.VR.InteractionSystem.Edible>();
-        //produce[index].edible.gameObject.layer = LayerMask.NameToLayer("IgnoreHand");
-        produce[index].mesh = produce[index].edible.transform.Find("Mesh").gameObject;
-        Collider[] colls = produce[index].mesh.GetComponentsInChildren<Collider>();
-        for (int c = 0; c < colls.Length; c++)
-        {
-            colls[c].gameObject.layer = LayerMask.NameToLayer("IgnoreHand");
-        }
-        produce[index].startPos = FindRandomSpawnSpot();
-        produce[index].mesh.transform.position = transform.position + produce[index].startPos;
-        produce[index].fullScale = produce[index].mesh.transform.localScale;
-        produce[index].mesh.transform.localScale = Vector3.zero;
-        produce[index].edible.GetComponent<Rigidbody>().isKinematic = true;
+
+        SpawnAt(index);
+
         produce[index].currentTime = 0;
         produce[index].grown = false;
         produce[index].spawning = false;
