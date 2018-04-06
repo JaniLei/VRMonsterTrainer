@@ -344,6 +344,21 @@ MonoBehaviour:
   - {fileID: 2003378642}
   - {fileID: 532705890}
   - {fileID: 605493568}
+--- !u!137 &358990508 stripped
+SkinnedMeshRenderer:
+  m_PrefabParentObject: {fileID: 13700000, guid: 8b1868c27967e444c96a40d18633ce97,
+    type: 3}
+  m_PrefabInternal: {fileID: 1525001367}
+--- !u!137 &407105057 stripped
+SkinnedMeshRenderer:
+  m_PrefabParentObject: {fileID: 13700004, guid: 8b1868c27967e444c96a40d18633ce97,
+    type: 3}
+  m_PrefabInternal: {fileID: 1525001367}
+--- !u!137 &485045755 stripped
+SkinnedMeshRenderer:
+  m_PrefabParentObject: {fileID: 13700002, guid: 8b1868c27967e444c96a40d18633ce97,
+    type: 3}
+  m_PrefabInternal: {fileID: 1525001367}
 --- !u!4 &532705890 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400062, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
@@ -1375,6 +1390,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
   m_IsPrefabParent: 0
+--- !u!137 &740473507 stripped
+SkinnedMeshRenderer:
+  m_PrefabParentObject: {fileID: 13700006, guid: 8b1868c27967e444c96a40d18633ce97,
+    type: 3}
+  m_PrefabInternal: {fileID: 1525001367}
 --- !u!1 &1380307422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,3 +1533,29 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400060, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
   m_PrefabInternal: {fileID: 726096587}
+--- !u!1 &2041874069 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 8b1868c27967e444c96a40d18633ce97, type: 3}
+  m_PrefabInternal: {fileID: 1525001367}
+--- !u!114 &2041874070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2041874069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79996e6c5eeaa243a2d47076a775e4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMode: 0
+  models:
+  - {fileID: 358990508}
+  - {fileID: 485045755}
+  - {fileID: 407105057}
+  - {fileID: 740473507}
+  materials:
+  - {fileID: 2100000, guid: 6a751490e8c07ce4e832e391c720655e, type: 2}
+  - {fileID: 2100000, guid: ff5d74addae2d5b42af7f263007e992a, type: 2}
+  - {fileID: 2100000, guid: 38613c6eb79630e44ba83cd2636d1530, type: 2}
+  - {fileID: 2100000, guid: 5151c3f14e2e1364c81d21173bbcdb46, type: 2}
