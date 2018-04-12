@@ -1387,6 +1387,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 0.9196662
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 56961e0e4a903bf4aaddf8776fdc4aad, type: 2}
+    - target: {fileID: 13700000, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 20df1e1b97db89b4d84dc8d92fc002b1, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
   m_IsPrefabParent: 0
@@ -1522,6 +1530,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6a751490e8c07ce4e832e391c720655e, type: 2}
+    - target: {fileID: 13700000, guid: 8b1868c27967e444c96a40d18633ce97, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a6bf407ec5492404b83ad2c5293a5a0e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b1868c27967e444c96a40d18633ce97, type: 3}
   m_IsPrefabParent: 0
@@ -1548,7 +1560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79996e6c5eeaa243a2d47076a775e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMode: 0
+  debugMode: 1
   models:
   - {fileID: 358990508}
   - {fileID: 485045755}
