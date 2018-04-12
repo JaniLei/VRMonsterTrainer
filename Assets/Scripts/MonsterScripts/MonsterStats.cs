@@ -14,7 +14,7 @@ public class MonsterStats : MonoBehaviour {
     int foodCount;
     [HideInInspector] public Stats mStats;
     [HideInInspector] public int health = 10;
-    public int maxHunger, maxFatique;
+    public int maxHunger, maxFatigue;
     [HideInInspector] public bool hasEaten;
     [HideInInspector] public MonsterState state;
     [HideInInspector] public Monster monster;
@@ -41,7 +41,7 @@ public class MonsterStats : MonoBehaviour {
         else if (mStats.hunger>3) //Hungry
         {
             state.SetAnimationState(MonsterState.animStates.Hungry);
-            if (mStats.hunger > 5)
+            if (mStats.hunger > maxHunger)
             {
                 Debug.Log("Died of hunger");
                 state.SetAnimationState(MonsterState.animStates.Dead);
@@ -53,7 +53,7 @@ public class MonsterStats : MonoBehaviour {
                 mStats.hunger++;
             }
         }
-        else if (mStats.fatigue > 6)
+        else if (mStats.fatigue > maxFatigue)
         {
             state.SetAnimationState(MonsterState.animStates.Yawn);
             Debug.Log("Monster is sleepy");
@@ -181,7 +181,6 @@ public class MonsterStats : MonoBehaviour {
         }
         hasEaten = true;
         foodCount++;
-        state.SetState(MonsterState.States.Follow);
         Debug.Log("ate object type: " + type);
 
     }

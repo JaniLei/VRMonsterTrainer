@@ -23,7 +23,7 @@ public class Monster : MonoBehaviour {
     MonsterStats mStats;
     MonsterState state;
 
-    public Vector3 headNormalizer = new Vector3(-1,-0.75f,-2.5f);
+    public Vector3 headNormalizer = new Vector3(-1,-1f,-2.5f);
     bool headFollow;
 
     public float GroundLevel;
@@ -129,7 +129,8 @@ public class Monster : MonoBehaviour {
         state.SetAnimationState(MonsterState.animStates.Sniff);
     }
 
-    bool WaitStarted;
+    public bool WaitStarted;
+    float waitTimer = 0;
 
     public void WaitFor(float t)
     {
@@ -139,17 +140,18 @@ public class Monster : MonoBehaviour {
         }
         else
         {
-            timer = 0;
-            Wait(t);
+            waitTimer = t + waitTimer;
+            Wait(waitTimer);
             WaitStarted = true;
         }
     }
 
     void Wait(float t)
     {
-        timer += Time.deltaTime;
-        if (timer > t)
+        waitTimer -= Time.deltaTime;
+        if (waitTimer < 0)
         {
+            waitTimer = 0;
             state.SetState(MonsterState.States.Follow);
             WaitStarted = false;
         }
@@ -165,11 +167,11 @@ public class Monster : MonoBehaviour {
 
     public bool EatObject(GameObject g) //returns true once the object has been eaten
     {
-       
         Vector3 foodGroundPos = g.transform.position;
         foodGroundPos.y = GroundLevel;
         if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.35f) //eats from hand
         {
+            state.SetState(MonsterState.States.EatHand);
             state.SetAnimationState(MonsterState.animStates.EatHand);
             mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString()); //Type of object eaten
             g.SetActive(false);
@@ -181,6 +183,7 @@ public class Monster : MonoBehaviour {
         }
         else if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.8f) //eats from ground
         {
+            state.SetState(MonsterState.States.EatGround);
             state.SetAnimationState(MonsterState.animStates.EatGround);
             Quaternion foodRotation = Quaternion.LookRotation(transform.position - g.transform.position);
             Quaternion foodGroundRotation = Quaternion.LookRotation(transform.position - foodGroundPos);

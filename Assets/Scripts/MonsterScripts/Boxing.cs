@@ -68,6 +68,7 @@ public class Boxing : MonoBehaviour {
             monsterHit++;
             if (monsterHit > 2)
             {
+                state.trustPlayer = false;
                 state.SetState(MonsterState.States.Search);
                 monsterHit = 0;
             }
