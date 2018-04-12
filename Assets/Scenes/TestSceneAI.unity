@@ -4374,6 +4374,21 @@ Prefab:
       propertyPath: GroundLevel
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114964622874942114, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: headNormalizer.z
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114964622874942114, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: headNormalizer.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114420040120366708, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: maxFatigue
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe6e311adf66af349a7855d0cb57d738, type: 2}
   m_IsPrefabParent: 0

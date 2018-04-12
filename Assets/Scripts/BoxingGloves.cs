@@ -65,9 +65,9 @@ namespace Valve.VR.InteractionSystem
                     {
                         if (coll.bounds.Intersects(colls[i].bounds))
                         {
-                            //Boxing mBoxing = colls[i].GetComponentInParent<Boxing>();
-                            //if (mBoxing)
-                            //    mBoxing.GetHit(true);
+                            Boxing mBoxing = colls[i].GetComponentInParent<Boxing>();
+                            if (mBoxing)
+                                mBoxing.GetHit(true);
 
                             //Ragdoll rd = colls[i].GetComponent<Ragdoll>();
                             //if (rd)

@@ -8,6 +8,7 @@ public class SearchFood : MonoBehaviour {
     int rnd;
     bool foodOnSight = false;
     GameObject foodObj;
+    float trustTimer;
 
     [HideInInspector] public Monster monster;
     [HideInInspector] public List<Vector3> nodes;
@@ -15,19 +16,34 @@ public class SearchFood : MonoBehaviour {
     [HideInInspector] public Fetch fetch;
     [HideInInspector] public MonsterState state;
 
-    public void Search()
+
+    public void Search(bool trustPlayer)
     {
+
+        if (!trustPlayer)
+        {
+            trustTimer += Time.deltaTime;
+            if (trustTimer > 1)
+            {
+                StartCoroutine(CheckPlayerPos());
+                trustTimer = 0;
+            }
+        }
+
 
         if (foodOnSight)
         {
             foodOnSight = !monster.EatObject(foodObj);
+            if (!foodOnSight && !trustPlayer)
+            {
+                state.SetState(MonsterState.States.Search);
+            }
         }
         else if (Vector3.Distance(transform.position, movePoint) < 0.2f)
         {
 
             rnd = Random.Range(0, nodes.Count);
             movePoint = (nodes[rnd]);
-            Debug.Log("uuspoint");
 
         }
         else
@@ -54,5 +70,17 @@ public class SearchFood : MonoBehaviour {
             }
         }
 
+    }
+
+    IEnumerator CheckPlayerPos()
+    {
+        Vector3 playerStartPos = monster.mainPlayer.transform.position;
+        yield return new WaitForSeconds(10);
+        if (Vector3.Distance(playerStartPos, monster.mainPlayer.transform.position) < 1)
+        {
+            state.SetState(MonsterState.States.Follow);
+            state.trustPlayer = true;
+            Debug.Log("trust");
+        }
     }
 }

@@ -20,9 +20,9 @@ namespace Valve.VR.InteractionSystem
                 if (hand.currentAttachedObject == null)
                 {
                     Debug.Log("monster got hit");
-                    //Boxing mBoxing = GetComponent<Boxing>();
-                    //if (mBoxing)
-                    //    mBoxing.GetHit(false);
+                    Boxing mBoxing = GetComponent<Boxing>();
+                    if (mBoxing)
+                        mBoxing.GetHit(false);
 
                     //Rigidbody rb = GetComponent<Rigidbody>();
                     //if (rb)
@@ -52,8 +52,8 @@ namespace Valve.VR.InteractionSystem
         IEnumerable PettingRefresh()
         {
             MonsterState mState = GetComponent<MonsterState>();
-            //if (mState)
-            //    mState.Petting();
+            if (mState)
+                mState.Petting();
             pettingReady = false;
             yield return new WaitForSeconds(2.5f);
             pettingReady = true;

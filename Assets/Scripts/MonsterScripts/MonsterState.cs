@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Hatching, Follow, Fetch, Sleep, Search, Boxing, Pooping, Whine, Exit, Ragdoll, Dead} //states for the monster
-    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, Sniff }
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Exit, Ragdoll, Dead, Petting, EatHand, EatGround} //states for the monster
+    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn }
     States currentState = States.Hatching;
     animStates animationState = animStates.Idle;
     Monster monster;
@@ -21,6 +21,7 @@ public class MonsterState : MonoBehaviour {
     public GameObject hatchObject;
     public Vector3 exitPoint;
     float hTimer;
+    public bool trustPlayer;
 
     bool ragdolling = false;
 
@@ -46,6 +47,7 @@ public class MonsterState : MonoBehaviour {
         boxing.player = monster.mainPlayer;
         boxing.obstacleMask = monster.ObstacleMask;
         boxing.stats = stats;
+        boxing.state = this;
 
         stats.DisplayStats();
 
@@ -72,13 +74,9 @@ public class MonsterState : MonoBehaviour {
         {
             currentState = States.Search;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            currentState = States.Boxing;
-        }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            boxing.Dodge();
+            boxing.GetHit(false);
             stats.IncreaseStat("agility", 2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
@@ -134,16 +132,22 @@ public class MonsterState : MonoBehaviour {
                 monster.GoSleep();
                 break;
             case States.Search:
-                search.Search();
-                break;
-            case States.Boxing: //delete this
-                //boxing.DoBoxing();
+                search.Search(trustPlayer);
                 break;
             case States.Pooping:
                 monster.WaitFor(5.75f);
                 break;
             case States.Whine:
                 monster.WaitFor(2);
+                break;
+            case States.EatHand:
+                monster.WaitFor(5);
+                break;
+            case States.EatGround:
+                monster.WaitFor(2.5f);
+                break;
+            case States.Petting:
+                monster.WaitFor(2.5f);
                 break;
             case States.Ragdoll:
 
@@ -191,11 +195,9 @@ public class MonsterState : MonoBehaviour {
                 break;
             case animStates.EatGround:
                 anim.SetTrigger("Eat");
-                anim.SetBool("EatFromHand", false);
                 break;
             case animStates.EatHand:
-                anim.SetTrigger("Eat");
-                anim.SetBool("EatFromHand", true);
+                anim.SetTrigger("EatFromHand");
                 break;
             case animStates.Sleep:
                 anim.SetBool("Sleep", true);
@@ -216,12 +218,23 @@ public class MonsterState : MonoBehaviour {
             case animStates.Petting:
                 anim.SetTrigger("Petting");
                 break;
+            case animStates.GetHit:
+                anim.SetTrigger("Hit");
+                break;
+            case animStates.Hungry:
+                anim.SetTrigger("");
+                break;
+            case animStates.Yawn:
+                anim.SetTrigger("Yawn");
+                break;
+            
         }
     }
 
     public void SetState(States _state)
     {
-        if (currentState == States.Dead || ragdolling)
+        monster.WaitStarted = false;
+        if (currentState == States.Dead || currentState == States.Hatching || ragdolling)
         {
             return;
         }
@@ -242,6 +255,12 @@ public class MonsterState : MonoBehaviour {
     {
         SetState(States.Fetch);
         fetchObj = fObj;
+    }
+
+    public void Petting()
+    {
+        SetState(States.Petting);
+        SetAnimationState(animStates.Petting);
     }
 
 
