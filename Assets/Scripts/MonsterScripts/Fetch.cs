@@ -50,6 +50,8 @@ public class Fetch : MonoBehaviour{
         }
         else if (Vector3.Distance(gameObject.transform.position, monster.playerGroundPosition) > 1f)
         {
+            state.SetAnimationState(MonsterState.animStates.Walking);
+            AnimStarted = false; //!
             timer += Time.deltaTime;
             fetchObj.transform.position = monsterMouth.transform.position;
             fetchObj.transform.rotation = monsterMouth.transform.rotation;

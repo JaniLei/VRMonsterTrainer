@@ -57,9 +57,10 @@ GameObject:
   - component: {fileID: 114520886869801460}
   - component: {fileID: 114477879178907754}
   - component: {fileID: 114742425076202474}
-  m_Layer: 0
+  - component: {fileID: 65322929803661902}
+  m_Layer: 8
   m_Name: hili
-  m_TagString: Untagged
+  m_TagString: Edible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,8 +89,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201703335262698}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.7230909, y: 0.6120845, z: 0.193382, w: -0.25513825}
+  m_LocalPosition: {x: -2.9107172, y: 5.217192, z: -1.0507077}
   m_LocalScale: {x: 0.20077635, y: 0.20077632, z: 0.20077632}
   m_Children:
   - {fileID: 4445380875189558}
@@ -262,6 +263,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 507c2f1a97a6d714a81d5ac666f60c36, type: 3}
+--- !u!65 &65322929803661902
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1201703335262698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114299774063524034
 MonoBehaviour:
   m_ObjectHideFlags: 1
