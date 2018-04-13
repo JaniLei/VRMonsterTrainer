@@ -64,6 +64,8 @@ namespace Valve.VR.InteractionSystem
 		public bool showDebugText = false;
 		public bool spewDebugText = false;
 
+        [HideInInspector] public bool canTeleport = true;
+
 		public struct AttachedObject
 		{
 			public GameObject attachedObject;

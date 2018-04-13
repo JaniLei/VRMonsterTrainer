@@ -9,24 +9,36 @@ namespace Valve.VR.InteractionSystem
     {
         public double hitVelocity = 2, petVelocity = 1;
         public float hitForceMultiplier = 2;
-        
+
+        bool canBePet = true;
+        bool canBeHit = true;
         
         private void OnHandHoverBegin(Hand hand)
         {
-            if (hand.controller != null)
+            if (canBeHit)
             {
                 if (hand.GetStandardInteractionButton() &&
                     hand.GetTrackedObjectVelocity().magnitude >= hitVelocity)
                 {
-                    Debug.Log("monster got hit");
-                    Rigidbody rb = GetComponent<Rigidbody>();
-                    if (rb)
+                    if (hand.currentAttachedObject == null)
                     {
-                        Vector3 force = hand.GetTrackedObjectVelocity();
-                        Debug.Log("hit force : " + force.magnitude);
-                        force *= hitForceMultiplier;
-                        force.y++;
-                        rb.AddForceAtPosition(force, hand.transform.position, ForceMode.Impulse);
+                        Debug.Log("monster got hit");
+                        Boxing mBoxing = GetComponent<Boxing>();
+                        if (mBoxing)
+                        {
+                            mBoxing.GetHit(false);
+                            StartCoroutine("HitRefresh");
+                        }
+
+                        //Rigidbody rb = GetComponent<Rigidbody>();
+                        //if (rb)
+                        //{
+                        //    Vector3 force = hand.GetTrackedObjectVelocity();
+                        //    Debug.Log("hit force : " + force.magnitude);
+                        //    force *= hitForceMultiplier;
+                        //    force.y++;
+                        //    rb.AddForceAtPosition(force, hand.transform.position, ForceMode.Impulse);
+                        //}
                     }
                 }
             }
@@ -35,12 +47,31 @@ namespace Valve.VR.InteractionSystem
         private void HandHoverUpdate(Hand hand)
         {
             if (!hand.GetStandardInteractionButton() && hand.GetTrackedObjectVelocity().magnitude >= petVelocity)
-                Debug.Log("petting monster");
+            {
+                if (canBePet)
+                {
+                    Debug.Log("petting monster");
+                    StartCoroutine("PettingRefresh");
+                }
+            }
         }
 
-        void Dodge()
+        IEnumerator PettingRefresh()
         {
-            Debug.Log("Monster dodge");
+            MonsterState mState = GetComponent<MonsterState>();
+            if (mState)
+                mState.Petting();
+            canBePet = false;
+            yield return new WaitForSeconds(2.5f);
+            canBePet = true;
         }
+
+        IEnumerator HitRefresh()
+        {
+            canBeHit = false;
+            yield return new WaitForSeconds(1);
+            canBeHit = true;
+        }
+
     }
 }

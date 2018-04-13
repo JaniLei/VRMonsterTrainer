@@ -2,35 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ragdoll : MonoBehaviour
+namespace Valve.VR.InteractionSystem
 {
-    public bool activeOnStart;
-
-    bool isKinematic = false;
-
-	void Start()
+    [RequireComponent(typeof(Interactable))]
+    public class Ragdoll : MonoBehaviour
     {
-        SetKinematic(true);
-        if (activeOnStart)
-            SetKinematic(!isKinematic);
-	}
+        public bool activeOnStart;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
+        bool isKinematic = false;
+
+        void Start()
+        {
+            SetKinematic(true);
+            if (activeOnStart)
+                SetKinematic(!isKinematic);
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SetKinematic(!isKinematic);
+                GetComponentInParent<Animator>().enabled = isKinematic;
+            }
+        }
+
+        private void OnAttachedToHand(Hand hand)
+        {
+            hand.canTeleport = false;
+            if (hand.otherHand)
+                hand.otherHand.canTeleport = false;
+        }
+
+        private void OnDetachedFromHand(Hand hand)
+        {
+            hand.canTeleport = true;
+            if (hand.otherHand)
+                hand.otherHand.canTeleport = true;
+        }
+
+        void SetKinematic(bool newValue)
+        {
+            Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rb in bodies)
+            {
+                rb.isKinematic = newValue;
+            }
+            isKinematic = !isKinematic;
+        }
+
+        public void ToggleRagdoll()
         {
             SetKinematic(!isKinematic);
-            GetComponent<Animator>().enabled = isKinematic;
+            GetComponentInParent<Animator>().enabled = isKinematic;
         }
-    }
-
-    void SetKinematic(bool newValue)
-    {
-        Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
-        foreach (Rigidbody rb in bodies)
-        {
-            rb.isKinematic = newValue;
-        }
-        isKinematic = !isKinematic;
     }
 }

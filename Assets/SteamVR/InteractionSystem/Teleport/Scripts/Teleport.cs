@@ -1062,6 +1062,9 @@ namespace Valve.VR.InteractionSystem
 				}
 			}
 
+            if (!hand.canTeleport)
+                return false;
+
 			return true;
 		}
 
