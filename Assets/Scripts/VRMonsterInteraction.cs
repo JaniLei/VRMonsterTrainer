@@ -10,29 +10,36 @@ namespace Valve.VR.InteractionSystem
         public double hitVelocity = 2, petVelocity = 1;
         public float hitForceMultiplier = 2;
 
-        bool pettingReady = true;
+        bool canBePet = true;
+        bool canBeHit = true;
         
         private void OnHandHoverBegin(Hand hand)
         {
-            if (hand.GetStandardInteractionButton() &&
-                hand.GetTrackedObjectVelocity().magnitude >= hitVelocity)
+            if (canBeHit)
             {
-                if (hand.currentAttachedObject == null)
+                if (hand.GetStandardInteractionButton() &&
+                    hand.GetTrackedObjectVelocity().magnitude >= hitVelocity)
                 {
-                    Debug.Log("monster got hit");
-                    Boxing mBoxing = GetComponent<Boxing>();
-                    if (mBoxing)
-                        mBoxing.GetHit(false);
+                    if (hand.currentAttachedObject == null)
+                    {
+                        Debug.Log("monster got hit");
+                        Boxing mBoxing = GetComponent<Boxing>();
+                        if (mBoxing)
+                        {
+                            mBoxing.GetHit(false);
+                            StartCoroutine("HitRefresh");
+                        }
 
-                    //Rigidbody rb = GetComponent<Rigidbody>();
-                    //if (rb)
-                    //{
-                    //    Vector3 force = hand.GetTrackedObjectVelocity();
-                    //    Debug.Log("hit force : " + force.magnitude);
-                    //    force *= hitForceMultiplier;
-                    //    force.y++;
-                    //    rb.AddForceAtPosition(force, hand.transform.position, ForceMode.Impulse);
-                    //}
+                        //Rigidbody rb = GetComponent<Rigidbody>();
+                        //if (rb)
+                        //{
+                        //    Vector3 force = hand.GetTrackedObjectVelocity();
+                        //    Debug.Log("hit force : " + force.magnitude);
+                        //    force *= hitForceMultiplier;
+                        //    force.y++;
+                        //    rb.AddForceAtPosition(force, hand.transform.position, ForceMode.Impulse);
+                        //}
+                    }
                 }
             }
         }
@@ -41,7 +48,7 @@ namespace Valve.VR.InteractionSystem
         {
             if (!hand.GetStandardInteractionButton() && hand.GetTrackedObjectVelocity().magnitude >= petVelocity)
             {
-                if (pettingReady)
+                if (canBePet)
                 {
                     Debug.Log("petting monster");
                     StartCoroutine("PettingRefresh");
@@ -49,15 +56,22 @@ namespace Valve.VR.InteractionSystem
             }
         }
 
-        IEnumerable PettingRefresh()
+        IEnumerator PettingRefresh()
         {
             MonsterState mState = GetComponent<MonsterState>();
             if (mState)
                 mState.Petting();
-            pettingReady = false;
+            canBePet = false;
             yield return new WaitForSeconds(2.5f);
-            pettingReady = true;
+            canBePet = true;
         }
-        
+
+        IEnumerator HitRefresh()
+        {
+            canBeHit = false;
+            yield return new WaitForSeconds(1);
+            canBeHit = true;
+        }
+
     }
 }

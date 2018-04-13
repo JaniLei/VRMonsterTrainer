@@ -19,6 +19,7 @@ namespace Valve.VR.InteractionSystem
         
         Collider coll;
         GameObject monster;
+        bool canBeHit = true;
 
         void Start()
         {
@@ -44,45 +45,51 @@ namespace Valve.VR.InteractionSystem
                 hand.HoverUnlock(GetComponent<Interactable>());
             }
         }
-        
+
         private void HandAttachedUpdate(Hand hand)
         {
             // send signal for monster to dodge
             if (hand.GetTrackedObjectVelocity().magnitude > 2)
             {
                 RaycastHit hit;
-        
+
                 if (Physics.Raycast(transform.position, transform.forward, out hit, 1))
                     hit.transform.gameObject.SendMessage("Dodge", SendMessageOptions.DontRequireReceiver);
             }
-            
-            if (otherColl)
-            {
-                if (coll.bounds.Intersects(otherColl.bounds))
-                {
-                    Collider[] colls = otherColl.GetComponentsInChildren<Collider>();
-                    for (int i = 0; i < colls.Length; i++)
-                    {
-                        if (coll.bounds.Intersects(colls[i].bounds))
-                        {
-                            Boxing mBoxing = colls[i].GetComponentInParent<Boxing>();
-                            if (mBoxing)
-                                mBoxing.GetHit(true);
 
-                            //Ragdoll rd = colls[i].GetComponent<Ragdoll>();
-                            //if (rd)
-                            //    rd.ToggleRagdoll();
-                            //Rigidbody rb = colls[i].GetComponent<Rigidbody>();
-                            //if (rb && rb.isKinematic)
-                            //{
-                            //    rb.isKinematic = false;
-                            //
-                            //    Vector3 force = gloveHand.GetTrackedObjectVelocity();
-                            //    Debug.Log("hit force : " + force.magnitude);
-                            //    force *= hitForceMultiplier;
-                            //    force.y++;
-                            //    colls[i].gameObject.GetComponent<Rigidbody>().AddForceAtPosition(force, colls[i].transform.position, ForceMode.Impulse);
-                            //}
+            if (canBeHit)
+            {
+                if (otherColl)
+                {
+                    if (coll.bounds.Intersects(otherColl.bounds))
+                    {
+                        Collider[] colls = otherColl.GetComponentsInChildren<Collider>();
+                        for (int i = 0; i < colls.Length; i++)
+                        {
+                            if (coll.bounds.Intersects(colls[i].bounds))
+                            {
+                                Boxing mBoxing = colls[i].GetComponentInParent<Boxing>();
+                                if (mBoxing)
+                                {
+                                    mBoxing.GetHit(true);
+                                    StartCoroutine("HitRefresh");
+                                }
+
+                                //Ragdoll rd = colls[i].GetComponent<Ragdoll>();
+                                //if (rd)
+                                //    rd.ToggleRagdoll();
+                                //Rigidbody rb = colls[i].GetComponent<Rigidbody>();
+                                //if (rb && rb.isKinematic)
+                                //{
+                                //    rb.isKinematic = false;
+                                //
+                                //    Vector3 force = gloveHand.GetTrackedObjectVelocity();
+                                //    Debug.Log("hit force : " + force.magnitude);
+                                //    force *= hitForceMultiplier;
+                                //    force.y++;
+                                //    colls[i].gameObject.GetComponent<Rigidbody>().AddForceAtPosition(force, colls[i].transform.position, ForceMode.Impulse);
+                                //}
+                            }
                         }
                     }
                 }
@@ -99,21 +106,28 @@ namespace Valve.VR.InteractionSystem
             GetComponent<Rigidbody>().isKinematic = false;
         }
 
-        //void OnCollisionEnter(Collision collision)
-        //{
-        //    if (gloveHand /*&& collision.relativeVelocity.magnitude > 0.5f*/)
-        //    {
-        //        Boxing mBoxing = collision.gameObject.GetComponent<Boxing>();
-        //        if (mBoxing)
-        //        {
-        //            //mBoxing.GetHit(true);
-        //            //Vector3 force = gloveHand.GetTrackedObjectVelocity();
-        //            //Debug.Log("hit force : " + force.magnitude);
-        //            //force *= hitForceMultiplier;
-        //            //force.y++;
-        //            //collision.gameObject.GetComponent<Rigidbody>().AddForceAtPosition(force, collision.contacts[0].point, ForceMode.Impulse);
-        //        }
-        //    }
-        //}
-    }
+        IEnumerator HitRefresh()
+        {
+            canBeHit = false;
+            yield return new WaitForSeconds(1);
+            canBeHit = true;
+        }
+
+            //void OnCollisionEnter(Collision collision)
+            //{
+            //    if (gloveHand /*&& collision.relativeVelocity.magnitude > 0.5f*/)
+            //    {
+            //        Boxing mBoxing = collision.gameObject.GetComponent<Boxing>();
+            //        if (mBoxing)
+            //        {
+            //            //mBoxing.GetHit(true);
+            //            //Vector3 force = gloveHand.GetTrackedObjectVelocity();
+            //            //Debug.Log("hit force : " + force.magnitude);
+            //            //force *= hitForceMultiplier;
+            //            //force.y++;
+            //            //collision.gameObject.GetComponent<Rigidbody>().AddForceAtPosition(force, collision.contacts[0].point, ForceMode.Impulse);
+            //        }
+            //    }
+            //}
+        }
 }
