@@ -14,14 +14,12 @@ public class RoomEditMode : MonoBehaviour
     Valve.VR.InteractionSystem.Player player;
     Vector3 pointedPos;
     bool markerOverlapping;
-
-	// Use this for initialization
+    
 	void Start()
     {
         player = FindObjectOfType<Valve.VR.InteractionSystem.Player>();
 	}
 	
-	// Update is called once per frame
 	void Update()
     {
         foreach (var hand in player.hands)
@@ -49,6 +47,17 @@ public class RoomEditMode : MonoBehaviour
                     else
                         ConfirmSelection();
                 }
+
+                if (selection)
+                {
+                    if (hand.controller != null && hand.controller.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
+                    {
+                        Vector2 axis = hand.controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
+                        Vector3 rot = new Vector3(axis.x, 0, axis.y);
+                        Quaternion rotation = Quaternion.LookRotation(rot);
+                        selectionMarker.transform.rotation = rotation;
+                    }
+                }
             }
 
             if (selection)
@@ -61,6 +70,22 @@ public class RoomEditMode : MonoBehaviour
                 if (bHit)
                 {
                     pointedPos = hit.point;
+                }
+            }
+
+            if (selectionMarker)
+            {
+                float hAxis = Input.GetAxis("Horizontal");
+                float vAxis = Input.GetAxis("Vertical");
+                if (Mathf.Abs(hAxis) + Mathf.Abs(vAxis) > 0)
+                {
+                    Vector3 rot = new Vector3(hAxis, 0, vAxis);
+                    //rot = (rot + player.transform.forward/*<-replace with player body rotation*/).normalized;
+
+                    Quaternion rotation = Quaternion.LookRotation(rot, selectionMarker.transform.up);
+                    //selectionMarker.transform.rotation = /*rotation*/Quaternion.RotateTowards(selectionMarker.transform.rotation, rotation, 1);
+                    selectionMarker.transform.rotation = rotation;
+
                 }
             }
         }
@@ -79,13 +104,13 @@ public class RoomEditMode : MonoBehaviour
                 {
                     RaycastHit rayhit;
 
-                    if (Physics.Raycast(renderer.bounds.center, Vector3.down, out rayhit))
+                    if (Physics.Raycast(/*renderer.bounds.center*/selectionMarker.transform.position, Vector3.down, out rayhit))
                     {
                         float offsetY = rayhit.point.y - renderer.bounds.min.y;
                         selectionMarker.transform.position += new Vector3(0f, offsetY, 0f);
                     }
                     Vector3 offset = new Vector3(0, 0.01f, 0);
-                    Collider[] colls = Physics.OverlapBox(selectionMarker.transform.position + offset, /*selectionMarker.transform.localScale / 2*/renderer.bounds.size / 2);
+                    Collider[] colls = Physics.OverlapBox(/*selectionMarker.transform.position*/renderer.bounds.center + offset, /*selectionMarker.transform.localScale / 2*/renderer.bounds.size / 2);
                     if (colls.Length > 0)
                         markerOverlapping = true;
                     else
@@ -121,12 +146,12 @@ public class RoomEditMode : MonoBehaviour
     {
         selection.GetComponent<Collider>().enabled = false;
         selectionMarker = new GameObject("Selection Marker");
+
         selectionMarker.transform.localScale = selection.transform.localScale;
         selectionMarker.transform.rotation = selection.transform.rotation;
+
         MeshFilter meshFilter = selectionMarker.AddComponent<MeshFilter>();
         meshFilter.mesh = selection.GetComponent<MeshFilter>().mesh;
-        if (!meshFilter.mesh)
-            meshFilter.mesh = selection.GetComponentInChildren<MeshFilter>().mesh;
 
         markerRenderer = selectionMarker.AddComponent<MeshRenderer>();
         markerRenderer.material = editModeMat;
@@ -143,6 +168,8 @@ public class RoomEditMode : MonoBehaviour
     void ConfirmSelection()
     {
         selection.transform.position = selectionMarker.transform.position;
+        selection.transform.rotation = selectionMarker.transform.rotation;
+
         CancelSelection();
     }
 
@@ -154,6 +181,12 @@ public class RoomEditMode : MonoBehaviour
             {
                 Gizmos.color = Color.red;
                 Gizmos.DrawLine(hand.transform.position, hand.transform.position + -hand.transform.up);
+            }
+
+            if (selectionMarker)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawSphere(selectionMarker.transform.position + selectionMarker.GetComponent<MeshFilter>().mesh.bounds.center, 0.1f);
             }
         }
     }
