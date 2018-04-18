@@ -1,23 +1,23 @@
 fileFormatVersion: 2
-guid: 8df43ddf4408fd845a4c9ca0d52368d7
-timeCreated: 1521620749
+guid: d806613927638c245bdfe6967555c2bf
+timeCreated: 1524036462
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Line001
-    7400000: Take 001
-    9500000: //RootNode
+    100000: Cylinder001
+    100002: //RootNode
+    400000: Cylinder001
+    400002: //RootNode
+    2300000: Cylinder001
+    3300000: Cylinder001
+    4300000: Cylinder001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Material #25'
-    second: {fileID: 2100000, guid: 09024a7e256fb9a43acc33adab193c8b, type: 2}
+      name: Cylinder001Mat
+    second: {fileID: 2100000, guid: 5a5352ad0e7ee254abe2d6b973ead2b9, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -55,7 +55,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -89,7 +89,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
