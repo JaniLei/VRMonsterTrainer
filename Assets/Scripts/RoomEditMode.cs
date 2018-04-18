@@ -85,7 +85,6 @@ public class RoomEditMode : MonoBehaviour
                     Quaternion rotation = Quaternion.LookRotation(rot, selectionMarker.transform.up);
                     //selectionMarker.transform.rotation = /*rotation*/Quaternion.RotateTowards(selectionMarker.transform.rotation, rotation, 1);
                     selectionMarker.transform.rotation = rotation;
-
                 }
             }
         }
