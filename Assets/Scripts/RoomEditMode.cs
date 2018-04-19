@@ -10,9 +10,11 @@ public class RoomEditMode : MonoBehaviour
     public Material overlappingMat;
 
     GameObject selectionMarker;
-    MeshRenderer markerRenderer;
+    LineRenderer lineRenderer;
+    Transform lineHolder;
     Valve.VR.InteractionSystem.Player player;
     Vector3 pointedPos;
+    GameObject pointedObj;
     bool markerOverlapping;
     
 	void Start()
@@ -24,21 +26,46 @@ public class RoomEditMode : MonoBehaviour
     {
         foreach (var hand in player.hands)
         {
-            if (hand.GetStandardInteractionButtonDown())
+            Vector3 offset = -hand.transform.forward;
+            RaycastHit hit;
+            //bool bHit = Physics.Linecast(hand.transform.position, hand.transform.position + -hand.transform.up * 100, out hit);
+            bool bHit = Physics.Linecast(player.hmdTransform.position, hand.transform.position, out hit);
+            if (bHit)
+            {
+                pointedPos = hit.point;
+            }
+            
+            if (hand.GetStandardInteractionButton())
+            {
+                
+                if (bHit)
+                {
+                    //pointedPos = hit.point;
+                    pointedObj = hit.transform.gameObject;
+                    //CreateLineRenderer(hand.transform.position, pointedPos);
+                    if (!selectionMarker)
+                        CreateLineRenderer(player.hmdTransform.position, pointedPos);
+                }
+
+                //if (!selectionMarker)
+                //{
+                //    pointedObj = hit.transform.gameObject;
+                //}
+                //else
+                //{
+                //    MoveSelectionMarker(pointedPos);
+                //}
+            }
+            
+            if (hand.GetStandardInteractionButtonUp())
             {
                 if (!selection)
                 {
-                    Vector3 offset = -hand.transform.forward; // new Vector3(0, 0, -1);
-                    RaycastHit hit;
-                    //bool bHit = Physics.Linecast(hand.transform.position, hand.transform.position + -hand.transform.up * 100, out hit);
-                    bool bHit = Physics.Linecast(player.hmdTransform.position, hand.transform.position, out hit);
+                    selection = pointedObj;
+                    CreateSelectionMarker();
 
-
-                    if (bHit)
-                    {
-                        selection = hit.transform.gameObject;
-                        pointedPos = hit.point;
-                    }
+                    if (lineRenderer)
+                        lineRenderer.enabled = false;
                 }
                 else
                 {
@@ -47,31 +74,20 @@ public class RoomEditMode : MonoBehaviour
                     else
                         ConfirmSelection();
                 }
-
-                if (selection)
-                {
-                    if (hand.controller != null && hand.controller.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
-                    {
-                        Vector2 axis = hand.controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
-                        Vector3 rot = new Vector3(axis.x, 0, axis.y);
-                        Quaternion rotation = Quaternion.LookRotation(rot);
-                        selectionMarker.transform.rotation = rotation;
-                    }
-                }
             }
 
-            if (selection)
-            {
-                Vector3 offset = -hand.transform.forward; // new Vector3(0, 0, -1);
-                RaycastHit hit;
-                //bool bHit = Physics.Linecast(hand.transform.position, hand.transform.position + -hand.transform.up * 100, out hit);
-                bool bHit = Physics.Linecast(player.hmdTransform.position, hand.transform.position, out hit);
+            //if (selection)
+            //{
+            //    Vector3 offset = -hand.transform.forward; // new Vector3(0, 0, -1);
+            //    RaycastHit hit;
+            //    //bool bHit = Physics.Linecast(hand.transform.position, hand.transform.position + -hand.transform.up * 100, out hit);
+            //    bool bHit = Physics.Linecast(player.hmdTransform.position, hand.transform.position, out hit);
 
-                if (bHit)
-                {
-                    pointedPos = hit.point;
-                }
-            }
+            //    if (bHit)
+            //    {
+            //        pointedPos = hit.point;
+            //    }
+            //}
 
             if (selectionMarker)
             {
@@ -79,66 +95,66 @@ public class RoomEditMode : MonoBehaviour
                 float vAxis = Input.GetAxis("Vertical");
                 if (Mathf.Abs(hAxis) + Mathf.Abs(vAxis) > 0)
                 {
-                    Vector3 rot = new Vector3(hAxis, 0, vAxis);
-                    //rot = (rot + player.transform.forward/*<-replace with player body rotation*/).normalized;
-
-                    Quaternion rotation = Quaternion.LookRotation(rot, selectionMarker.transform.up);
-                    //selectionMarker.transform.rotation = /*rotation*/Quaternion.RotateTowards(selectionMarker.transform.rotation, rotation, 1);
-                    selectionMarker.transform.rotation = rotation;
+                    RotateSelectionMarker(hAxis, vAxis);
                 }
-            }
-        }
 
-        if (selection)
-        {
-            if (!selectionMarker)
-            {
-                CreateSelectionMarker();
-            }
-            else
-            {
-                selectionMarker.transform.position = pointedPos;
-                MeshRenderer renderer = selectionMarker.GetComponentInChildren<MeshRenderer>();
-                if (renderer != null)
+                if (hand.controller != null && hand.controller.GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
                 {
-                    RaycastHit rayhit;
-
-                    if (Physics.Raycast(/*renderer.bounds.center*/selectionMarker.transform.position, Vector3.down, out rayhit))
-                    {
-                        float offsetY = rayhit.point.y - renderer.bounds.min.y;
-                        selectionMarker.transform.position += new Vector3(0f, offsetY, 0f);
-                    }
-                    Vector3 offset = new Vector3(0, 0.01f, 0);
-                    Collider[] colls = Physics.OverlapBox(/*selectionMarker.transform.position*/renderer.bounds.center + offset, /*selectionMarker.transform.localScale / 2*/renderer.bounds.size / 2);
-                    if (colls.Length > 0)
-                        markerOverlapping = true;
-                    else
-                        markerOverlapping = false;
+                    Vector2 axis = hand.controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0);
+                    RotateSelectionMarker(axis.x, axis.y);
+                    //Vector3 rot = new Vector3(axis.x, 0, axis.y);
+                    //Quaternion rotation = Quaternion.LookRotation(rot);
+                    //selectionMarker.transform.rotation = rotation;
                 }
             }
-
-            if (markerOverlapping)
-            {
-                markerRenderer.material = overlappingMat;
-            }
-            else
-            {
-                markerRenderer.material = editModeMat;
-            }
-            //foreach (Transform t in selection.GetComponents<Transform>())
-            //{
-            //    MeshRenderer renderer = t.GetComponentInChildren<MeshRenderer>();
-            //    if (renderer != null)
-            //    {
-            //        RaycastHit rayhit;
-            //        if (Physics.Raycast(renderer.bounds.center, Vector3.down, out rayhit))
-            //        {
-            //            float offsetY = rayhit.point.y - renderer.bounds.min.y;
-            //            t.position += new Vector3(0f, offsetY, 0f);
-            //        }
-            //    }
-            //}
         }
+
+        if (selectionMarker)
+        {
+            MoveSelectionMarker(pointedPos);
+
+            Renderer markerRenderer = selectionMarker.GetComponent<Renderer>();
+            if (markerRenderer)
+            {
+                if (markerOverlapping)
+                {
+                    markerRenderer.material = overlappingMat;
+                }
+                else
+                {
+                    markerRenderer.material = editModeMat;
+                }
+            }
+        }
+    }
+
+    void CreateLineRenderer(Vector3 from, Vector3 to)
+    {
+        if (lineHolder != null)
+        {
+            Destroy(lineHolder.gameObject);
+        }
+
+        GameObject lineObjectParent = new GameObject("LineObjects");
+        lineHolder = lineObjectParent.transform;
+        lineHolder.SetParent(this.transform);
+        
+        GameObject newObject = new GameObject("LineRenderer");
+        newObject.transform.SetParent(lineHolder);
+        
+        lineRenderer = newObject.AddComponent<LineRenderer>();
+
+        lineRenderer.enabled = false;
+        lineRenderer.receiveShadows = false;
+        lineRenderer.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
+        lineRenderer.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
+        lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        lineRenderer.material = editModeMat;
+        lineRenderer.startWidth = 0.01f;
+        lineRenderer.endWidth = 0.01f;
+        
+        lineRenderer.SetPosition(0, from);
+        lineRenderer.SetPosition(1, to);
     }
 
     void CreateSelectionMarker()
@@ -152,8 +168,40 @@ public class RoomEditMode : MonoBehaviour
         MeshFilter meshFilter = selectionMarker.AddComponent<MeshFilter>();
         meshFilter.mesh = selection.GetComponent<MeshFilter>().mesh;
 
-        markerRenderer = selectionMarker.AddComponent<MeshRenderer>();
-        markerRenderer.material = editModeMat;
+        MeshRenderer rend = selectionMarker.AddComponent<MeshRenderer>();
+        rend.material = editModeMat;
+    }
+
+    void MoveSelectionMarker(Vector3 pos)
+    {
+        selectionMarker.transform.position = pos;
+        MeshRenderer renderer = selectionMarker.GetComponentInChildren<MeshRenderer>();
+        if (renderer != null)
+        {
+            RaycastHit rayhit;
+
+            if (Physics.Raycast(/*renderer.bounds.center*/selectionMarker.transform.position, Vector3.down, out rayhit))
+            {
+                float offsetY = rayhit.point.y - renderer.bounds.min.y;
+                selectionMarker.transform.position += new Vector3(0f, offsetY, 0f);
+            }
+            Vector3 offset = new Vector3(0, 0.01f, 0);
+            Collider[] colls = Physics.OverlapBox(/*selectionMarker.transform.position*/renderer.bounds.center + offset, /*selectionMarker.transform.localScale / 2*/renderer.bounds.size / 2);
+            if (colls.Length > 0)
+                markerOverlapping = true;
+            else
+                markerOverlapping = false;
+        }
+    }
+
+    void RotateSelectionMarker(float hAxis, float vAxis)
+    {
+        Vector3 rot = new Vector3(hAxis, 0, vAxis);
+        //rot = (rot + player.transform.forward/*<-replace with player body rotation*/).normalized;
+
+        Quaternion rotation = Quaternion.LookRotation(rot, selectionMarker.transform.up);
+        //selectionMarker.transform.rotation = /*rotation*/Quaternion.RotateTowards(selectionMarker.transform.rotation, rotation, 1);
+        selectionMarker.transform.rotation = rotation;
     }
 
     void CancelSelection()
@@ -170,23 +218,5 @@ public class RoomEditMode : MonoBehaviour
         selection.transform.rotation = selectionMarker.transform.rotation;
 
         CancelSelection();
-    }
-
-    void OnDrawGizmos()
-    {
-        if (Application.isPlaying)
-        {
-            foreach (var hand in player.hands)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawLine(hand.transform.position, hand.transform.position + -hand.transform.up);
-            }
-
-            if (selectionMarker)
-            {
-                Gizmos.color = Color.cyan;
-                Gizmos.DrawSphere(selectionMarker.transform.position + selectionMarker.GetComponent<MeshFilter>().mesh.bounds.center, 0.1f);
-            }
-        }
     }
 }
