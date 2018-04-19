@@ -10,10 +10,10 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2018
 		Month: 04
-		Day: 12
-		Hour: 11
-		Minute: 50
-		Second: 54
+		Day: 19
+		Hour: 12
+		Minute: 41
+		Second: 15
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2018-04-12 11:50:54:000"
+CreationTime: "2018-04-19 12:41:15:000"
 Creator: "Blender version 2.77 (sub 0)"
 
 ; Object definitions
@@ -1266,27 +1266,27 @@ Takes:  {
 			Channel: "Transform" {
 				Channel: "T" {
 					Channel: "X" {
-						Default: 0.079893179237843
+						Default: 0.079893186688423
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.079893179237843,L
+							769769300,0.079893186688423,L
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: 0.042640816420317
+						Default: 0.005093472544104
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.042640816420317,L
+							769769300,0.005093472544104,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: -0.077557317912579
+						Default: -0.077557042241096
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.077557317912579,L
+							769769300,-0.077557042241096,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -1352,27 +1352,27 @@ Takes:  {
 			Channel: "Transform" {
 				Channel: "T" {
 					Channel: "X" {
-						Default: 0.058134682476521
+						Default: 0.058134689927101
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.058134682476521,L
+							769769300,0.058134689927101,L
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: -0.000000011001248
+						Default: -0.000000001717126
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.000000011001248,L
+							769769300,-0.000000001717126,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: 0.000000002590241
+						Default: -0.000000000378350
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.000000002590241,L
+							769769300,-0.000000000378350,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -1446,19 +1446,19 @@ Takes:  {
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: -0.030512411147356
+						Default: -0.030512427911162
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.030512411147356,L
+							769769300,-0.030512427911162,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: -0.009761074557900
+						Default: -0.009761070832610
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.009761074557900,L
+							769769300,-0.009761070832610,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -1532,19 +1532,19 @@ Takes:  {
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: -0.000000005820766
+						Default: -0.000000002910383
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.000000005820766,L
+							769769300,-0.000000002910383,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: -0.000000000974978
+						Default: -0.000000002386514
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.000000000974978,L
+							769769300,-0.000000002386514,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -1618,19 +1618,19 @@ Takes:  {
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: -0.000004969129805
+						Default: -0.000004971640010
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.000004969129805,L
+							769769300,-0.000004971640010,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: -0.009406260214746
+						Default: -0.009406257420778
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.009406260214746,L
+							769769300,-0.009406257420778,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -1704,19 +1704,19 @@ Takes:  {
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: 0.000000003754394
+						Default: 0.000000007799827
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.000000003754394,L
+							769769300,0.000000007799827,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: 0.000000001367880
+						Default: -0.000000001047738
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.000000001367880,L
+							769769300,-0.000000001047738,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -1790,19 +1790,19 @@ Takes:  {
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: 0.028451869264245
+						Default: 0.028451865538955
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.028451869264245,L
+							769769300,0.028451865538955,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: -0.010743093676865
+						Default: -0.010743090882897
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.010743093676865,L
+							769769300,-0.010743090882897,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -1868,27 +1868,27 @@ Takes:  {
 			Channel: "Transform" {
 				Channel: "T" {
 					Channel: "X" {
-						Default: 0.040806863456964
+						Default: 0.040806867182255
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.040806863456964,L
+							769769300,0.040806867182255,L
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: -0.000000000931323
-						KeyVer: 4005
-						KeyCount: 1
-						Key: 
-							769769300,-0.000000000931323,L
-						Color: 0,1,0
-					}
-					Channel: "Z" {
 						Default: 0.000000001862645
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
 							769769300,0.000000001862645,L
+						Color: 0,1,0
+					}
+					Channel: "Z" {
+						Default: 0.000000000582077
+						KeyVer: 4005
+						KeyCount: 1
+						Key: 
+							769769300,0.000000000582077,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -1962,19 +1962,19 @@ Takes:  {
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: 0.033633340150118
+						Default: 0.033633336424828
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.033633340150118,L
+							769769300,0.033633336424828,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: -0.005818041041493
+						Default: -0.005818039644510
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,-0.005818041041493,L
+							769769300,-0.005818039644510,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -2048,19 +2048,19 @@ Takes:  {
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: 0.000000000844011
+						Default: 0.000000003259629
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.000000000844011,L
+							769769300,0.000000003259629,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: 0.000000001717126
+						Default: 0.000000002270099
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							769769300,0.000000001717126,L
+							769769300,0.000000002270099,L
 						Color: 0,0,1
 					}
 					LayerType: 1

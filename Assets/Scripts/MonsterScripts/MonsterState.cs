@@ -178,6 +178,7 @@ public class MonsterState : MonoBehaviour {
 
     public void SetAnimationState(animStates stateToSet)
     {
+
         if (stateToSet == animationState)
         {
             return;
@@ -234,6 +235,12 @@ public class MonsterState : MonoBehaviour {
     public void SetState(States _state)
     {
         monster.WaitStarted = false;
+        try
+        {
+            fetchObj.GetComponent<Rigidbody>().useGravity = true;
+        }
+        catch { }
+
         if (currentState == States.Dead || currentState == States.Hatching || ragdolling)
         {
             return;
