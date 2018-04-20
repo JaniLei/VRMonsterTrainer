@@ -50,7 +50,6 @@ public class Boxing : MonoBehaviour {
         }
         else
         {
-            Debug.Log("hitttttttt");
             state.SetAnimationState(MonsterState.animStates.GetHit);
         }
         stats.IncreaseStat("agility", Random.Range(1, 3));
@@ -70,8 +69,17 @@ public class Boxing : MonoBehaviour {
             if (monsterHit > 2)
             {
                 state.trustPlayer = false;
+                state.SetEmotion(MonsterState.Emotions.Scared);
                 state.SetState(MonsterState.States.Search);
                 monsterHit = 0;
+            }
+            else if (monsterHit > 1)
+            {
+                state.SetEmotion(MonsterState.Emotions.Furious);
+            }
+            else
+            {
+                state.SetEmotion(MonsterState.Emotions.Angry);
             }
         }
     }

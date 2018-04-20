@@ -59,6 +59,7 @@ public class Fetch : MonoBehaviour{
         }
         else
         {
+            state.SetEmotion(MonsterState.Emotions.Relaxed);
             StopFetch();
         }
     }
