@@ -6,6 +6,7 @@ public class MonsterState : MonoBehaviour {
 
     public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Exit, Ragdoll, Dead, Petting, EatHand, EatGround} //states for the monster
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn }
+    public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
     States currentState = States.Hatching;
     animStates animationState = animStates.Idle;
     Monster monster;
@@ -232,8 +233,16 @@ public class MonsterState : MonoBehaviour {
         }
     }
 
+    public States stateInQueue = States.Follow;
+
     public void SetState(States _state)
     {
+        if (monster.WaitStarted)
+        {
+            stateInQueue = _state;
+            Debug.Log(stateInQueue);
+            return;
+        }
         monster.WaitStarted = false;
         try
         {
@@ -246,7 +255,44 @@ public class MonsterState : MonoBehaviour {
             return;
         }
         currentState = _state;
+        stateInQueue = States.Follow;
     }
+
+
+    public void SetEmotion(Emotions emotion)
+    {
+        switch (emotion)
+        {
+            case Emotions.Neutral:
+                anim.SetInteger("Emotion", 0);
+                break;
+            case Emotions.Sad:
+                anim.SetInteger("Emotion", 1);
+                break;
+            case Emotions.Happy:
+                anim.SetInteger("Emotion", 2);
+                break;
+            case Emotions.Tired:
+                anim.SetInteger("Emotion", 3);
+                break;
+            case Emotions.Relaxed:
+                anim.SetInteger("Emotion", 4);
+                break;
+            case Emotions.Angry:
+                anim.SetInteger("Emotion", 5);
+                break;
+            case Emotions.Furious:
+                anim.SetInteger("Emotion", 6);
+                break;
+            case Emotions.Scared:
+                anim.SetInteger("Emotion", 7);
+                break;
+            case Emotions.Hungry:
+                anim.SetInteger("Emotion", 8);
+                break;
+        }
+    }
+
 
     public void OnFetching()
     {
