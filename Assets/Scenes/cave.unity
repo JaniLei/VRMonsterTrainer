@@ -323,6 +323,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 28
       objectReference: {fileID: 0}
+    - target: {fileID: 114420040120366708, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: txtStats
+      value: 
+      objectReference: {fileID: 615394152}
+    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: fetchObj
+      value: 
+      objectReference: {fileID: 615394150}
+    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
+        type: 2}
+      propertyPath: hatchObject
+      value: 
+      objectReference: {fileID: 1655377959}
     - target: {fileID: 114964622874942114, guid: fe6e311adf66af349a7855d0cb57d738,
         type: 2}
       propertyPath: mainPlayer
@@ -338,21 +353,6 @@ Prefab:
       propertyPath: bedObj
       value: 
       objectReference: {fileID: 1849793895}
-    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
-        type: 2}
-      propertyPath: fetchObj
-      value: 
-      objectReference: {fileID: 615394150}
-    - target: {fileID: 114968352960053098, guid: fe6e311adf66af349a7855d0cb57d738,
-        type: 2}
-      propertyPath: hatchObject
-      value: 
-      objectReference: {fileID: 1655377959}
-    - target: {fileID: 114420040120366708, guid: fe6e311adf66af349a7855d0cb57d738,
-        type: 2}
-      propertyPath: txtStats
-      value: 
-      objectReference: {fileID: 615394152}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe6e311adf66af349a7855d0cb57d738, type: 2}
   m_IsPrefabParent: 0
@@ -2767,7 +2767,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1178901370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 678.5, y: 337, z: 0}
+  m_LocalPosition: {x: 406.5, y: 269.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 615394151}
