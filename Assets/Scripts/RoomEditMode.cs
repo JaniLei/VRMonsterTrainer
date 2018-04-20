@@ -8,6 +8,7 @@ public class RoomEditMode : MonoBehaviour
     public GameObject selection;
     public Material editModeMat;
     public Material overlappingMat;
+    public float lineWidth = 0.1f;
 
     GameObject selectionMarker;
     LineRenderer lineRenderer;
@@ -26,10 +27,9 @@ public class RoomEditMode : MonoBehaviour
     {
         foreach (var hand in player.hands)
         {
-            Vector3 offset = -hand.transform.forward;
             RaycastHit hit;
-            //bool bHit = Physics.Linecast(hand.transform.position, hand.transform.position + -hand.transform.up * 100, out hit);
-            bool bHit = Physics.Linecast(player.hmdTransform.position, hand.transform.position, out hit);
+            bool bHit = Physics.Linecast(hand.transform.position, hand.transform.position + -hand.transform.up * 100, out hit);
+            //bool bHit = Physics.Linecast(player.hmdTransform.position, hand.transform.position, out hit);
             if (bHit)
             {
                 pointedPos = hit.point;
@@ -40,29 +40,25 @@ public class RoomEditMode : MonoBehaviour
                 
                 if (bHit)
                 {
-                    //pointedPos = hit.point;
-                    pointedObj = hit.transform.gameObject;
-                    //CreateLineRenderer(hand.transform.position, pointedPos);
+                    if (!hit.transform.gameObject.GetComponent<Rigidbody>())
+                        pointedObj = hit.transform.gameObject;
                     if (!selectionMarker)
-                        CreateLineRenderer(player.hmdTransform.position, pointedPos);
+                    {
+                        CreateLineRenderer(hand.transform.position, pointedPos);
+                        //CreateLineRenderer(player.hmdTransform.position, pointedPos);
+                    }
                 }
-
-                //if (!selectionMarker)
-                //{
-                //    pointedObj = hit.transform.gameObject;
-                //}
-                //else
-                //{
-                //    MoveSelectionMarker(pointedPos);
-                //}
             }
             
             if (hand.GetStandardInteractionButtonUp())
             {
                 if (!selection)
                 {
-                    selection = pointedObj;
-                    CreateSelectionMarker();
+                    if (pointedObj)
+                    {
+                        selection = pointedObj;
+                        CreateSelectionMarker();
+                    }
 
                     if (lineRenderer)
                         lineRenderer.enabled = false;
@@ -75,19 +71,6 @@ public class RoomEditMode : MonoBehaviour
                         ConfirmSelection();
                 }
             }
-
-            //if (selection)
-            //{
-            //    Vector3 offset = -hand.transform.forward; // new Vector3(0, 0, -1);
-            //    RaycastHit hit;
-            //    //bool bHit = Physics.Linecast(hand.transform.position, hand.transform.position + -hand.transform.up * 100, out hit);
-            //    bool bHit = Physics.Linecast(player.hmdTransform.position, hand.transform.position, out hit);
-
-            //    if (bHit)
-            //    {
-            //        pointedPos = hit.point;
-            //    }
-            //}
 
             if (selectionMarker)
             {
@@ -114,16 +97,13 @@ public class RoomEditMode : MonoBehaviour
             MoveSelectionMarker(pointedPos);
 
             Renderer markerRenderer = selectionMarker.GetComponent<Renderer>();
-            if (markerRenderer)
+            if (markerOverlapping)
             {
-                if (markerOverlapping)
-                {
-                    markerRenderer.material = overlappingMat;
-                }
-                else
-                {
-                    markerRenderer.material = editModeMat;
-                }
+                markerRenderer.material = overlappingMat;
+            }
+            else
+            {
+                markerRenderer.material = editModeMat;
             }
         }
     }
@@ -144,14 +124,14 @@ public class RoomEditMode : MonoBehaviour
         
         lineRenderer = newObject.AddComponent<LineRenderer>();
 
-        lineRenderer.enabled = false;
+        lineRenderer.enabled = true;
         lineRenderer.receiveShadows = false;
         lineRenderer.reflectionProbeUsage = UnityEngine.Rendering.ReflectionProbeUsage.Off;
         lineRenderer.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
         lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         lineRenderer.material = editModeMat;
-        lineRenderer.startWidth = 0.01f;
-        lineRenderer.endWidth = 0.01f;
+        lineRenderer.startWidth = lineWidth;
+        lineRenderer.endWidth = lineWidth;
         
         lineRenderer.SetPosition(0, from);
         lineRenderer.SetPosition(1, to);
@@ -178,6 +158,7 @@ public class RoomEditMode : MonoBehaviour
         MeshRenderer renderer = selectionMarker.GetComponentInChildren<MeshRenderer>();
         if (renderer != null)
         {
+            // snap to ground
             RaycastHit rayhit;
 
             if (Physics.Raycast(/*renderer.bounds.center*/selectionMarker.transform.position, Vector3.down, out rayhit))
@@ -185,6 +166,7 @@ public class RoomEditMode : MonoBehaviour
                 float offsetY = rayhit.point.y - renderer.bounds.min.y;
                 selectionMarker.transform.position += new Vector3(0f, offsetY, 0f);
             }
+            // check overlaps
             Vector3 offset = new Vector3(0, 0.01f, 0);
             Collider[] colls = Physics.OverlapBox(/*selectionMarker.transform.position*/renderer.bounds.center + offset, /*selectionMarker.transform.localScale / 2*/renderer.bounds.size / 2);
             if (colls.Length > 0)
