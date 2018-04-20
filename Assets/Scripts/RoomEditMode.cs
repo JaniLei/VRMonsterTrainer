@@ -8,7 +8,7 @@ public class RoomEditMode : MonoBehaviour
     public GameObject selection;
     public Material editModeMat;
     public Material overlappingMat;
-    public float lineWidth = 0.1f;
+    public float lineWidth = 0.01f;
 
     GameObject selectionMarker;
     LineRenderer lineRenderer;
@@ -28,24 +28,19 @@ public class RoomEditMode : MonoBehaviour
         foreach (var hand in player.hands)
         {
             RaycastHit hit;
-            bool bHit = Physics.Linecast(hand.transform.position, hand.transform.position + -hand.transform.up * 100, out hit);
-            //bool bHit = Physics.Linecast(player.hmdTransform.position, hand.transform.position, out hit);
+            //bool bHit = Physics.Linecast(hand.transform.position, hand.transform.position + hand.transform.forward * 100, out hit);
+            bool bHit = Physics.Linecast(player.hmdTransform.position, hand.transform.position, out hit);
             if (bHit)
             {
                 pointedPos = hit.point;
-            }
-            
-            if (hand.GetStandardInteractionButton())
-            {
-                
-                if (bHit)
+
+                if (hand.GetStandardInteractionButton())
                 {
-                    if (!hit.transform.gameObject.GetComponent<Rigidbody>())
-                        pointedObj = hit.transform.gameObject;
                     if (!selectionMarker)
                     {
-                        CreateLineRenderer(hand.transform.position, pointedPos);
-                        //CreateLineRenderer(player.hmdTransform.position, pointedPos);
+                        pointedObj = hit.transform.gameObject;
+                        //CreateLineRenderer(hand.transform.position, pointedPos);
+                        CreateLineRenderer(player.hmdTransform.position, pointedPos);
                     }
                 }
             }
@@ -60,8 +55,6 @@ public class RoomEditMode : MonoBehaviour
                         CreateSelectionMarker();
                     }
 
-                    if (lineRenderer)
-                        lineRenderer.enabled = false;
                 }
                 else
                 {
@@ -70,6 +63,9 @@ public class RoomEditMode : MonoBehaviour
                     else
                         ConfirmSelection();
                 }
+
+                if (lineRenderer)
+                    lineRenderer.enabled = false;
             }
 
             if (selectionMarker)
