@@ -12,11 +12,12 @@ namespace Valve.VR.InteractionSystem
         public Text screenText;
 
         bool buttonPressed;
-        Vector3 startPos;
+        //Vector3 startPos;
 
         void Start()
         {
-            startPos = transform.localPosition;
+            //startPos = transform.localPosition;
+            screenText.text = ("Edit mode off.");
         }
 
         private void OnHandHoverBegin(Hand hand)

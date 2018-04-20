@@ -3,7 +3,6 @@ using System.Collections;
 
 namespace Valve.VR.InteractionSystem
 {
-    //-------------------------------------------------------------------------
     [RequireComponent(typeof(Interactable))]
     public class HologramButton : MonoBehaviour
     {
