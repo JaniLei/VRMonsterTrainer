@@ -134,6 +134,7 @@ public class Monster : MonoBehaviour {
 
     public void WaitFor(float t)
     {
+        //Debug.Log(waitTimer);
         if (WaitStarted)
         {
             Wait(t);
@@ -152,15 +153,14 @@ public class Monster : MonoBehaviour {
         if (waitTimer < 0)
         {
             waitTimer = 0;
-            state.SetState(MonsterState.States.Follow);
             WaitStarted = false;
+            state.SetState(state.stateInQueue);
         }
     }
 
     public void CatchObject(GameObject g)
     {
         mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, g.transform.position, 5);
-        //Idea: set a joint to the object
     }
 
     float timer = 0;
@@ -175,6 +175,7 @@ public class Monster : MonoBehaviour {
             state.SetAnimationState(MonsterState.animStates.EatHand);
             mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString()); //Type of object eaten
             g.SetActive(false);
+            state.SetEmotion(MonsterState.Emotions.Happy);
             timer += Time.deltaTime;
             if (timer > 2)
             {
@@ -194,6 +195,7 @@ public class Monster : MonoBehaviour {
             {
                 mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString()); //Type of object eaten
                 g.SetActive(false);
+                state.SetEmotion(MonsterState.Emotions.Happy);
                 return true;
             }
         }
