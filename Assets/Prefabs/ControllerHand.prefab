@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4109113163889414}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,8 @@ GameObject:
   - component: {fileID: 4835606172953550}
   - component: {fileID: 95394221725340802}
   - component: {fileID: 114091017627642538}
-  m_Layer: 0
+  - component: {fileID: 114462759714496324}
+  m_Layer: 11
   m_Name: ControllerHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4830644768955264}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ring_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +67,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4402763980593766}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Middle_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +82,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4717870198957266}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ring_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +97,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4233162971925196}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Thumb_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +112,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4469514582759644}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Middle_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4901741988545906}
   - component: {fileID: 137060067564332660}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MonsterHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +143,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000608228950210}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Index_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +158,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4729272983768266}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hand_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +173,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4392877779324832}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hand_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +188,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4950048345146368}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +203,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4665091037469918}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Thumb_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +218,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4763687320985004}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Index_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,6 +448,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f597661d180984fa2530b44a574b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114462759714496324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071727803910616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d4cc6cf300b3e4bb1411c4e041030c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportAllowed: 1
+  overrideHoverLock: 1
 --- !u!137 &137060067564332660
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

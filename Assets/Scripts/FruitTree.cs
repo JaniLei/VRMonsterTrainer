@@ -96,6 +96,7 @@ public class FruitTree : MonoBehaviour
         for (int i = 0; i < produce.Length; i++)
         {
             SpawnAt(i);
+            produce[i].currentTime = Random.Range(0f, growTime / 2);
         }
     }
 

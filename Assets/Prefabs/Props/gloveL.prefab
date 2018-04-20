@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 54260820778175642}
   - component: {fileID: 114820066505076954}
   - component: {fileID: 114871887515078202}
+  - component: {fileID: 114078547749786234}
   m_Layer: 0
   m_Name: gloveL
   m_TagString: Untagged
@@ -144,6 +145,19 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 3b6cf8ece61218b4b85c379251b9026b, type: 3}
+--- !u!114 &114078547749786234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1561467797858488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d4cc6cf300b3e4bb1411c4e041030c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportAllowed: 1
+  overrideHoverLock: 1
 --- !u!114 &114820066505076954
 MonoBehaviour:
   m_ObjectHideFlags: 1

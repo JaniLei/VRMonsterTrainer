@@ -36,14 +36,21 @@ namespace Valve.VR.InteractionSystem
                 {
                     hand.HoverLock(GetComponent<Interactable>());
                     hand.AttachObject(gameObject, attachmentFlags);
+                    GetComponentInChildren<Collider>().gameObject.layer = LayerMask.NameToLayer("IgnoreTeleport");
+                }
+                else
+                {
+                    hand.DetachObject(gameObject);
+                    hand.HoverUnlock(GetComponent<Interactable>());
+                    GetComponentInChildren<Collider>().gameObject.layer = LayerMask.NameToLayer("Default");
                 }
             }
-            else if (hand.currentAttachedObject == gameObject && hand.GetStandardInteractionButtonUp() || 
-                     hand.currentAttachedObject == gameObject && ((hand.controller != null) && hand.controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_Grip)))
-            {
-                hand.DetachObject(gameObject);
-                hand.HoverUnlock(GetComponent<Interactable>());
-            }
+            //else if (hand.currentAttachedObject == gameObject && hand.GetStandardInteractionButtonUp() || 
+            //         hand.currentAttachedObject == gameObject && ((hand.controller != null) && hand.controller.GetPressUp(Valve.VR.EVRButtonId.k_EButton_Grip)))
+            //{
+            //    hand.DetachObject(gameObject);
+            //    hand.HoverUnlock(GetComponent<Interactable>());
+            //}
         }
 
         private void HandAttachedUpdate(Hand hand)

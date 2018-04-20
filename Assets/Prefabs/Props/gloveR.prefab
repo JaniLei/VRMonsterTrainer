@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 54224768030668042}
   - component: {fileID: 114080392976938926}
   - component: {fileID: 114026952519116256}
+  - component: {fileID: 114360090380216642}
   m_Layer: 0
   m_Name: gloveR
   m_TagString: Untagged
@@ -170,3 +171,16 @@ MonoBehaviour:
   attachmentPoint: 
   hitForceMultiplier: 2
   otherColl: {fileID: 0}
+--- !u!114 &114360090380216642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1259078332208514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d4cc6cf300b3e4bb1411c4e041030c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportAllowed: 1
+  overrideHoverLock: 1
