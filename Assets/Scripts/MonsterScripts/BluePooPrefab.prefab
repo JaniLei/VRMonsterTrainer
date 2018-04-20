@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachForce: 800
   attachForceDamper: 25
-  attachMode: 0
+  attachMode: 1
   attachmentFlags: 0
 --- !u!114 &114217977701384284
 MonoBehaviour:
