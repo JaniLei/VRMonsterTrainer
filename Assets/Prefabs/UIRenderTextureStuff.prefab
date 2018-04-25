@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 136538978434491824}
   - component: {fileID: 23687164837157034}
   - component: {fileID: 114494273033355718}
-  - component: {fileID: 114201093241666714}
+  - component: {fileID: 114420780772330266}
   m_Layer: 0
-  m_Name: HologramButton
+  m_Name: HologramHandle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,8 +201,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363615750678224}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 14.52, z: 0}
-  m_LocalScale: {x: 5, y: 21.73913, z: 10}
+  m_LocalPosition: {x: -4.723335, y: -0.002, z: 0}
+  m_LocalScale: {x: 8.333334, y: 2.0325203, z: 33.333336}
   m_Children:
   - {fileID: 4332403100475636}
   - {fileID: 4126187625121354}
@@ -215,14 +215,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1753651463931424}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -2.98, y: 1.31, z: 0.99}
-  m_LocalScale: {x: 0.1, y: 0.023, z: 0.1}
+  m_LocalRotation: {x: 0, y: 0.5742911, z: -0, w: -0.8186512}
+  m_LocalPosition: {x: -2.38, y: 1.36, z: 1.389}
+  m_LocalScale: {x: 0.03, y: 0.123, z: 0.03}
   m_Children:
   - {fileID: 4385998904216704}
   m_Father: {fileID: 4779077014244116}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 289.9, z: 0}
 --- !u!4 &4779077014244116
 Transform:
   m_ObjectHideFlags: 1
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93b6a877adcbf94c89a9d6e0c0e844d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114201093241666714
+--- !u!114 &114420780772330266
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -463,9 +463,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753651463931424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e1d95ed21ca744d85794402343be8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bc9e64f21af23142ac5af6e6cef4540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attachmentFlags: 13
   screen: {fileID: 1363615750678224}
 --- !u!114 &114494273033355718
 MonoBehaviour:

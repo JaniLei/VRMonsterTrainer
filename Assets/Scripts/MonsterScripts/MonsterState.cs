@@ -28,6 +28,22 @@ public class MonsterState : MonoBehaviour {
 
     public Animator anim;
     public Animator adultAnim;
+    public AudioSource audioSource;
+    public AudioClip yawn;
+    public AudioClip hungry;
+    public AudioClip poop;
+    public AudioClip walk;
+    public AudioClip eatHand;
+    public AudioClip eatGround;
+    public AudioClip hit;
+    public AudioClip sleep;
+    public AudioClip dyingWhimper;
+    public AudioClip die;
+    public AudioClip sniff;
+    public AudioClip pickUp;
+    public AudioClip enjoyPetting;
+    public AudioClip push;
+    public AudioClip evolve;
 
     void Start()
     {
@@ -36,6 +52,7 @@ public class MonsterState : MonoBehaviour {
         stats = gameObject.GetComponent<MonsterStats>();
         fetch = gameObject.GetComponent<Fetch>();
         boxing = gameObject.GetComponent<Boxing>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         fetch.stats = stats;
         fetch.state = this;
@@ -193,6 +210,7 @@ public class MonsterState : MonoBehaviour {
         anim.SetFloat("Speed", 0);
         anim.SetBool("Sleep", false);
         animationState = stateToSet;
+        audioSource.loop = false;
         switch (animationState)
         {
             case animStates.Idle:
@@ -202,46 +220,61 @@ public class MonsterState : MonoBehaviour {
             case animStates.Walking:
                 anim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
                 adultAnim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
+                audioSource.Play();
+                audioSource.loop = true;
                 break;
             case animStates.EatGround:
                 anim.SetTrigger("Eat");
+                if (!audioSource.isPlaying) { audioSource.PlayOneShot(eatGround); }
                 break;
             case animStates.EatHand:
                 anim.SetTrigger("EatFromHand");
+                if (!audioSource.isPlaying) { audioSource.PlayOneShot(eatHand); }
                 break;
             case animStates.Sleep:
                 anim.SetBool("Sleep", true);
+                audioSource.PlayOneShot(sleep);
                 break;
             case animStates.Dead:
                 anim.SetFloat("Speed", 0);
                 anim.SetBool("Dead", true);
+                audioSource.PlayOneShot(die);
                 break;
             case animStates.Lift:
                 anim.SetTrigger("LiftObject");
+                audioSource.PlayOneShot(pickUp);
                 break;
             case animStates.Poop:
+                audioSource.PlayOneShot(poop);
                 anim.SetTrigger("DoTheDoo");
                 break;
             case animStates.Sniff:
                 anim.SetTrigger("Sniff");
+                if (!audioSource.isPlaying) { audioSource.PlayOneShot(sniff); }
                 break;
             case animStates.Petting:
                 anim.SetTrigger("Petting");
+                if (!audioSource.isPlaying) { audioSource.PlayOneShot(enjoyPetting); }
                 break;
             case animStates.GetHit:
                 anim.SetTrigger("Hit");
+                if (!audioSource.isPlaying) { audioSource.PlayOneShot(hit); }
                 break;
             case animStates.Hungry:
                 anim.SetTrigger("");
+                audioSource.PlayOneShot(hungry);
                 break;
             case animStates.Yawn:
+                audioSource.PlayOneShot(yawn);
                 anim.SetTrigger("Yawn");
                 break;
             case animStates.Evolve:
                 adultAnim.SetTrigger("Evolve");
+                audioSource.PlayOneShot(evolve);
                 break;
             case animStates.Push:
                 adultAnim.SetTrigger("Push");
+                audioSource.PlayOneShot(push);
                 break;
 
 
