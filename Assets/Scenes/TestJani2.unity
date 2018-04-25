@@ -183,39 +183,53 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224295697599603556, guid: f5d3c7cd5064dfe4daeac69d3e121656,
     type: 2}
   m_PrefabInternal: {fileID: 1294514503}
---- !u!1 &32591846 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100026, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &32591850
-MeshCollider:
+--- !u!1001 &43863423
+Prefab:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 32591846}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300008, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &32591851
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 32591846}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4445180505825446, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445180505825446, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.218
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445180505825446, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -4.082
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445180505825446, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445180505825446, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445180505825446, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445180505825446, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445180505825446, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064212962238936, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.21
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 54472510111527432, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: eb7bf01153896ec44a8061877678efd3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &126431124
 Prefab:
   m_ObjectHideFlags: 0
@@ -378,105 +392,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ebf71c1b180f92f4c86767c9f736420c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &211278030 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100024, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &211278034
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 211278030}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300006, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &211278035
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 211278030}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1001 &264468296
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.218
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.082
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 400040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-      propertyPath: m_Name
-      value: BreakableEgg
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_IsPrefabParent: 0
 --- !u!1001 &369319824
 Prefab:
   m_ObjectHideFlags: 0
@@ -630,39 +545,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &398578465 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100016, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &398578469
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 398578465}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300032, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &398578470
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 398578465}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &403332470 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5768f08bcb96c524a870d1396c532abd, type: 3}
@@ -723,78 +605,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5768f08bcb96c524a870d1396c532abd, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &458671608 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100014, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &458671612
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 458671608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300030, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &458671613
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 458671608}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &464525073 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114636742742136198, guid: dc06161b6d97feb419f45f03b62e14b9,
     type: 2}
   m_PrefabInternal: {fileID: 1568348701}
   m_Script: {fileID: 11500000, guid: 378df20302390594dac3c7908afe17aa, type: 3}
---- !u!1 &558777972 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100028, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &558777976
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 558777972}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300010, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &558777977
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 558777972}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &559407488 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: c2bbe80f63dcaf94fa218478d075b254, type: 3}
@@ -826,39 +642,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: c2bbe80f63dcaf94fa218478d075b254, type: 3}
---- !u!1 &597562882 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100018, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &597562886
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 597562882}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300034, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &597562887
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 597562882}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &700953058
 Prefab:
   m_ObjectHideFlags: 0
@@ -1407,171 +1190,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87fcd74eded2b274d90c4b031645764f, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &991200067 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100012, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &991200071
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 991200067}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300028, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &991200072
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 991200067}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &996605870 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100022, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &996605874
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 996605870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300038, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &996605875
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 996605870}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &1037578052 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100004, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1037578056
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1037578052}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300004, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1037578057
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1037578052}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &1131273805 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100038, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1131273809
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1131273805}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300020, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1131273810
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1131273805}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &1170114576 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100030, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1170114580
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1170114576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300012, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1170114581
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1170114576}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1269135394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,39 +1241,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1289590774 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100020, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1289590778
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1289590774}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300036, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1289590779
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1289590774}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1294514503
 Prefab:
   m_ObjectHideFlags: 0
@@ -1977,39 +1562,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1448008233 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100034, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1448008237
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1448008233}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300016, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1448008238
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1448008233}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1455794051 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 3c5d509436bcb2d41aba08136667e432, type: 3}
@@ -2098,39 +1650,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c2bbe80f63dcaf94fa218478d075b254, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &1560039434 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100006, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1560039438
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1560039434}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300022, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1560039439
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1560039434}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1568348701
 Prefab:
   m_ObjectHideFlags: 0
@@ -2289,6 +1808,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 64476624931171198, guid: 393a446a5ed2f0c4ab377bfdab944eb1,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114820066505076954, guid: 393a446a5ed2f0c4ab377bfdab944eb1, type: 2}
     - {fileID: 114871887515078202, guid: 393a446a5ed2f0c4ab377bfdab944eb1, type: 2}
@@ -2337,72 +1861,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df752b5ba5522754eacb2e6525aaa5f3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1710444330 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1710444334
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1710444330}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1710444335
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1710444330}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &1715493505 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100036, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1715493509
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1715493505}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300018, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1715493510
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1715493505}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1738227413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,72 +1945,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1738227413}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1745661162 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100032, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1745661166
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1745661162}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300014, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1745661167
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1745661162}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &1751755813 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100010, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1751755817
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1751755813}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300026, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1751755818
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1751755813}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1820657282
 Prefab:
   m_ObjectHideFlags: 0
@@ -2691,39 +2083,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3332aab8bf4c704ab0a2c1ab5799121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1861657453 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100002, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1861657457
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1861657453}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300002, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1861657458
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1861657453}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1869739932
 Prefab:
   m_ObjectHideFlags: 0
@@ -2766,39 +2125,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 267e08e5797e070429d042dc48f812e8, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1898455762 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100008, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!64 &1898455766
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1898455762}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300024, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
---- !u!54 &1898455767
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1898455762}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1949664052
 Prefab:
   m_ObjectHideFlags: 0
@@ -2846,33 +2172,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2ca487f173409844af8e39949b0bd3d, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2008574570 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100040, guid: b17deb994f412194aafb1a8e74ed3e0a, type: 3}
-  m_PrefabInternal: {fileID: 264468296}
---- !u!114 &2008574572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2008574570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69cbf70c5fa23544ca2089a150a9c3b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  breakForce: 1.5
---- !u!114 &2008574573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2008574570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b93b6a877adcbf94c89a9d6e0c0e844d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2074417865
 GameObject:
   m_ObjectHideFlags: 0

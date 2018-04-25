@@ -8,6 +8,12 @@ namespace Valve.VR.InteractionSystem
     public class BreakableEgg : MonoBehaviour
     {
         public float breakForce = 1.5f;
+        public int secondsTillBreak = 180;
+
+        void Start()
+        {
+            Invoke("Break", secondsTillBreak);
+        }
 
         void Update()
         {
@@ -25,12 +31,14 @@ namespace Valve.VR.InteractionSystem
 
         void Break()
         {
+            GetComponent<MeshCollider>().enabled = false;
             Rigidbody[] rbs = GetComponentsInChildren<Rigidbody>();
             for (int i = 0; i < rbs.Length; i++)
             {
                 rbs[i].useGravity = true;
                 rbs[i].isKinematic = false;
             }
+            FindObjectOfType<MonsterState>().SendMessage("HatchMonster", SendMessageOptions.DontRequireReceiver);
         }
     }
 }
