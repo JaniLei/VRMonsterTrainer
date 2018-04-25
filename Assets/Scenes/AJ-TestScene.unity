@@ -2355,7 +2355,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4890600399676998, guid: fda12b603ff6b8841b3b7efa98ae6ce0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.341
       objectReference: {fileID: 0}
     - target: {fileID: 4890600399676998, guid: fda12b603ff6b8841b3b7efa98ae6ce0, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2383,6 +2383,78 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1674594414811952, guid: fda12b603ff6b8841b3b7efa98ae6ce0, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199528685069740246, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 199528685069740246, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199528685069740246, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: m_RenderAlignment
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 199528685069740246, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: m_SortMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 108809902466482138, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: m_BounceIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108809902466482138, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108809902466482138, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1249776889739368, guid: fda12b603ff6b8841b3b7efa98ae6ce0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 108809902466482138, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: m_Range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 108809902466482138, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534146649819764, guid: fda12b603ff6b8841b3b7efa98ae6ce0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534146649819764, guid: fda12b603ff6b8841b3b7efa98ae6ce0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.278
+      objectReference: {fileID: 0}
+    - target: {fileID: 198244939726094226, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1692620529
+      objectReference: {fileID: 0}
+    - target: {fileID: 198244939726094226, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198244939726094226, guid: fda12b603ff6b8841b3b7efa98ae6ce0,
+        type: 2}
+      propertyPath: CustomDataModule.enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3081,6 +3153,10 @@ Prefab:
     - target: {fileID: 400000, guid: 596aa2cf504268546a276b18b0474aa2, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 596aa2cf504268546a276b18b0474aa2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 596aa2cf504268546a276b18b0474aa2, type: 3}
