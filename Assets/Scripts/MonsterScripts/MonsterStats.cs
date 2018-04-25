@@ -39,7 +39,7 @@ public class MonsterStats : MonoBehaviour {
 
             hasEaten = false;
         }
-        else if (mStats.hunger>3) //Hungry
+        else if (mStats.hunger>5) //Hungry
         {
             state.SetAnimationState(MonsterState.animStates.Hungry);
             

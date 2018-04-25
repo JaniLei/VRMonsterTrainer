@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround} //states for the monster
-    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk }
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround, Smash} //states for the monster
+    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk, Smash}
     public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
     States currentState = States.Hatching;
     animStates animationState = animStates.Idle;
@@ -20,9 +20,9 @@ public class MonsterState : MonoBehaviour {
     public float followDistance;
     public float hatchTime = 10;
     public GameObject hatchObject;
-    public Vector3 exitPoint;
     float hTimer;
     public bool trustPlayer;
+    public GameObject smashableObject;
 
     bool ragdolling = false;
 
@@ -44,6 +44,7 @@ public class MonsterState : MonoBehaviour {
     public AudioClip enjoyPetting;
     public AudioClip push;
     public AudioClip evolve;
+
 
     void Start()
     {
@@ -77,6 +78,7 @@ public class MonsterState : MonoBehaviour {
 
         EventManager.instance.Fetching += OnFetching;
         EventManager.instance.Pointing += OnPointing;
+
     }
 
     void Update()
@@ -176,7 +178,13 @@ public class MonsterState : MonoBehaviour {
 
                 break;
             case States.Exit:
-                monster.MoveTo(exitPoint);
+                monster.MoveTo(smashableObject.transform.position);
+                if (Vector3.Distance(transform.position, smashableObject.transform.position) < 2)
+                {
+                    SetState(States.Smash);
+                    SetAnimationState(animStates.Smash);
+                    smashableObject.GetComponent<BreakableStone>().Break(transform.position);
+                }
                 break;
             case States.Dead:
                 //Do dying stuff
@@ -275,6 +283,11 @@ public class MonsterState : MonoBehaviour {
             case animStates.Push:
                 adultAnim.SetTrigger("Push");
                 audioSource.PlayOneShot(push);
+                break;
+            case animStates.Smash:
+                adultAnim.SetFloat("Speed", 0);
+                adultAnim.SetTrigger("Smash");
+                //audioSource.PlayOneShot(smash);
                 break;
 
 
