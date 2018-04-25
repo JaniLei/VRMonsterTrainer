@@ -6,10 +6,12 @@ public class DustSpawner : MonoBehaviour {
 
     ParticleSystem particleSys;
     public int particleAmount;
-    public int spawnCount;
     public int rockAmount;
-    public GameObject rockObj;
+    public int spawnCount;
+    public List<GameObject> rockObjects;
     public float areaSize;
+    public float overTime;
+
 
 	void Start ()
     {
@@ -29,8 +31,8 @@ public class DustSpawner : MonoBehaviour {
     {
         for (int i = 0; i < spawnCount; i++)
         {
-            Invoke("CreateParticle", Random.Range(0.00f, 1.00f));
-            Invoke("CreateRock", Random.Range(0.00f, 1.00f));
+            Invoke("CreateParticle", Random.Range(0.00f, overTime));
+            Invoke("CreateRock", Random.Range(0.00f, overTime));
         }
     }
 
@@ -41,6 +43,7 @@ public class DustSpawner : MonoBehaviour {
 
     void CreateRock()
     {
+        GameObject rockObj = rockObjects[Random.Range(0, rockObjects.Count)];
         Vector3 spawnPos = transform.position + (Random.Range(-areaSize, areaSize) * transform.right + (Random.Range(-areaSize, areaSize) * transform.up));
         Destroy(Instantiate(rockObj, spawnPos, Quaternion.identity), 5);
     }

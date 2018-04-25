@@ -156,7 +156,7 @@ public class MonsterStats : MonoBehaviour {
                 childMonster.SetActive(false);
                 adultMonster.SetActive(true);
             }
-            state.SetState(MonsterState.States.Exit);
+            state.SetState(MonsterState.States.Evolve);
         }
     }
 

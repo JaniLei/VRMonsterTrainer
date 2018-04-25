@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114520886869801460}
   - component: {fileID: 114477879178907754}
   - component: {fileID: 114742425076202474}
+  - component: {fileID: 65322469825024854}
   m_Layer: 0
   m_Name: Chili
   m_TagString: Untagged
@@ -262,6 +263,18 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 507c2f1a97a6d714a81d5ac666f60c36, type: 3}
+--- !u!65 &65322469825024854
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1201703335262698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114299774063524034
 MonoBehaviour:
   m_ObjectHideFlags: 1
