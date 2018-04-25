@@ -24,9 +24,9 @@ public class Monster : MonoBehaviour {
     MonsterState state;
 
     public Vector3 headNormalizer = new Vector3(-1,-1f,-2.5f);
-    bool headFollow;
-
     public float GroundLevel;
+    bool headFollow;
+    Quaternion headRotation;
 
     void Start()
     {
@@ -36,7 +36,6 @@ public class Monster : MonoBehaviour {
         headOrigin = gameObject.transform.GetChild(0).gameObject;
         //mHead = gameObject.transform.GetChild(1).gameObject;
     }
-    Quaternion headRotation;
     void LateUpdate()
     {
         if (headFollow)
@@ -53,7 +52,7 @@ public class Monster : MonoBehaviour {
         playerGroundPosition.y = GroundLevel;
 
         playerRotation = Quaternion.LookRotation(mHead.transform.position - mainPlayer.transform.position); //Monster head and player
-        playerRotation.z = 0;
+        //playerRotation.z = 0;
         playerGroundRotation = Quaternion.LookRotation(transform.position - playerGroundPosition); //Monster body and player(y=0.5)
         //mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, headOrigin.transform.position, 1.5f * Time.deltaTime);
 
@@ -121,7 +120,7 @@ public class Monster : MonoBehaviour {
 
     public void SniffObject(GameObject sniffObj)
     {
-        Quaternion tempQuaternion = Quaternion.LookRotation(transform.position - sniffObj.transform.position);
+        Quaternion tempQuaternion = Quaternion.LookRotation(mHead.transform.position - sniffObj.transform.position);
         headRotation = Quaternion.Slerp(mHead.transform.rotation, tempQuaternion, 5 * Time.deltaTime);
         headRotation *= Quaternion.Euler(headNormalizer);
         mHead.transform.rotation = headRotation;

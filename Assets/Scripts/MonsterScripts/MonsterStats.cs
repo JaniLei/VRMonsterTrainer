@@ -42,6 +42,7 @@ public class MonsterStats : MonoBehaviour {
         else if (mStats.hunger>3) //Hungry
         {
             state.SetAnimationState(MonsterState.animStates.Hungry);
+            
             state.SetEmotion(MonsterState.Emotions.Hungry);
             if (mStats.hunger > maxHunger)
             {
@@ -156,7 +157,7 @@ public class MonsterStats : MonoBehaviour {
                 childMonster.SetActive(false);
                 adultMonster.SetActive(true);
             }
-            state.SetState(MonsterState.States.Exit);
+            state.SetState(MonsterState.States.Evolve);
         }
     }
 
