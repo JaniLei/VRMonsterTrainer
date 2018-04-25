@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Exit, Ragdoll, Dead, Petting, EatHand, EatGround} //states for the monster
-    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn }
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround} //states for the monster
+    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk }
     public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
     States currentState = States.Hatching;
     animStates animationState = animStates.Idle;
@@ -27,6 +27,7 @@ public class MonsterState : MonoBehaviour {
     bool ragdolling = false;
 
     public Animator anim;
+    public Animator adultAnim;
 
     void Start()
     {
@@ -150,6 +151,10 @@ public class MonsterState : MonoBehaviour {
             case States.Petting:
                 monster.WaitFor(2.5f);
                 break;
+            case States.Evolve:
+                monster.WaitFor(5);
+                stateInQueue = States.Exit;
+                break;
             case States.Ragdoll:
 
                 break;
@@ -173,6 +178,7 @@ public class MonsterState : MonoBehaviour {
 
     void HatchMonster()
     {
+        stats.childMonster.SetActive(true);
         hatchObject.SetActive(false);
         currentState = States.Follow;
     }
@@ -191,9 +197,11 @@ public class MonsterState : MonoBehaviour {
         {
             case animStates.Idle:
                 anim.SetFloat("Speed", 0);
+                adultAnim.SetFloat("Speed", 0);
                 break;
             case animStates.Walking:
                 anim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
+                adultAnim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
                 break;
             case animStates.EatGround:
                 anim.SetTrigger("Eat");
@@ -229,7 +237,14 @@ public class MonsterState : MonoBehaviour {
             case animStates.Yawn:
                 anim.SetTrigger("Yawn");
                 break;
-            
+            case animStates.Evolve:
+                adultAnim.SetTrigger("Evolve");
+                break;
+            case animStates.Push:
+                adultAnim.SetTrigger("Push");
+                break;
+
+
         }
     }
 
@@ -314,6 +329,7 @@ public class MonsterState : MonoBehaviour {
     {
         SetState(States.Petting);
         SetAnimationState(animStates.Petting);
+        SetEmotion(Emotions.Relaxed);
     }
 
 
