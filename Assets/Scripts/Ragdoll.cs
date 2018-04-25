@@ -22,8 +22,16 @@ namespace Valve.VR.InteractionSystem
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SetKinematic(!isKinematic);
-                GetComponentInParent<Animator>().enabled = isKinematic;
+                ToggleRagdoll();
+            }
+        }
+
+        private void HandHoverUpdate(Hand hand)
+        {
+            if (hand.GetStandardInteractionButtonDown())
+            {
+                SetKinematic(false);
+                GetComponentInParent<Animator>().enabled = false;
             }
         }
 
@@ -39,6 +47,8 @@ namespace Valve.VR.InteractionSystem
             hand.canTeleport = true;
             if (hand.otherHand)
                 hand.otherHand.canTeleport = true;
+
+            Invoke("ToggleRagdoll", 2);
         }
 
         void SetKinematic(bool newValue)

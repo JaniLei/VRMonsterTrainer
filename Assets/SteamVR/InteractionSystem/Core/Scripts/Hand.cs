@@ -699,7 +699,7 @@ namespace Valve.VR.InteractionSystem
 				hoveringInteractable.SendMessage( "HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver );
 			}
 
-            if ((controller != null) && controller.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) || Input.GetKeyDown(KeyCode.E))
+            if (GetStandardInteractionButtonDown())
             {
                 RaycastHit hit;
                 bool bHit = Physics.Linecast(transform.position, transform.forward * 100, out hit);
@@ -708,13 +708,6 @@ namespace Valve.VR.InteractionSystem
                     EventManager.instance.targetObj = hit.transform.gameObject;
                     EventManager.instance.OnPointing();
                 }
-                //RaycastHit hit;
-                //bool bHit = Physics.Linecast(transform.position, -transform.up * 100, out hit);
-                //if (bHit && hit.transform.gameObject.tag == "Bed")
-                //{
-                //    EventManager.instance.targetObj = hit.transform.gameObject;
-                //    EventManager.instance.OnPointing();
-                //}
             }
         }
 

@@ -12,8 +12,8 @@ public class HandControllerState : MonoBehaviour
 	void Start()
     {
         hand = GetComponentInParent<Valve.VR.InteractionSystem.Hand>();
-        if (hand.startingHandType == Valve.VR.InteractionSystem.Hand.HandType.Left)
-            transform.localScale = new Vector3(-1, 1, 1);
+        //if (hand.startingHandType == Valve.VR.InteractionSystem.Hand.HandType.Left)
+        //    transform.localScale = new Vector3(-1, 1, 1);
 
         anim = GetComponent<Animator>();
 	}

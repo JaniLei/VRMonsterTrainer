@@ -38,7 +38,8 @@ public class RoomEditMode : MonoBehaviour
                 {
                     if (!selectionMarker)
                     {
-                        pointedObj = hit.transform.gameObject;
+                        if (hit.transform.gameObject.GetComponent<Editable>())
+                            pointedObj = hit.transform.gameObject;
                         //CreateLineRenderer(hand.transform.position, pointedPos);
                         CreateLineRenderer(player.hmdTransform.position, pointedPos);
                     }
@@ -162,6 +163,7 @@ public class RoomEditMode : MonoBehaviour
                 float offsetY = rayhit.point.y - renderer.bounds.min.y;
                 selectionMarker.transform.position += new Vector3(0f, offsetY, 0f);
             }
+            //selectionMarker.transform.position = new Vector3(pointedPos.x, renderer.bounds.max.y, pointedPos.z);
             // check overlaps
             Vector3 offset = new Vector3(0, 0.01f, 0);
             Collider[] colls = Physics.OverlapBox(/*selectionMarker.transform.position*/renderer.bounds.center + offset, /*selectionMarker.transform.localScale / 2*/renderer.bounds.size / 2);
@@ -188,6 +190,7 @@ public class RoomEditMode : MonoBehaviour
         markerOverlapping = false;
         selection.GetComponent<Collider>().enabled = true;
         selection = null;
+        pointedObj = null;
     }
 
     void ConfirmSelection()

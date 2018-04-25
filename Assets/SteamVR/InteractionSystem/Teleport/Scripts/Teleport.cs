@@ -1034,7 +1034,13 @@ namespace Valve.VR.InteractionSystem
 				return false;
 			}
 
-			if ( hand.hoveringInteractable != null )
+            if (hand.currentAttachedObject != null)
+            {
+                if (hand.currentAttachedObject.GetComponent<BoxingGloves>())
+                    return true;
+            }
+
+            if ( hand.hoveringInteractable != null )
 			{
 				return false;
 			}

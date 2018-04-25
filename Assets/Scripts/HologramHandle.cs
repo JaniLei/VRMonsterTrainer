@@ -4,15 +4,22 @@ using System.Collections;
 namespace Valve.VR.InteractionSystem
 {
     [RequireComponent(typeof(Interactable))]
-    public class HologramButton : MonoBehaviour
+    public class HologramHandle : MonoBehaviour
     {
+        [EnumFlags]
+        [Tooltip("The flags used to attach this object to the hand.")]
+        public Hand.AttachmentFlags attachmentFlags = Hand.AttachmentFlags.ParentToHand | Hand.AttachmentFlags.DetachFromOtherHand | Hand.AttachmentFlags.SnapOnAttach;
         public GameObject screen;
 
-        private Vector3 oldPosition;
-        private Quaternion oldRotation;
+        Vector3 oldPosition;
+        Quaternion oldRotation;
+        Vector3 screenPos;
 
-        private Hand.AttachmentFlags attachmentFlags = Hand.defaultAttachmentFlags & (~Hand.AttachmentFlags.SnapOnAttach) & (~Hand.AttachmentFlags.DetachOthers);
 
+        void Start()
+        {
+            screenPos = screen.transform.localPosition;
+        }
 
         //private void OnHandHoverBegin(Hand hand)
         //{
@@ -49,12 +56,24 @@ namespace Valve.VR.InteractionSystem
                 }
             }
         }
-        
+
         private void OnAttachedToHand(Hand hand)
         {
             screen.SetActive(true);
+            if (hand.startingHandType == Hand.HandType.Left)
+            {
+                if (screenPos.x < 0)
+                    screenPos.x = -screenPos.x;
+                screen.transform.localPosition = screenPos;
+            }
+            else if (hand.startingHandType == Hand.HandType.Right)
+            {
+                if (screenPos.x > 0)
+                    screenPos.x = -screenPos.x;
+                screen.transform.localPosition = screenPos;
+            }
         }
-        
+
         private void OnDetachedFromHand(Hand hand)
         {
             screen.SetActive(false);
