@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround, Smash} //states for the monster
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround, Smash}
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk, Smash}
     public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
-    States currentState = States.Hatching;
+    States currentState = States.Hatching; //set this to Hatching
     animStates animationState = animStates.Idle;
     Monster monster;
     SearchFood search;
@@ -23,8 +23,13 @@ public class MonsterState : MonoBehaviour {
     float hTimer;
     public bool trustPlayer;
     public GameObject smashableObject;
+    public GameObject monsterHand;
 
     bool ragdolling = false;
+
+    float soundTimer;
+    public float mainVolume;
+    public float stepTimer = 0.5f;
 
     public Animator anim;
     public Animator adultAnim;
@@ -61,6 +66,7 @@ public class MonsterState : MonoBehaviour {
         search.monster = monster;
         search.fetch = fetch;
         search.state = this;
+        search.player = GameObject.Find("Player").GetComponent<Valve.VR.InteractionSystem.Player>();
         stats.state = this;
         stats.monster = monster;
         boxing.monster = monster;
@@ -137,11 +143,11 @@ public class MonsterState : MonoBehaviour {
         switch (currentState)
         {
             case States.Hatching:
-                hTimer += Time.deltaTime;
+                /*hTimer += Time.deltaTime;
                 if (hTimer > hatchTime)
                 {
                     HatchMonster();
-                }
+                }*/
                 break;
             case States.Follow:
                 monster.FollowPlayer(followDistance);
@@ -156,6 +162,10 @@ public class MonsterState : MonoBehaviour {
                 search.Search(trustPlayer);
                 break;
             case States.Pooping:
+                if (!monster.WaitStarted)
+                {
+                    stats.Invoke("SpawnPoop", 3.75f);
+                }
                 monster.WaitFor(5.75f);
                 break;
             case States.Whine:
@@ -183,7 +193,7 @@ public class MonsterState : MonoBehaviour {
                 {
                     SetState(States.Smash);
                     SetAnimationState(animStates.Smash);
-                    smashableObject.GetComponent<BreakableStone>().Break(transform.position);
+                    Invoke("SmashStone", 2);
                 }
                 break;
             case States.Dead:
@@ -191,7 +201,15 @@ public class MonsterState : MonoBehaviour {
                 break;
         }
 
-        
+        soundTimer += Time.deltaTime;
+        if ((animationState == animStates.Walking || animationState == animStates.AdultWalk) && soundTimer > stepTimer)
+        {
+            StepSound();
+            soundTimer = 0;
+        }
+
+
+
         statTimer += Time.deltaTime; //Timer for hunger and fatigue
         if (statTimer > gameSpeed)
         {
@@ -201,10 +219,24 @@ public class MonsterState : MonoBehaviour {
         
     }
 
+    void SmashStone()
+    {
+
+        smashableObject.GetComponent<BreakableStone>().Break(transform.position);
+
+    }
+
+    void StepSound()
+    {
+        audioSource.volume = Random.Range(mainVolume/5, mainVolume/3);
+        audioSource.pitch = Random.Range(0.75f, 1.25f);
+        audioSource.PlayOneShot(walk);
+    }
+
     void HatchMonster()
     {
         stats.childMonster.SetActive(true);
-        hatchObject.SetActive(false);
+        //hatchObject.SetActive(false);
         currentState = States.Follow;
     }
 
@@ -218,26 +250,38 @@ public class MonsterState : MonoBehaviour {
         anim.SetFloat("Speed", 0);
         anim.SetBool("Sleep", false);
         animationState = stateToSet;
+        audioSource.volume = mainVolume;
+        audioSource.pitch = 1;
         audioSource.loop = false;
         switch (animationState)
         {
             case animStates.Idle:
-                anim.SetFloat("Speed", 0);
-                adultAnim.SetFloat("Speed", 0);
+                if (anim.isActiveAndEnabled)
+                {
+                    anim.SetFloat("Speed", 0);
+                }
+                else
+                {
+                    adultAnim.SetFloat("Speed", 0);
+                }
                 break;
             case animStates.Walking:
-                anim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
-                adultAnim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
-                audioSource.Play();
-                audioSource.loop = true;
+                if (anim.isActiveAndEnabled)
+                {
+                    anim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
+                }
+                else
+                {
+                    adultAnim.SetFloat("Speed", 0.75f + stats.mStats.speed * 0.0025f);
+                }
                 break;
             case animStates.EatGround:
                 anim.SetTrigger("Eat");
-                if (!audioSource.isPlaying) { audioSource.PlayOneShot(eatGround); }
+                if (!audioSource.isPlaying || audioSource.clip != eatGround) { audioSource.PlayOneShot(eatGround); }
                 break;
             case animStates.EatHand:
                 anim.SetTrigger("EatFromHand");
-                if (!audioSource.isPlaying) { audioSource.PlayOneShot(eatHand); }
+                if (!audioSource.isPlaying || audioSource.clip != eatHand) { audioSource.PlayOneShot(eatHand); }
                 break;
             case animStates.Sleep:
                 anim.SetBool("Sleep", true);
@@ -292,6 +336,8 @@ public class MonsterState : MonoBehaviour {
 
 
         }
+
+
     }
 
     public States stateInQueue = States.Follow;
@@ -305,15 +351,16 @@ public class MonsterState : MonoBehaviour {
             return;
         }
         monster.WaitStarted = false;
-        try
-        {
-            fetchObj.GetComponent<Rigidbody>().useGravity = true;
-        }
-        catch { }
 
+        try { fetchObj.GetComponent<Rigidbody>().useGravity = true; } catch { } //-------
+         
         if (currentState == States.Dead || currentState == States.Hatching || ragdolling)
         {
             return;
+        }
+        if (_state == States.Pooping)
+        {
+            SetAnimationState(animStates.Poop);
         }
         currentState = _state;
         stateInQueue = States.Follow;
@@ -367,8 +414,13 @@ public class MonsterState : MonoBehaviour {
     }
     public void StartFetch(GameObject fObj)
     {
-        SetState(States.Fetch);
+        Invoke("SetFetch", 0.25f);
         fetchObj = fObj;
+    }
+
+    void SetFetch()
+    {
+        SetState(States.Fetch);
     }
 
     public void Petting()
