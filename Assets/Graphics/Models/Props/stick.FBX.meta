@@ -1,23 +1,21 @@
 fileFormatVersion: 2
-guid: 1e68f8663d6013044bfca9007c61f57a
-timeCreated: 1524656636
+guid: ea501726bd094584f82948895599d505
+timeCreated: 1524745236
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cylinder001
     400000: //RootNode
-    400002: Cylinder001
-    2300000: Cylinder001
-    3300000: Cylinder001
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Cylinder001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Cylinder001Mat
-    second: {fileID: 2100000, guid: 5b2b2ebeef0074946959e60740f42fbd, type: 2}
+      name: 'Material #36'
+    second: {fileID: 2100000, guid: df562e45ff7275343add44f547977d70, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

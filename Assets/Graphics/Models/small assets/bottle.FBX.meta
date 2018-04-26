@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9318cdd199038194eba5e3609977f311
-timeCreated: 1521114303
+guid: 28c08200ec51cd14f800c6cd80796430
+timeCreated: 1524745066
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -9,15 +9,13 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Capsule002
-    7400000: Take 001
-    9500000: //RootNode
+    4300000: Cylinder001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: d2b3d835f4526f540b561c29fd270eea, type: 2}
+      name: 'Material #26'
+    second: {fileID: 2100000, guid: f6bf3bc45b271db4394f2e9959097a9c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -51,9 +49,9 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     importVisibility: 1
-    importBlendShapes: 0
-    importCameras: 0
-    importLights: 0
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -70,7 +68,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

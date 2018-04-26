@@ -1,63 +1,33 @@
 fileFormatVersion: 2
-guid: 6bc71adc0e4542b41b19e2e89d213146
-timeCreated: 1524656752
+guid: fc5b106398dceea4d910684e57e187b9
+timeCreated: 1524745125
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Sphere002_Part_1
-    100002: Sphere002_Part_2
-    100004: Sphere002_Part_3
-    100006: Sphere002_Part_4
-    100008: Sphere002_Part_5
-    100010: Sphere002_Part_6
-    100012: Sphere002_Part_7
-    100014: Sphere002_Part_8
-    100016: Sphere002_Part_9
-    100018: //RootNode
-    400000: Sphere002_Part_1
-    400002: Sphere002_Part_2
-    400004: Sphere002_Part_3
-    400006: Sphere002_Part_4
-    400008: Sphere002_Part_5
-    400010: Sphere002_Part_6
-    400012: Sphere002_Part_7
-    400014: Sphere002_Part_8
-    400016: Sphere002_Part_9
-    400018: //RootNode
-    2300000: Sphere002_Part_1
-    2300002: Sphere002_Part_2
-    2300004: Sphere002_Part_3
-    2300006: Sphere002_Part_4
-    2300008: Sphere002_Part_5
-    2300010: Sphere002_Part_6
-    2300012: Sphere002_Part_7
-    2300014: Sphere002_Part_8
-    2300016: Sphere002_Part_9
-    3300000: Sphere002_Part_1
-    3300002: Sphere002_Part_2
-    3300004: Sphere002_Part_3
-    3300006: Sphere002_Part_4
-    3300008: Sphere002_Part_5
-    3300010: Sphere002_Part_6
-    3300012: Sphere002_Part_7
-    3300014: Sphere002_Part_8
-    3300016: Sphere002_Part_9
-    4300000: Sphere002_Part_1
-    4300002: Sphere002_Part_2
-    4300004: Sphere002_Part_3
-    4300006: Sphere002_Part_4
-    4300008: Sphere002_Part_5
-    4300010: Sphere002_Part_6
-    4300012: Sphere002_Part_7
-    4300014: Sphere002_Part_8
-    4300016: Sphere002_Part_9
+    100000: Cone001
+    100002: //RootNode
+    100004: Object001
+    400000: Cone001
+    400002: //RootNode
+    400004: Object001
+    2300000: Cone001
+    2300002: Object001
+    3300000: Cone001
+    3300002: Object001
+    4300000: Cone001
+    4300002: Object001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Material #26'
-    second: {fileID: 2100000, guid: aee45a765bbf0984189796e1ceac973c, type: 2}
+      name: _hili_hili_hiliMaterial__2
+    second: {fileID: 2100000, guid: 9225e82d894542946bc276bf7bf67b21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _hili_hili_hiliMaterial__3
+    second: {fileID: 2100000, guid: 158a0c06b9f5e95479572e731eb84faf, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
