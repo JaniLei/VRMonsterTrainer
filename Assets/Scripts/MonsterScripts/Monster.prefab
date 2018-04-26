@@ -6936,8 +6936,11 @@ MonoBehaviour:
   followDistance: 4
   hatchTime: 10
   hatchObject: {fileID: 0}
-  exitPoint: {x: -3.3, y: 4.5, z: -12.7}
   trustPlayer: 0
+  smashableObject: {fileID: 0}
+  monsterHand: {fileID: 0}
+  mainVolume: 1
+  stepTimer: 0.25
   anim: {fileID: 95715022671201848}
   adultAnim: {fileID: 95984518785349508}
   audioSource: {fileID: 82770991368190482}

@@ -1,23 +1,21 @@
 fileFormatVersion: 2
-guid: 1574f192e0547ed429af4a3e6f6d5bc4
-timeCreated: 1524745034
+guid: ea501726bd094584f82948895599d505
+timeCreated: 1524745236
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Box001
-    100002: //RootNode
-    400000: Box001
-    400002: //RootNode
-    2300000: Box001
-    3300000: Box001
-    4300000: Box001
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cylinder001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Box001Mat
-    second: {fileID: 2100000, guid: 9fbdc15b4a5dde1438e20190e630bd44, type: 2}
+      name: 'Material #36'
+    second: {fileID: 2100000, guid: df562e45ff7275343add44f547977d70, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

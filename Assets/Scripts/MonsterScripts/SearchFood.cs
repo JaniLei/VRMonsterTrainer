@@ -10,6 +10,8 @@ public class SearchFood : MonoBehaviour {
     GameObject foodObj;
     float trustTimer;
 
+    [HideInInspector] public Valve.VR.InteractionSystem.Player player;
+
     [HideInInspector] public Monster monster;
     [HideInInspector] public List<Vector3> nodes;
     [HideInInspector] public Vector3 movePoint;
@@ -30,6 +32,13 @@ public class SearchFood : MonoBehaviour {
             }
         }
 
+        /*for (int i = 0; i < player.hands.Length; i++)
+        {
+            if (player.hands[i].currentAttachedObject.GetComponent<Valve.VR.InteractionSystem.Edible>())
+            {
+                monster.FollowPlayer(1);
+            }
+        }*/
 
         if (foodOnSight)
         {
