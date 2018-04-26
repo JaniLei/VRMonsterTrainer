@@ -1,21 +1,23 @@
 fileFormatVersion: 2
-guid: c2bbe80f63dcaf94fa218478d075b254
-timeCreated: 1521621697
+guid: a3caf07c70713b642ab5929f267e43aa
+timeCreated: 1524740567
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Line002
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Line001
+    400002: Line002
+    2300000: Line002
+    3300000: Line002
+    4300000: Line002
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 'Material #25'
-    second: {fileID: 2100000, guid: 09024a7e256fb9a43acc33adab193c8b, type: 2}
+      name: Line002Mat
+    second: {fileID: 2100000, guid: 925c7c76d59841c42bc1b87ea96a408f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
