@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: 4662a5a5a36e24f498e9e8bd8066ba6c
+timeCreated: 1524745105
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Capsule001
+    100002: Capsule002_Part_1
+    100004: Capsule002_Part_10
+    100006: Capsule002_Part_11
+    100008: Capsule002_Part_12
+    100010: Capsule002_Part_13
+    100012: Capsule002_Part_14
+    100014: Capsule002_Part_15
+    100016: Capsule002_Part_16
+    100018: Capsule002_Part_17
+    100020: Capsule002_Part_18
+    100022: Capsule002_Part_2
+    100024: Capsule002_Part_3
+    100026: Capsule002_Part_4
+    100028: Capsule002_Part_5
+    100030: Capsule002_Part_6
+    100032: Capsule002_Part_7
+    100034: Capsule002_Part_8
+    100036: Capsule002_Part_9
+    100038: Cube001
+    100040: //RootNode
+    400000: Capsule001
+    400002: Capsule002_Part_1
+    400004: Capsule002_Part_10
+    400006: Capsule002_Part_11
+    400008: Capsule002_Part_12
+    400010: Capsule002_Part_13
+    400012: Capsule002_Part_14
+    400014: Capsule002_Part_15
+    400016: Capsule002_Part_16
+    400018: Capsule002_Part_17
+    400020: Capsule002_Part_18
+    400022: Capsule002_Part_2
+    400024: Capsule002_Part_3
+    400026: Capsule002_Part_4
+    400028: Capsule002_Part_5
+    400030: Capsule002_Part_6
+    400032: Capsule002_Part_7
+    400034: Capsule002_Part_8
+    400036: Capsule002_Part_9
+    400038: Cube001
+    400040: //RootNode
+    2300000: Capsule001
+    2300002: Capsule002_Part_1
+    2300004: Capsule002_Part_10
+    2300006: Capsule002_Part_11
+    2300008: Capsule002_Part_12
+    2300010: Capsule002_Part_13
+    2300012: Capsule002_Part_14
+    2300014: Capsule002_Part_15
+    2300016: Capsule002_Part_16
+    2300018: Capsule002_Part_17
+    2300020: Capsule002_Part_18
+    2300022: Capsule002_Part_2
+    2300024: Capsule002_Part_3
+    2300026: Capsule002_Part_4
+    2300028: Capsule002_Part_5
+    2300030: Capsule002_Part_6
+    2300032: Capsule002_Part_7
+    2300034: Capsule002_Part_8
+    2300036: Capsule002_Part_9
+    3300000: Capsule001
+    3300002: Capsule002_Part_1
+    3300004: Capsule002_Part_10
+    3300006: Capsule002_Part_11
+    3300008: Capsule002_Part_12
+    3300010: Capsule002_Part_13
+    3300012: Capsule002_Part_14
+    3300014: Capsule002_Part_15
+    3300016: Capsule002_Part_16
+    3300018: Capsule002_Part_17
+    3300020: Capsule002_Part_18
+    3300022: Capsule002_Part_2
+    3300024: Capsule002_Part_3
+    3300026: Capsule002_Part_4
+    3300028: Capsule002_Part_5
+    3300030: Capsule002_Part_6
+    3300032: Capsule002_Part_7
+    3300034: Capsule002_Part_8
+    3300036: Capsule002_Part_9
+    4300000: Capsule001
+    4300002: Capsule002_Part_1
+    4300004: Capsule002_Part_2
+    4300006: Capsule002_Part_3
+    4300008: Capsule002_Part_4
+    4300010: Capsule002_Part_5
+    4300012: Capsule002_Part_6
+    4300014: Capsule002_Part_7
+    4300016: Capsule002_Part_8
+    4300018: Capsule002_Part_9
+    4300020: Capsule002_Part_10
+    4300022: Capsule002_Part_11
+    4300024: Capsule002_Part_12
+    4300026: Capsule002_Part_13
+    4300028: Capsule002_Part_14
+    4300030: Capsule002_Part_15
+    4300032: Capsule002_Part_16
+    4300034: Capsule002_Part_17
+    4300036: Capsule002_Part_18
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: d2b3d835f4526f540b561c29fd270eea, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

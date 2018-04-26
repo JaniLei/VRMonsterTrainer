@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6ccc8b76243a0664b8f73ae0f6d10dd1
-timeCreated: 1522223726
+guid: 47f83ac17aae46743898bf54917c2e01
+timeCreated: 1524745261
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -32,8 +32,6 @@ ModelImporter:
     4300004: Torus001
     4300006: Box001
     4300008: Object
-    7400000: Take 001
-    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -131,7 +129,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
