@@ -158,7 +158,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1249776889739368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4890600399676998}
@@ -184,7 +184,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1674594414811952}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0.224, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4534146649819764}
@@ -203,8 +203,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3
-  m_Range: 1.5
+  m_Intensity: 5
+  m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -224,7 +224,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -289,7 +289,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1099764101
+  randomSeed: -1443549289
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -441,7 +441,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 3.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -974,22 +974,22 @@ ParticleSystem:
           outSlope: 0.29522914
           tangentMode: 0
         - serializedVersion: 2
-          time: 0.38874868
-          value: 0.19182825
+          time: 0.3944402
+          value: 0
           inSlope: 8.619978
           outSlope: 8.619978
           tangentMode: 0
         - serializedVersion: 2
           time: 0.401681
           value: 0.9439282
-          inSlope: 0.9877736
-          outSlope: 0.9877736
+          inSlope: 0.27414128
+          outSlope: 0.27414128
           tangentMode: 0
         - serializedVersion: 2
           time: 1
-          value: 0.5409243
-          inSlope: -1.5430292
-          outSlope: -1.5430292
+          value: 1
+          inSlope: -0.05677736
+          outSlope: -0.05677736
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -1250,7 +1250,7 @@ ParticleSystem:
         atime1: 26214
         atime2: 65535
         atime3: 65535
-        atime4: 0
+        atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
@@ -2857,7 +2857,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3645,7 +3645,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 657455226
+  randomSeed: -840153170
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10285,7 +10285,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 286131626
+  randomSeed: -1745995720
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13686,7 +13686,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9a64af3a1b89b184eb2fb565ae28512a, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -13707,8 +13707,8 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_RenderMode: 0
-  m_SortMode: 0
+  m_RenderMode: 4
+  m_SortMode: 3
   m_MinParticleSize: 0
   m_MaxParticleSize: 10
   m_CameraVelocityScale: 0
@@ -13720,7 +13720,7 @@ ParticleSystemRenderer:
   m_Pivot: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
