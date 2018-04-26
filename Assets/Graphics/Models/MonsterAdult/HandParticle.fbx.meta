@@ -1,43 +1,23 @@
 fileFormatVersion: 2
-guid: 087937c84d135e842abc350382109881
-timeCreated: 1524731260
+guid: 2a3c13a15496b634798b8cf602932253
+timeCreated: 1524736923
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Screen
-    100002: //RootNode
-    100004: StickThingy
-    100006: Tablet
-    400000: Screen
-    400002: //RootNode
-    400004: StickThingy
-    400006: Tablet
-    2300000: Screen
-    2300002: StickThingy
-    2300004: Tablet
-    3300000: Screen
-    3300002: StickThingy
-    3300004: Tablet
-    4300000: Screen
-    4300002: StickThingy
-    4300004: Tablet
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: MonsterAdultParticle
+    9500000: //RootNode
+    13700000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: ScreenMaterial
-    second: {fileID: 2100000, guid: f8fa06390da967e40965775bb3686393, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: StickThingyMaterial
-    second: {fileID: 2100000, guid: 6f400b359a172774ca51cdb19334723c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TabletMaterial
-    second: {fileID: 2100000, guid: 6f400b359a172774ca51cdb19334723c, type: 2}
+      name: HandParticleMaterial
+    second: {fileID: 2100000, guid: 46d1302a396031b48b4587abb565dc02, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -64,16 +44,16 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1.5
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -84,7 +64,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
