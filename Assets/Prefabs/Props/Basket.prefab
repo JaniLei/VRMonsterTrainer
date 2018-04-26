@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4009321557799022}
   - component: {fileID: 65624703316455522}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Basket
   m_TagString: Bed
   m_Icon: {fileID: 0}
