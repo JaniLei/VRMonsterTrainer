@@ -1,0 +1,312 @@
+fileFormatVersion: 2
+guid: bc1e53f95cdb3c94b81cb109ca5a1c7d
+timeCreated: 1524726878
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Ankle_L
+    100002: Ankle_R
+    100004: Arm_L
+    100006: Arm_R
+    100008: Armature
+    100010: Chest
+    100012: Ear_L_001
+    100014: Ear_L_002
+    100016: Ear_L_003
+    100018: Ear_L_004
+    100020: Ear_R_001
+    100022: Ear_R_002
+    100024: Ear_R_003
+    100026: Ear_R_004
+    100028: Eye_L
+    100030: Eye_R
+    100032: Foot_Index_L
+    100034: Foot_Index_R
+    100036: Foot_L
+    100038: Foot_Middle_L
+    100040: Foot_Middle_R
+    100042: Foot_R
+    100044: Foot_Ring_L
+    100046: Foot_Ring_R
+    100048: Hand_Index_L_001
+    100050: Hand_Index_L_002
+    100052: Hand_Index_R_001
+    100054: Hand_Index_R_002
+    100056: Hand_L_001
+    100058: Hand_L_002
+    100060: Hand_Middle_L_001
+    100062: Hand_Middle_L_002
+    100064: Hand_Middle_R_001
+    100066: Hand_Middle_R_002
+    100068: Hand_R_001
+    100070: Hand_R_002
+    100072: Hand_Ring_L_001
+    100074: Hand_Ring_L_002
+    100076: Hand_Ring_R_001
+    100078: Hand_Ring_R_002
+    100080: Hand_Thumb_L_001
+    100082: Hand_Thumb_L_002
+    100084: Hand_Thumb_R_001
+    100086: Hand_Thumb_R_002
+    100088: Head
+    100090: Hips
+    100092: Jaw
+    100094: Leg_L
+    100096: Leg_R
+    100098: Neck
+    100100: Root
+    100102: Shoulder_L
+    100104: Shoulder_R
+    100106: //RootNode
+    100108: Spine_001
+    100110: Spine_002
+    100112: Tail_001
+    100114: Tail_002
+    100116: Tail_003
+    100118: Tail_004
+    100120: Tail_005
+    100122: Tail_006
+    100124: Tail_007
+    100126: Tail_Blade_001
+    100128: Tail_Blade_002
+    100130: UpperArm_L
+    100132: UpperArm_R
+    100134: UpperLeg_L
+    100136: UpperLeg_R
+    400000: Ankle_L
+    400002: Ankle_R
+    400004: Arm_L
+    400006: Arm_R
+    400008: Armature
+    400010: Chest
+    400012: Ear_L_001
+    400014: Ear_L_002
+    400016: Ear_L_003
+    400018: Ear_L_004
+    400020: Ear_R_001
+    400022: Ear_R_002
+    400024: Ear_R_003
+    400026: Ear_R_004
+    400028: Eye_L
+    400030: Eye_R
+    400032: Foot_Index_L
+    400034: Foot_Index_R
+    400036: Foot_L
+    400038: Foot_Middle_L
+    400040: Foot_Middle_R
+    400042: Foot_R
+    400044: Foot_Ring_L
+    400046: Foot_Ring_R
+    400048: Hand_Index_L_001
+    400050: Hand_Index_L_002
+    400052: Hand_Index_R_001
+    400054: Hand_Index_R_002
+    400056: Hand_L_001
+    400058: Hand_L_002
+    400060: Hand_Middle_L_001
+    400062: Hand_Middle_L_002
+    400064: Hand_Middle_R_001
+    400066: Hand_Middle_R_002
+    400068: Hand_R_001
+    400070: Hand_R_002
+    400072: Hand_Ring_L_001
+    400074: Hand_Ring_L_002
+    400076: Hand_Ring_R_001
+    400078: Hand_Ring_R_002
+    400080: Hand_Thumb_L_001
+    400082: Hand_Thumb_L_002
+    400084: Hand_Thumb_R_001
+    400086: Hand_Thumb_R_002
+    400088: Head
+    400090: Hips
+    400092: Jaw
+    400094: Leg_L
+    400096: Leg_R
+    400098: Neck
+    400100: Root
+    400102: Shoulder_L
+    400104: Shoulder_R
+    400106: //RootNode
+    400108: Spine_001
+    400110: Spine_002
+    400112: Tail_001
+    400114: Tail_002
+    400116: Tail_003
+    400118: Tail_004
+    400120: Tail_005
+    400122: Tail_006
+    400124: Tail_007
+    400126: Tail_Blade_001
+    400128: Tail_Blade_002
+    400130: UpperArm_L
+    400132: UpperArm_R
+    400134: UpperLeg_L
+    400136: UpperLeg_R
+    7400000: SmashBegin
+    7400002: ORAORAORA
+    7400004: SmashEnd
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 3
+    animationRotationError: 0.2
+    animationPositionError: 0.2
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SmashBegin
+      takeName: ORAORAORA
+      firstFrame: 0
+      lastFrame: 78
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ORAORAORA
+      takeName: ORAORAORA
+      firstFrame: 78
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: SmashEnd
+      takeName: ORAORAORA
+      firstFrame: 84
+      lastFrame: 146
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    keepQuads: 0
+    weldVertices: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 2
+    tangentImportMode: 2
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 8b1868c27967e444c96a40d18633ce97,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -52,7 +52,7 @@ public class LightningPawsRenderer : MonoBehaviour
 		mat = line.material;
 	}
 	
-	void Update ()
+	void LateUpdate ()
 	{
 		//Move line renderer's points to bone positions.
 		for(int i = 0; i < bones.Length; i++)

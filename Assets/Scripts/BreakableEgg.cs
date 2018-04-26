@@ -37,6 +37,7 @@ namespace Valve.VR.InteractionSystem
             {
                 rbs[i].useGravity = true;
                 rbs[i].isKinematic = false;
+                rbs[i].GetComponent<MeshCollider>().enabled = true;
             }
             FindObjectOfType<MonsterState>().SendMessage("HatchMonster", SendMessageOptions.DontRequireReceiver);
         }
