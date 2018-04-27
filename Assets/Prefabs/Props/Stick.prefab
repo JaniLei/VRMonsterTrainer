@@ -22,11 +22,11 @@ GameObject:
   - component: {fileID: 33921442838231292}
   - component: {fileID: 23216281775062384}
   - component: {fileID: 95055799148256626}
-  - component: {fileID: 64815233126556808}
   - component: {fileID: 114895701377996520}
   - component: {fileID: 54247173685734470}
   - component: {fileID: 114554100946618050}
   - component: {fileID: 114247974206081318}
+  - component: {fileID: 64816636696006772}
   m_Layer: 0
   m_Name: Stick
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1276006134111292}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.2285638, y: 0.21888298, z: -3.7929692}
   m_LocalScale: {x: 0.2548664, y: 0.29996333, z: 1.4416008}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,7 +87,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1276006134111292}
-  m_Mesh: {fileID: 4300000, guid: 4197dff034f6e8e46aebcb4d027e56f0, type: 3}
+  m_Mesh: {fileID: 4300000, guid: ea501726bd094584f82948895599d505, type: 3}
 --- !u!54 &54247173685734470
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -103,7 +103,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64815233126556808
+--- !u!64 &64816636696006772
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -116,7 +116,7 @@ MeshCollider:
   m_Convex: 1
   m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 4197dff034f6e8e46aebcb4d027e56f0, type: 3}
+  m_Mesh: {fileID: 4300000, guid: ea501726bd094584f82948895599d505, type: 3}
 --- !u!95 &95055799148256626
 Animator:
   serializedVersion: 3

@@ -8,7 +8,8 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: ScreenMaterial
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHABLEND_ON _EMISSION _METALLICGLOSSMAP _NORMALMAP
+  m_ShaderKeywords: _ALPHABLEND_ON _EMISSION _GLOW_ON _METALLICGLOSSMAP _NORMALMAP
+    _SCAN_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -39,6 +40,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FlickerTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: ebe733ce79e48fa4e964e5f046f656aa, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -56,17 +61,28 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Alpha: 0.35
+    - _Brightness: 2.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
-    - _GlossMapScale: 0.7
+    - _FlickerSpeed: 1
+    - _Fold: 3
+    - _GlitchIntensity: 0
+    - _GlitchSpeed: 0
+    - _GlossMapScale: 0.5
     - _Glossiness: 0
     - _GlossyReflections: 1
+    - _GlowSpeed: -3
+    - _GlowTiling: 15
     - _Metallic: 0
     - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _RimPower: 1
+    - _ScanSpeed: 0.2
+    - _ScanTiling: 500
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
@@ -74,4 +90,6 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.5882353}
-    - _EmissionColor: {r: 0.06764703, g: 0.3037323, b: 0.4, a: 0}
+    - _EmissionColor: {r: 0.15034546, g: 0.675045, b: 0.889, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 0, g: 0.42068958, b: 1, a: 1}
