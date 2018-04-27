@@ -18,7 +18,7 @@ public class Fetch : MonoBehaviour{
     public void FetchObject(GameObject fObj)
     {
         fetchObj = fObj;
-        if (!hasObject && Vector3.Distance(gameObject.transform.position, fetchObj.transform.position) > 0.7f)
+        if (!hasObject && Vector3.Distance(gameObject.transform.position, fetchObj.transform.position) > 1)
         {
             monster.MoveTo(fetchObj.transform.position);
         }
@@ -48,7 +48,7 @@ public class Fetch : MonoBehaviour{
             }
 
         }
-        else if (Vector3.Distance(gameObject.transform.position, monster.playerGroundPosition) > 1f)
+        else if (Vector3.Distance(gameObject.transform.position, monster.playerGroundPosition) > 1.2f)
         {
             state.SetAnimationState(MonsterState.animStates.Walking);
             AnimStarted = false; //!
