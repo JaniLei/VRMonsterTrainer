@@ -22,7 +22,7 @@ public class PathFinding : MonoBehaviour {
 
     void Start()
     {
-
+        Monster monster = gameObject.GetComponent<Monster>();
         defNode = new Node(new Vector3(), this);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
@@ -31,6 +31,7 @@ public class PathFinding : MonoBehaviour {
         }
         foreach (Node n in allNodes)
         {
+            n.position.y = monster.GroundLevel;
             foreach (Node nn in allNodes)
             {
                 if (n != nn && !Physics.Linecast(n.position, nn.position, obstacleLayer))
@@ -56,7 +57,6 @@ public class PathFinding : MonoBehaviour {
         pathVectors.Clear();
 
         defNode.position = startPoint; //Gets returned if no path can be found
-        defNode.position.y = 0.5f;
 
         currentNode = GetStartNode(startPoint, goal);
         if (!Physics.Linecast(currentNode.position, goal, obstacleLayer))

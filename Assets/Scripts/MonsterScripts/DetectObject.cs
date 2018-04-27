@@ -11,16 +11,23 @@ namespace Valve.VR.InteractionSystem
 
         void OnTriggerStay(Collider col)
         {
+            if (monster)
+            {
+                Edible edible = col.GetComponent<Edible>();
+                if (edible && edible.holdingHand == null)
+                {
+                    monster.EatObject(col.gameObject);
+                }
+                else if (edible)
+                {
+                    monster.SniffObject(col.gameObject);
+                }
+            }
+            else
+            {
+                Destroy(this);
+            }
 
-            Edible edible = col.GetComponent<Edible>();
-            if (edible && edible.holdingHand == null)
-            {
-                monster.EatObject(col.gameObject);
-            }
-            else if (edible)
-            {
-                monster.SniffObject(col.gameObject);
-            }
             
         }
     }
