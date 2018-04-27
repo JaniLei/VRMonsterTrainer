@@ -293,6 +293,9 @@ public class MonsterState : MonoBehaviour {
                 anim.SetFloat("Speed", 0);
                 anim.SetBool("Dead", true);
                 audioSource.PlayOneShot(die);
+                Destroy(this);
+                Destroy(stats);
+                Destroy(monster);
                 break;
             case animStates.Lift:
                 anim.SetTrigger("LiftObject");
