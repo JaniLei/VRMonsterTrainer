@@ -183,6 +183,7 @@ public class Monster : MonoBehaviour {
         }
         else if (Vector3.Distance(mHead.transform.position, g.transform.position) < 0.8f) //eats from ground
         {
+            state.foodObj = g;
             state.SetState(MonsterState.States.EatGround);
             state.SetAnimationState(MonsterState.animStates.EatGround);
             Quaternion foodRotation = Quaternion.LookRotation(transform.position - g.transform.position);
@@ -206,7 +207,7 @@ public class Monster : MonoBehaviour {
             transform.rotation = Quaternion.Slerp(transform.rotation, foodGroundRotation, 3 * Time.deltaTime);
             mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, foodRotation, 5 * Time.deltaTime);
             transform.position = Vector3.MoveTowards(transform.position, foodGroundPos, totalSpeed * Time.deltaTime);
-            state.SetAnimationState(MonsterState.animStates.Idle);
+            state.SetAnimationState(MonsterState.animStates.Walking);
 
         }
         

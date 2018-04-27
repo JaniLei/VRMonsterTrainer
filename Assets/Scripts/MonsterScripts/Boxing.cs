@@ -70,7 +70,8 @@ public class Boxing : MonoBehaviour {
             {
                 state.trustPlayer = false;
                 state.SetEmotion(MonsterState.Emotions.Scared);
-                state.SetState(MonsterState.States.Search);
+                state.SetState(MonsterState.States.Whine);
+                state.stateInQueue = MonsterState.States.Search;
                 monsterHit = 0;
             }
             else if (monsterHit > 1)
