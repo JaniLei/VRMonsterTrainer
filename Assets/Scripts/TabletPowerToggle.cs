@@ -5,8 +5,8 @@ using UnityEngine;
 public class TabletPowerToggle : MonoBehaviour
 {
 	//Setting up variables.
-	private GameObject tablet;
-	private GameObject screen;
+	[SerializeField] private GameObject tablet;
+	[SerializeField] private GameObject screen;
 	private Renderer tabletRenderer;
 	private bool powerState = false;
 	private Color emissionEnabled;
@@ -14,10 +14,6 @@ public class TabletPowerToggle : MonoBehaviour
 
 	void Start ()
 	{
-		//Find the two child gameobjects: tablet and screen.
-		tablet = this.transform.Find("Tablet").gameObject;
-		screen = this.transform.Find("Screen").gameObject;
-
 		//If script has null references, disable script and stop execution.
 		if (tablet == null || screen == null)
 		{
