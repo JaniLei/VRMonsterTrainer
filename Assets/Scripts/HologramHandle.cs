@@ -14,16 +14,29 @@ namespace Valve.VR.InteractionSystem
         Vector3 oldPosition;
         Quaternion oldRotation;
         Vector3 screenPos;
+        float startHeight;
+        bool held;
 
 
         void Start()
         {
             screenPos = screen.transform.localPosition;
+            startHeight = transform.localPosition.y;
         }
 
         //private void OnHandHoverBegin(Hand hand)
         //{
         //}
+
+        void Update()
+        {
+            if (!held)
+            {
+                Vector3 newPos = transform.localPosition;
+                newPos.y = startHeight;
+                transform.localPosition = newPos;
+            }
+        }
 
         private void HandHoverUpdate(Hand hand)
         {
@@ -59,6 +72,7 @@ namespace Valve.VR.InteractionSystem
 
         private void OnAttachedToHand(Hand hand)
         {
+            held = true;
             GetComponent<TabletPowerToggle>().Power = true;
             //screen.SetActive(true);
             if (hand.startingHandType == Hand.HandType.Left)
@@ -77,6 +91,7 @@ namespace Valve.VR.InteractionSystem
 
         private void OnDetachedFromHand(Hand hand)
         {
+            held = false;
             GetComponent<TabletPowerToggle>().Power = false;
             //screen.SetActive(false);
         }
