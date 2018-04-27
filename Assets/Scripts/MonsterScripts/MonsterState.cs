@@ -7,7 +7,7 @@ public class MonsterState : MonoBehaviour {
     public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround, Smash}
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk, Smash}
     public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
-    States currentState = States.Hatching; //set this to Hatching
+    States currentState = States.Follow; //set this to Hatching
     animStates animationState = animStates.Idle;
     Monster monster;
     SearchFood search;
@@ -24,6 +24,8 @@ public class MonsterState : MonoBehaviour {
     public bool trustPlayer;
     public GameObject smashableObject;
     public GameObject monsterHand;
+
+    [HideInInspector] public GameObject foodObj;
 
     bool ragdolling = false;
 
@@ -174,8 +176,8 @@ public class MonsterState : MonoBehaviour {
             case States.EatHand:
                 monster.WaitFor(5);
                 break;
-            case States.EatGround:
-                monster.WaitFor(2.5f);
+            case States.EatGround: //eat
+                if (monster.EatObject(foodObj)) { SetState(stateInQueue); }
                 break;
             case States.Petting:
                 monster.WaitFor(2.5f);
@@ -344,7 +346,12 @@ public class MonsterState : MonoBehaviour {
 
     public void SetState(States _state)
     {
-        if (monster.WaitStarted)
+        if (_state == States.Evolve)
+        {
+            currentState = _state;
+        }
+
+        else if (monster.WaitStarted)
         {
             stateInQueue = _state;
             Debug.Log(stateInQueue);
@@ -358,7 +365,11 @@ public class MonsterState : MonoBehaviour {
         {
             return;
         }
-        if (_state == States.Pooping)
+        else if (currentState == States.Search && _state == States.Fetch)
+        {
+            return;
+        }
+        else if (_state == States.Pooping)
         {
             SetAnimationState(animStates.Poop);
         }

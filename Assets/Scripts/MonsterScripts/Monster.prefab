@@ -6856,6 +6856,7 @@ MonoBehaviour:
   foodMask:
     serializedVersion: 2
     m_Bits: 256
+  player: {fileID: 0}
   monster: {fileID: 114964622874942114}
   nodes: []
   movePoint: {x: 0, y: 0.5, z: 0}
@@ -6918,7 +6919,7 @@ MonoBehaviour:
   hasPath: 0
   playerGroundPosition: {x: 0, y: 0, z: 0}
   headNormalizer: {x: -1, y: -1, z: -2.5}
-  GroundLevel: 4.5
+  GroundLevel: 4.25
   WaitStarted: 0
 --- !u!114 &114968352960053098
 MonoBehaviour:
@@ -6933,12 +6934,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSpeed: 30
   fetchObj: {fileID: 0}
-  followDistance: 4
+  followDistance: 2.5
   hatchTime: 10
   hatchObject: {fileID: 0}
   trustPlayer: 0
   smashableObject: {fileID: 0}
   monsterHand: {fileID: 0}
+  foodObj: {fileID: 0}
   mainVolume: 1
   stepTimer: 0.25
   anim: {fileID: 95715022671201848}

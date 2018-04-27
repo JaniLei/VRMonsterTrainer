@@ -59,7 +59,8 @@ namespace Valve.VR.InteractionSystem
 
         private void OnAttachedToHand(Hand hand)
         {
-            screen.SetActive(true);
+            GetComponent<TabletPowerToggle>().Power = true;
+            //screen.SetActive(true);
             if (hand.startingHandType == Hand.HandType.Left)
             {
                 if (screenPos.x < 0)
@@ -76,7 +77,8 @@ namespace Valve.VR.InteractionSystem
 
         private void OnDetachedFromHand(Hand hand)
         {
-            screen.SetActive(false);
+            GetComponent<TabletPowerToggle>().Power = false;
+            //screen.SetActive(false);
         }
 
         //private void HandAttachedUpdate(Hand hand)

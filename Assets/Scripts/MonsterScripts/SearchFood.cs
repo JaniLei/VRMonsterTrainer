@@ -45,12 +45,12 @@ public class SearchFood : MonoBehaviour {
             foodOnSight = !monster.EatObject(foodObj);
             if (!foodOnSight && !trustPlayer)
             {
+                foodOnSight = false;
                 state.SetState(MonsterState.States.Search);
             }
         }
-        else if (Vector3.Distance(transform.position, movePoint) < 0.2f)
+        else if (Vector3.Distance(transform.position, movePoint) < 0.3f)
         {
-
             rnd = Random.Range(0, nodes.Count);
             movePoint = (nodes[rnd]);
 
@@ -58,7 +58,6 @@ public class SearchFood : MonoBehaviour {
         else
         {
             monster.MoveTo(movePoint);
-
             Collider[] collisions = Physics.OverlapSphere(transform.position, 3, foodMask);
             float tempDist = 100;
             foreach (Collider col in collisions)
@@ -87,6 +86,7 @@ public class SearchFood : MonoBehaviour {
         yield return new WaitForSeconds(10);
         if (Vector3.Distance(playerStartPos, monster.mainPlayer.transform.position) < 1)
         {
+            foodOnSight = false;
             state.SetState(MonsterState.States.Follow);
             state.trustPlayer = true;
             Debug.Log("trust");
