@@ -7,14 +7,15 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ScreenMaterial
-  m_Shader: {fileID: 4800000, guid: 29fed12d8547e354e90be987488147c1, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHABLEND_ON _EMISSION _GLOW_ON _METALLICGLOSSMAP _NORMALMAP
     _SCAN_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -70,7 +71,7 @@ Material:
     - _Fold: 3
     - _GlitchIntensity: 0
     - _GlitchSpeed: 0
-    - _GlossMapScale: 0.7
+    - _GlossMapScale: 0.5
     - _Glossiness: 0
     - _GlossyReflections: 1
     - _GlowSpeed: -3
@@ -89,6 +90,6 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0.5882353}
-    - _EmissionColor: {r: 0.06764703, g: 0.3037323, b: 0.4, a: 0}
+    - _EmissionColor: {r: 0.15034546, g: 0.675045, b: 0.889, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0, g: 0.42068958, b: 1, a: 1}
