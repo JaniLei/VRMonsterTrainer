@@ -555,8 +555,7 @@ MonoBehaviour:
   objectLimit: 10
   containerLimit: 5
   spawnInterval: 10
-  objectToSpawn: {fileID: 1246291964331702, guid: 2cbcd5df17cf7a941956713b48f1bc9c,
-    type: 2}
+  objectToSpawn: {fileID: 100000, guid: 29c4d09be24b3544493b2ce640369f46, type: 3}
   spawnPos: {x: 0, y: 0.6, z: 0}
 --- !u!114 &114618994573080306
 MonoBehaviour:
