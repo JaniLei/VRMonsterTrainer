@@ -22,7 +22,7 @@ public class PathFinding : MonoBehaviour {
 
     void Start()
     {
-        Monster monster = gameObject.GetComponent<Monster>();
+        Monster monster = searchFood.gameObject.GetComponent<Monster>();
         defNode = new Node(new Vector3(), this);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {

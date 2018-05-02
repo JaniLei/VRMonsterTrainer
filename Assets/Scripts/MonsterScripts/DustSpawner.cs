@@ -8,11 +8,13 @@ public class DustSpawner : MonoBehaviour {
     public int particleAmount;
     public int rockAmount;
     public int spawnCount;
+    public float shakeAmount;
     public List<GameObject> rockObjects;
     public float areaSize;
     public float overTime;
 
     Vector3 defaultGravity;
+    
 
 	void Start ()
     {
@@ -37,13 +39,16 @@ public class DustSpawner : MonoBehaviour {
             Invoke("CreateParticle", Random.Range(0.00f, overTime));
             Invoke("CreateRock", Random.Range(0.00f, overTime));
         }
-        Invoke("ShakeObjects", Random.Range(0.00f, overTime));
-        Invoke("ShakeObjects", Random.Range(0.00f, overTime));
+        for (int i = 0; i < shakeAmount; i++)
+        {
+            Invoke("ShakeObjects", Random.Range(0.00f, overTime));
+        }
     }
 
     void ShakeObjects()
     {
-        Physics.gravity = -Vector3.down * 20;
+        Vector3 tempGravity = new Vector3(Random.Range(-20,20), Random.Range(20, 35), Random.Range(-20,20));
+        Physics.gravity = tempGravity;
         Invoke("RestoreGravity", 0.05f);
     }
 
