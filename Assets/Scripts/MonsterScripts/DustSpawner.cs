@@ -12,6 +12,8 @@ public class DustSpawner : MonoBehaviour {
     public List<GameObject> rockObjects;
     public float areaSize;
     public float overTime;
+    float dustTimer;
+    int nextDustSpawn;
 
     Vector3 defaultGravity;
     
@@ -20,14 +22,21 @@ public class DustSpawner : MonoBehaviour {
     {
         particleSys = gameObject.GetComponent<ParticleSystem>();
         defaultGravity = Physics.gravity;
-        Debug.Log(defaultGravity);
+        nextDustSpawn = Random.Range(60, 300);
 	}
 	
 
 	void Update ()
     {
+        dustTimer += Time.deltaTime;
 		if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            CreateDust();
+        }
+        if (dustTimer > nextDustSpawn)
+        {
+            dustTimer = 0;
+            nextDustSpawn = Random.Range(60, 300);
             CreateDust();
         }
 	}

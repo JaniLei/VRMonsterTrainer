@@ -46,7 +46,8 @@ public class Boxing : MonoBehaviour {
         if (Random.Range(0, 150) < stats.mStats.agility)
         {
             dir = Mathf.Sign(Random.Range(-1, 1));
-            DodgeTeleport();
+            state.SetAnimationState(MonsterState.animStates.Dodge);
+            //DodgeTeleport();
         }
         else
         {

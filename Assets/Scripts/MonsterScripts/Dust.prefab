@@ -59,6 +59,8 @@ MonoBehaviour:
   shakeAmount: 3
   rockObjects:
   - {fileID: 1095887211305716, guid: f1212274b6fddab4d95b693f020673c9, type: 2}
+  - {fileID: 1575178920027232, guid: ad6268f3535e6484bb4f6664713f8e0a, type: 2}
+  - {fileID: 1313004231293754, guid: 4f4f60dd8d251ec4685b162c0784a85d, type: 2}
   areaSize: 5
   overTime: 2
 --- !u!198 &198964303594036642
