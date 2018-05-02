@@ -195,7 +195,7 @@ public class MonsterState : MonoBehaviour {
                 {
                     SetState(States.Smash);
                     SetAnimationState(animStates.Smash);
-                    Invoke("SmashStone", 2);
+                    Invoke("SmashStone", 1.6f);
                 }
                 break;
             case States.Dead:
@@ -287,7 +287,7 @@ public class MonsterState : MonoBehaviour {
                 break;
             case animStates.Sleep:
                 anim.SetBool("Sleep", true);
-                audioSource.PlayOneShot(sleep);
+                if (!audioSource.isPlaying) { audioSource.PlayOneShot(sleep); };
                 break;
             case animStates.Dead:
                 anim.SetFloat("Speed", 0);
@@ -352,6 +352,8 @@ public class MonsterState : MonoBehaviour {
         if (_state == States.Evolve)
         {
             currentState = _state;
+
+            adultAnim.SetTrigger("SkipSpawnDelay");
         }
 
         else if (monster.WaitStarted)

@@ -56,7 +56,9 @@ MonoBehaviour:
   particleAmount: 5
   rockAmount: 5
   spawnCount: 5
-  rockObjects: []
+  shakeAmount: 3
+  rockObjects:
+  - {fileID: 1095887211305716, guid: f1212274b6fddab4d95b693f020673c9, type: 2}
   areaSize: 5
   overTime: 2
 --- !u!198 &198964303594036642
