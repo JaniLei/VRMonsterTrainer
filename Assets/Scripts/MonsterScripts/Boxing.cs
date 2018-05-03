@@ -11,9 +11,6 @@ public class Boxing : MonoBehaviour {
     [HideInInspector] public MonsterState state;
     public ParticleSystem particleSys;
     int monsterHit;
-
-    //bool isDodging;
-    //float dodgeTimer;
     float dir = 1;
 
     /*public void DoBoxing()
@@ -46,8 +43,14 @@ public class Boxing : MonoBehaviour {
         if (Random.Range(0, 150) < stats.mStats.agility)
         {
             dir = Mathf.Sign(Random.Range(-1, 1));
-            state.SetAnimationState(MonsterState.animStates.Dodge);
-            //DodgeTeleport();
+            if (stats.mStats.agility > 75)
+            {
+                DodgeTeleport();
+            }
+            else
+            {
+                state.SetAnimationState(MonsterState.animStates.Dodge);
+            }
         }
         else
         {
@@ -107,7 +110,8 @@ public class Boxing : MonoBehaviour {
 
     public void DodgeTeleport()
     {
-        if (!Physics.Raycast(transform.position, transform.position + transform.right* dir, 0.5f, obstacleMask))
+        /*
+        if (!Physics.BoxCast(transform.position + transform.right,transform.localScale, transform.right * dir,transform.rotation,1, obstacleMask))
         {
             Debug.Log("dodge");
             Debug.DrawLine(transform.position, transform.position + transform.right * dir * 0.5f, Color.red, 6);
@@ -115,13 +119,33 @@ public class Boxing : MonoBehaviour {
             transform.Translate(Vector3.right * dir * 0.5f);
             StartCoroutine(CreateParticle());
         }
-        else if (!Physics.Raycast(transform.position, transform.position - transform.right * dir, 0.5f, obstacleMask))
+        else if (!Physics.BoxCast(transform.position - transform.right, transform.localScale, transform.right * dir, transform.rotation, 1, obstacleMask))
         {
             Debug.Log("dodge");
             Debug.DrawLine(transform.position, transform.position - transform.right * dir * 0.5f, Color.red, 6);
             //Dodge right + animation...
             transform.Translate(-Vector3.right * dir * 0.5f);
             StartCoroutine(CreateParticle());
+        }*/
+
+
+        if (!Physics.Raycast(transform.position,transform.right* dir, 1, obstacleMask))
+        {
+            Debug.DrawLine(transform.position, transform.position + transform.right * dir * 1, Color.red, 6);
+            //Dodge left + animation...
+            transform.Translate(Vector3.right * dir * 0.5f);
+            StartCoroutine(CreateParticle());
+        }
+        else if (!Physics.Raycast(transform.position,transform.right * dir, 1, obstacleMask))
+        {
+            Debug.DrawLine(transform.position, transform.position - transform.right * dir * 1, Color.red, 6);
+            //Dodge right + animation...
+            transform.Translate(-Vector3.right * dir * 0.5f);
+            StartCoroutine(CreateParticle());
+        }
+        else
+        {
+            state.SetAnimationState(MonsterState.animStates.Dodge);
         }
     }
 

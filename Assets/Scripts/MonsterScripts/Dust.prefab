@@ -53,16 +53,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de26c0930672b64a85e576a5ade7b21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleAmount: 5
-  rockAmount: 5
-  spawnCount: 5
+  particleAmount: 3
+  rockAmount: 3
+  spawnCount: 7
   shakeAmount: 3
   rockObjects:
   - {fileID: 1095887211305716, guid: f1212274b6fddab4d95b693f020673c9, type: 2}
   - {fileID: 1575178920027232, guid: ad6268f3535e6484bb4f6664713f8e0a, type: 2}
   - {fileID: 1313004231293754, guid: 4f4f60dd8d251ec4685b162c0784a85d, type: 2}
-  areaSize: 5
-  overTime: 2
+  areaSize: 8
+  overTime: 3
 --- !u!198 &198964303594036642
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -588,7 +588,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 5
+      value: 8
       mode: 0
       spread: 0
       speed:
@@ -2692,7 +2692,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     ratio: 1
     lifetime:
       serializedVersion: 2
@@ -2809,7 +2809,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3395,8 +3395,8 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 2a082d50b921fe64eb5823a3066ad785, type: 2}
+  - {fileID: 2100000, guid: 2a082d50b921fe64eb5823a3066ad785, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

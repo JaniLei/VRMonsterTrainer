@@ -87,7 +87,6 @@ public class MonsterState : MonoBehaviour {
 
         EventManager.instance.Fetching += OnFetching;
         EventManager.instance.Pointing += OnPointing;
-
     }
 
     void Update()
@@ -125,19 +124,11 @@ public class MonsterState : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
-            ragdolling = !ragdolling;
-            if (ragdolling)
-            {
-                currentState = States.Ragdoll;
-            }
-            else
-            {
-                Vector3 tempVec = monster.mHead.transform.position;
-                tempVec.y = monster.GroundLevel;
-                transform.position = tempVec;
-                
-                currentState = States.Follow;
-            }
+            ToggleRagdoll();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            boxing.DodgeTeleport();
         }
 
 
@@ -257,10 +248,22 @@ public class MonsterState : MonoBehaviour {
         currentState = States.Follow;
     }
 
-    void SetRagdoll()
+    void ToggleRagdoll()
     {
-        currentState = States.Ragdoll;
-        ragdolling = true;
+
+        ragdolling = !ragdolling;
+        if (ragdolling)
+        {
+            currentState = States.Ragdoll;
+        }
+        else
+        {
+            Vector3 tempVec = monster.mHead.transform.position;
+            tempVec.y = monster.GroundLevel;
+            transform.position = tempVec;
+
+            currentState = States.Follow;
+        }
     }
 
     public void SetAnimationState(animStates stateToSet)
