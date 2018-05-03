@@ -1,23 +1,23 @@
 fileFormatVersion: 2
-guid: bdce75dfb9de1624b8b197fcfa264fbc
-timeCreated: 1522304903
+guid: 503e93222cbddf84eb16bc9d06f916f0
+timeCreated: 1525330765
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Line001
+    100002: Line002
     400000: //RootNode
-    400002: Line001
-    2300000: Line001
-    3300000: Line001
-    4300000: Line001
+    400002: Line002
+    2300000: Line002
+    3300000: Line002
+    4300000: Line002
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Line001Mat
-    second: {fileID: 2100000, guid: eb4fabb0be77e784ea14e57291ea4256, type: 2}
+      name: Line002Mat
+    second: {fileID: 2100000, guid: 925c7c76d59841c42bc1b87ea96a408f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -55,7 +55,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -70,7 +70,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
