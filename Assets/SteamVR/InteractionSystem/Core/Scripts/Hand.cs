@@ -702,7 +702,7 @@ namespace Valve.VR.InteractionSystem
             if (GetStandardInteractionButtonDown())
             {
                 RaycastHit hit;
-                bool bHit = Physics.Linecast(transform.position, transform.forward * 100, out hit);
+                bool bHit = Physics.Linecast(transform.position, transform.forward * 3.5f, out hit);
                 if (bHit && hit.transform.gameObject.tag == "Bed")
                 {
                     EventManager.instance.targetObj = hit.transform.gameObject;

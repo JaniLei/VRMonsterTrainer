@@ -7,15 +7,16 @@ namespace Valve.VR.InteractionSystem
     [RequireComponent(typeof(Interactable))]
     public class Ragdoll : MonoBehaviour
     {
-        public bool activeOnStart;
-
-        bool isKinematic = false;
+        bool isKinematic = true;
+        Vector3 pos;
+        float startY;
 
         void Start()
         {
-            SetKinematic(true);
-            if (activeOnStart)
-                SetKinematic(!isKinematic);
+            //anim = GetComponentInParent<Animator>();
+            //GetComponent<RagdollHelper>().ragdolled = false;
+            //ToggleRagdoll();
+            startY = transform.position.y;
         }
 
         void Update()
@@ -28,10 +29,12 @@ namespace Valve.VR.InteractionSystem
 
         private void HandHoverUpdate(Hand hand)
         {
-            if (hand.GetStandardInteractionButtonDown())
+            if (hand.GetStandardInteractionButtonDown() /*&& hand.otherHand.GetStandardInteractionButtonDown()*/)
             {
-                SetKinematic(false);
-                GetComponentInParent<Animator>().enabled = false;
+                //SetKinematic(false);
+                //GetComponentInParent<Animator>().enabled = false;
+                //isKinematic = false;
+                ToggleRagdoll();
             }
         }
 
@@ -57,14 +60,32 @@ namespace Valve.VR.InteractionSystem
             foreach (Rigidbody rb in bodies)
             {
                 rb.isKinematic = newValue;
+                rb.useGravity = !newValue;
             }
             isKinematic = !isKinematic;
         }
 
         public void ToggleRagdoll()
         {
-            SetKinematic(!isKinematic);
-            GetComponentInParent<Animator>().enabled = isKinematic;
+            //anim.enabled = !isKinematic;
+            
+            GetComponentInChildren<RagdollHelper>().ragdolled = isKinematic;// SetKinematic(!isKinematic);
+            if (!isKinematic)
+            {
+                Vector3 fixedPos = GetComponentInChildren<RagdollHelper>().gameObject.transform.position;
+                fixedPos.y = startY;
+                transform.position = fixedPos;
+            }
+            isKinematic = !isKinematic;
+
+            //if (isKinematic)
+            //{
+            //    GetComponent<MonsterState>().SetState(MonsterState.States.Follow);
+            //}
+            //else
+            //{
+            //    GetComponent<MonsterState>().SetState(MonsterState.States.Ragdoll);
+            //}
         }
     }
 }

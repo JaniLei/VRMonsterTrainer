@@ -82,7 +82,7 @@ public class FruitTree : MonoBehaviour
             colls[c].gameObject.layer = LayerMask.NameToLayer("IgnoreHand");
         }
         produce[at].startPos = FindRandomSpawnSpot();
-        produce[at].mesh.transform.position = transform.position + produce[at].startPos;
+        produce[at].edible.gameObject.transform.position = transform.position + produce[at].startPos;
         Vector3 euler = produce[at].mesh.transform.eulerAngles;
         euler.y = Random.Range(0f, 360f);
         produce[at].mesh.transform.eulerAngles = euler;
