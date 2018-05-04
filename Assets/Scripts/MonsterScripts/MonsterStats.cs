@@ -28,12 +28,9 @@ public class MonsterStats : MonoBehaviour {
     {
         if (hasEaten)
         {
-            state.stateInQueue = MonsterState.States.Pooping;
+            state.SetState(MonsterState.States.Pooping);
+            //state.stateInQueue = MonsterState.States.Pooping;
             state.SetEmotion(MonsterState.Emotions.Neutral);
-            /*for (int i = 0; i < 50; i++)
-            {
-                Invoke("SpawnPoop", i*0.1f);
-            }*/
 
             hasEaten = false;
         }

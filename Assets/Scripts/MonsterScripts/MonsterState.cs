@@ -159,6 +159,10 @@ public class MonsterState : MonoBehaviour {
                 if (!monster.WaitStarted)
                 {
                     stats.Invoke("SpawnPoop", 3.75f);
+                    /*for (int i = 0; i < 25; i++)
+                    {
+                        stats.Invoke("SpawnPoop", i * 0.2f);
+                    }*/
                 }
                 monster.WaitFor(5.75f);
                 break;
@@ -254,6 +258,7 @@ public class MonsterState : MonoBehaviour {
         ragdolling = !ragdolling;
         if (ragdolling)
         {
+            stateInQueue = currentState;
             currentState = States.Ragdoll;
         }
         else
@@ -261,8 +266,7 @@ public class MonsterState : MonoBehaviour {
             Vector3 tempVec = monster.mHead.transform.position;
             tempVec.y = monster.GroundLevel;
             transform.position = tempVec;
-
-            currentState = States.Follow;
+            currentState = stateInQueue;
         }
     }
 
