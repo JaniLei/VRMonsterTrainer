@@ -30,7 +30,14 @@ namespace Valve.VR.InteractionSystem
         {
             if (hand.GetStandardInteractionButtonDown())
             {
-                if (hand.otherHand.GetStandardInteractionButton())
+                if (hand.otherHand)
+                {
+                    if (hand.otherHand.GetStandardInteractionButton())
+                    {
+                        ToggleRagdoll();
+                    }
+                }
+                else
                 {
                     ToggleRagdoll();
                 }
