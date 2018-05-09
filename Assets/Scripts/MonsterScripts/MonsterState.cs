@@ -7,7 +7,7 @@ public class MonsterState : MonoBehaviour {
     public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround, Smash, GoOutside}
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk, Smash, Dodge}
     public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
-    States currentState = States.Follow; //set this to Hatching
+    States currentState;// = States.Follow; //set this to Hatching
     animStates animationState = animStates.Idle;
     Monster monster;
     SearchFood search;

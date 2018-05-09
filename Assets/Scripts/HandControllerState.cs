@@ -17,7 +17,7 @@ public class HandControllerState : MonoBehaviour
     }
     HandState currentState;
 
-    float axis = 0;
+    float axis;
     float pointingTime;
 
 	void Start()

@@ -51,19 +51,20 @@ namespace Valve.VR.InteractionSystem
 
         private void OnHandHoverBegin(Hand hand)
         {
-            if (hand.GetTrackedObjectVelocity().magnitude > breakForce)
+            if (!broken)
             {
-                Break();
+                if (hand.GetTrackedObjectVelocity().magnitude > breakForce)
+                {
+                    Break();
+                }
             }
         }
 
         void OnCollisionEnter(Collision coll)
         {
-            //Hand hand = coll.gameObject.transform.parent.GetComponent<Hand>();
-            Hand hand = coll.gameObject.GetComponentInParent<Hand>();
-            if (hand)
+            if (!broken)
             {
-                if (hand.GetTrackedObjectVelocity().magnitude > breakForce)
+                if (coll.relativeVelocity.magnitude > breakForce * 3)
                 {
                     Break();
                 }
