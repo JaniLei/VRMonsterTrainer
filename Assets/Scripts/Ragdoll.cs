@@ -10,13 +10,12 @@ namespace Valve.VR.InteractionSystem
         bool isKinematic = true;
         Vector3 pos;
         float startY;
+        Collider[] colls;
 
         void Start()
         {
-            //anim = GetComponentInParent<Animator>();
-            //GetComponent<RagdollHelper>().ragdolled = false;
-            //ToggleRagdoll();
             startY = transform.position.y;
+            colls = GetComponentsInChildren<Collider>();
         }
 
         void Update()
@@ -29,12 +28,12 @@ namespace Valve.VR.InteractionSystem
 
         private void HandHoverUpdate(Hand hand)
         {
-            if (hand.GetStandardInteractionButtonDown() /*&& hand.otherHand.GetStandardInteractionButtonDown()*/)
+            if (hand.GetStandardInteractionButtonDown())
             {
-                //SetKinematic(false);
-                //GetComponentInParent<Animator>().enabled = false;
-                //isKinematic = false;
-                ToggleRagdoll();
+                if (hand.otherHand.GetStandardInteractionButton())
+                {
+                    ToggleRagdoll();
+                }
             }
         }
 
@@ -54,6 +53,7 @@ namespace Valve.VR.InteractionSystem
             Invoke("ToggleRagdoll", 2);
         }
 
+        // moved to RagdollHelper class
         void SetKinematic(bool newValue)
         {
             Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
@@ -67,9 +67,11 @@ namespace Valve.VR.InteractionSystem
 
         public void ToggleRagdoll()
         {
-            //anim.enabled = !isKinematic;
-            
-            GetComponentInChildren<RagdollHelper>().ragdolled = isKinematic;// SetKinematic(!isKinematic);
+            for (int i = 0; i < colls.Length; i++)
+            {
+                colls[i].isTrigger = !isKinematic;
+            }
+            GetComponentInChildren<RagdollHelper>().ragdolled = isKinematic;
             if (!isKinematic)
             {
                 Vector3 fixedPos = GetComponentInChildren<RagdollHelper>().gameObject.transform.position;
@@ -77,15 +79,6 @@ namespace Valve.VR.InteractionSystem
                 transform.position = fixedPos;
             }
             isKinematic = !isKinematic;
-
-            //if (isKinematic)
-            //{
-            //    GetComponent<MonsterState>().SetState(MonsterState.States.Follow);
-            //}
-            //else
-            //{
-            //    GetComponent<MonsterState>().SetState(MonsterState.States.Ragdoll);
-            //}
         }
     }
 }

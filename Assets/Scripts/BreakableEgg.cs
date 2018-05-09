@@ -32,7 +32,10 @@ namespace Valve.VR.InteractionSystem
                     {
                         if (hand.currentAttachedObject.GetComponent<BoxingGloves>() || hand.currentAttachedObject.GetComponent<Fetchable>())
                         {
-                            if (GetComponent<Collider>().bounds.Intersects(hand.currentAttachedObject.GetComponent<Collider>().bounds))
+                            Collider otherColl = hand.currentAttachedObject.GetComponent<Collider>();
+                            if (!otherColl)
+                                otherColl = hand.currentAttachedObject.GetComponentInChildren<Collider>();
+                            if (GetComponent<Collider>().bounds.Intersects(otherColl.bounds))
                             {
                                 if (hand.GetTrackedObjectVelocity().magnitude > breakForce)
                                 {
@@ -60,7 +63,6 @@ namespace Valve.VR.InteractionSystem
             Hand hand = coll.gameObject.GetComponentInParent<Hand>();
             if (hand)
             {
-                Debug.Log("hand found");
                 if (hand.GetTrackedObjectVelocity().magnitude > breakForce)
                 {
                     Break();

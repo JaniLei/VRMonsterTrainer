@@ -8,7 +8,14 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags
+		{
+			"Queue" = "Transparent"
+			"RenderType" = "Transparent"
+		}
+
+		ZWrite Off
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		Pass
 		{
@@ -40,13 +47,16 @@
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				o.uv.x -= _Time.x;
+				/*o.uv.x += (sin(_Time.x * 10.0)) * (v.uv.x - 0.5) / 5.0;
+				o.uv.y += (sin(0.5 - _Time.x * 10.0)) * v.uv.y / 5.0;*/
 				return o;
 			}
 			
 			fixed4 frag (v2f i) : COLOR
 			{
-				return float4(i.uv.x, i.uv.x, i.uv.x, 1) * _ScrollingColor;
+				fixed4 col = tex2D(_MainTex, i.uv); // _ScrollingColor;
+				//col.a = step(sin(_Time.x), i.uv.x);
+				return col;
 			}
 			ENDCG
 		}

@@ -37,12 +37,14 @@ namespace Valve.VR.InteractionSystem
                     hand.HoverLock(GetComponent<Interactable>());
                     hand.AttachObject(gameObject, attachmentFlags);
                     GetComponentInChildren<Collider>().gameObject.layer = LayerMask.NameToLayer("IgnoreTeleport");
+                    hand.GetComponentInChildren<HandControllerState>().gameObject.SetActive(false);
                 }
                 else
                 {
                     hand.DetachObject(gameObject);
                     hand.HoverUnlock(GetComponent<Interactable>());
                     GetComponentInChildren<Collider>().gameObject.layer = LayerMask.NameToLayer("Default");
+                    hand.GetComponentInChildren<HandControllerState>(true).gameObject.SetActive(true);
                 }
             }
             //else if (hand.currentAttachedObject == gameObject && hand.GetStandardInteractionButtonUp() || 

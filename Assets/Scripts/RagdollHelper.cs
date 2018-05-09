@@ -25,6 +25,7 @@ public class RagdollHelper : MonoBehaviour
 {
     public Transform hip, leftFoot, rightFoot, head;
     public Animator anim;
+    public MonsterState mState;
 
 
     //public property that can be set to toggle between ragdolled and animated character
@@ -44,7 +45,8 @@ public class RagdollHelper : MonoBehaviour
                     setKinematic(false); //allow the ragdoll RigidBodies to react to the environment
                     anim.enabled = false; //disable animation
                     state = RagdollState.ragdolled;
-                    GetComponentInParent<MonsterState>().SetState(MonsterState.States.Ragdoll);
+                    if (mState)
+                        mState.SetState(MonsterState.States.Ragdoll);
                 }
             }
             else
@@ -219,7 +221,8 @@ public class RagdollHelper : MonoBehaviour
             {
                 state = RagdollState.animated;
                 anim.Rebind();
-                GetComponentInParent<MonsterState>().SetState(MonsterState.States.Follow);
+                if (mState)
+                    mState.SetState(MonsterState.States.Follow);
                 return;
             }
         }
