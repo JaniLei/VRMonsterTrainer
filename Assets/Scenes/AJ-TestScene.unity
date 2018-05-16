@@ -325,6 +325,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75cf780bd8dab2a44af3fff5f9df044d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &147345821 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 087937c84d135e842abc350382109881, type: 3}
+  m_PrefabInternal: {fileID: 2000126687}
 --- !u!1 &154718611 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100070, guid: 5bedda1f72a51e54589c3ffd962666be, type: 3}
@@ -5960,6 +5964,10 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1074776275 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100006, guid: 087937c84d135e842abc350382109881, type: 3}
+  m_PrefabInternal: {fileID: 2000126687}
 --- !u!4 &1076386598 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4774841011443796, guid: af90f7acec6e7994698d9f4835e8f4b4,
@@ -7786,6 +7794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b871be300dc75e940bedd128498c4c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tablet: {fileID: 1074776275}
+  screen: {fileID: 147345821}
 --- !u!114 &1818812025
 MonoBehaviour:
   m_ObjectHideFlags: 0
