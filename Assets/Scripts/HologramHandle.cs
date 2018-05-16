@@ -20,7 +20,7 @@ namespace Valve.VR.InteractionSystem
         void Start()
         {
             screenPos = screen.transform.localPosition;
-            parent = transform.parent;
+            //parent = transform.parent;
         }
 
         private void HandHoverUpdate(Hand hand)
@@ -29,30 +29,23 @@ namespace Valve.VR.InteractionSystem
             {
                 if (hand.currentAttachedObject != gameObject)
                 {
-                    // Save our position/rotation so that we can restore it when we detach
-                    oldPosition = transform.localPosition;
-                    oldRotation = transform.localRotation;
-
-                    // Call this to continue receiving HandHoverUpdate messages,
-                    // and prevent the hand from hovering over anything else
+                    //oldPosition = transform.localPosition;
+                    //oldRotation = transform.localRotation;
+                    
                     hand.HoverLock(GetComponent<Interactable>());
-
-                    // Attach this object to the hand
+                    
                     hand.AttachObject(gameObject, attachmentFlags);
                 }
             }
             else if (hand.GetStandardInteractionButtonUp())
             {
-                // Detach this object from the hand
                 hand.DetachObject(gameObject);
-
-                // Call this to undo HoverLock
+                
                 hand.HoverUnlock(GetComponent<Interactable>());
-
-                // Restore position/rotation
-                transform.parent = parent;
-                transform.localPosition = oldPosition;
-                transform.localRotation = oldRotation;
+                
+                //transform.parent = parent;
+                //transform.localPosition = oldPosition;
+                //transform.localRotation = oldRotation;
             }
         }
 

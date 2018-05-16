@@ -12,6 +12,12 @@ namespace Valve.VR.InteractionSystem
 
         bool canBePet = true;
         bool canBeHit = true;
+        int _buttonPresses;
+        int buttonPresses
+        {
+            set { _buttonPresses = value;  if (_buttonPresses < 0) _buttonPresses = 0; }
+            get { return _buttonPresses; }
+        }
         
         private void OnHandHoverBegin(Hand hand)
         {
@@ -29,16 +35,6 @@ namespace Valve.VR.InteractionSystem
                             mBoxing.GetHit(false);
                             StartCoroutine("HitRefresh");
                         }
-
-                        //Rigidbody rb = GetComponent<Rigidbody>();
-                        //if (rb)
-                        //{
-                        //    Vector3 force = hand.GetTrackedObjectVelocity();
-                        //    Debug.Log("hit force : " + force.magnitude);
-                        //    force *= hitForceMultiplier;
-                        //    force.y++;
-                        //    rb.AddForceAtPosition(force, hand.transform.position, ForceMode.Impulse);
-                        //}
                     }
                 }
             }
@@ -46,7 +42,7 @@ namespace Valve.VR.InteractionSystem
 
         private void HandHoverUpdate(Hand hand)
         {
-            if (!hand.GetStandardInteractionButton() && hand.GetTrackedObjectVelocity().magnitude >= petVelocity)
+            if (hand.GetTrackedObjectVelocity().magnitude >= petVelocity && !canBeHit)
             {
                 if (canBePet)
                 {
@@ -54,6 +50,22 @@ namespace Valve.VR.InteractionSystem
                     StartCoroutine("PettingRefresh");
                 }
             }
+            if (hand.GetStandardInteractionButtonDown())
+            {
+                StartCoroutine("AddButtonPress");
+                if (buttonPresses > 2 && canBePet)
+                {
+                    StartCoroutine("PettingRefresh");
+                    buttonPresses = 0;
+                }
+            }
+        }
+
+        IEnumerator AddButtonPress()
+        {
+            buttonPresses++;
+            yield return new WaitForSeconds(2.5f);
+            buttonPresses--;
         }
 
         IEnumerator PettingRefresh()
@@ -62,7 +74,7 @@ namespace Valve.VR.InteractionSystem
             if (mState)
                 mState.Petting();
             canBePet = false;
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2);
             canBePet = true;
         }
 

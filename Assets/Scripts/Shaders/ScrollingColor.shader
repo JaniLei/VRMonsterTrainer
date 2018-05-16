@@ -47,8 +47,8 @@
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				/*o.uv.x += (sin(_Time.x * 10.0)) * (v.uv.x - 0.5) / 5.0;
-				o.uv.y += (sin(0.5 - _Time.x * 10.0)) * v.uv.y / 5.0;*/
+				//o.uv.x += (sin(_Time.x * 20.0)) * (v.uv.x - 0.5) / 5.0;
+				//o.uv.y += (sin(0.5 - _Time.x * 20.0)) * v.uv.y / 5.0;
 				return o;
 			}
 			
