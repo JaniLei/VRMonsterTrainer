@@ -7,25 +7,67 @@ namespace Valve.VR.InteractionSystem
     [RequireComponent(typeof(Interactable))]
     public class BreakableEgg : MonoBehaviour
     {
-        public float breakForce = 1.5f;
+        Player player;
+        bool broken;
+
+        public float breakForce = 1.2f;
         public int secondsTillBreak = 180;
 
         void Start()
         {
             Invoke("Break", secondsTillBreak);
+            player = FindObjectOfType<Player>();
         }
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.N))
-                Break();
+            if (!broken)
+            {
+                if (Input.GetKeyDown(KeyCode.N))
+                    Break();
+
+                foreach (var hand in player.hands)
+                {
+                    if (hand.currentAttachedObject != null)
+                    {
+                        if (hand.currentAttachedObject.GetComponent<BoxingGloves>() || hand.currentAttachedObject.GetComponent<Fetchable>())
+                        {
+                            Collider otherColl = hand.currentAttachedObject.GetComponent<Collider>();
+                            if (!otherColl)
+                                otherColl = hand.currentAttachedObject.GetComponentInChildren<Collider>();
+                            if (GetComponent<Collider>().bounds.Intersects(otherColl.bounds))
+                            {
+                                if (hand.GetTrackedObjectVelocity().magnitude > breakForce)
+                                {
+                                    Break();
+                                }
+                                //Break();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void OnHandHoverBegin(Hand hand)
         {
-            if (hand.GetTrackedObjectVelocity().magnitude > breakForce)
+            if (!broken)
             {
-                Break();
+                if (hand.GetTrackedObjectVelocity().magnitude > breakForce)
+                {
+                    Break();
+                }
+            }
+        }
+
+        void OnCollisionEnter(Collision coll)
+        {
+            if (!broken)
+            {
+                if (coll.relativeVelocity.magnitude > breakForce * 3)
+                {
+                    Break();
+                }
             }
         }
 
@@ -40,6 +82,7 @@ namespace Valve.VR.InteractionSystem
                 rbs[i].GetComponent<MeshCollider>().enabled = true;
             }
             FindObjectOfType<MonsterState>().SendMessage("HatchMonster", SendMessageOptions.DontRequireReceiver);
+            broken = true;
         }
     }
 }

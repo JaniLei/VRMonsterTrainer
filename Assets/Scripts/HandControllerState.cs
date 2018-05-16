@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class HandControllerState : MonoBehaviour
 {
+    public float pointingRange = 4.5f;
+
     Valve.VR.InteractionSystem.Hand hand;
     Animator anim;
+    enum HandState
+    {
+        Relaxed = 1,
+        Point = 2,
+        Grab = 3,
+        Punch = 4
+    }
+    HandState currentState;
 
-    float axis = 0;
+    float axis;
+    float pointingTime;
 
 	void Start()
     {
@@ -31,7 +42,17 @@ public class HandControllerState : MonoBehaviour
             else if (Input.GetMouseButtonUp(0))
                 axis = 0;
         }
-        
+
+        if (currentState == HandState.Point)
+        {
+            pointingTime += Time.deltaTime;
+            if (pointingTime >= 0.5f)
+            {
+                PointToBed();
+                pointingTime = 0;
+            }
+        }
+
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //    axis = 0.1f;
         //else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -41,21 +62,39 @@ public class HandControllerState : MonoBehaviour
         //else if (Input.GetKeyDown(KeyCode.Alpha4))
         //    axis = 1;
         
-        if (axis < 0.3f)
-        {
-            anim.SetInteger("State", 1);
-        }
-        else if (axis < 0.8f)
-        {
-            anim.SetInteger("State", 2);
-        }
+        if (axis < 0.1f)
+            SetHandState(HandState.Relaxed);
+        else if (axis < 0.81f)
+            SetHandState(HandState.Point);
         else if (axis < 0.9f)
-        {
-            anim.SetInteger("State", 3);
-        }
+            SetHandState(HandState.Grab);
         else
-        {
-            anim.SetInteger("State", 4);
-        }
+            SetHandState(HandState.Punch);
+
 	}
+
+    void SetHandState(HandState newState)
+    {
+        if (newState != currentState)
+        {
+            currentState = newState;
+            SetAnimation((int)currentState);
+        }
+    }
+
+    void SetAnimation(int i)
+    {
+        anim.SetInteger("State", i);
+    }
+
+    void PointToBed()
+    {
+        RaycastHit hit;
+        bool bHit = Physics.Linecast(transform.position, transform.forward * pointingRange, out hit);
+        if (bHit && hit.transform.gameObject.tag == "Bed")
+        {
+            EventManager.instance.targetObj = hit.transform.gameObject;
+            EventManager.instance.OnPointing();
+        }
+    }
 }

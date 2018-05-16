@@ -18,9 +18,9 @@ public class Fetch : MonoBehaviour{
     public void FetchObject(GameObject fObj)
     {
         fetchObj = fObj;
-        if (!hasObject && Vector3.Distance(gameObject.transform.position, fetchObj.transform.position) > 1)
+        if (!hasObject && Vector3.Distance(gameObject.transform.position, fetchObj.GetComponent<MeshCollider>().bounds.center) > 0.7f)
         {
-            monster.MoveTo(fetchObj.transform.position);
+            monster.MoveTo(fetchObj.GetComponent<MeshCollider>().bounds.center);
         }
         else if (!hasObject)
         {
@@ -30,6 +30,7 @@ public class Fetch : MonoBehaviour{
                 if (!AnimStarted)
                 {
                     state.SetAnimationState(MonsterState.animStates.Lift);
+                    state.SetEmotion(MonsterState.Emotions.Happy);
                     AnimStarted = true;
                 }
                 timer+=Time.deltaTime;

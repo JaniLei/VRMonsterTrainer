@@ -1,0 +1,45 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Valve.VR.InteractionSystem
+{
+    public class DetectObject : MonoBehaviour
+    {
+
+        public Monster monster;
+
+        void OnTriggerStay(Collider col)
+        {
+<<<<<<< HEAD
+
+            Edible edible = col.GetComponent<Edible>();
+            if (!edible)
+                edible = col.GetComponentInChildren<Edible>();
+            if (!edible)
+                edible = col.GetComponentInParent<Edible>();
+
+            if (edible && edible.holdingHand == null)
+=======
+            if (monster)
+>>>>>>> fdff38f1de3eeb570306bae39cccabf92ae509cb
+            {
+                Edible edible = col.GetComponent<Edible>();
+                if (edible && edible.holdingHand == null)
+                {
+                    monster.EatObject(col.gameObject);
+                }
+                else if (edible)
+                {
+                    monster.SniffObject(col.gameObject);
+                }
+            }
+            else
+            {
+                Destroy(this);
+            }
+
+            
+        }
+    }
+}

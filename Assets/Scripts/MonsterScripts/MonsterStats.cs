@@ -28,14 +28,9 @@ public class MonsterStats : MonoBehaviour {
     {
         if (hasEaten)
         {
-            state.stateInQueue = MonsterState.States.Pooping;
-            //state.SetAnimationState(MonsterState.animStates.Poop);
+            state.SetState(MonsterState.States.Pooping);
+            //state.stateInQueue = MonsterState.States.Pooping;
             state.SetEmotion(MonsterState.Emotions.Neutral);
-            //Invoke("SpawnPoop", 3.75f);
-            /*for (int i = 0; i < 50; i++)
-            {
-                Invoke("SpawnPoop", i*0.1f);
-            }*/
 
             hasEaten = false;
         }
@@ -192,7 +187,7 @@ public class MonsterStats : MonoBehaviour {
 
     public void DisplayStats()
     {
-        txtStats.text = "Monster stats \nHealth:" + health + "\nSpeed:" + mStats.speed + "\nAgility" + mStats.agility;
+        txtStats.text = "Monster stats \nHealth: " + health + "\nSpeed: " + mStats.speed + "\nAgility: " + mStats.agility;
     }
 
 }

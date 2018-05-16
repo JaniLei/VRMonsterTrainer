@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MonsterState : MonoBehaviour {
 
-    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround, Smash}
-    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk, Smash}
+    public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround, Smash, GoOutside}
+    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk, Smash, Dodge}
     public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
-    States currentState = States.Follow; //set this to Hatching
+    States currentState;// = States.Follow; //set this to Hatching
     animStates animationState = animStates.Idle;
     Monster monster;
     SearchFood search;
@@ -24,6 +24,7 @@ public class MonsterState : MonoBehaviour {
     public bool trustPlayer;
     public GameObject smashableObject;
     public GameObject monsterHand;
+    public Vector3 exitPoint;
 
     [HideInInspector] public GameObject foodObj;
 
@@ -86,7 +87,6 @@ public class MonsterState : MonoBehaviour {
 
         EventManager.instance.Fetching += OnFetching;
         EventManager.instance.Pointing += OnPointing;
-
     }
 
     void Update()
@@ -124,19 +124,11 @@ public class MonsterState : MonoBehaviour {
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
-            ragdolling = !ragdolling;
-            if (ragdolling)
-            {
-                currentState = States.Ragdoll;
-            }
-            else
-            {
-                Vector3 tempVec = monster.mHead.transform.position;
-                tempVec.y = monster.GroundLevel;
-                transform.position = tempVec;
-                
-                currentState = States.Follow;
-            }
+            ToggleRagdoll();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            boxing.DodgeTeleport();
         }
 
 
@@ -167,6 +159,10 @@ public class MonsterState : MonoBehaviour {
                 if (!monster.WaitStarted)
                 {
                     stats.Invoke("SpawnPoop", 3.75f);
+                    /*for (int i = 0; i < 25; i++)
+                    {
+                        stats.Invoke("SpawnPoop", i * 0.2f);
+                    }*/
                 }
                 monster.WaitFor(5.75f);
                 break;
@@ -191,14 +187,23 @@ public class MonsterState : MonoBehaviour {
                 break;
             case States.Exit:
                 monster.MoveTo(smashableObject.transform.position);
-                if (Vector3.Distance(transform.position, smashableObject.transform.position) < 2)
+                if (Vector3.Distance(transform.position, smashableObject.transform.position) < 1.5f)
                 {
                     SetState(States.Smash);
                     SetAnimationState(animStates.Smash);
-                    Invoke("SmashStone", 2);
+                    Invoke("SmashStone", 1.6f);
+                    Invoke("ExitCave", 3);
                 }
                 break;
+            case States.GoOutside:
+                monster.MoveTo(exitPoint);
+                break;
             case States.Dead:
+                if (!ragdolling)
+                {
+                    Invoke("SetRagdoll", 2.5f);
+                    ragdolling = true;
+                }
                 //Do dying stuff
                 break;
         }
@@ -228,6 +233,11 @@ public class MonsterState : MonoBehaviour {
 
     }
 
+    void ExitCave()
+    {
+        currentState = States.GoOutside;
+    }
+
     void StepSound()
     {
         audioSource.volume = Random.Range(mainVolume/5, mainVolume/3);
@@ -240,6 +250,24 @@ public class MonsterState : MonoBehaviour {
         stats.childMonster.SetActive(true);
         //hatchObject.SetActive(false);
         currentState = States.Follow;
+    }
+
+    void ToggleRagdoll()
+    {
+
+        ragdolling = !ragdolling;
+        if (ragdolling)
+        {
+            stateInQueue = currentState;
+            currentState = States.Ragdoll;
+        }
+        else
+        {
+            Vector3 tempVec = monster.mHead.transform.position;
+            tempVec.y = monster.GroundLevel;
+            transform.position = tempVec;
+            currentState = stateInQueue;
+        }
     }
 
     public void SetAnimationState(animStates stateToSet)
@@ -255,6 +283,7 @@ public class MonsterState : MonoBehaviour {
         audioSource.volume = mainVolume;
         audioSource.pitch = 1;
         audioSource.loop = false;
+        audioSource.Stop();
         switch (animationState)
         {
             case animStates.Idle:
@@ -279,11 +308,11 @@ public class MonsterState : MonoBehaviour {
                 break;
             case animStates.EatGround:
                 anim.SetTrigger("Eat");
-                if (!audioSource.isPlaying || audioSource.clip != eatGround) { audioSource.PlayOneShot(eatGround); }
+                audioSource.PlayOneShot(eatGround);
                 break;
             case animStates.EatHand:
                 anim.SetTrigger("EatFromHand");
-                if (!audioSource.isPlaying || audioSource.clip != eatHand) { audioSource.PlayOneShot(eatHand); }
+                audioSource.PlayOneShot(eatHand);
                 break;
             case animStates.Sleep:
                 anim.SetBool("Sleep", true);
@@ -307,15 +336,15 @@ public class MonsterState : MonoBehaviour {
                 break;
             case animStates.Sniff:
                 anim.SetTrigger("Sniff");
-                if (!audioSource.isPlaying) { audioSource.PlayOneShot(sniff); }
+                audioSource.PlayOneShot(sniff);
                 break;
             case animStates.Petting:
                 anim.SetTrigger("Petting");
-                if (!audioSource.isPlaying) { audioSource.PlayOneShot(enjoyPetting); }
+                audioSource.PlayOneShot(enjoyPetting);
                 break;
             case animStates.GetHit:
                 anim.SetTrigger("Hit");
-                if (!audioSource.isPlaying) { audioSource.PlayOneShot(hit); }
+                audioSource.PlayOneShot(hit);
                 break;
             case animStates.Hungry:
                 anim.SetTrigger("");
@@ -324,6 +353,9 @@ public class MonsterState : MonoBehaviour {
             case animStates.Yawn:
                 audioSource.PlayOneShot(yawn);
                 anim.SetTrigger("Yawn");
+                break;
+            case animStates.Dodge:
+                anim.SetTrigger("Dodge");
                 break;
             case animStates.Evolve:
                 adultAnim.SetTrigger("Evolve");
@@ -352,6 +384,8 @@ public class MonsterState : MonoBehaviour {
         if (_state == States.Evolve)
         {
             currentState = _state;
+
+            adultAnim.SetTrigger("SkipSpawnDelay");
         }
 
         else if (monster.WaitStarted)

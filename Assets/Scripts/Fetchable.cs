@@ -1,10 +1,4 @@
-﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
-//
-// Purpose: Basic throwable object
-//
-//=============================================================================
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 
@@ -45,8 +39,7 @@ namespace Valve.VR.InteractionSystem
 
         public bool snapAttachEaseInCompleted = false;
 
-
-        //-------------------------------------------------
+        
         void Awake()
         {
             velocityEstimator = GetComponent<VelocityEstimator>();
@@ -60,12 +53,9 @@ namespace Valve.VR.InteractionSystem
             rb.maxAngularVelocity = 50.0f;
         }
 
-
-        //-------------------------------------------------
+        
         private void OnHandHoverBegin(Hand hand)
         {
-            bool showHint = false;
-            
             if (!attached)
             {
                 if (hand.GetStandardInteractionButton())
@@ -74,37 +64,21 @@ namespace Valve.VR.InteractionSystem
                     if (rb.velocity.magnitude >= catchSpeedThreshold)
                     {
                         hand.AttachObject(gameObject, attachmentFlags, attachmentPoint);
-                        showHint = false;
                     }
                 }
             }
-
-            if (showHint)
-            {
-                ControllerButtonHints.ShowButtonHint(hand, Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
-            }
         }
+        
 
-
-        //-------------------------------------------------
-        private void OnHandHoverEnd(Hand hand)
-        {
-            ControllerButtonHints.HideButtonHint(hand, Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
-        }
-
-
-        //-------------------------------------------------
+        
         private void HandHoverUpdate(Hand hand)
         {
-            //Trigger got pressed
             if (hand.GetStandardInteractionButtonDown())
             {
                 hand.AttachObject(gameObject, attachmentFlags, attachmentPoint);
-                ControllerButtonHints.HideButtonHint(hand, Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger);
             }
         }
-
-        //-------------------------------------------------
+        
         private void OnAttachedToHand(Hand hand)
         {
             attached = true;
@@ -148,8 +122,7 @@ namespace Valve.VR.InteractionSystem
             snapAttachEaseInCompleted = false;
         }
 
-
-        //-------------------------------------------------
+        
         private void OnDetachedFromHand(Hand hand)
         {
             attached = false;
@@ -189,9 +162,7 @@ namespace Valve.VR.InteractionSystem
             Vector3 axis = angularVelocity.normalized;
             transform.rotation *= Quaternion.AngleAxis(angle * timeUntilFixedUpdate, axis);
 
-
-            EventManager.instance.targetObj = gameObject;
-            EventManager.instance.OnFetching();
+            Invoke("StartFetching", 1);
         }
 
 
@@ -243,6 +214,15 @@ namespace Valve.VR.InteractionSystem
         {
             gameObject.SetActive(false);
             velocityEstimator.FinishEstimatingVelocity();
+        }
+        
+        void StartFetching()
+        {
+            if (!attached)
+            {
+                EventManager.instance.targetObj = gameObject;
+                EventManager.instance.OnFetching();
+            }
         }
     }
 }

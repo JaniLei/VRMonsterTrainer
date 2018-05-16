@@ -14,6 +14,11 @@ namespace Valve.VR.InteractionSystem
             if (monster)
             {
                 Edible edible = col.GetComponent<Edible>();
+            if (!edible)
+                edible = col.GetComponentInChildren<Edible>();
+            if (!edible)
+                edible = col.GetComponentInParent<Edible>();
+
                 if (edible && edible.holdingHand == null)
                 {
                     monster.EatObject(col.gameObject);

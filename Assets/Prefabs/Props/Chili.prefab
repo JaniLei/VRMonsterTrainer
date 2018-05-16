@@ -55,9 +55,9 @@ GameObject:
   - component: {fileID: 114299774063524034}
   - component: {fileID: 54969863708865946}
   - component: {fileID: 114520886869801460}
-  - component: {fileID: 114477879178907754}
-  - component: {fileID: 65715714578855694}
   - component: {fileID: 114977113524490634}
+  - component: {fileID: 114485984825485742}
+  - component: {fileID: 65320773558281492}
   m_Layer: 8
   m_Name: Chili
   m_TagString: Edible
@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 33607625201875342}
   - component: {fileID: 23509268458796978}
   - component: {fileID: 64710803345205578}
-  - component: {fileID: 114913354723859800}
   m_Layer: 0
   m_Name: Cone002
   m_TagString: Edible
@@ -91,8 +90,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201703335262698}
   m_LocalRotation: {x: -0.7933534, y: 0, z: 0, w: 0.6087614}
-  m_LocalPosition: {x: -6.9748073, y: 3.9529212, z: -1.5299379}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalPosition: {x: 7.5885916, y: 0.379, z: 1.141}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4445380875189558}
   m_Father: {fileID: 0}
@@ -104,15 +103,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1037555191174234}
-  m_LocalRotation: {x: -0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.009961333, y: 0.00996134, z: 0.00996134}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4870887561163008}
   - {fileID: 4917664213591754}
   m_Father: {fileID: 4136581806321376}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -10, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4870887561163008
 Transform:
   m_ObjectHideFlags: 1
@@ -264,7 +263,7 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: fc5b106398dceea4d910684e57e187b9, type: 3}
---- !u!65 &65715714578855694
+--- !u!65 &65320773558281492
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -274,8 +273,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.008920189, y: 0.010098906, z: 0.035926417}
-  m_Center: {x: 0, y: 0.0017569774, z: -2.2958177e-11}
+  m_Size: {x: 1, y: 1.1120734, z: 4.2615213}
+  m_Center: {x: 0, y: 0.31577608, z: 0.33976418}
 --- !u!114 &114299774063524034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -290,7 +289,7 @@ MonoBehaviour:
   velocityAverageFrames: 5
   angularVelocityAverageFrames: 11
   estimateOnAwake: 0
---- !u!114 &114477879178907754
+--- !u!114 &114485984825485742
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -348,21 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93b6a877adcbf94c89a9d6e0c0e844d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114913354723859800
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1494906357653102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92be86a7ee70ffe4093b8832a28aaf2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdingHand: {fileID: 0}
-  type: 1
-  notEdible: 0
-  picked: 0
 --- !u!114 &114977113524490634
 MonoBehaviour:
   m_ObjectHideFlags: 1

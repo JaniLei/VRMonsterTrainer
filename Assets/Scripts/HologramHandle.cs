@@ -11,42 +11,27 @@ namespace Valve.VR.InteractionSystem
         public Hand.AttachmentFlags attachmentFlags = Hand.AttachmentFlags.ParentToHand | Hand.AttachmentFlags.DetachFromOtherHand | Hand.AttachmentFlags.SnapOnAttach;
         public GameObject screen;
 
+        Transform parent;
         Vector3 oldPosition;
         Quaternion oldRotation;
         Vector3 screenPos;
-        float startHeight;
-        bool held;
 
 
         void Start()
         {
             screenPos = screen.transform.localPosition;
-            startHeight = transform.localPosition.y;
-        }
-
-        //private void OnHandHoverBegin(Hand hand)
-        //{
-        //}
-
-        void Update()
-        {
-            if (!held)
-            {
-                Vector3 newPos = transform.localPosition;
-                newPos.y = startHeight;
-                transform.localPosition = newPos;
-            }
+            parent = transform.parent;
         }
 
         private void HandHoverUpdate(Hand hand)
         {
-            if (hand.GetStandardInteractionButtonDown() || ((hand.controller != null) && hand.controller.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip)))
+            if (hand.GetStandardInteractionButtonDown())
             {
                 if (hand.currentAttachedObject != gameObject)
                 {
                     // Save our position/rotation so that we can restore it when we detach
-                    oldPosition = transform.position;
-                    oldRotation = transform.rotation;
+                    oldPosition = transform.localPosition;
+                    oldRotation = transform.localRotation;
 
                     // Call this to continue receiving HandHoverUpdate messages,
                     // and prevent the hand from hovering over anything else
@@ -55,26 +40,26 @@ namespace Valve.VR.InteractionSystem
                     // Attach this object to the hand
                     hand.AttachObject(gameObject, attachmentFlags);
                 }
-                else
-                {
-                    // Detach this object from the hand
-                    hand.DetachObject(gameObject);
+            }
+            else if (hand.GetStandardInteractionButtonUp())
+            {
+                // Detach this object from the hand
+                hand.DetachObject(gameObject);
 
-                    // Call this to undo HoverLock
-                    hand.HoverUnlock(GetComponent<Interactable>());
+                // Call this to undo HoverLock
+                hand.HoverUnlock(GetComponent<Interactable>());
 
-                    // Restore position/rotation
-                    transform.position = oldPosition;
-                    transform.rotation = oldRotation;
-                }
+                // Restore position/rotation
+                transform.parent = parent;
+                transform.localPosition = oldPosition;
+                transform.localRotation = oldRotation;
             }
         }
 
         private void OnAttachedToHand(Hand hand)
         {
-            held = true;
             GetComponent<TabletPowerToggle>().Power = true;
-            //screen.SetActive(true);
+
             if (hand.startingHandType == Hand.HandType.Left)
             {
                 if (screenPos.x < 0)
@@ -91,13 +76,7 @@ namespace Valve.VR.InteractionSystem
 
         private void OnDetachedFromHand(Hand hand)
         {
-            held = false;
             GetComponent<TabletPowerToggle>().Power = false;
-            //screen.SetActive(false);
         }
-
-        //private void HandAttachedUpdate(Hand hand)
-        //{
-        //}
     }
 }

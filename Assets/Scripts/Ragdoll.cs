@@ -7,15 +7,15 @@ namespace Valve.VR.InteractionSystem
     [RequireComponent(typeof(Interactable))]
     public class Ragdoll : MonoBehaviour
     {
-        public bool activeOnStart;
-
-        bool isKinematic = false;
+        bool isKinematic = true;
+        Vector3 pos;
+        float startY;
+        Collider[] colls;
 
         void Start()
         {
-            SetKinematic(true);
-            if (activeOnStart)
-                SetKinematic(!isKinematic);
+            startY = transform.position.y;
+            colls = GetComponentsInChildren<Collider>();
         }
 
         void Update()
@@ -30,8 +30,17 @@ namespace Valve.VR.InteractionSystem
         {
             if (hand.GetStandardInteractionButtonDown())
             {
-                SetKinematic(false);
-                GetComponentInParent<Animator>().enabled = false;
+                if (hand.otherHand)
+                {
+                    if (hand.otherHand.GetStandardInteractionButton())
+                    {
+                        ToggleRagdoll();
+                    }
+                }
+                else
+                {
+                    ToggleRagdoll();
+                }
             }
         }
 
@@ -51,20 +60,32 @@ namespace Valve.VR.InteractionSystem
             Invoke("ToggleRagdoll", 2);
         }
 
+        // moved to RagdollHelper class
         void SetKinematic(bool newValue)
         {
             Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
             foreach (Rigidbody rb in bodies)
             {
                 rb.isKinematic = newValue;
+                rb.useGravity = !newValue;
             }
             isKinematic = !isKinematic;
         }
 
         public void ToggleRagdoll()
         {
-            SetKinematic(!isKinematic);
-            GetComponentInParent<Animator>().enabled = isKinematic;
+            for (int i = 0; i < colls.Length; i++)
+            {
+                colls[i].isTrigger = !isKinematic;
+            }
+            GetComponentInChildren<RagdollHelper>().ragdolled = isKinematic;
+            if (!isKinematic)
+            {
+                Vector3 fixedPos = GetComponentInChildren<RagdollHelper>().gameObject.transform.position;
+                fixedPos.y = startY;
+                transform.position = fixedPos;
+            }
+            isKinematic = !isKinematic;
         }
     }
 }

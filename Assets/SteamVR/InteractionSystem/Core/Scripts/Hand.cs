@@ -698,17 +698,6 @@ namespace Valve.VR.InteractionSystem
 			{
 				hoveringInteractable.SendMessage( "HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver );
 			}
-
-            if (GetStandardInteractionButtonDown())
-            {
-                RaycastHit hit;
-                bool bHit = Physics.Linecast(transform.position, transform.forward * 100, out hit);
-                if (bHit && hit.transform.gameObject.tag == "Bed")
-                {
-                    EventManager.instance.targetObj = hit.transform.gameObject;
-                    EventManager.instance.OnPointing();
-                }
-            }
         }
 
 

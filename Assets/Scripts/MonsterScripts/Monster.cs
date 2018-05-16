@@ -34,7 +34,6 @@ public class Monster : MonoBehaviour {
         mStats = gameObject.GetComponent<MonsterStats>();
         state = gameObject.GetComponent<MonsterState>();
         headOrigin = gameObject.transform.GetChild(0).gameObject;
-        //mHead = gameObject.transform.GetChild(1).gameObject;
     }
     void LateUpdate()
     {
@@ -54,10 +53,8 @@ public class Monster : MonoBehaviour {
         playerRotation = Quaternion.LookRotation(mHead.transform.position - mainPlayer.transform.position); //Monster head and player
         //playerRotation.z = 0;
         playerGroundRotation = Quaternion.LookRotation(transform.position - playerGroundPosition); //Monster body and player(y=0.5)
-        //mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, headOrigin.transform.position, 1.5f * Time.deltaTime);
 
         headRotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
-        //Debug.Log(headRotation.x + " " + headRotation.y + " " + headRotation.z + " ");
 
         if (Vector3.Distance(transform.position, playerGroundPosition) < distance) //How close the monster will come to the player
         {
@@ -133,7 +130,6 @@ public class Monster : MonoBehaviour {
 
     public void WaitFor(float t)
     {
-        //Debug.Log(waitTimer);
         if (WaitStarted)
         {
             Wait(t);

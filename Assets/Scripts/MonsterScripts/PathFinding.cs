@@ -15,14 +15,13 @@ public class PathFinding : MonoBehaviour {
     
     List<Node> closedNodes = new List<Node>();
     List<Node> pathNodes = new List<Node>();
-    List<Node> openNodes = new List<Node>();
     List<Vector3> pathVectors = new List<Vector3>();
     Node defNode, currentNode, bestNode;
 
 
     void Start()
     {
-        Monster monster = gameObject.GetComponent<Monster>();
+        Monster monster = searchFood.gameObject.GetComponent<Monster>();
         defNode = new Node(new Vector3(), this);
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
@@ -53,7 +52,6 @@ public class PathFinding : MonoBehaviour {
     {
         closedNodes.Clear();
         pathNodes.Clear();
-        //openNodes.Clear(); //available nodes to explore
         pathVectors.Clear();
 
         defNode.position = startPoint; //Gets returned if no path can be found

@@ -8,24 +8,35 @@ public class DustSpawner : MonoBehaviour {
     public int particleAmount;
     public int rockAmount;
     public int spawnCount;
+    public float shakeAmount;
     public List<GameObject> rockObjects;
     public float areaSize;
     public float overTime;
+    float dustTimer;
+    int nextDustSpawn;
 
     Vector3 defaultGravity;
+    
 
 	void Start ()
     {
         particleSys = gameObject.GetComponent<ParticleSystem>();
         defaultGravity = Physics.gravity;
-        Debug.Log(defaultGravity);
+        nextDustSpawn = Random.Range(60, 300);
 	}
 	
 
 	void Update ()
     {
+        dustTimer += Time.deltaTime;
 		if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            CreateDust();
+        }
+        if (dustTimer > nextDustSpawn)
+        {
+            dustTimer = 0;
+            nextDustSpawn = Random.Range(60, 300);
             CreateDust();
         }
 	}
@@ -37,13 +48,16 @@ public class DustSpawner : MonoBehaviour {
             Invoke("CreateParticle", Random.Range(0.00f, overTime));
             Invoke("CreateRock", Random.Range(0.00f, overTime));
         }
-        Invoke("ShakeObjects", Random.Range(0.00f, overTime));
-        Invoke("ShakeObjects", Random.Range(0.00f, overTime));
+        for (int i = 0; i < shakeAmount; i++)
+        {
+            Invoke("ShakeObjects", Random.Range(0.00f, overTime));
+        }
     }
 
     void ShakeObjects()
     {
-        Physics.gravity = -Vector3.down * 20;
+        Vector3 tempGravity = new Vector3(Random.Range(-20,20), Random.Range(20, 35), Random.Range(-20,20));
+        Physics.gravity = tempGravity;
         Invoke("RestoreGravity", 0.05f);
     }
 
