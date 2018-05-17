@@ -13,16 +13,11 @@ public class ParticleOnCollide : MonoBehaviour {
 
     ParticleSystem ps;
     public MonsterStats mStats;
-    //ParticleSystem.EmitParams emitParams;
-
 
 
     void Start()
     {
         ps = GameObject.Find("PoopSplatParticles").GetComponent<ParticleSystem>();
-        //ps = Instantiate(particleSys, Vector3.zero, Quaternion.identity);
-        //ps.startColor = transform.GetComponent<MeshRenderer>().material.color;
-        //emitParams = new ParticleSystem.EmitParams();
     }
 
 
@@ -42,20 +37,9 @@ public class ParticleOnCollide : MonoBehaviour {
             {
                 emitParams.position = c.point;
                 emitParams.applyShapeToPosition = true;
-
-                //Destroy(ps, 10);
-                //ps.transform.rotation = Quaternion.LookRotation(c.normal);
-                /*if (particles.Count > maxParticles)
-                {
-                    Destroy(particles[0]);
-                }*/
+                
             }
             ps.Emit(emitParams, 2);
-        }
-        
-    }
-
-    void CreateSplatter(Collision col)
-    {
+        }   
     }
 }
