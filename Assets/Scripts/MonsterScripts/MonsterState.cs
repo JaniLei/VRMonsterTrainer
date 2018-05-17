@@ -7,7 +7,7 @@ public class MonsterState : MonoBehaviour {
     public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround, Smash, GoOutside}
     public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk, Smash, Dodge}
     public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
-    States currentState;// = States.Follow; //set this to Hatching
+    States currentState = States.Hatching;// = States.Follow; //set this to Hatching
     animStates animationState = animStates.Idle;
     Monster monster;
     SearchFood search;
@@ -53,7 +53,6 @@ public class MonsterState : MonoBehaviour {
     public AudioClip push;
     public AudioClip evolve;
 
-
     void Start()
     {
         monster = gameObject.GetComponent<Monster>();
@@ -91,7 +90,7 @@ public class MonsterState : MonoBehaviour {
 
     void Update()
     {
-
+        //These are for testing--------------------------------------
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentState = States.Sleep;
@@ -130,18 +129,15 @@ public class MonsterState : MonoBehaviour {
         {
             boxing.DodgeTeleport();
         }
-
+        //---------------------------------------------------------
 
 
 
         switch (currentState)
         {
             case States.Hatching:
-                /*hTimer += Time.deltaTime;
-                if (hTimer > hatchTime)
-                {
-                    HatchMonster();
-                }*/
+
+
                 break;
             case States.Follow:
                 monster.FollowPlayer(followDistance);
@@ -159,10 +155,6 @@ public class MonsterState : MonoBehaviour {
                 if (!monster.WaitStarted)
                 {
                     stats.Invoke("SpawnPoop", 3.75f);
-                    /*for (int i = 0; i < 25; i++)
-                    {
-                        stats.Invoke("SpawnPoop", i * 0.2f);
-                    }*/
                 }
                 monster.WaitFor(5.75f);
                 break;
@@ -172,7 +164,7 @@ public class MonsterState : MonoBehaviour {
             case States.EatHand:
                 monster.WaitFor(5);
                 break;
-            case States.EatGround: //eat
+            case States.EatGround:
                 if (monster.EatObject(foodObj)) { SetState(stateInQueue); }
                 break;
             case States.Petting:
@@ -186,13 +178,16 @@ public class MonsterState : MonoBehaviour {
 
                 break;
             case States.Exit:
-                monster.MoveTo(smashableObject.transform.position);
                 if (Vector3.Distance(transform.position, smashableObject.transform.position) < 1.5f)
                 {
                     SetState(States.Smash);
                     SetAnimationState(animStates.Smash);
                     Invoke("SmashStone", 1.6f);
                     Invoke("ExitCave", 3);
+                }
+                else
+                {
+                    monster.MoveTo(smashableObject.transform.position);
                 }
                 break;
             case States.GoOutside:
@@ -204,10 +199,10 @@ public class MonsterState : MonoBehaviour {
                     Invoke("SetRagdoll", 2.5f);
                     ragdolling = true;
                 }
-                //Do dying stuff
                 break;
         }
 
+        //Timer for walking sounds
         soundTimer += Time.deltaTime;
         if ((animationState == animStates.Walking || animationState == animStates.AdultWalk) && soundTimer > stepTimer)
         {
@@ -216,8 +211,8 @@ public class MonsterState : MonoBehaviour {
         }
 
 
-
-        statTimer += Time.deltaTime; //Timer for hunger and fatigue
+        //Timer for hunger and fatigue
+        statTimer += Time.deltaTime;
         if (statTimer > gameSpeed)
         {
             stats.UpdateStats();
@@ -248,7 +243,6 @@ public class MonsterState : MonoBehaviour {
     void HatchMonster()
     {
         stats.childMonster.SetActive(true);
-        //hatchObject.SetActive(false);
         currentState = States.Follow;
     }
 
@@ -284,6 +278,7 @@ public class MonsterState : MonoBehaviour {
         audioSource.pitch = 1;
         audioSource.loop = false;
         audioSource.Stop();
+
         switch (animationState)
         {
             case animStates.Idle:
@@ -377,8 +372,8 @@ public class MonsterState : MonoBehaviour {
 
     }
 
-    public States stateInQueue = States.Follow;
-
+    public States stateInQueue = States.Follow; //This is used when monster is performing an action
+    
     public void SetState(States _state)
     {
         if (_state == States.Evolve)
@@ -386,6 +381,10 @@ public class MonsterState : MonoBehaviour {
             currentState = _state;
 
             adultAnim.SetTrigger("SkipSpawnDelay");
+        }
+        else if ((currentState == States.Evolve && _state != States.Exit) || currentState == States.Exit)
+        {
+            return;
         }
 
         else if (monster.WaitStarted)

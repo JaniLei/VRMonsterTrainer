@@ -41,9 +41,7 @@ public class Fetch : MonoBehaviour{
                 fetchObj.transform.position = monsterMouth.transform.position;
                 hasObject = true;
                 monster.hasPath = false;
-                //fj = monsterMouth.AddComponent<FixedJoint>();
-                //fj.connectedBody = fetchObj.GetComponent<Rigidbody>();
-                fetchObj.GetComponent<Rigidbody>().useGravity = false; //stops object from gaining velocity while attached to monster
+                fetchObj.GetComponent<Rigidbody>().useGravity = false;
                 timer = 0;
                 AnimStarted = false;
             }
@@ -52,7 +50,7 @@ public class Fetch : MonoBehaviour{
         else if (Vector3.Distance(gameObject.transform.position, monster.playerGroundPosition) > 1.2f)
         {
             state.SetAnimationState(MonsterState.animStates.Walking);
-            AnimStarted = false; //!
+            AnimStarted = false; 
             timer += Time.deltaTime;
             fetchObj.transform.position = monsterMouth.transform.position;
             fetchObj.transform.rotation = monsterMouth.transform.rotation;
@@ -68,7 +66,6 @@ public class Fetch : MonoBehaviour{
     public void StopFetch()
     {
         fetchObj.GetComponent<Rigidbody>().useGravity = true;
-        //Destroy(monsterMouth.GetComponent<FixedJoint>());
         hasObject = false;
         state.SetState(state.stateInQueue);
         stats.IncreaseStat("speed", distance * 2);
