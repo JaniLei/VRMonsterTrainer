@@ -50,17 +50,20 @@ public class Monster : MonoBehaviour {
         playerGroundPosition = mainPlayer.transform.position;
         playerGroundPosition.y = GroundLevel;
 
-        playerRotation = Quaternion.LookRotation(mHead.transform.position - mainPlayer.transform.position); //Monster head and player
-        //playerRotation.z = 0;
-        playerGroundRotation = Quaternion.LookRotation(transform.position - playerGroundPosition); //Monster body and player(y=0.5)
+        //Monster head and player
+        playerRotation = Quaternion.LookRotation(mHead.transform.position - mainPlayer.transform.position);
 
+        //Monster body and player(y=0.5)
+        playerGroundRotation = Quaternion.LookRotation(transform.position - playerGroundPosition);
         headRotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
+        
 
-        if (Vector3.Distance(transform.position, playerGroundPosition) < distance) //How close the monster will come to the player
+        if (Vector3.Distance(transform.position, playerGroundPosition) < distance) //Monster stands still and looks towards the player
         {
             headFollow = false;
             state.SetAnimationState(MonsterState.animStates.Idle);
             hasPath = false;
+
             if (Vector3.Distance(transform.position, playerGroundPosition) < 1f) //Look forward
             {
                 headRotation = Quaternion.Slerp(mHead.transform.rotation, transform.rotation, 5 * Time.deltaTime);
@@ -90,11 +93,11 @@ public class Monster : MonoBehaviour {
     
     public void GoSleep()
     {
-        if (Vector3.Distance(transform.position, EventManager.instance.targetObj.transform.position) > 1)
+        if (Vector3.Distance(transform.position, EventManager.instance.targetObj.transform.position) > 1) //Move to bed
         {
             MoveTo(EventManager.instance.targetObj.transform.position);
         }
-        else
+        else //Do sleep stuff
         {
             Vector3 tempVec = EventManager.instance.targetObj.transform.position;
             tempVec.y = GroundLevel + 0.15f;
@@ -104,7 +107,6 @@ public class Monster : MonoBehaviour {
             state.SetAnimationState(MonsterState.animStates.Sleep);
             state.SetState(MonsterState.States.Sleep);
             mStats.mStats.fatigue = 0;
-            //Do sleep things...
         }
     }
 
@@ -153,10 +155,6 @@ public class Monster : MonoBehaviour {
         }
     }
 
-    public void CatchObject(GameObject g)
-    {
-        mHead.transform.position = Vector3.MoveTowards(mHead.transform.position, g.transform.position, 5);
-    }
 
     float timer = 0;
 
@@ -168,7 +166,7 @@ public class Monster : MonoBehaviour {
         {
             state.SetState(MonsterState.States.EatHand);
             state.SetAnimationState(MonsterState.animStates.EatHand);
-            mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString()); //Type of object eaten
+            mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString());
             g.SetActive(false);
             state.SetEmotion(MonsterState.Emotions.Happy);
             timer += Time.deltaTime;
@@ -189,7 +187,7 @@ public class Monster : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer > 2)
             {
-                mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString()); //Type of object eaten
+                mStats.EatFood(g.GetComponent<Valve.VR.InteractionSystem.Edible>().type.ToString());
                 g.SetActive(false);
                 state.SetEmotion(MonsterState.Emotions.Happy);
                 return true;
@@ -245,7 +243,6 @@ public class Monster : MonoBehaviour {
                 else
                 {
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3 * Time.deltaTime);
-                    //mHead.transform.rotation = Quaternion.Slerp(mHead.transform.rotation, targetRotation, 5 * Time.deltaTime);
                 }
 
             }

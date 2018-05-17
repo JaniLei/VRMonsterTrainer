@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Create dust particles, spawn small rocks and change gravity temporarily
+
 public class DustSpawner : MonoBehaviour {
 
     ParticleSystem particleSys;
@@ -16,6 +18,7 @@ public class DustSpawner : MonoBehaviour {
     int nextDustSpawn;
 
     Vector3 defaultGravity;
+    AudioSource audioSource;
     
 
 	void Start ()
@@ -23,6 +26,7 @@ public class DustSpawner : MonoBehaviour {
         particleSys = gameObject.GetComponent<ParticleSystem>();
         defaultGravity = Physics.gravity;
         nextDustSpawn = Random.Range(60, 300);
+        audioSource = gameObject.GetComponent<AudioSource>();
 	}
 	
 
@@ -43,6 +47,7 @@ public class DustSpawner : MonoBehaviour {
 
     void CreateDust()
     {
+        audioSource.Play();
         for (int i = 0; i < spawnCount; i++)
         {
             Invoke("CreateParticle", Random.Range(0.00f, overTime));
