@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class TabletSlider : MonoBehaviour
 {
     public float range = 0.7f;
+    public RectTransform image;
+    public bool swiped;
 
-    Vector3 startPos, fingerPos, nextPos;
+    Vector3 startPos, fingerPos, nextPos, imageStart;
     bool hovering;
 
 	void Start()
     {
         startPos = transform.localPosition;
         nextPos = startPos;
+        imageStart = image.position;
 	}
 	
 	void Update()
@@ -22,6 +27,10 @@ public class TabletSlider : MonoBehaviour
             nextPos.x = fingerPos.x;
             nextPos.x = Mathf.Clamp(nextPos.x, startPos.x, startPos.x + range);
             transform.localPosition = nextPos;
+            Vector3 imagePos = image.position;
+            imagePos.x = imageStart.x + nextPos.x * 10;
+            imagePos.x += 3.5f;
+            image.position = imagePos;
         }
         else
         {
@@ -31,19 +40,15 @@ public class TabletSlider : MonoBehaviour
                 nextPos.x += (startPos.x - nextPos.x) * Time.deltaTime * 5;
                 nextPos.x = Mathf.Clamp(nextPos.x, startPos.x, startPos.x + range);
                 transform.localPosition = nextPos;
+                Vector3 imagePos = image.position;
+                imagePos.x = imageStart.x + nextPos.x * 10;
+                imagePos.x += 3.5f;
+                image.position = imagePos;
             }
         }
 
-        if (Mathf.Abs(startPos.x) + nextPos.x >= range * 0.9f)
-        {
-            OnSwiped();
-        }
+        swiped = (Mathf.Abs(startPos.x) + nextPos.x >= range * 0.95f);
 	}
-
-    void OnSwiped()
-    {
-        
-    }
 
     void OnTriggerStay(Collider other)
     {

@@ -15,7 +15,7 @@ namespace Valve.VR.InteractionSystem
         void Start()
         {
             startY = transform.position.y;
-            colls = GetComponentsInChildren<Collider>();
+            colls = GetComponentsInChildren<Collider>(true);
         }
 
         void Update()

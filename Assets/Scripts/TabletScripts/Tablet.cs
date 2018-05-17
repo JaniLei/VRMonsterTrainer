@@ -4,7 +4,7 @@ using System.Collections;
 namespace Valve.VR.InteractionSystem
 {
     [RequireComponent(typeof(Interactable))]
-    public class HologramHandle : MonoBehaviour
+    public class Tablet : MonoBehaviour
     {
         [EnumFlags]
         [Tooltip("The flags used to attach this object to the hand.")]
@@ -32,16 +32,19 @@ namespace Valve.VR.InteractionSystem
 
         void Update()
         {
-            if (!attached)
+            if (followHead)
             {
-                Vector3 nextPos = followHead.transform.position;// + followHead.transform.right;
+                if (!attached)
+                {
+                    Vector3 nextPos = followHead.transform.position;// + followHead.transform.right;
 
-                nextPos.x += 0.2f;
-                nextPos.y = startY;
-                if (lerp)
-                    transform.position = Vector3.Lerp(transform.position, nextPos, Time.deltaTime * 5);
-                else
-                    transform.position = nextPos;
+                    nextPos.x += 0.2f;
+                    nextPos.y = startY;
+                    if (lerp)
+                        transform.position = Vector3.Lerp(transform.position, nextPos, Time.deltaTime * 5);
+                    else
+                        transform.position = nextPos;
+                }
             }
         }
 
@@ -66,6 +69,10 @@ namespace Valve.VR.InteractionSystem
 
         private void HandAttachedUpdate(Hand hand)
         {
+            //if ((rb.velocity + rb.angularVelocity).magnitude >= shakeThreshold)
+            //{
+
+            //}
             if ((hand.GetTrackedObjectVelocity() + hand.GetTrackedObjectAngularVelocity()).magnitude >= shakeThreshold)
             {
                 if (!menuOpen)
