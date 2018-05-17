@@ -34,7 +34,7 @@ public class PathFinding : MonoBehaviour {
             {
                 if (n != nn && !Physics.Linecast(n.position, nn.position, obstacleLayer))
                 {
-                    //Debug.DrawLine(n.position, nn.position,Color.red, 100);
+                    Debug.DrawLine(n.position, nn.position,Color.red, 100);
                     n.neighbors.Add(nn);
                 }
 
