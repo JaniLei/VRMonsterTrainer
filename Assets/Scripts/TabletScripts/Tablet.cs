@@ -12,8 +12,13 @@ namespace Valve.VR.InteractionSystem
         public GameObject screen;
         public GameObject followHead;
         public GameObject[] menuItems;
-        public GameObject statText;
+        public GameObject[] statsObjs;
+        public GameObject[] infoObjs;
+        public GameObject[] settingsObjs;
+        public GameObject[] infoPictures;
+        public GameObject[] sliderObjs;
         public float shakeThreshold = 3;
+        [HideInInspector]public int currentPicIndex;
         
         Vector3 screenPos;
         float startY;
@@ -32,6 +37,11 @@ namespace Valve.VR.InteractionSystem
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                OpenMenu(true);
+            }
+
             if (followHead)
             {
                 if (!attached)
@@ -77,7 +87,6 @@ namespace Valve.VR.InteractionSystem
             {
                 if (!menuOpen)
                 {
-                    statText.SetActive(false);
                     OpenMenu(true);
                 }
             }
@@ -111,11 +120,58 @@ namespace Valve.VR.InteractionSystem
 
         public void OpenMenu(bool open)
         {
+            OpenStats(false);
+            OpenInfo(false);
+            OpenSettings(false);
+            ActivateSlider(false);
             foreach (var item in menuItems)
             {
                 item.SetActive(open);
             }
             menuOpen = open;
+        }
+
+        public void OpenStats(bool open)
+        {
+            foreach (var item in statsObjs)
+            {
+                item.SetActive(open);
+            }
+        }
+
+        public void OpenInfo(bool open)
+        {
+            foreach (var item in infoObjs)
+            {
+                item.SetActive(open);
+            }
+        }
+
+        public void OpenSettings(bool open)
+        {
+            foreach (var item in settingsObjs)
+            {
+                item.SetActive(open);
+            }
+        }
+
+        public void ActivateSlider(bool active)
+        {
+            foreach (var item in sliderObjs)
+            {
+                item.SetActive(active);
+            }
+        }
+
+        public void OpenInfoPicture(int index)
+        {
+            for (int i = 0; i < infoPictures.Length; i++)
+            {
+                if (i == index)
+                    infoPictures[i].SetActive(true);
+                else
+                    infoPictures[i].SetActive(false);
+            }
         }
 
         IEnumerator StartAttach()

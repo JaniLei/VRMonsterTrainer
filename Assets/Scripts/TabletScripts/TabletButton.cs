@@ -18,6 +18,9 @@ public class TabletButton : MonoBehaviour
         if (other.tag == "Finger")
         {
             OnTouch();
+            var hand = other.gameObject.GetComponentInParent<Valve.VR.InteractionSystem.Hand>();
+            if (hand.controller != null)
+                hand.controller.TriggerHapticPulse(100);
         }
     }
 }
