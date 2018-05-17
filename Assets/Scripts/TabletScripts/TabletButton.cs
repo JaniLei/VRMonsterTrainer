@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TabletButton : MonoBehaviour
 {
-    protected Valve.VR.InteractionSystem.HologramHandle tablet;
+    protected Valve.VR.InteractionSystem.Tablet tablet;
 
     void Start()
     {
-        tablet = GetComponentInParent<Valve.VR.InteractionSystem.HologramHandle>();
+        tablet = GetComponentInParent<Valve.VR.InteractionSystem.Tablet>();
     }
 
     protected virtual void OnTouch() { }
