@@ -34,7 +34,7 @@ public class PathFinding : MonoBehaviour {
             {
                 if (n != nn && !Physics.Linecast(n.position, nn.position, obstacleLayer))
                 {
-                    Debug.DrawLine(n.position, nn.position,Color.red, 100);
+                    //Debug.DrawLine(n.position, nn.position,Color.red, 100);
                     n.neighbors.Add(nn);
                 }
 
@@ -70,6 +70,7 @@ public class PathFinding : MonoBehaviour {
 
         
 
+        //Pathfinding loop
         while (closedNodes.Count < allNodes.Count)
         {
             closedNodes.Add(currentNode);
@@ -96,6 +97,7 @@ public class PathFinding : MonoBehaviour {
             currentNode = bestNode;
 
         }
+
         pathVectors.Add(pathNodes[0].position);
         pathVectors.Add(pathNodes[1].position);
         return pathVectors;
