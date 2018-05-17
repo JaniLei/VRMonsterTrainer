@@ -33,14 +33,10 @@ namespace Valve.VR.InteractionSystem
                 if (hand.otherHand)
                 {
                     if (hand.otherHand.GetStandardInteractionButton())
-                    {
                         ToggleRagdoll();
-                    }
                 }
                 else
-                {
                     ToggleRagdoll();
-                }
             }
         }
 
@@ -60,17 +56,17 @@ namespace Valve.VR.InteractionSystem
             Invoke("ToggleRagdoll", 2);
         }
 
-        // moved to RagdollHelper class
-        void SetKinematic(bool newValue)
-        {
-            Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
-            foreach (Rigidbody rb in bodies)
-            {
-                rb.isKinematic = newValue;
-                rb.useGravity = !newValue;
-            }
-            isKinematic = !isKinematic;
-        }
+        // moved to RagdollHelper script
+        //void SetKinematic(bool newValue)
+        //{
+        //    Rigidbody[] bodies = GetComponentsInChildren<Rigidbody>();
+        //    foreach (Rigidbody rb in bodies)
+        //    {
+        //        rb.isKinematic = newValue;
+        //        rb.useGravity = !newValue;
+        //    }
+        //    isKinematic = !isKinematic;
+        //}
 
         public void ToggleRagdoll()
         {

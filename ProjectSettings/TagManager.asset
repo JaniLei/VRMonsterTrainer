@@ -9,6 +9,7 @@ TagManager:
   - Bed
   - interactable
   - monster
+  - Finger
   layers:
   - Default
   - TransparentFX

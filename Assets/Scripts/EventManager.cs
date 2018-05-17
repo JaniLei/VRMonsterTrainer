@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class EventManager : MonoBehaviour
 {
@@ -45,5 +47,10 @@ public class EventManager : MonoBehaviour
     public void OnFetching()
     {
         Fetching();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("cave", LoadSceneMode.Single);
     }
 }

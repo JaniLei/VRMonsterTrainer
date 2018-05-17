@@ -20,20 +20,18 @@ namespace Valve.VR.InteractionSystem
         [EnumFlags]
         public Hand.AttachmentFlags attachmentFlags = 0;
 
+        
         private List<Hand> holdingHands = new List<Hand>();
         private List<Rigidbody> holdingBodies = new List<Rigidbody>();
         private List<Vector3> holdingPoints = new List<Vector3>();
 
         private List<Rigidbody> rigidBodies = new List<Rigidbody>();
 
-        //-------------------------------------------------
         void Awake()
         {
             GetComponentsInChildren<Rigidbody>(rigidBodies);
         }
-
-
-        //-------------------------------------------------
+        
         void Update()
         {
             for (int i = 0; i < holdingHands.Count; i++)
@@ -44,9 +42,7 @@ namespace Valve.VR.InteractionSystem
                 }
             }
         }
-
-
-        //-------------------------------------------------
+        
         private void OnHandHoverBegin(Hand hand)
         {
             if (holdingHands.IndexOf(hand) == -1)
@@ -57,9 +53,7 @@ namespace Valve.VR.InteractionSystem
                 }
             }
         }
-
-
-        //-------------------------------------------------
+        
         private void OnHandHoverEnd(Hand hand)
         {
             if (holdingHands.IndexOf(hand) == -1)
@@ -70,9 +64,7 @@ namespace Valve.VR.InteractionSystem
                 }
             }
         }
-
-
-        //-------------------------------------------------
+        
         private void HandHoverUpdate(Hand hand)
         {
             if (hand.GetStandardInteractionButtonDown())
@@ -86,9 +78,7 @@ namespace Valve.VR.InteractionSystem
                     PhysicsAttach(hand);
             }
         }
-
-
-        //-------------------------------------------------
+        
         private void PhysicsAttach(Hand hand)
         {
             PhysicsDetach(hand);
@@ -137,9 +127,7 @@ namespace Valve.VR.InteractionSystem
             holdingBodies.Add(holdingBody);
             holdingPoints.Add(holdingPoint);
         }
-
-
-        //-------------------------------------------------
+        
         private bool PhysicsDetach(Hand hand)
         {
             int i = holdingHands.IndexOf(hand);
@@ -167,9 +155,7 @@ namespace Valve.VR.InteractionSystem
 
             return false;
         }
-
-
-        //-------------------------------------------------
+        
         void FixedUpdate()
         {
             if (attachMode == AttachMode.Force)
