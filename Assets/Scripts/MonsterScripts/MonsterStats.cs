@@ -137,9 +137,10 @@ public class MonsterStats : MonoBehaviour {
             }
             else if (mStats.meat/ totalCount > 0.75f)
             {
-                adultMonster.GetComponent<MaterialSwitcher>().ChangeMaterial(2); //RED
                 childMonster.SetActive(false);
                 adultMonster.SetActive(true);
+
+                adultMonster.GetComponent<MaterialSwitcher>().ChangeMaterial(2); //RED
             }
             else if (mStats.vegetables / totalCount > 0.75f)
             {

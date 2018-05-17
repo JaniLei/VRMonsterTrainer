@@ -19,7 +19,9 @@ public class DustSpawner : MonoBehaviour {
 
     Vector3 defaultGravity;
     AudioSource audioSource;
-    
+
+    public GameObject tree;
+
 
 	void Start ()
     {
@@ -48,6 +50,8 @@ public class DustSpawner : MonoBehaviour {
     void CreateDust()
     {
         audioSource.Play();
+        tree.GetComponent<Animator>().speed = 5;
+        Invoke("RestoreAnimation", overTime);
         for (int i = 0; i < spawnCount; i++)
         {
             Invoke("CreateParticle", Random.Range(0.00f, overTime));
@@ -69,6 +73,11 @@ public class DustSpawner : MonoBehaviour {
     void RestoreGravity()
     {
         Physics.gravity = defaultGravity;
+    }
+
+    void RestoreAnimation()
+    {
+        tree.GetComponent<Animator>().speed = 1;
     }
 
     void CreateParticle()

@@ -144,6 +144,7 @@ MonoBehaviour:
   - {fileID: 1313004231293754, guid: 4f4f60dd8d251ec4685b162c0784a85d, type: 2}
   areaSize: 8
   overTime: 3
+  tree: {fileID: 1402221118210002, guid: ba708640273a8794780ba1a4f5eeb7be, type: 2}
 --- !u!198 &198964303594036642
 ParticleSystem:
   m_ObjectHideFlags: 1
