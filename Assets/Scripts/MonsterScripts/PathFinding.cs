@@ -6,7 +6,6 @@ public class PathFinding : MonoBehaviour {
 
 
     //Attach this script along with the Node script to an empty gameobject that has the node gameobjects as children
-    //Algorithm is best first (for now)
 
     public LayerMask obstacleLayer;
     public List<Node> allNodes = new List<Node>();
@@ -35,12 +34,12 @@ public class PathFinding : MonoBehaviour {
             {
                 if (n != nn && !Physics.Linecast(n.position, nn.position, obstacleLayer))
                 {
-                    //Debug.DrawLine(n.position, nn.position,Color.red, 100);
+                    Debug.DrawLine(n.position, nn.position,Color.red, 100);
                     n.neighbors.Add(nn);
                 }
 
             }
-            searchFood.nodes.Add(n.position); //SearchFood
+            searchFood.nodes.Add(n.position);
             
         }
         searchFood.movePoint=allNodes[Random.Range(0,allNodes.Count)].position;
@@ -54,7 +53,7 @@ public class PathFinding : MonoBehaviour {
         pathNodes.Clear();
         pathVectors.Clear();
 
-        defNode.position = startPoint; //Gets returned if no path can be found
+        defNode.position = startPoint; //Default node gets returned if no path can be found
 
         currentNode = GetStartNode(startPoint, goal);
         if (!Physics.Linecast(currentNode.position, goal, obstacleLayer))
@@ -74,25 +73,13 @@ public class PathFinding : MonoBehaviour {
         while (closedNodes.Count < allNodes.Count)
         {
             closedNodes.Add(currentNode);
-            //openNodes.Remove(currentNode);
             temphCost = 100;
             foreach (Node n in currentNode.neighbors)
             {
-                //openNodes.Add(n);
                 if (n.hCost < temphCost && !closedNodes.Contains(n))
                 {
                     temphCost = n.hCost;
                     bestNode = n;
-                    /*
-                    if (!Physics.Linecast(n.position, goal, obstacleLayer))
-                    {
-                        pathNodes.Add(bestNode);
-                        foreach (Node nn in pathNodes)
-                        {
-                            pathVectors.Add(nn.position);
-                        }
-                        return pathVectors;
-                    }*/
                 }
             }
             if (!Physics.Linecast(bestNode.position, goal, obstacleLayer)) //Remove this if not working
@@ -104,25 +91,6 @@ public class PathFinding : MonoBehaviour {
                 }
                 return pathVectors;
             }
-
-            /*foreach (Node n in openNodes) //check if there is a better path
-            {
-                if (n.neighbors.Contains(currentNode) && n.hCost < temphCost && !closedNodes.Contains(n))
-                {
-                    temphCost = n.hCost;
-                    bestNode = n;
-
-                    if (!Physics.Linecast(n.position, goal, obstacleLayer))
-                    {
-                        pathNodes.Add(bestNode);
-                        foreach (Node nn in pathNodes)
-                        {
-                            pathVectors.Add(nn.position);
-                        }
-                        return pathVectors;
-                    }
-                }
-            }*/
 
             pathNodes.Add(bestNode);
             currentNode = bestNode;

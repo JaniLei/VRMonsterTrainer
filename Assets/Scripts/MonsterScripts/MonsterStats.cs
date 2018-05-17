@@ -14,27 +14,28 @@ public class MonsterStats : MonoBehaviour {
     int foodCount;
     [HideInInspector] public Stats mStats;
     [HideInInspector] public int health = 10;
-    public int maxHunger, maxFatigue;
     [HideInInspector] public bool hasEaten;
     [HideInInspector] public MonsterState state;
     [HideInInspector] public Monster monster;
+
+    public int maxHunger, maxFatigue;
     public GameObject poopObject;
     public GameObject childMonster;
     public GameObject adultMonster;
     public Text txtStats;
     int lastEaten; //1 = meat, 2 = vege, 3 = item
 
+
     public void UpdateStats()
     {
         if (hasEaten)
         {
             state.SetState(MonsterState.States.Pooping);
-            //state.stateInQueue = MonsterState.States.Pooping;
             state.SetEmotion(MonsterState.Emotions.Neutral);
 
             hasEaten = false;
         }
-        else if (mStats.hunger>5) //Hungry
+        else if (mStats.hunger>5)
         {
             state.SetAnimationState(MonsterState.animStates.Hungry);
             
@@ -90,7 +91,7 @@ public class MonsterStats : MonoBehaviour {
     }
 
 
-    public void IncreaseStat(string stat, int amount) //optional
+    public void IncreaseStat(string stat, int amount)
     {
         switch (stat)
         {
@@ -136,19 +137,21 @@ public class MonsterStats : MonoBehaviour {
             }
             else if (mStats.meat/ totalCount > 0.75f)
             {
-                //evolve red
+                adultMonster.GetComponent<MaterialSwitcher>().ChangeMaterial(2); //RED
                 childMonster.SetActive(false);
                 adultMonster.SetActive(true);
             }
             else if (mStats.vegetables / totalCount > 0.75f)
             {
-                //evolve green
+
+                adultMonster.GetComponent<MaterialSwitcher>().ChangeMaterial(3); //GREEN
                 childMonster.SetActive(false);
                 adultMonster.SetActive(true);
             }
             else
             {
-                //evolve brown
+
+                adultMonster.GetComponent<MaterialSwitcher>().ChangeMaterial(1); //BLUE
                 childMonster.SetActive(false);
                 adultMonster.SetActive(true);
             }
