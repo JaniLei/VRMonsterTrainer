@@ -199,7 +199,7 @@ public class MonsterState : MonoBehaviour {
             case States.Dead:
                 if (!ragdolling)
                 {
-                    Invoke("SetRagdoll", 2.5f);
+                    Invoke("ToggleRagdoll", 2.5f);
                     ragdolling = true;
                 }
                 break;
@@ -257,6 +257,7 @@ public class MonsterState : MonoBehaviour {
         {
             stateInQueue = currentState;
             currentState = States.Ragdoll;
+            GetComponent<Valve.VR.InteractionSystem.Ragdoll>().ToggleRagdoll();
         }
         else
         {
