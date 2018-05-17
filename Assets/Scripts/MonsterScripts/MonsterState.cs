@@ -91,43 +91,46 @@ public class MonsterState : MonoBehaviour {
     void Update()
     {
         //These are for testing--------------------------------------
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKey(KeyCode.AltGr))
         {
-            currentState = States.Sleep;
-            EventManager.instance.targetObj = monster.bedObj;
-            EventManager.instance.OnPointing();
-            OnPointing();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            currentState = States.Search;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            boxing.GetHit(false);
-            stats.IncreaseStat("agility", 2);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            stats.UpdateStats();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            currentState = States.Dead;
-            anim.SetBool("Dead", true);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            stats.IncreaseStat("agility", 10);
-            stats.IncreaseStat("speed", 10);
-        }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            ToggleRagdoll();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            boxing.DodgeTeleport();
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                currentState = States.Sleep;
+                EventManager.instance.targetObj = monster.bedObj;
+                EventManager.instance.OnPointing();
+                OnPointing();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                currentState = States.Search;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                boxing.GetHit(false);
+                stats.IncreaseStat("agility", 2);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                stats.UpdateStats();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha7))
+            {
+                currentState = States.Dead;
+                anim.SetBool("Dead", true);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
+                stats.IncreaseStat("agility", 10);
+                stats.IncreaseStat("speed", 10);
+            }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                ToggleRagdoll();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                boxing.DodgeTeleport();
+            }
         }
         //---------------------------------------------------------
 

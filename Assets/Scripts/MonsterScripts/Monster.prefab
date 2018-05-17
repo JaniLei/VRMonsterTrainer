@@ -9086,11 +9086,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  maxHunger: 10
-  maxFatigue: 10
   hasEaten: 0
   state: {fileID: 114968352960053098}
   monster: {fileID: 114964622874942114}
+  maxHunger: 10
+  maxFatigue: 10
   poopObject: {fileID: 1769108815650956, guid: ecbaaf9e2f990d743aec79e4adbbdf03, type: 2}
   childMonster: {fileID: 1444667003317588}
   adultMonster: {fileID: 1322225211736558}
@@ -9269,7 +9269,7 @@ MonoBehaviour:
   trustPlayer: 0
   smashableObject: {fileID: 0}
   monsterHand: {fileID: 0}
-  exitPoint: {x: -5, y: 4.25, z: -25}
+  exitPoint: {x: -3, y: 4.25, z: -25}
   foodObj: {fileID: 0}
   mainVolume: 1
   stepTimer: 0.25

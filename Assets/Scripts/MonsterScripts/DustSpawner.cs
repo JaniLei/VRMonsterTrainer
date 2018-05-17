@@ -33,7 +33,7 @@ public class DustSpawner : MonoBehaviour {
 	void Update ()
     {
         dustTimer += Time.deltaTime;
-		if (Input.GetKeyDown(KeyCode.Alpha1))
+		if (Input.GetKey(KeyCode.AltGr) && (Input.GetKeyDown(KeyCode.Alpha1)))
         {
             CreateDust();
         }

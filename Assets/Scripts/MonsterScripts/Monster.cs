@@ -217,7 +217,7 @@ public class Monster : MonoBehaviour {
         Quaternion targetRotation = Quaternion.LookRotation(transform.position - target);
         if (Physics.Linecast(transform.position, target, ObstacleMask) && !hasPath)
         {
-           PathPos = pathFinding.FindPath(transform.position, target); //PATHFINDING
+           PathPos = pathFinding.FindPath(transform.position, target);
            pathCounter = 0;
            hasPath = true;
 
@@ -259,19 +259,5 @@ public class Monster : MonoBehaviour {
         }
     }
 
-    void FixPosition(Vector3 target) //Obsolete
-    {
-        if (!Physics.Raycast(transform.position, -transform.forward * 0.2f, ObstacleMask))
-        {
-            transform.Translate(-Vector3.forward * Time.deltaTime);
-        }
-        else if (!Physics.Raycast(transform.position, -transform.right * 0.2f, ObstacleMask))
-        {
-            transform.Translate(-Vector3.right * Time.deltaTime);
-        }
-        else
-        {
-            transform.position = target;
-        }
-    }
+
 }
