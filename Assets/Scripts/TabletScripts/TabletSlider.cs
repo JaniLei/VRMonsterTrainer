@@ -15,6 +15,7 @@ public class TabletSlider : MonoBehaviour
     public float range = 0.7f;
     public RectTransform image;
     public bool swiped;
+    public Text description;
 
     Vector3 startPos, fingerPos, nextPos, imageStart;
     bool hovering;
@@ -73,6 +74,14 @@ public class TabletSlider : MonoBehaviour
             }
         }
 	}
+
+    public void UpdateDescription()
+    {
+        if (confirmingType == ConfirmingType.ConfirmQuit)
+            description.text = "Quitting game.\nSwipe to confirm.";
+        else if (confirmingType == ConfirmingType.ConfirmRestart)
+            description.text = "Monster dead.\nSwipe to restart.";
+    }
 
     void OnTriggerStay(Collider other)
     {

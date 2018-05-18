@@ -11,28 +11,17 @@ public class TabletStats : MonoBehaviour
     public GameObject foodWarning, sleepWarning, healthWarning;
 
     MonsterStats mStats;
+    Valve.VR.InteractionSystem.Tablet tablet;
     
+
 	void Start()
     {
+        tablet = GetComponent<Valve.VR.InteractionSystem.Tablet>();
         mStats = FindObjectOfType<MonsterStats>();
         if (!mStats)
             Debug.LogWarning("No monster found in scene");
         StartCoroutine("UpdateUIStats");
     }
-
-    //void Update()
-    //{
-    //    if (screen.activeInHierarchy && 
-    //        GetComponent<Valve.VR.InteractionSystem.Tablet>().screenStatus == Valve.VR.InteractionSystem.Tablet.ScreenStatus.Stats)
-    //    {
-    //        timer += Time.deltaTime;
-    //        if (timer >= 1)
-    //        {
-    //            UpdateUIStats();
-    //            timer = 0;
-    //        }
-    //    }
-    //}
 
     IEnumerator UpdateUIStats()
     {
@@ -45,18 +34,27 @@ public class TabletStats : MonoBehaviour
             hungerSize.x = (10 - mStats.mStats.hunger) * 10;
             hungerBar.sizeDelta = hungerSize;
 
-            if (mStats.mStats.hunger >= 7)
+            if (mStats.mStats.hunger >= 7 && !foodWarning.activeInHierarchy)
+            {
                 foodWarning.SetActive(true);
+                tablet.PlayWarningSound();
+            }
             else
                 foodWarning.SetActive(false);
 
-            if (mStats.mStats.fatigue >= 7)
+            if (mStats.mStats.fatigue >= 7 && !sleepWarning.activeInHierarchy)
+            {
                 sleepWarning.SetActive(true);
+                tablet.PlayWarningSound();
+            }
             else
                 sleepWarning.SetActive(false);
 
-            if (mStats.health <= 3)
+            if (mStats.health <= 3 && !healthWarning.activeInHierarchy)
+            {
                 healthWarning.SetActive(true);
+                tablet.PlayWarningSound();
+            }
             else
                 healthWarning.SetActive(false);
         }
