@@ -9,6 +9,8 @@ namespace Valve.VR.InteractionSystem
     public class Door : MonoBehaviour
     {
         public Quaternion startRot;
+        public int limitsMin = 0;
+        public int limitsMax = -180;
 
         void Awake()
         {
@@ -18,8 +20,8 @@ namespace Valve.VR.InteractionSystem
             //doorHinge.axis = new Vector3(0, 1, 0);
             doorHinge.useLimits = true;
             JointLimits hingeLimits = new JointLimits();
-            hingeLimits.min = 0;
-            hingeLimits.max = -180;
+            hingeLimits.min = limitsMin;
+            hingeLimits.max = limitsMax;
             doorHinge.limits = hingeLimits;
             startRot = transform.rotation;
         }
