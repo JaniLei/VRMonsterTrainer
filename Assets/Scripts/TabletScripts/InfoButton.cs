@@ -7,7 +7,6 @@ public class InfoButton : TabletButton
     protected override void OnTouch()
     {
         base.OnTouch();
-        tablet.OpenMenu(false);
-        tablet.OpenInfo(true);
+        tablet.screenStatus = Valve.VR.InteractionSystem.Tablet.ScreenStatus.Info;
     }
 }

@@ -7,7 +7,6 @@ public class StatsButton : TabletButton
     protected override void OnTouch()
     {
         base.OnTouch();
-        tablet.OpenMenu(false);
-        tablet.OpenStats(true);
+        tablet.screenStatus = Valve.VR.InteractionSystem.Tablet.ScreenStatus.Stats;
     }
 }
