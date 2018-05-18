@@ -20,8 +20,9 @@ public class EventManager : MonoBehaviour
     }
 
     public delegate void StateEventHandler();
-    public event StateEventHandler Pointing, Fetching;
+    public event StateEventHandler Pointing, Fetching, MonsterDeath;
     public GameObject targetObj;
+    public bool monsterDead;
 
 
     void Awake ()
@@ -49,8 +50,19 @@ public class EventManager : MonoBehaviour
         Fetching();
     }
 
+    public void OnMonsterDeath()
+    {
+        if (!monsterDead)
+        {
+            MonsterDeath();
+            monsterDead = true;
+        }
+    }
+
     public void RestartGame()
     {
+        if (SaveSystem.instance)
+            SaveSystem.instance.DeleteSave();
         SceneManager.LoadScene("cave", LoadSceneMode.Single);
     }
 }

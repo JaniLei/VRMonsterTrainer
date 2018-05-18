@@ -15,7 +15,7 @@ public class SettingsArrow : TabletButton
     public ArrowDirection arrowDirection;
 
 
-    void Start()
+    void OnEnable()
     {
         volumeText.text = (Mathf.RoundToInt(AudioListener.volume * 100)).ToString();
     }

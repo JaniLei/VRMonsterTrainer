@@ -211,6 +211,7 @@ public class MonsterState : MonoBehaviour {
             case States.Dead:
                 if (!ragdolling)
                 {
+                    EventManager.instance.OnMonsterDeath();
                     Invoke("ToggleRagdoll", 2.5f);
                     ragdolling = true;
                 }

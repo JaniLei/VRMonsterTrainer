@@ -16,7 +16,8 @@ namespace Valve.VR.InteractionSystem
             MainMenu,
             Info,
             Settings,
-            Quit
+            Quit,
+            Restart
         }
         public GameObject screen;
         public GameObject followHead;
@@ -26,6 +27,8 @@ namespace Valve.VR.InteractionSystem
         public GameObject[] settingsObjs;
         public GameObject[] infoPictures;
         public GameObject[] sliderObjs;
+        public AudioClip clickSound, warningSound;
+        public TabletSlider slider;
         public float shakeThreshold = 3;
         [HideInInspector]public int currentPicIndex;
         public ScreenStatus screenStatus
@@ -39,14 +42,17 @@ namespace Valve.VR.InteractionSystem
         float startY;
         bool attached;
         bool lerp;
+        bool once;
+        AudioSource audioSource;
 
 
         void Start()
         {
             startY = transform.position.y;
             screenPos = screen.transform.localPosition;
-            
+            audioSource = GetComponent<AudioSource>();
             //StartCoroutine("StartAttach");
+            EventManager.instance.MonsterDeath += OnMonsterDeath;
         }
 
         void Update()
@@ -211,9 +217,23 @@ namespace Valve.VR.InteractionSystem
                 case ScreenStatus.Quit:
                     ActivateSlider(true);
                     break;
+                case ScreenStatus.Restart:
+                    ActivateSlider(true);
+                    break;
                 default:
                     break;
             }
+        }
+
+        public void PlayClickSound()
+        {
+            audioSource.PlayOneShot(clickSound);
+        }
+
+        public void PlayWarningSound()
+        {
+            if (screen.activeInHierarchy)
+                audioSource.PlayOneShot(warningSound);
         }
 
         IEnumerator StartAttach()
@@ -230,6 +250,17 @@ namespace Valve.VR.InteractionSystem
             lerp = true;
             yield return new WaitForSeconds(0.5f);
             lerp = false;
+        }
+
+        public void OnMonsterDeath()
+        {
+            if (!once)
+            {
+                slider.confirmingType = TabletSlider.ConfirmingType.ConfirmRestart;
+                slider.UpdateDescription();
+                screenStatus = ScreenStatus.Restart;
+                once = true;
+            }
         }
     }
 }

@@ -27,8 +27,13 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
     vSyncCount: 0
+<<<<<<< HEAD
     lodBias: 0.3
     maximumLODLevel: 0
+=======
+    lodBias: 1
+    maximumLODLevel: 1
+>>>>>>> 3fc93f4645876142ad4877b85946db6a320d3405
     particleRaycastBudget: 4
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
@@ -55,8 +60,13 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
     vSyncCount: 0
+<<<<<<< HEAD
     lodBias: 0.4
     maximumLODLevel: 0
+=======
+    lodBias: 1
+    maximumLODLevel: 1
+>>>>>>> 3fc93f4645876142ad4877b85946db6a320d3405
     particleRaycastBudget: 16
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
@@ -83,8 +93,13 @@ QualitySettings:
     realtimeReflectionProbes: 0
     billboardsFaceCameraPosition: 0
     vSyncCount: 0
+<<<<<<< HEAD
     lodBias: 0.7
     maximumLODLevel: 0
+=======
+    lodBias: 1.3
+    maximumLODLevel: 1
+>>>>>>> 3fc93f4645876142ad4877b85946db6a320d3405
     particleRaycastBudget: 64
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
@@ -111,7 +126,7 @@ QualitySettings:
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     vSyncCount: 1
-    lodBias: 1
+    lodBias: 1.5
     maximumLODLevel: 0
     particleRaycastBudget: 256
     asyncUploadTimeSlice: 2
@@ -139,7 +154,7 @@ QualitySettings:
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
     vSyncCount: 1
-    lodBias: 1.5
+    lodBias: 1.7
     maximumLODLevel: 0
     particleRaycastBudget: 1024
     asyncUploadTimeSlice: 2
@@ -177,7 +192,11 @@ QualitySettings:
   m_PerPlatformDefaultQuality:
     Android: 0
     BlackBerry: 0
+<<<<<<< HEAD
     Standalone: 4
+=======
+    Standalone: 5
+>>>>>>> 3fc93f4645876142ad4877b85946db6a320d3405
     WP8: 0
     Web: 0
     WebGL: 0

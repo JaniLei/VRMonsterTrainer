@@ -11,7 +11,10 @@ public class TabletButton : MonoBehaviour
         tablet = GetComponentInParent<Valve.VR.InteractionSystem.Tablet>();
     }
 
-    protected virtual void OnTouch() { }
+    protected virtual void OnTouch()
+    {
+        tablet.PlayClickSound();
+    }
 
     void OnTriggerEnter(Collider other)
     {

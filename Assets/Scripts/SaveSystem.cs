@@ -120,6 +120,12 @@ public class SaveSystem : MonoBehaviour
             return false;
         }
     }
+
+    public void DeleteSave()
+    {
+        string fileName = Application.persistentDataPath + "/saveData.dat";
+        File.Delete(fileName);
+    }
 }
 
 /* used for serializing Vector3 and Quaternion */

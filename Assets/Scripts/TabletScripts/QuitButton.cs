@@ -11,6 +11,7 @@ public class QuitButton : TabletButton
     {
         base.OnTouch();
         slider.confirmingType = TabletSlider.ConfirmingType.ConfirmQuit;
+        slider.UpdateDescription();
         tablet.screenStatus = Valve.VR.InteractionSystem.Tablet.ScreenStatus.Quit;
     }
 }
