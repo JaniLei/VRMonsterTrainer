@@ -12,6 +12,7 @@ namespace Valve.VR.InteractionSystem
 
         public float breakForce = 1.2f;
         public int secondsTillBreak = 180;
+        public Collider coll;
 
         void Start()
         {
@@ -35,7 +36,7 @@ namespace Valve.VR.InteractionSystem
                             Collider otherColl = hand.currentAttachedObject.GetComponent<Collider>();
                             if (!otherColl)
                                 otherColl = hand.currentAttachedObject.GetComponentInChildren<Collider>();
-                            if (GetComponent<Collider>().bounds.Intersects(otherColl.bounds))
+                            if (coll.bounds.Intersects(otherColl.bounds))
                             {
                                 if (hand.GetTrackedObjectVelocity().magnitude > breakForce)
                                 {

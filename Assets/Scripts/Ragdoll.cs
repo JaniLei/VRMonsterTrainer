@@ -7,6 +7,8 @@ namespace Valve.VR.InteractionSystem
     [RequireComponent(typeof(Interactable))]
     public class Ragdoll : MonoBehaviour
     {
+        public Collider mainColl;
+
         bool isKinematic = true;
         Vector3 pos;
         float startY;
@@ -53,7 +55,8 @@ namespace Valve.VR.InteractionSystem
             if (hand.otherHand)
                 hand.otherHand.canTeleport = true;
 
-            Invoke("ToggleRagdoll", 2);
+            if (hand.otherHand.currentAttachedObject != gameObject)
+                Invoke("ToggleRagdoll", 2);
         }
 
         // moved to RagdollHelper script
@@ -70,6 +73,7 @@ namespace Valve.VR.InteractionSystem
 
         public void ToggleRagdoll()
         {
+            mainColl.enabled = !isKinematic;
             for (int i = 0; i < colls.Length; i++)
             {
                 colls[i].isTrigger = !isKinematic;

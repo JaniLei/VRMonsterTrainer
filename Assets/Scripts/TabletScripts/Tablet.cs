@@ -29,7 +29,7 @@ namespace Valve.VR.InteractionSystem
         public GameObject[] sliderObjs;
         public AudioClip clickSound, warningSound;
         public TabletSlider slider;
-        public float shakeThreshold = 3;
+        public float shakeThreshold = 10;
         [HideInInspector]public int currentPicIndex;
         public ScreenStatus screenStatus
         {
@@ -43,6 +43,7 @@ namespace Valve.VR.InteractionSystem
         bool attached;
         bool lerp;
         bool once;
+        float shakeVel;
         AudioSource audioSource;
 
 
@@ -103,12 +104,14 @@ namespace Valve.VR.InteractionSystem
             //{
 
             //}
-            if ((hand.GetTrackedObjectVelocity() + hand.GetTrackedObjectAngularVelocity()).magnitude >= shakeThreshold)
+            shakeVel = (hand.GetTrackedObjectVelocity() + hand.GetTrackedObjectAngularVelocity()).magnitude;
+            if (shakeVel >= shakeThreshold)
             {
                 if (screenStatus != ScreenStatus.MainMenu)
                 {
                     screenStatus = ScreenStatus.MainMenu;
                 }
+                shakeVel = 0;
             }
         }
 
@@ -232,6 +235,7 @@ namespace Valve.VR.InteractionSystem
 
         public void PlayWarningSound()
         {
+
             if (screen.activeInHierarchy)
                 audioSource.PlayOneShot(warningSound);
         }

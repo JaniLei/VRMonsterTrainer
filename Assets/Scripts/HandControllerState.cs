@@ -42,16 +42,7 @@ public class HandControllerState : MonoBehaviour
             else if (Input.GetMouseButtonUp(0))
                 axis = 0;
         }
-
-        if (currentState == HandState.Point)
-        {
-            pointingTime += Time.deltaTime;
-            if (pointingTime >= 0.5f)
-            {
-                PointToBed();
-                pointingTime = 0;
-            }
-        }
+        
 
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //    axis = 0.1f;
@@ -71,7 +62,18 @@ public class HandControllerState : MonoBehaviour
         else
             SetHandState(HandState.Punch);
 
-	}
+
+        if (currentState == HandState.Point)
+        {
+            //pointingTime += Time.deltaTime;
+            //if (pointingTime >= 0.2f)
+            //{
+            //    PointToBed();
+            //    pointingTime = 0;
+            //}
+            PointToBed();
+        }
+    }
 
     void SetHandState(HandState newState)
     {
