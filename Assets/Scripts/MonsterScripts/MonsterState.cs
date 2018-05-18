@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterState : MonoBehaviour {
 
     public enum States { Hatching, Follow, Fetch, Sleep, Search, Pooping, Whine, Evolve, Exit, Push, Ragdoll, Dead, Petting, EatHand, EatGround, Smash, GoOutside}
-    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk, Smash, Dodge}
+    public enum animStates {Walking, EatHand, EatGround, Idle, Dead, Sleep, Petting, Poop, Lift, GetHit, Sniff, Hungry, Yawn, Evolve, AdultIdle, Push, AdultWalk, Smash, Dodge, Fight}
     public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
     States currentState = States.Hatching;// = States.Follow; //set this to Hatching
     animStates animationState = animStates.Idle;
@@ -292,6 +292,7 @@ public class MonsterState : MonoBehaviour {
         }
         anim.SetFloat("Speed", 0);
         anim.SetBool("Sleep", false);
+        anim.SetBool("Fight", false);
         animationState = stateToSet;
         audioSource.volume = mainVolume;
         audioSource.pitch = 1;
@@ -384,6 +385,9 @@ public class MonsterState : MonoBehaviour {
                 adultAnim.SetFloat("Speed", 0);
                 adultAnim.SetTrigger("Smash");
                 //audioSource.PlayOneShot(smash);
+                break;
+            case animStates.Fight:
+                anim.SetBool("Fight", true);
                 break;
 
 

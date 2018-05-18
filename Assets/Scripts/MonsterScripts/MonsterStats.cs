@@ -203,7 +203,7 @@ public class MonsterStats : MonoBehaviour {
 
     public void DisplayStats()
     {
-        txtStats.text = "Monster stats \nHealth: " + health + "\nSpeed: " + mStats.speed + "\nAgility: " + mStats.agility;
+        //txtStats.text = "Monster stats \nHealth: " + health + "\nSpeed: " + mStats.speed + "\nAgility: " + mStats.agility;
     }
 
 }

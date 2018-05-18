@@ -34,6 +34,7 @@ public class Boxing : MonoBehaviour {
             state.SetAnimationState(MonsterState.animStates.GetHit);
         }
         stats.IncreaseStat("agility", Random.Range(1, 3));
+        state.SetAnimationState(MonsterState.animStates.Fight);
     }
 
     public void GetHit(bool gloves)

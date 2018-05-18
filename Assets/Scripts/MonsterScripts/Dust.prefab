@@ -146,7 +146,7 @@ MonoBehaviour:
   overTime: 3
   soundRoar: {fileID: 8300000, guid: 80d62c6bd2dbc7743a2c72e0d957a35f, type: 3}
   soundEarthquake: {fileID: 0}
-  soundStep: {fileID: 8300000, guid: b985dc0ac773e2a4a83034cd64c21595, type: 3}
+  soundStep: {fileID: 8300000, guid: 02e155750582afb4da64a52ef9cc3650, type: 3}
   tree: {fileID: 1402221118210002, guid: ba708640273a8794780ba1a4f5eeb7be, type: 2}
 --- !u!198 &198964303594036642
 ParticleSystem:
@@ -208,7 +208,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1537473833
+  randomSeed: -1272767100
   InitialModule:
     serializedVersion: 3
     enabled: 1
