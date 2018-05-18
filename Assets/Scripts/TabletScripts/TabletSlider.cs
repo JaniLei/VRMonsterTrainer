@@ -6,12 +6,19 @@ using UnityEngine.UI;
 
 public class TabletSlider : MonoBehaviour
 {
+    public enum ConfirmingType
+    {
+        ConfirmQuit,
+        ConfirmRestart
+    }
+    public ConfirmingType confirmingType;
     public float range = 0.7f;
     public RectTransform image;
     public bool swiped;
 
     Vector3 startPos, fingerPos, nextPos, imageStart;
     bool hovering;
+    bool quit;
 
 	void Start()
     {
@@ -48,6 +55,23 @@ public class TabletSlider : MonoBehaviour
         }
 
         swiped = (Mathf.Abs(startPos.x) + nextPos.x >= range * 0.95f);
+
+        if (swiped)
+        {
+            if (confirmingType == ConfirmingType.ConfirmQuit)
+            {
+                if (!quit)
+                {
+                    Debug.Log("Quit game.");
+                    Application.Quit();
+                    quit = true;
+                }
+            }
+            else if (confirmingType == ConfirmingType.ConfirmRestart)
+            {
+                EventManager.instance.RestartGame();
+            }
+        }
 	}
 
     void OnTriggerStay(Collider other)

@@ -8,6 +8,6 @@ public class StatsButton : TabletButton
     {
         base.OnTouch();
         tablet.OpenMenu(false);
-        tablet.statText.SetActive(true);
+        tablet.OpenStats(true);
     }
 }
