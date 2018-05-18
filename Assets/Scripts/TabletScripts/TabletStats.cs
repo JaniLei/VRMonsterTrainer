@@ -11,30 +11,30 @@ public class TabletStats : MonoBehaviour
     public GameObject foodWarning, sleepWarning, healthWarning;
 
     MonsterStats mStats;
-    float timer;
     
 	void Start()
     {
         mStats = FindObjectOfType<MonsterStats>();
-        if (mStats)
+        if (!mStats)
             Debug.LogWarning("No monster found in scene");
+        StartCoroutine("UpdateUIStats");
     }
 
-    void Update()
-    {
-        if (screen.activeInHierarchy && 
-            GetComponent<Valve.VR.InteractionSystem.Tablet>().screenStatus == Valve.VR.InteractionSystem.Tablet.ScreenStatus.Stats)
-        {
-            timer += Time.deltaTime;
-            if (timer >= 1)
-            {
-                UpdateUIStats();
-                timer = 0;
-            }
-        }
-    }
+    //void Update()
+    //{
+    //    if (screen.activeInHierarchy && 
+    //        GetComponent<Valve.VR.InteractionSystem.Tablet>().screenStatus == Valve.VR.InteractionSystem.Tablet.ScreenStatus.Stats)
+    //    {
+    //        timer += Time.deltaTime;
+    //        if (timer >= 1)
+    //        {
+    //            UpdateUIStats();
+    //            timer = 0;
+    //        }
+    //    }
+    //}
 
-    void UpdateUIStats()
+    IEnumerator UpdateUIStats()
     {
         if (mStats)
         {
@@ -42,7 +42,7 @@ public class TabletStats : MonoBehaviour
             healthSize.x = mStats.health * 10;
             healthBar.sizeDelta = healthSize;
             Vector2 hungerSize = hungerBar.sizeDelta;
-            hungerSize.x = mStats.mStats.hunger * 10;
+            hungerSize.x = (10 - mStats.mStats.hunger) * 10;
             hungerBar.sizeDelta = hungerSize;
 
             if (mStats.mStats.hunger >= 7)
@@ -60,5 +60,7 @@ public class TabletStats : MonoBehaviour
             else
                 healthWarning.SetActive(false);
         }
+        yield return new WaitForSeconds(1);
+        StartCoroutine("UpdateUIStats");
     }
 }

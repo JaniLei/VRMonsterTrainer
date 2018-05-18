@@ -30,7 +30,7 @@ namespace Valve.VR.InteractionSystem
                 {
                     if (hand.currentAttachedObject != null)
                     {
-                        if (hand.currentAttachedObject.GetComponent<BoxingGloves>() || hand.currentAttachedObject.GetComponent<Fetchable>())
+                        if (hand.currentAttachedObject.GetComponent<BoxingGloves>() || hand.currentAttachedObject.GetComponent<Fetchable>() || hand.currentAttachedObject.tag == "Mallet")
                         {
                             Collider otherColl = hand.currentAttachedObject.GetComponent<Collider>();
                             if (!otherColl)
