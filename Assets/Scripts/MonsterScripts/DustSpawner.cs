@@ -19,7 +19,10 @@ public class DustSpawner : MonoBehaviour {
 
     Vector3 defaultGravity;
     AudioSource audioSource;
-
+    public AudioClip soundRoar;
+    public AudioClip soundEarthquake;
+    public AudioClip soundStep;
+    
     public GameObject tree;
 
 
@@ -49,7 +52,8 @@ public class DustSpawner : MonoBehaviour {
 
     void CreateDust()
     {
-        audioSource.Play();
+        audioSource.PlayOneShot(soundRoar);
+        audioSource.PlayOneShot(soundEarthquake);
         tree.GetComponent<Animator>().speed = 5;
         Invoke("RestoreAnimation", overTime);
         for (int i = 0; i < spawnCount; i++)
@@ -65,6 +69,7 @@ public class DustSpawner : MonoBehaviour {
 
     void ShakeObjects()
     {
+        audioSource.PlayOneShot(soundStep);
         Vector3 tempGravity = new Vector3(Random.Range(-20,20), Random.Range(20, 35), Random.Range(-20,20));
         Physics.gravity = tempGravity;
         Invoke("RestoreGravity", 0.05f);
