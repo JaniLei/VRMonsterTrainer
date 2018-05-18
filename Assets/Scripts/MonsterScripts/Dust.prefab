@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418476611430710}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.4921843, y: 4.21, z: -5.03}
+  m_LocalPosition: {x: -6.37, y: 10.21, z: -1.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -144,6 +144,10 @@ MonoBehaviour:
   - {fileID: 1313004231293754, guid: 4f4f60dd8d251ec4685b162c0784a85d, type: 2}
   areaSize: 8
   overTime: 3
+  soundRoar: {fileID: 8300000, guid: 80d62c6bd2dbc7743a2c72e0d957a35f, type: 3}
+  soundEarthquake: {fileID: 0}
+  soundStep: {fileID: 8300000, guid: b985dc0ac773e2a4a83034cd64c21595, type: 3}
+  tree: {fileID: 1402221118210002, guid: ba708640273a8794780ba1a4f5eeb7be, type: 2}
 --- !u!198 &198964303594036642
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -204,7 +208,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -152849942
+  randomSeed: -1537473833
   InitialModule:
     serializedVersion: 3
     enabled: 1

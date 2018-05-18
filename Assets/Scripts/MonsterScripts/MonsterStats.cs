@@ -125,32 +125,44 @@ public class MonsterStats : MonoBehaviour {
         CheckEvolve();
     }
 
+    int totalCount;
+
     void CheckEvolve()
     {
-        int totalCount = 1 + mStats.meat + mStats.vegetables + mStats.items;
+
         if (mStats.speed > 50 && mStats.agility > 30)
         {
+            try { int a = mStats.meat / totalCount; }
+            catch
+            {
+                adultMonster.GetComponent<MaterialSwitcher>().ChangeMaterial(1); //BLUE
+                childMonster.SetActive(false);
+                adultMonster.SetActive(true);
+                state.SetState(MonsterState.States.Evolve);
+            }
+
             if (health < 1)
             {
                 //Bad evolution
                 Debug.Log("BAD EVOLUTION -> GAME OVER");
             }
-            else if (mStats.meat/ totalCount > 0.75f)
+            else if (mStats.meat/ totalCount >= 0.75f)
             {
                 adultMonster.GetComponent<MaterialSwitcher>().ChangeMaterial(2); //RED
                 childMonster.SetActive(false);
                 adultMonster.SetActive(true);
+                Debug.Log("red");
             }
-            else if (mStats.vegetables / totalCount > 0.75f)
+            else if (mStats.vegetables / totalCount >= 0.75f)
             {
-
+                Debug.Log("green");
                 adultMonster.GetComponent<MaterialSwitcher>().ChangeMaterial(3); //GREEN
                 childMonster.SetActive(false);
                 adultMonster.SetActive(true);
             }
             else
             {
-
+                Debug.Log("blue");
                 adultMonster.GetComponent<MaterialSwitcher>().ChangeMaterial(1); //BLUE
                 childMonster.SetActive(false);
                 adultMonster.SetActive(true);
@@ -161,6 +173,7 @@ public class MonsterStats : MonoBehaviour {
 
     public void EatFood(string type)
     {
+        totalCount += 1;
         switch (type)
         {
             case "meat":

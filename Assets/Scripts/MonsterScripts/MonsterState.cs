@@ -9,6 +9,8 @@ public class MonsterState : MonoBehaviour {
     public enum Emotions {Neutral, Sad, Happy, Tired, Relaxed, Angry, Furious, Scared, Hungry }
     States currentState = States.Hatching;// = States.Follow; //set this to Hatching
     animStates animationState = animStates.Idle;
+    //---------------------------------------------------------------------------------------------------
+
     Monster monster;
     SearchFood search;
     MonsterStats stats;
@@ -29,13 +31,20 @@ public class MonsterState : MonoBehaviour {
     [HideInInspector] public GameObject foodObj;
 
     bool ragdolling = false;
+    bool isSmashed = false;
+    public GameObject evolveParticles;
+
 
     float soundTimer;
     public float mainVolume;
     public float stepTimer = 0.5f;
 
+
+    //---------------------ANIMATOR--------------------
     public Animator anim;
     public Animator adultAnim;
+
+    //-----------------------AUDIO---------------------
     public AudioSource audioSource;
     public AudioClip yawn;
     public AudioClip hungry;
@@ -52,6 +61,8 @@ public class MonsterState : MonoBehaviour {
     public AudioClip enjoyPetting;
     public AudioClip push;
     public AudioClip evolve;
+    public AudioClip victory;
+
 
     void Start()
     {
@@ -181,14 +192,15 @@ public class MonsterState : MonoBehaviour {
 
                 break;
             case States.Exit:
-                if (Vector3.Distance(transform.position, smashableObject.transform.position) < 1.5f)
+                if (Vector3.Distance(transform.position, smashableObject.transform.position) < 1.5f && !isSmashed)
                 {
+                    isSmashed = true;
                     SetState(States.Smash);
                     SetAnimationState(animStates.Smash);
                     Invoke("SmashStone", 1.6f);
                     Invoke("ExitCave", 3);
                 }
-                else
+                else if (!isSmashed)
                 {
                     monster.MoveTo(smashableObject.transform.position);
                 }
@@ -229,11 +241,14 @@ public class MonsterState : MonoBehaviour {
 
         smashableObject.GetComponent<BreakableStone>().Break(transform.position);
 
+        audioSource.PlayOneShot(push);
+        
     }
 
     void ExitCave()
     {
         currentState = States.GoOutside;
+        audioSource.PlayOneShot(victory);
     }
 
     void StepSound()
@@ -359,6 +374,7 @@ public class MonsterState : MonoBehaviour {
             case animStates.Evolve:
                 adultAnim.SetTrigger("Evolve");
                 audioSource.PlayOneShot(evolve);
+                evolveParticles.GetComponent<ParticleSystem>().Play();
                 break;
             case animStates.Push:
                 adultAnim.SetTrigger("Push");
@@ -386,7 +402,7 @@ public class MonsterState : MonoBehaviour {
 
             adultAnim.SetTrigger("SkipSpawnDelay");
         }
-        else if ((currentState == States.Evolve && _state != States.Exit) || currentState == States.Exit)
+        else if ((currentState == States.Evolve && _state != States.Exit) || currentState == States.Exit || currentState == States.GoOutside)
         {
             return;
         }
