@@ -7,7 +7,6 @@ public class SettingsButton : TabletButton
     protected override void OnTouch()
     {
         base.OnTouch();
-        tablet.OpenMenu(false);
-        tablet.OpenSettings(true);
+        tablet.screenStatus = Valve.VR.InteractionSystem.Tablet.ScreenStatus.Settings;
     }
 }

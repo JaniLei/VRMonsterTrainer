@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class TabletStats : MonoBehaviour
 {
+    public GameObject screen;
     public RectTransform healthBar, hungerBar;
+    public GameObject foodWarning, sleepWarning, healthWarning;
 
     MonsterStats mStats;
     float timer;
@@ -20,11 +22,15 @@ public class TabletStats : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= 1)
+        if (screen.activeInHierarchy && 
+            GetComponent<Valve.VR.InteractionSystem.Tablet>().screenStatus == Valve.VR.InteractionSystem.Tablet.ScreenStatus.Stats)
         {
-            UpdateUIStats();
-            timer = 0;
+            timer += Time.deltaTime;
+            if (timer >= 1)
+            {
+                UpdateUIStats();
+                timer = 0;
+            }
         }
     }
 
@@ -38,6 +44,21 @@ public class TabletStats : MonoBehaviour
             Vector2 hungerSize = hungerBar.sizeDelta;
             hungerSize.x = mStats.mStats.hunger * 10;
             hungerBar.sizeDelta = hungerSize;
+
+            if (mStats.mStats.hunger >= 7)
+                foodWarning.SetActive(true);
+            else
+                foodWarning.SetActive(false);
+
+            if (mStats.mStats.fatigue >= 7)
+                sleepWarning.SetActive(true);
+            else
+                sleepWarning.SetActive(false);
+
+            if (mStats.health <= 3)
+                healthWarning.SetActive(true);
+            else
+                healthWarning.SetActive(false);
         }
     }
 }
