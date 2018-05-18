@@ -74,6 +74,8 @@ public class SaveSystem : MonoBehaviour
         //data.timePlayed += Time.time;
         data.timePlayed = timePlayed;
 
+        data.audioVolume = AudioListener.volume;
+
         bf.Serialize(file, data);
         file.Close();
     }
@@ -108,6 +110,8 @@ public class SaveSystem : MonoBehaviour
 
             _timePlayed = data.timePlayed;
 
+            AudioListener.volume = data.audioVolume;
+
             return true;
         }
         else
@@ -138,4 +142,5 @@ public class SaveData
     //public Transform monsterPos;
     public MonsterStats monsterStats;
     public float timePlayed;
+    public float audioVolume;
 }

@@ -9,6 +9,15 @@ namespace Valve.VR.InteractionSystem
         [EnumFlags]
         [Tooltip("The flags used to attach this object to the hand.")]
         public Hand.AttachmentFlags attachmentFlags = Hand.AttachmentFlags.ParentToHand | Hand.AttachmentFlags.DetachFromOtherHand | Hand.AttachmentFlags.SnapOnAttach;
+
+        public enum ScreenStatus
+        {
+            Stats,
+            MainMenu,
+            Info,
+            Settings,
+            Quit
+        }
         public GameObject screen;
         public GameObject followHead;
         public GameObject[] menuItems;
@@ -19,11 +28,16 @@ namespace Valve.VR.InteractionSystem
         public GameObject[] sliderObjs;
         public float shakeThreshold = 3;
         [HideInInspector]public int currentPicIndex;
-        
+        public ScreenStatus screenStatus
+        {
+            get { return _screenStatus; }
+            set { _screenStatus = value; UpdateScreenStatus(); }
+        }
+
+        ScreenStatus _screenStatus;
         Vector3 screenPos;
         float startY;
         bool attached;
-        bool menuOpen;
         bool lerp;
 
 
@@ -39,7 +53,7 @@ namespace Valve.VR.InteractionSystem
         {
             if (Input.GetKeyDown(KeyCode.M))
             {
-                OpenMenu(true);
+                screenStatus = ScreenStatus.MainMenu;
             }
 
             if (followHead)
@@ -85,9 +99,9 @@ namespace Valve.VR.InteractionSystem
             //}
             if ((hand.GetTrackedObjectVelocity() + hand.GetTrackedObjectAngularVelocity()).magnitude >= shakeThreshold)
             {
-                if (!menuOpen)
+                if (screenStatus != ScreenStatus.MainMenu)
                 {
-                    OpenMenu(true);
+                    screenStatus = ScreenStatus.MainMenu;
                 }
             }
         }
@@ -120,15 +134,14 @@ namespace Valve.VR.InteractionSystem
 
         public void OpenMenu(bool open)
         {
-            OpenStats(false);
-            OpenInfo(false);
-            OpenSettings(false);
-            ActivateSlider(false);
+            //OpenStats(false);
+            //OpenInfo(false);
+            //OpenSettings(false);
+            //ActivateSlider(false);
             foreach (var item in menuItems)
             {
                 item.SetActive(open);
             }
-            menuOpen = open;
         }
 
         public void OpenStats(bool open)
@@ -171,6 +184,35 @@ namespace Valve.VR.InteractionSystem
                     infoPictures[i].SetActive(true);
                 else
                     infoPictures[i].SetActive(false);
+            }
+        }
+
+        void UpdateScreenStatus()
+        {
+            OpenMenu(false);
+            OpenStats(false);
+            OpenInfo(false);
+            OpenSettings(false);
+            ActivateSlider(false);
+            switch (screenStatus)
+            {
+                case ScreenStatus.Stats:
+                    OpenStats(true);
+                    break;
+                case ScreenStatus.MainMenu:
+                    OpenMenu(true);
+                    break;
+                case ScreenStatus.Info:
+                    OpenInfo(true);
+                    break;
+                case ScreenStatus.Settings:
+                    OpenSettings(true);
+                    break;
+                case ScreenStatus.Quit:
+                    ActivateSlider(true);
+                    break;
+                default:
+                    break;
             }
         }
 

@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class SettingsArrow : TabletButton
 {
+    public Text volumeText;
     public enum ArrowDirection
     {
         Left,
@@ -11,6 +14,11 @@ public class SettingsArrow : TabletButton
     }
     public ArrowDirection arrowDirection;
 
+
+    void Start()
+    {
+        volumeText.text = (Mathf.RoundToInt(AudioListener.volume * 100)).ToString();
+    }
 
     protected override void OnTouch()
     {
@@ -26,5 +34,7 @@ public class SettingsArrow : TabletButton
             if (AudioListener.volume < 1)
                 AudioListener.volume += 0.1f;
         }
+
+        volumeText.text = (Mathf.RoundToInt(AudioListener.volume * 100)).ToString();
     }
 }
