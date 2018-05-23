@@ -4,11 +4,11 @@ public class BreakableStone : MonoBehaviour
 {
     public float explosionForce = 1;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-            Break(transform.position);
-    }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.B))
+    //        Break(transform.position);
+    //}
 
     public void Break(Vector3 hitPos)
     {

@@ -24,8 +24,8 @@ namespace Valve.VR.InteractionSystem
         {
             if (!broken)
             {
-                if (Input.GetKeyDown(KeyCode.N))
-                    Break();
+                //if (Input.GetKeyDown(KeyCode.N))
+                //    Break();
 
                 foreach (var hand in player.hands)
                 {

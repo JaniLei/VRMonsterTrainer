@@ -59,10 +59,10 @@ namespace Valve.VR.InteractionSystem
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                screenStatus = ScreenStatus.MainMenu;
-            }
+            //if (Input.GetKeyDown(KeyCode.M))
+            //{
+            //    screenStatus = ScreenStatus.MainMenu;
+            //}
 
             if (followHead)
             {

@@ -23,13 +23,13 @@ namespace Valve.VR.InteractionSystem
             throwable = GetComponent<MonsterThrowable>();
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                ToggleRagdoll();
-            }
-        }
+        //void Update()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.R))
+        //    {
+        //        ToggleRagdoll();
+        //    }
+        //}
 
         private void HandHoverUpdate(Hand hand)
         {

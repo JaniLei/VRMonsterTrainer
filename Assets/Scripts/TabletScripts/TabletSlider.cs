@@ -69,7 +69,7 @@ public class TabletSlider : MonoBehaviour
                     quit = true;
                 }
             }
-            else if (confirmingType == ConfirmingType.ConfirmDeathRestart)
+            else if (confirmingType == ConfirmingType.ConfirmDeathRestart && confirmingType == ConfirmingType.ConfirmVictoryRestart)
             {
                 EventManager.instance.RestartGame();
             }
