@@ -54,54 +54,51 @@ namespace Valve.VR.InteractionSystem
         private void HandAttachedUpdate(Hand hand)
         {
             // send signal for monster to dodge
-            if (canBeHit)
+            if (hand.GetTrackedObjectVelocity().magnitude > 2)
             {
-                if (hand.GetTrackedObjectVelocity().magnitude > 2)
-                {
-                    RaycastHit hit;
+                RaycastHit hit;
 
-                    if (Physics.Raycast(transform.position, transform.forward * 0.8f, out hit, 1))
-                    {
-                        hit.transform.gameObject.SendMessage("Dodge", SendMessageOptions.DontRequireReceiver);
-                        StartCoroutine("HitRefresh");
-                    }
+                if (Physics.Raycast(transform.position, transform.forward * 1.3f, out hit, 1))
+                {
+                    hit.transform.gameObject.SendMessage("Dodge", SendMessageOptions.DontRequireReceiver);
+                    StartCoroutine("HitRefresh");
                 }
             }
 
-            //if (canBeHit)
-            //{
-            //    for (int i = 0; i < monsterColls.Length; i++)
-            //    {
-            //        if (coll.bounds.Intersects(monsterColls[i].bounds))
-            //        {
-            //            Boxing mBoxing = monster.GetComponent<Boxing>();
-            //            if (mBoxing)
-            //            {
-            //                mBoxing.GetHit(true);
-            //                StartCoroutine("HitRefresh");
-            //            }
-            //        }
-            //    }
-            //    //if (otherColl)
-            //    //{
-            //    //    if (coll.bounds.Intersects(otherColl.bounds))
-            //    //    {
-            //    //        Collider[] colls = otherColl.GetComponentsInChildren<Collider>();
-            //    //        for (int i = 0; i < colls.Length; i++)
-            //    //        {
-            //    //            if (coll.bounds.Intersects(colls[i].bounds))
-            //    //            {
-            //    //                Boxing mBoxing = colls[i].GetComponentInParent<Boxing>();
-            //    //                if (mBoxing)
-            //    //                {
-            //    //                    mBoxing.GetHit(true);
-            //    //                    StartCoroutine("HitRefresh");
-            //    //                }
-            //    //            }
-            //    //        }
-            //    //    }
-            //    //}
-            //}
+            if (canBeHit)
+            {
+                for (int i = 0; i < monsterColls.Length; i++)
+                {
+                    if (coll.bounds.Intersects(monsterColls[i].bounds))
+                    {
+                        Boxing mBoxing = monster.GetComponent<Boxing>();
+                        if (mBoxing)
+                        {
+                            mBoxing.GetHit(true);
+                            StartCoroutine("HitRefresh");
+                        }
+                    }
+                }
+                //if (otherColl)
+                //{
+                //    if (coll.bounds.Intersects(otherColl.bounds))
+                //    {
+                //        Collider[] colls = otherColl.GetComponentsInChildren<Collider>();
+                //        for (int i = 0; i < colls.Length; i++)
+                //        {
+                //            if (coll.bounds.Intersects(colls[i].bounds))
+                //            {
+                //                Boxing mBoxing = colls[i].GetComponentInParent<Boxing>();
+                //                if (mBoxing)
+                //                {
+                //                    mBoxing.GetHit(true);
+                //                    StartCoroutine("HitRefresh");
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
+            }
         }
 
         private void OnAttachedToHand(Hand hand)
