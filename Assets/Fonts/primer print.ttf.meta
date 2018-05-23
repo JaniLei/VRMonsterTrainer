@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 357e0ce7b4830c64183a18a398bd2dd4
+timeCreated: 1527070080
+licenseType: Pro
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Primer
+  fontNames:
+  - Primer
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
