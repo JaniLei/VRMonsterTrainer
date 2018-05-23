@@ -27,6 +27,7 @@ public class MonsterState : MonoBehaviour {
     public GameObject smashableObject;
     public GameObject monsterHand;
     public Vector3 exitPoint;
+   
 
     [HideInInspector] public GameObject foodObj;
 
@@ -45,6 +46,7 @@ public class MonsterState : MonoBehaviour {
     public Animator adultAnim;
 
     //-----------------------AUDIO---------------------
+    public AudioSource globalAudioSource;
     public AudioSource audioSource;
     public AudioClip yawn;
     public AudioClip hungry;
@@ -185,7 +187,7 @@ public class MonsterState : MonoBehaviour {
                 monster.WaitFor(2.5f);
                 break;
             case States.Evolve:
-                monster.WaitFor(5);
+                monster.WaitFor(9);
                 stateInQueue = States.Exit;
                 break;
             case States.Ragdoll:
@@ -249,7 +251,7 @@ public class MonsterState : MonoBehaviour {
     void ExitCave()
     {
         currentState = States.GoOutside;
-        audioSource.PlayOneShot(victory);
+        globalAudioSource.PlayOneShot(victory);
     }
 
     void StepSound()
@@ -406,6 +408,8 @@ public class MonsterState : MonoBehaviour {
             currentState = _state;
 
             adultAnim.SetTrigger("SkipSpawnDelay");
+
+            SetAnimationState(animStates.Evolve);
         }
         else if ((currentState == States.Evolve && _state != States.Exit) || currentState == States.Exit || currentState == States.GoOutside)
         {
