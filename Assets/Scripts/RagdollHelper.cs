@@ -45,7 +45,7 @@ public class RagdollHelper : MonoBehaviour
                     setKinematic(false); //allow the ragdoll RigidBodies to react to the environment
                     anim.enabled = false; //disable animation
                     state = RagdollState.ragdolled;
-                    if (mState)
+                    if (mState && !EventManager.instance.monsterDead)
                         mState.SetState(MonsterState.States.Ragdoll);
                 }
             }
@@ -221,7 +221,7 @@ public class RagdollHelper : MonoBehaviour
             {
                 state = RagdollState.animated;
                 anim.Rebind();
-                if (mState)
+                if (mState && !EventManager.instance.monsterDead)
                     mState.SetState(MonsterState.States.Follow);
                 return;
             }

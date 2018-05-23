@@ -20,9 +20,11 @@ public class EventManager : MonoBehaviour
     }
 
     public delegate void StateEventHandler();
-    public event StateEventHandler Pointing, Fetching, MonsterDeath;
+    public event StateEventHandler Pointing, Fetching, MonsterDeath, Victory;
     public GameObject targetObj;
     public bool monsterDead;
+
+    bool victory;
 
 
     void Awake ()
@@ -39,6 +41,15 @@ public class EventManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void Update()
+    {
+        if (victory)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Application.Quit();
+        }
+    }
 	
 	public void OnPointing()
     {
@@ -52,11 +63,15 @@ public class EventManager : MonoBehaviour
 
     public void OnMonsterDeath()
     {
-        if (!monsterDead)
-        {
-            MonsterDeath();
-            monsterDead = true;
-        }
+        Debug.Log("Monster died");
+        MonsterDeath();
+        monsterDead = true;
+    }
+
+    public void OnVictory()
+    {
+        Victory();
+        victory = true;
     }
 
     public void RestartGame()

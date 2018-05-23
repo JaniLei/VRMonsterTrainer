@@ -128,7 +128,9 @@ public class MonsterState : MonoBehaviour {
             }
             else if (Input.GetKeyDown(KeyCode.Alpha7))
             {
-                currentState = States.Dead;
+                SetAnimationState(animStates.Dead);
+                SetState(States.Dead);
+                //currentState = States.Dead;
                 anim.SetBool("Dead", true);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha8))
@@ -213,7 +215,6 @@ public class MonsterState : MonoBehaviour {
             case States.Dead:
                 if (!ragdolling)
                 {
-                    EventManager.instance.OnMonsterDeath();
                     Invoke("ToggleRagdoll", 2.5f);
                     ragdolling = true;
                 }
@@ -403,6 +404,12 @@ public class MonsterState : MonoBehaviour {
     
     public void SetState(States _state)
     {
+        if (_state == States.Exit)
+            EventManager.instance.OnVictory();
+
+        if (_state == States.Dead)
+            EventManager.instance.OnMonsterDeath();
+
         if (_state == States.Evolve)
         {
             currentState = _state;

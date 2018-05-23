@@ -9,7 +9,8 @@ public class TabletSlider : MonoBehaviour
     public enum ConfirmingType
     {
         ConfirmQuit,
-        ConfirmRestart
+        ConfirmDeathRestart,
+        ConfirmVictoryRestart
     }
     public ConfirmingType confirmingType;
     public float range = 0.7f;
@@ -68,7 +69,7 @@ public class TabletSlider : MonoBehaviour
                     quit = true;
                 }
             }
-            else if (confirmingType == ConfirmingType.ConfirmRestart)
+            else if (confirmingType == ConfirmingType.ConfirmDeathRestart)
             {
                 EventManager.instance.RestartGame();
             }
@@ -79,8 +80,10 @@ public class TabletSlider : MonoBehaviour
     {
         if (confirmingType == ConfirmingType.ConfirmQuit)
             description.text = "Quitting game.\nSwipe to confirm.";
-        else if (confirmingType == ConfirmingType.ConfirmRestart)
+        else if (confirmingType == ConfirmingType.ConfirmDeathRestart)
             description.text = "Monster dead.\nSwipe to restart.";
+        else if (confirmingType == ConfirmingType.ConfirmVictoryRestart)
+            description.text = "Victory! The monster fully evolved.\nSwipe to restart or 'esc' to Quit";
     }
 
     void OnTriggerStay(Collider other)

@@ -54,6 +54,7 @@ namespace Valve.VR.InteractionSystem
             audioSource = GetComponent<AudioSource>();
             //StartCoroutine("StartAttach");
             EventManager.instance.MonsterDeath += OnMonsterDeath;
+            EventManager.instance.Victory += OnVictory;
         }
 
         void Update()
@@ -260,13 +261,16 @@ namespace Valve.VR.InteractionSystem
 
         public void OnMonsterDeath()
         {
-            //if (!once)
-            //{
-            //    slider.confirmingType = TabletSlider.ConfirmingType.ConfirmRestart;
-            //    slider.UpdateDescription();
-            //    screenStatus = ScreenStatus.Restart;
-            //    once = true;
-            //}
+            slider.confirmingType = TabletSlider.ConfirmingType.ConfirmDeathRestart;
+            slider.UpdateDescription();
+            screenStatus = ScreenStatus.Restart;
+        }
+
+        public void OnVictory()
+        {
+            slider.confirmingType = TabletSlider.ConfirmingType.ConfirmVictoryRestart;
+            slider.UpdateDescription();
+            screenStatus = ScreenStatus.Restart;
         }
     }
 }
