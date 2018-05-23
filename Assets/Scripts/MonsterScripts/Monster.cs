@@ -56,7 +56,6 @@ public class Monster : MonoBehaviour {
         //Monster body and player(y=0.5)
         playerGroundRotation = Quaternion.LookRotation(transform.position - playerGroundPosition);
         headRotation = Quaternion.Slerp(mHead.transform.rotation, playerRotation, 5 * Time.deltaTime);
-        
 
         if (Vector3.Distance(transform.position, playerGroundPosition) < distance) //Monster stands still and looks towards the player
         {
