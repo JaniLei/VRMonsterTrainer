@@ -13,11 +13,14 @@ namespace Valve.VR.InteractionSystem
         Vector3 pos;
         float startY;
         Collider[] colls;
+        MonsterThrowable throwable;
+        bool attached;
 
         void Start()
         {
             startY = transform.position.y;
             colls = GetComponentsInChildren<Collider>(true);
+            throwable = GetComponent<MonsterThrowable>();
         }
 
         void Update()
@@ -32,18 +35,22 @@ namespace Valve.VR.InteractionSystem
         {
             if (hand.GetStandardInteractionButtonDown())
             {
-                if (hand.otherHand)
-                {
-                    if (hand.otherHand.GetStandardInteractionButton())
-                        ToggleRagdoll();
-                }
-                else
+                if (isKinematic)
                     ToggleRagdoll();
+                //StartCoroutine("LateAttach", hand);
+                throwable.PhysicsAttach(hand);
             }
+        }
+
+        IEnumerator LateAttach(Hand hand)
+        {
+            yield return new WaitForEndOfFrame();
+            throwable.PhysicsAttach(hand);
         }
 
         private void OnAttachedToHand(Hand hand)
         {
+            attached = true;
             hand.canTeleport = false;
             if (hand.otherHand)
                 hand.otherHand.canTeleport = false;
@@ -51,12 +58,17 @@ namespace Valve.VR.InteractionSystem
 
         private void OnDetachedFromHand(Hand hand)
         {
+            attached = false;
             hand.canTeleport = true;
             if (hand.otherHand)
                 hand.otherHand.canTeleport = true;
 
-            if (hand.otherHand.currentAttachedObject != gameObject)
-                Invoke("ToggleRagdoll", 2);
+            //if (hand.otherHand.currentAttachedObject != gameObject)
+            if (!EventManager.instance.monsterDead)
+            {
+                StopAllCoroutines();
+                StartCoroutine("RagdollOff");
+            }
         }
 
         // moved to RagdollHelper script
@@ -76,7 +88,8 @@ namespace Valve.VR.InteractionSystem
             mainColl.enabled = !isKinematic;
             for (int i = 0; i < colls.Length; i++)
             {
-                colls[i].isTrigger = !isKinematic;
+                if (colls[i] != mainColl)
+                    colls[i].isTrigger = !isKinematic;
             }
             GetComponentInChildren<RagdollHelper>().ragdolled = isKinematic;
             if (!isKinematic)
@@ -86,6 +99,13 @@ namespace Valve.VR.InteractionSystem
                 transform.position = fixedPos;
             }
             isKinematic = !isKinematic;
+        }
+
+        IEnumerator RagdollOff()
+        {
+            yield return new WaitForSeconds(2.0f);
+            if (!attached)
+                ToggleRagdoll();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Valve.VR.InteractionSystem
         public GameObject[] sliderObjs;
         public AudioClip clickSound, warningSound;
         public TabletSlider slider;
-        public float shakeThreshold = 10;
+        public float shakeThreshold = 9;
         [HideInInspector]public int currentPicIndex;
         public ScreenStatus screenStatus
         {
@@ -117,6 +117,8 @@ namespace Valve.VR.InteractionSystem
 
         private void OnAttachedToHand(Hand hand)
         {
+            screenStatus = ScreenStatus.Stats;
+
             GetComponent<TabletPowerToggle>().Power = true;
             attached = true;
 
@@ -258,13 +260,13 @@ namespace Valve.VR.InteractionSystem
 
         public void OnMonsterDeath()
         {
-            if (!once)
-            {
-                slider.confirmingType = TabletSlider.ConfirmingType.ConfirmRestart;
-                slider.UpdateDescription();
-                screenStatus = ScreenStatus.Restart;
-                once = true;
-            }
+            //if (!once)
+            //{
+            //    slider.confirmingType = TabletSlider.ConfirmingType.ConfirmRestart;
+            //    slider.UpdateDescription();
+            //    screenStatus = ScreenStatus.Restart;
+            //    once = true;
+            //}
         }
     }
 }

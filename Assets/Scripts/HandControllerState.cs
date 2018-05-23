@@ -63,15 +63,15 @@ public class HandControllerState : MonoBehaviour
             SetHandState(HandState.Punch);
 
 
-        if (currentState == HandState.Point)
+        if (axis >= 0.1f)
         {
-            //pointingTime += Time.deltaTime;
-            //if (pointingTime >= 0.2f)
-            //{
-            //    PointToBed();
-            //    pointingTime = 0;
-            //}
-            PointToBed();
+            pointingTime += Time.deltaTime;
+            if (pointingTime >= 0.2f)
+            {
+                PointToBed();
+                pointingTime = 0;
+            }
+            //PointToBed();
         }
     }
 

@@ -7,7 +7,7 @@ namespace Valve.VR.InteractionSystem
     [RequireComponent(typeof(Interactable))]
     public class VRMonsterInteraction : MonoBehaviour
     {
-        public double hitVelocity = 1.5f, petVelocity = 1;
+        public double hitVelocity = 1, petVelocity = 0.3f;
         public float hitForceMultiplier = 2;
 
         bool canBePet = true;

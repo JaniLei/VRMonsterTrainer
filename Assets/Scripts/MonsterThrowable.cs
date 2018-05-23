@@ -29,7 +29,7 @@ namespace Valve.VR.InteractionSystem
 
         void Awake()
         {
-            GetComponentsInChildren<Rigidbody>(rigidBodies);
+            GetComponentsInChildren<Rigidbody>(true, rigidBodies);
         }
         
         void Update()
@@ -65,21 +65,23 @@ namespace Valve.VR.InteractionSystem
             }
         }
         
-        private void HandHoverUpdate(Hand hand)
-        {
-            if (hand.GetStandardInteractionButtonDown())
-            {
-                if (hand.otherHand)
-                {
-                    if (hand.otherHand.GetStandardInteractionButton())
-                        PhysicsAttach(hand);
-                }
-                else
-                    PhysicsAttach(hand);
-            }
-        }
+        //private void HandHoverUpdate(Hand hand)
+        //{
+        //    if (hand.GetStandardInteractionButtonDown())
+        //    {
+        //        PhysicsAttach(hand);
+
+        //        //if (hand.otherHand)
+        //        //{
+        //        //    if (hand.otherHand.GetStandardInteractionButton())
+        //        //        PhysicsAttach(hand);
+        //        //}
+        //        //else
+        //        //    PhysicsAttach(hand);
+        //    }
+        //}
         
-        private void PhysicsAttach(Hand hand)
+        public void PhysicsAttach(Hand hand)
         {
             PhysicsDetach(hand);
 
