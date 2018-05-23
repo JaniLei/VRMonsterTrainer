@@ -97,6 +97,10 @@ namespace Valve.VR.InteractionSystem
 		SteamVR_Events.Action inputFocusAction;
 
 
+        float pointingTime;
+        float pointingRange = 6.5f;
+
+
 		//-------------------------------------------------
 		// The Interactable object this Hand is currently hovering over
 		//-------------------------------------------------
@@ -698,6 +702,27 @@ namespace Valve.VR.InteractionSystem
 			{
 				hoveringInteractable.SendMessage( "HandHoverUpdate", this, SendMessageOptions.DontRequireReceiver );
 			}
+
+            if (GetStandardInteractionButton())
+            {
+                pointingTime += Time.deltaTime;
+                if (pointingTime >= 0.2f)
+                {
+                    PointToBed();
+                    pointingTime = 0;
+                }
+            }
+        }
+
+        void PointToBed()
+        {
+            RaycastHit hit;
+            bool bHit = Physics.Linecast(transform.position, transform.forward * pointingRange, out hit);
+            if (bHit && hit.transform.gameObject.tag == "Bed")
+            {
+                EventManager.instance.targetObj = hit.transform.gameObject;
+                EventManager.instance.OnPointing();
+            }
         }
 
 

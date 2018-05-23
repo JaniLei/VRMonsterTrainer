@@ -118,7 +118,8 @@ namespace Valve.VR.InteractionSystem
 
         private void OnAttachedToHand(Hand hand)
         {
-            screenStatus = ScreenStatus.Stats;
+            if (!EventManager.instance.monsterDead || !EventManager.instance.victory)
+                screenStatus = ScreenStatus.Stats;
 
             GetComponent<TabletPowerToggle>().Power = true;
             attached = true;

@@ -23,8 +23,7 @@ public class EventManager : MonoBehaviour
     public event StateEventHandler Pointing, Fetching, MonsterDeath, Victory;
     public GameObject targetObj;
     public bool monsterDead;
-
-    bool victory;
+    public bool victory;
 
 
     void Awake ()

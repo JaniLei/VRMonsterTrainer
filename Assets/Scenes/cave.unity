@@ -49826,11 +49826,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 46fe88bac5f8a864889ddedfb1325533, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 46fe88bac5f8a864889ddedfb1325533, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 46fe88bac5f8a864889ddedfb1325533, type: 3}
+      propertyPath: m_TagString
+      value: Bed
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 46fe88bac5f8a864889ddedfb1325533, type: 3}
+      propertyPath: m_TagString
+      value: Bed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46fe88bac5f8a864889ddedfb1325533, type: 3}
@@ -76158,8 +76166,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 50, y: 30.563736, z: 50}
-  m_Center: {x: 0, y: 13.850428, z: 0}
+  m_Size: {x: 38.767952, y: 26.87228, z: 37.11383}
+  m_Center: {x: -2.7068675, y: 12.0047, z: -1.0321722}
 --- !u!1 &1853926923
 GameObject:
   m_ObjectHideFlags: 0
@@ -76927,7 +76935,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1892598654}
-  m_LocalRotation: {x: 0.714482, y: 0.002931501, z: 0.6996291, w: -0.005094512}
+  m_LocalRotation: {x: 0.71448207, y: 0.002931501, z: 0.6996292, w: -0.0050945124}
   m_LocalPosition: {x: -0.50607055, y: 0.000000059148277, z: 0.000000075177354}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
